@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
 
-import { Home } from "./views/home/home";
+import  Home  from "./views/home/home";
 import { Footer } from "./components/Footer/Footer";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
@@ -17,9 +17,11 @@ function App() {
 
   return (
     <div>
-      <NavBar />
+        {location.pathname === "/" ? null : (
+        <NavBar  />
+      )}
       <Routes>
-		<Route  path="/"  element={<Home/>}/>
+		<Route  path="/home"  element={<Home />}/>
        
       </Routes>
 	  <Footer/>
