@@ -19,18 +19,18 @@ function App() {
 
   return (
     <div>
-        {location.pathname === "/" ? null : (
-        <NavBar  />
-      )}
+       <NavBar/>
       <Routes>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/products/:id" element={<Detail/>}/>
         <Route  path="/home"  element={<Home />}/>
         <Route  path="/Login"  element={<Login />}/>
-        <Route  path="/Landing"  element={<Landing />}/>
+        <Route  path="/"  element={<Landing />}/>
 
 
       </Routes>
-	  <Footer/>
+      <Footer/>
+
     </div>
   );
 }

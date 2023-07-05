@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   z-index: 9999; /* Valor alto para asegurarse de que la barra de navegación esté en la parte superior */
+  margin-bottom: 10px;
 }
 
 .searchBarContainer {
