@@ -5,9 +5,9 @@ const Card = ({ props }) => {
     return (
         <>
             <div className="container-card">
-                <Link to={`/productos/${props.slug}`}>
+                <Link to={`/products/${props.id}`}>
                     <div className="container-img-card">
-                        <img src={props.grid_picture_url} alt="" />
+                        <img src={props.main_picture_url} alt="" />
                     </div>
                     <div className="props-card">
                         <div className="container-name">
