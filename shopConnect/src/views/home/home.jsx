@@ -1,4 +1,4 @@
-import ProductsContainer  from "../../components/productsContainer/ProductsContainer";
+import ProductsContainer  from "../../components/ProductsContainer/ProductsContainer";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../redux/actions";
