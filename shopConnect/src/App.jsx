@@ -6,6 +6,7 @@ import Detail from "./views/detail/detail";
 import  Home  from "./views/home/home";
 import ShoppingCart from "./views/shoppingCart/shoppingCart"
 import { Footer } from "./components/Footer/Footer";
+import Favorites from './views/favorites/favorites'
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes } from "react-router-dom";
@@ -23,9 +24,11 @@ function App() {
        <NavBar/>
       <Routes>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/products/:id" element={<Detail/>}/>
         <Route  path="/"  element={<Home />}/>
+        <Route path="/products/:id" element={<Detail/>}/>
         <Route path="/cart" element={<ShoppingCart/>}/>
+        <Route path="/favorites" element={<Favorites/>}/>
+
       </Routes>
       <Footer/>
 
