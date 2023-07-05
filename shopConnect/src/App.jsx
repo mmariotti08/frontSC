@@ -9,6 +9,7 @@ import { Footer } from "./components/Footer/Footer";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes } from "react-router-dom";
+//import Landing from "./views/landing/Landing";
 
 function App() {
   const dispatch = useDispatch();
