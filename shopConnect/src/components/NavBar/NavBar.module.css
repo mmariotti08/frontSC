@@ -1,108 +1,91 @@
-.ReactModal__Overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .ReactModal__Content {
-    position: relative;
-    background-color: #f8f8f8;
-    border: none;
-    outline: none;
-    padding: 20px;
-    max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
-    max-height: 800px; /* Ajusta la altura máxima según tus necesidades */
-    width: 60%; /* Ajusta el ancho según tus necesidades */
-    height: 90%; /* Ajusta la altura según tus necesidades */
-    margin: auto; /* Agrega esta línea para centrar horizontalmente */
-    /* Resto de estilos... */
-  }
-  
-  .mainContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to right, #0F1026, #0e43a7);
-    
-    height: 110px;
-    padding: 0px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-  }
-  
-  .btnNavBar {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navButton {
-    background: linear-gradient(to right, #ff416c, #ff4b2b);
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-right: 10px;
-  }
-  
-  .navButton:hover {
-    transform: scale(1.1);
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
-  }
-  
-  .logoContainer {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-  
-  .logo {
-    width: 150px; /* Ajusta el tamaño del logo según tus necesidades */
-    height: 60px; /* Ajusta el tamaño del logo según tus necesidades */
-    margin-right: 10px; /* Ajusta el espaciado entre el logo y otros elementos */
-  }
-  
-  .navBarRight {
-    display: flex;
-    align-items: center;
-    margin-left: auto; /* Empuja los elementos a la derecha */
-  }
-  
-  
-  /* Estilos para dispositivos móviles */
-  @media screen and (max-width: 768px) {
-    .ReactModal__Content {
-      width: 90%;
-      height: 90%;
-    }
-    
-    .mainContainer {
-      flex-direction: column;
-      height: auto;
-      padding: 10px;
-    }
-    
-    .logoContainer {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    
-    .navBarRight {
-      margin-left: 0;
-      margin-top: 10px;
-    }
-  }
-  
-  
+.navBar {
+  background-color: #3e2020;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 10px;
+  margin-top: 30px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navLink {
+  color: #000000;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.navButton {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 10px;
+}
+
+.gg-shopping-cart {
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  transform: scale(var(--ggs,1));
+  width: 20px;
+  height: 21px;
+  background:
+  linear-gradient(
+  to left,currentColor 12px,
+  transparent 0)
+  no-repeat -1px 6px/18px 2px,
+  linear-gradient(
+  to left,currentColor 12px,
+  transparent 0)
+  no-repeat 6px 14px/11px 2px,
+  linear-gradient(
+  to left,currentColor 12px,
+  transparent 0)
+  no-repeat 0 2px/4px 2px,
+  radial-gradient(
+  circle,currentColor 60%,
+  transparent 40%)
+  no-repeat 12px 17px/4px 4px,
+  radial-gradient(
+  circle,currentColor 60%,
+  transparent 40%)
+  no-repeat 6px 17px/4px 4px
+ }
+ 
+ .gg-shopping-cart::after,
+ .gg-shopping-cart::before {
+  content: "";
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  width: 2px;
+  height: 14px;
+  background: currentColor;
+  top: 2px;
+  left: 4px;
+  transform: skew(12deg)
+ }
+ 
+ .gg-shopping-cart::after {
+  height: 10px;
+  top: 6px;
+  left: 16px;
+  transform: skew(-12deg)
+ } 
