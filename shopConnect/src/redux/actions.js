@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PRODUCTS } from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL} from './actions-type';
 
 export const getProducts = () => {
     return async function(dispatch) {
@@ -12,3 +12,11 @@ export const getProducts = () => {
         };
     };
 };
+
+export const getDetail = (id)=>{
+    return async function(dispatch){
+       const response = await axios.get(`http://localhost:3001/products/${id}`);
+
+       dispatch({type: GET_DETAIL, payload: response.data})
+    }
+}
