@@ -6,17 +6,21 @@ import SearchBar from "../searchBar/searchBar";
 
 const NavBar = () => {
   return (
-    <div className={`${style.navBar} navBarStyles`}>
+    <div className={style.navBar}>
+      <div className={style.word}>ShopConect</div>
+      <div className={style.searchBarContainer}>
+        <SearchBar />
+      </div>
       <div className={style.container}>
-        <Link to="/login" className={style.navLink}>
-          Iniciar sesión
+        <Link to="/bookmarks" className={style.navLink}>
+          <ion-icon name="bookmarks-outline"></ion-icon>
         </Link>
-        <Link to="/carrito" className={style.navLink}>
-        
+        <Link to="/profile" className={style.navLink}>
+          <ion-icon name="person-circle-outline"></ion-icon>
         </Link>
-        <div>
-          <SearchBar />
-        </div>
+        <Link to="/cart" className={style.navLink}>
+          <ion-icon name="cart-outline"></ion-icon>
+        </Link>
       </div>
     </div>
   );
