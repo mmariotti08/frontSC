@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <div className={style.navBar}>
       
-      <Link to="/home" className={style.word}>
+      <Link to="/" className={style.word}>
           ShopConect
         </Link>
 
