@@ -18,14 +18,14 @@ function App() {
 
   return (
     <div>
-        {location.pathname === "/" ? null : (
-        <NavBar  />
-      )}
+       <NavBar/>
       <Routes>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/products/:id" element={<Detail/>}/>
-        <Route  path="/home"  element={<Home />}/>
+        <Route  path="/"  element={<Home />}/>
       </Routes>
-	  <Footer/>
+      <Footer/>
+
     </div>
   );
 }
