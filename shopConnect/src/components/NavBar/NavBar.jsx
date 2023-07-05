@@ -9,7 +9,7 @@ const NavBar = () => {
     <div className={style.navBar}>
       
       <Link to="/" className={style.word}>
-          ShopConect
+          ShopConnect
         </Link>
 
       <div className={style.searchBarContainer}>

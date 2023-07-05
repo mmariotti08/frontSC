@@ -4,6 +4,7 @@ import { getProducts } from "./redux/actions";
 import  Login  from "./components/login/Login";
 import Detail from "./views/detail/detail";
 import  Home  from "./views/home/home";
+import ShoppingCart from "./views/shoppingCart/shoppingCart"
 import { Footer } from "./components/Footer/Footer";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/products/:id" element={<Detail/>}/>
         <Route  path="/"  element={<Home />}/>
+        <Route path="/cart" element={<ShoppingCart/>}/>
       </Routes>
       <Footer/>
 
