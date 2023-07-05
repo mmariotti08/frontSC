@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
+import  Login  from "./components/login/Login";
 
 import  Home  from "./views/home/home";
 import { Footer } from "./components/Footer/Footer";
@@ -22,6 +23,8 @@ function App() {
       )}
       <Routes>
 		<Route  path="/home"  element={<Home />}/>
+		<Route  path="/Login"  element={<Login />}/>
+
        
       </Routes>
 	  <Footer/>

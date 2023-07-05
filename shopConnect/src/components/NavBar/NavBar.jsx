@@ -7,7 +7,11 @@ import SearchBar from "../searchBar/searchBar";
 const NavBar = () => {
   return (
     <div className={style.navBar}>
-      <div className={style.word}>ShopConect</div>
+      
+      <Link to="/home" className={style.word}>
+          ShopConect
+        </Link>
+
       <div className={style.searchBarContainer}>
         <SearchBar />
       </div>
@@ -15,7 +19,7 @@ const NavBar = () => {
         <Link to="/bookmarks" className={style.navLink}>
           <ion-icon name="bookmarks-outline"></ion-icon>
         </Link>
-        <Link to="/profile" className={style.navLink}>
+        <Link to="/Login" className={style.navLink}>
           <ion-icon name="person-circle-outline"></ion-icon>
         </Link>
         <Link to="/cart" className={style.navLink}>
