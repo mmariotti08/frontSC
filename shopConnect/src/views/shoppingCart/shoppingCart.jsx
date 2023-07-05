@@ -1,12 +1,26 @@
-const shoppingcart = () => {
-    
-    return (
+
+import { connect } from 'react-redux';
+import Card from '../../components/Card/Card'; // Ruta correcta al componente Card
+
+const ShoppingCart = ({ cart }) => {
+  return (
+    <div>
+      <h1>Carrito de compras</h1>
+      {cart.length === 0 ? (
+        <p>No hay elementos en el carrito</p>
+      ) : (
         <div>
-            <h1>
-                shoppingcart
-            </h1>
+          {cart.map(item => (
+            <Card key={item.id} props={item} />
+          ))}
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
-export { shoppingcart };
+const mapStateToProps = state => ({
+  cart: state.cart
+});
+
+export default connect(mapStateToProps)(ShoppingCart);

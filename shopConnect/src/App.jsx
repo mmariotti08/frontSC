@@ -1,12 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
+import  Login  from "./components/login/Login";
 import Detail from "./views/detail/detail";
 import  Home  from "./views/home/home";
+import ShoppingCart from "./views/shoppingCart/shoppingCart"
 import { Footer } from "./components/Footer/Footer";
+import Favorites from './views/favorites/favorites'
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes } from "react-router-dom";
+//import Landing from "./views/landing/Landing";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,15 +21,17 @@ function App() {
 
   return (
     <div>
-        {location.pathname === "/" ? null : (
-        <NavBar  />
-      )}
+       <NavBar/>
       <Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route  path="/"  element={<Home />}/>
         <Route path="/products/:id" element={<Detail/>}/>
-        <Route  path="/home"  element={<Home />}/>
-       
+        <Route path="/cart" element={<ShoppingCart/>}/>
+        <Route path="/favorites" element={<Favorites/>}/>
+
       </Routes>
-	  <Footer/>
+      <Footer/>
+
     </div>
   );
 }
