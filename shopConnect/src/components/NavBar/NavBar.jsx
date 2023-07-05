@@ -16,7 +16,7 @@ const NavBar = () => {
         <SearchBar />
       </div>
       <div className={style.container}>
-        <Link to="/bookmarks" className={style.navLink}>
+        <Link to="/favorites" className={style.navLink}>
           <ion-icon name="bookmarks-outline"></ion-icon>
         </Link>
         <Link to="/Login" className={style.navLink}>

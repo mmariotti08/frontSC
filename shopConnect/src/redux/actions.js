@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART} from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV} from './actions-type';
 
 export const getProducts = () => {
     return async function(dispatch) {
@@ -38,3 +38,22 @@ export const removeFromCart = (itemId) => {
     payload: itemId,
   };
 };
+
+// Acción para agregar un elemento al carrito
+export const addToFav = (item) => {
+  return {
+    type: ADD_TO_FAV,
+    payload: item,
+  };
+};
+
+// Acción para remover un elemento del carrito
+export const removeFromFav = (itemId) => {
+  return {
+    type: REMOVE_FROM_FAV,
+    payload: itemId,
+  };
+};
+
+
+

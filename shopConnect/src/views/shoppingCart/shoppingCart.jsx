@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { connect } from 'react-redux';
 import Card from '../../components/Card/Card'; // Ruta correcta al componente Card
 
