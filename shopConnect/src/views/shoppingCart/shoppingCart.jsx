@@ -13,21 +13,21 @@ const ShoppingCart = ({ cart }) => {
     return `$${formattedPrice}`;
   };
   return (
-    <>
+    <div className={style.containerGeneral}>
       <h1 className={style.titule}>Carrito de compras</h1>
-    <div className={style.container}>
-      {cart.length === 0 ? (
-        <p className={style.mensaje}>No hay elementos en el carrito</p>
-        ) : (
-          <div>
-          {cart.map(item => (
-            <Card key={item.id} props={item}/>
-            ))}
+        <div className={style.container}>
+          {cart.length === 0 ? (
+            <p className={style.mensaje}>No hay elementos en el carrito</p>
+            ) : (
+              <div>
+              {cart.map(item => (
+                <Card key={item.id} props={item}/>
+                ))}
+            </div>
+          )}
         </div>
-      )}
-    </div>
       <h3>Suma total: {formatPrice(totalPrice)}</h3>
-      </>
+      </div>
   );
 };
 
