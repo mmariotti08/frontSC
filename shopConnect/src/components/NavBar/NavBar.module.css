@@ -3,13 +3,15 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #3e2020;
+  background-color: #ca1111;
   height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 9999; /* Valor alto para asegurarse de que la barra de navegación esté en la parte superior */
   margin-bottom: 10px;
 }
+
 .searchBarContainer {
   flex: 1;
   text-align: center;
@@ -36,23 +38,36 @@ ion-icon {
   margin-left: 2px;
   margin-right: 25px;
 }
+
 .navLink:focus {
   outline: none;
   border-color: #ff416c;
 }
+
 .word {
-  font-size: 70px;
-  font-family: "False", sans-serif;
+  font-size: 30px;
+  margin-bottom: -20px;
+  font-family: 'Russo One', sans-serif;
+
   font-weight: bold;
-  background: linear-gradient(to right, #26eec9, #07e970);
+  background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-margin-left: 30px;
+  margin-left: 30px;
+  position: relative;
+  z-index: 1; /* Valor inferior para asegurarse de que las palabras estén detrás de la barra de navegación */
+}
+
+.logo{
+  margin-left: 20px;
+  margin-top: -40px;
+  margin-bottom: -30px;
+  width: 80px;
+  height: 80px;
 }
 
 @media screen and (max-width: 768px) {
   .navBar {
     height: 80px;
   }
-
 }
