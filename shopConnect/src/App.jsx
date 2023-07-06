@@ -12,8 +12,9 @@ import Favorites from './views/favorites/favorites'
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes } from "react-router-dom";
+import Landing from "./views/landing/Landing";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
-//import Landing from "./views/landing/Landing";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
         <Route path="/aboutUs" element={<AboutUs/>}/>
         <Route path="/products/:id" element={<Detail/>}/>
         <Route path="/cart" element={<ShoppingCart/>}/>
+        <Route path="/landing" element={<Landing/>}/>
         <Route path="/favorites" element={<Favorites/>}/>
 
       </Routes>
