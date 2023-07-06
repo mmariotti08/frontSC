@@ -1,7 +1,7 @@
 .container-card {
     display: flex;
+    margin-bottom: 5px;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
     width: 250px;
     height: 300px;
@@ -11,12 +11,6 @@
     box-shadow: 9px 2px 14px -11px rgba(0,0,0,0.75);
 }
 
-.container-Card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start; /* Modificado */
-}
 
 .container-img-card img {
     max-width: 100%;

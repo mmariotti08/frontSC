@@ -19,14 +19,14 @@ const ShoppingCart = ({ cart }) => {
           {cart.length === 0 ? (
             <p className={style.mensaje}>No hay elementos en el carrito</p>
             ) : (
-              <div>
-              {cart.map(item => (
-                <Card key={item.id} props={item}/>
-                ))}
-            </div>
+              <>
+                {cart.map(item => (
+                    <Card key={item.id} props={item}/>
+                  ))}
+              </>
           )}
         </div>
-      <h3>Suma total: {formatPrice(totalPrice)}</h3>
+      <h3 className={style.total}>Suma total: {formatPrice(totalPrice)}</h3>
       </div>
   );
 };
