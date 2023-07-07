@@ -1,10 +1,11 @@
-import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV} from "./actions-type";
+import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_APPROVAL_ADMIN } from "./actions-type";
 
 const initialState = {
   products: [],
   detail: [],
   cart: [],
-  fav:[]
+  fav:[],
+  getApprovalAdmin: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,6 +39,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fav: state.fav.filter(item => item.id !== action.payload),
+      };
+    case GET_APPROVAL_ADMIN:
+      return {
+        ...state,
+        getApprovalAdmin: action.payload
       };
     default:
       return state;
