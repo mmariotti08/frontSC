@@ -1,0 +1,30 @@
+.containerGeneral{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.titule{
+    margin-top: 200px;
+    font-family: 'Russo One', sans-serif;
+    color: rgb(54, 54, 54);
+}
+.carta{
+    width: 10px;
+    height: 10px;
+}
+
+.mensaje{
+    font-family: 'Russo One', sans-serif;
+    color: rgb(54, 54, 54);
+
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import style from "./searchBar.module.css";
 import { useDispatch } from "react-redux";
+import {BsSearch} from 'react-icons/bs'
 
 
 
@@ -26,7 +27,7 @@ export default function SearchBar() {
       </div>
       <div className={style.buttonContainer}>
         <button className={style.searchButton}  >
-          Search
+          <BsSearch/>
         </button>
       </div>
     </div>

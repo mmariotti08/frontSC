@@ -1,9 +1,10 @@
-import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART } from "./actions-type";
+import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV} from "./actions-type";
 
 const initialState = {
   products: [],
   detail: [],
   cart: [],
+  fav:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +28,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
+      };
+    case ADD_TO_FAV:
+      return {
+        ...state,
+        fav: [...state.fav, action.payload],
+      };
+    case REMOVE_FROM_FAV:
+      return {
+        ...state,
+        fav: state.fav.filter(item => item.id !== action.payload),
       };
     default:
       return state;
