@@ -26,6 +26,7 @@
   .searchInput:focus {
     outline: none;
     border-color: #ff416c;
+    background-color: azure;
   }
   
   .buttonContainer {
