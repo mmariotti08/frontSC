@@ -1,3 +1,36 @@
 .container {
    display: flex;
+   justify-content: space-between;
+   flex-wrap: nowrap;
+   flex-direction: row;
+   align-content: stretch;
+   align-items: flex-start;
+   background-color: rgb(219, 219, 219);
 }
+
+.integrantes h1{
+
+   border-bottom: solid rgba(0, 0, 0, 0.384);
+}
+
+.link{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   margin-top: -40px;
+}
+
+.nombre{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.mati{
+   margin-top: -10px;
+   font-size: 15px;
+   margin-inline: 20px;
+   font-family: 'Russo One', sans-serif;
+   color: black;
+}
+

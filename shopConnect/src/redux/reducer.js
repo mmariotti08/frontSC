@@ -1,10 +1,11 @@
-import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_PRODUCT_NAME, ORDER_BY_PRICE,ORDER_BY_NAME } from "./actions-type";
+import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_PRODUCT_NAME, ORDER_BY_PRICE,ORDER_BY_NAME, PAGINATION } from "./actions-type";
 
 const initialState = {
   products: [],
   detail: [],
   cart: [],
-  fav: []
+  fav: [],
+  page: 1
 };
 
 const reducer = (state = initialState, action) => {
@@ -71,6 +72,12 @@ const reducer = (state = initialState, action) => {
             return 0;
           });
       return { ...state, products: sortedPrice}
+
+    case PAGINATION:
+      return {
+          ...state,
+          page: action.payload
+      };
     default:
       return state;
   }
