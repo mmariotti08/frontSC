@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV} from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_PRODUCT_NAME } from './actions-type';
 
 export const getProducts = () => {
     return async function(dispatch) {
@@ -11,6 +11,19 @@ export const getProducts = () => {
             console.error(error);
         }
     };
+};
+
+
+export const getProductName = (name) => {
+  return async function(dispatch) {
+      try {
+          let response = await axios.get(`http://localhost:3001/products?name=${name}`);
+          
+          return dispatch({type: GET_PRODUCT_NAME, payload: response.data});
+      } catch (error) {
+          console.error(error);
+      }
+  };
 };
 
 export const getDetail = (id)=>{
