@@ -10,7 +10,7 @@
     font-size: 180px;
     font-family: "False", sans-serif;
     font-weight: bold;
-    background: linear-gradient(to right, #26eec9, #07e970);
+    background: linear-gradient(to left, #26eec9, #07e970);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-left: 10px;

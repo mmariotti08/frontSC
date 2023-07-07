@@ -9,7 +9,7 @@ import { Footer } from "./components/Footer/Footer";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes } from "react-router-dom";
-//import Landing from "./views/landing/Landing";
+import Landing from "./views/landing/Landing";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +26,8 @@ function App() {
         <Route path="/products/:id" element={<Detail/>}/>
         <Route  path="/"  element={<Home />}/>
         <Route path="/cart" element={<ShoppingCart/>}/>
+        <Route path="/landing" element={<Landing/>}/>
+
       </Routes>
       <Footer/>
 

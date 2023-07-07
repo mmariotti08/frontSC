@@ -30,7 +30,7 @@ const Landing = () => {
   <div className={style.word} >The Best Sneakers</div>
   
   <div className={style.buttonContainer}>
-    <Link to="/home" className={style.button}>
+    <Link to="/" className={style.button}>
       Ver Articulos
     </Link>
   </div>

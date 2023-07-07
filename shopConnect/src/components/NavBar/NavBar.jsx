@@ -2,9 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import style from "./NavBar.module.css";
-import SearchBar from "../../../src/components/searchBar/searchBar";
+
 
 const NavBar = () => {
+  // const dispatch = useDispatch();
+
+
+
+
+// onSearch={handleSearch}
+  
+  // const handleSearch = (id) => {
+  //     dispatch(getDetail(id));
+    
+  // };
+
   return (
     <div className={style.navBar}>
       
@@ -13,7 +25,7 @@ const NavBar = () => {
         </Link>
 
       <div className={style.searchBarContainer}>
-        <SearchBar />
+        
       </div>
       <div className={style.container}>
         <Link to="/bookmarks" className={style.navLink}>
