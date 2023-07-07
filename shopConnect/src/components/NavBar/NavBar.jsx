@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../public/logopng..png";
@@ -8,13 +7,15 @@ import SearchBar from "../../../src/components/searchBar/searchBar";
 const NavBar = () => {
   const [mensaje, setMensaje] = useState("");
   const mensajes = [
-    "3 Cuotas sin interes con todas las tarjetas!",
-    "Envío gratuito en todas tus compras",
-    "Descuento del 20% en productos seleccionados",
+    "3 CUOTAS sin interes con todas las tarjetas!",
+    "🚚 ENVIO gratuito en todas tus compras",
+    "DESCUENTO del 20% en productos seleccionados",
   ];
-  let index = 0;
-
+  
   useEffect(() => {
+    let index = 0;
+    setMensaje(mensajes[0]); // Establecer el primer mensaje como el estado inicial
+
     const interval = setInterval(() => {
       setMensaje(mensajes[index]);
       index = (index + 1) % mensajes.length;
@@ -25,12 +26,23 @@ const NavBar = () => {
     };
   }, []);
 
+  const getStyledMessage = () => {
+    const halfLength = Math.ceil(mensaje.length / 5);
+    const firstHalf = mensaje.slice(0, halfLength);
+    const secondHalf = mensaje.slice(halfLength);
+
+    return (
+      <p className={style.letra}>
+        <span className={style.firstHalf}>{firstHalf}</span>
+        <span className={style.secondHalf}>{secondHalf}</span>
+      </p>
+    );
+  };
+
   return (
     <>
       <div className={style.navBar}>
-        <div className={style.mensajes}>
-          <p className={style.letra}>{mensaje}</p>
-        </div>
+        <div className={style.mensajes}>{getStyledMessage()}</div>
 
         <div className={style.name}>
           <Link to="/">

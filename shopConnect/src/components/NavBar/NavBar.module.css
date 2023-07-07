@@ -96,6 +96,12 @@ ion-icon {
   background-color: white;
 }
 
+.firstHalf {
+  color: red;
+}
+
+
+
 @media screen and (max-width: 768px) {
   .navBar {
     height: 80px;
