@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductsContainer from "../../components/productsContainer/ProductsContainer";
 import Carousel from "../../components/carousel/Carousel";
+import Order from '../../components/Order/order'
 import { useDispatch } from "react-redux";
 import { getProducts, getProductName } from "../../redux/actions";
 
@@ -28,6 +29,7 @@ const Home = ({toggle}) => {
 
   return (
     <div>
+      <Order/>
       {toggle && <Carousel  /> }
       <ProductsContainer  />
     </div>
