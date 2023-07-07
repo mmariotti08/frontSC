@@ -1,11 +1,12 @@
-import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_APPROVAL_ADMIN } from "./actions-type";
+import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_APPROVAL_ADMIN, PAGINATION } from "./actions-type";
 
 const initialState = {
   products: [],
   detail: [],
   cart: [],
   fav:[],
-  getApprovalAdmin: false
+  getApprovalAdmin: false,
+  page: 1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,6 +45,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         getApprovalAdmin: action.payload
+      };
+    case PAGINATION:
+      return {
+          ...state,
+          page: action.payload
       };
     default:
       return state;

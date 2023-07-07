@@ -13,7 +13,10 @@ const Add_Product = () => {
         retail_price_cents: "",
         slug: "",
         status: "",
-        // stock
+    });
+
+    const [stocks, setStocks] = useState({
+        
     });
 
     const handleChange = ({ target: { name, value } }) => {
@@ -57,8 +60,6 @@ const Add_Product = () => {
           });
     };
 
-    console.log(data);
-
     return (
         <div className={styles.container}>
             <div>
@@ -74,6 +75,7 @@ const Add_Product = () => {
                         <label htmlFor="brand_name">Brand name</label>
                     </div>
                     <input type="text" name="brand_name" value={data.brand_name} onChange={handleChange} />
+
                     <div className={styles.category2}>
                         <label htmlFor="category">Category</label>
                         <button type="button" onClick={handleAddCategory}><MdAdd /></button>
@@ -81,13 +83,23 @@ const Add_Product = () => {
                     <div className={styles.container_category}>
                         {data.category.map((category, index) => (
                             <div key={index} className={styles.category}>
-                                <input type="text" name={`category-${index}`} value={category} onChange={(event) => handleChangeCategory(event, index)} />
+                                <input
+                                    type="text"
+                                    name={`category-${index}`}
+                                    value={category}
+                                    onChange={(event) => handleChangeCategory(event, index)}
+                                />
                                 {data.category.length > 1 && (
-                                    <button type="button" onClick={() => handleRemoveCategory(index)}><MdClear /></button>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveCategory(index)}>
+                                            <MdClear />
+                                    </button>
                                 )}
                             </div>
                         ))}
                     </div>
+
                     <div>
                         <label htmlFor="color">Color</label>
                     </div>
@@ -95,7 +107,7 @@ const Add_Product = () => {
                     <div>
                         <label htmlFor="gender">Gender</label>
                     </div>
-                        <input type="text" name="gender" value={data.gender} onChange={handleChange} />
+                    <input type="text" name="gender" value={data.gender} onChange={handleChange} />
                     <div>
                         <label htmlFor="main_picture_url">Image</label>
                     </div>
@@ -104,6 +116,34 @@ const Add_Product = () => {
                         <label htmlFor="retail_price_cents">Price</label>
                     </div>
                     <input type="text" name="retail_price_cents" value={data.retail_price_cents} onChange={handleChange} pattern="[0-9]*" />
+
+
+                    <div className={styles.category2}>
+                        <label htmlFor="category">Category</label>
+                        <button type="button" onClick={handleAddCategory}><MdAdd /></button>
+                    </div>
+                    <div className={styles.container_category}>
+                        {data.category.map((category, index) => (
+                            <div key={index} className={styles.category}>
+                                <input
+                                    type="text"
+                                    name={`category-${index}`}
+                                    value={category}
+                                    onChange={(event) => handleChangeCategory(event, index)}
+                                />
+                                {data.category.length > 1 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveCategory(index)}>
+                                            <MdClear />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
+
+
                     <div className={styles.container_button}>
                         <button type="submit" onClick={handleDraft}>Save draft</button>
                         <button type="submit" onClick={handleActive}>Publish</button>

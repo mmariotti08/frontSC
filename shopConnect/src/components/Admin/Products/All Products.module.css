@@ -26,3 +26,9 @@
 .container_button button {
     width: 120px;
 }
+.Not_Available {
+    color: red;
+}
+.Available {
+    color: green;
+}

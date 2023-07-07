@@ -1,0 +1,14 @@
+.containerPaginacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.containerPaginacion input {
+    height: 30px;
+    width: 50px;
+    text-align: center;
+    border: 1px solid #242424;
+    border-radius: 3px;
+}

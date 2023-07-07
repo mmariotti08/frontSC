@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_APPROVAL_ADMIN } from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_APPROVAL_ADMIN, PAGINATION } from './actions-type';
 
 export const getProducts = () => {
 		return async function(dispatch) {
@@ -67,5 +67,11 @@ export const getApproval = (adminData) => {
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: true });
 		};
 	};
+};
+
+export const paginate = (value) => {
+    return function(dispatch) {
+        return dispatch({type: PAGINATION, payload: value});
+    };
 };
 
