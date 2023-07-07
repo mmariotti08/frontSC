@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { Paginate } from "../../Paginate/Paginate";
-import styles from "./All Products.module.css"
+import { Paginate } from "../../../Paginate/Paginate";
+import styles from "./All Products.module.css";
 
 const All_Products = () => {
     const products = useSelector(state => state.products);

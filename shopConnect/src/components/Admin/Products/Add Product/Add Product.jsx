@@ -16,7 +16,9 @@ const Add_Product = () => {
     });
 
     const [stocks, setStocks] = useState({
-        
+        productId: null,
+        size: "",
+        quantity: null
     });
 
     const handleChange = ({ target: { name, value } }) => {

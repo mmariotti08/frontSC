@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { All_Products } from "../../components/Admin/Products/All Products";
-import { Add_Product } from "../../components/Admin/Products/Add Product";
-import { Categories } from "../../components/Admin/Products/Categories";
+import { All_Products } from "../../components/Admin/Products/All Products/All Products";
+import { Add_Product } from "../../components/Admin/Products/Add Product/Add Product";
+import { Categories } from "../../components/Admin/Products/Categories/Categories";
 import styles from "./Menu.module.css"
 
 const Menu = () => {
