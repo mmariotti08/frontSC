@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
 import  Login  from "./components/login/Login";
@@ -19,16 +19,26 @@ import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQue
 function App() {
   const dispatch = useDispatch();
 
+  const [toggle, setToggle] = useState( true);
+
+
+
+
+  const toggleCarousel = (show) => {
+    setToggle(show)
+  }
+
+
   useEffect(() => {
     dispatch(getProducts());
-  });
+  },[]);
 
   return (
     <div>
-       <NavBar/>
+       <NavBar toggleCarousel={toggleCarousel} />
       <Routes>
         <Route path="/login" element={<Login/>}/>
-        <Route  path="/"  element={<Home />}/>
+        <Route  path="/"  element={<Home toggle={toggle} />}/>
         {/* RUTAS DEL FOOTER */}
         <Route path="/fQuestions" element={<FrecuentQuestions/>}/>
         <Route path="/measureSize" element={<MeasurSize/>}/>

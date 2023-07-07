@@ -6,10 +6,6 @@ import "./productsContainer.css"
 const productsContainer = () => {
     const products = useSelector(state => state.products);
 
-    
-    console.log(products)
-    console.log("products")
-
     return (
         <>
             
