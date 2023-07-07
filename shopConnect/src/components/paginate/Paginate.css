@@ -1,0 +1,19 @@
+.containerPaginacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: #ca1111;
+    font-family: 'Russo One', sans-serif;
+}
+
+.containerPaginacion input {
+    height: 30px;
+    width: 50px;
+    text-align: center;
+    border: 1px solid #242424;
+    border-radius: 3px;
+    font-family: 'Russo One', sans-serif;
+    font-size: 15px;
+    color: #ca1111;
+}
