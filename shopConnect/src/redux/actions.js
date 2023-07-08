@@ -69,6 +69,19 @@ export const getApproval = (adminData) => {
 	};
 };
 
+export const createProduct = (data, stock) => {
+	return async function(dispatch) {
+		try {
+			await axios.post(`http://localhost:3001/products`, { product: data, stock: stock });
+			return
+		} catch (error) {
+			console.log(error);
+		};
+	};
+};
+
+
+// PAGINADO (NO TOQUE AQUÍ :p)
 export const paginate = (value) => {
     return function(dispatch) {
         return dispatch({type: PAGINATION, payload: value});

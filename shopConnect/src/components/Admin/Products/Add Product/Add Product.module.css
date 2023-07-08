@@ -21,6 +21,9 @@
     font-weight: initial;
     width: 30%;
 }
+.containerform select {
+    width: 100%;
+}
 .containerform p {
     vertical-align: top;
     text-align: left;
