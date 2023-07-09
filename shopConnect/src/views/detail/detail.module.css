@@ -1,0 +1,28 @@
+.contDetail{
+    
+    font-family: 'Russo One', sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.contDetail img{
+    border-radius: 15px;
+    background-color: azure;
+    width: 60%;
+  
+}
+.nameh3{
+    margin-top: 25%;
+}
+.detailz{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+.data{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

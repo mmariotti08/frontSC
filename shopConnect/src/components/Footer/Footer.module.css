@@ -1,3 +1,16 @@
 .container {
    display: flex;
+   justify-content: space-around;
+   font-family: 'Russo One', sans-serif;
+ 
+}
+.members{
+    display: flex;
+    flex-direction: column;
+}
+.members img{
+    width: 10%;
+}
+.members br{
+    color: white;
 }
