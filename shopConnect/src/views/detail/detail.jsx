@@ -11,7 +11,7 @@ const Detail = () => {
     const dispatch = useDispatch();
     const sneaker = useSelector((state)=>state.detail);
     const {id} = useParams();
-
+    console.log(sneaker);
     useEffect(()=>{
         dispatch(getDetail(id))
         window.scrollTo(0, 0);
@@ -22,7 +22,9 @@ const Detail = () => {
         const formattedPrice = (price / 100).toFixed(2);
         return `${formattedPrice}`;
       };
-    
+    const handleCart = ()=>{
+        addToCart(sneaker.id)
+    }
     return (
         <div className={styles.contDetail}>
             <h1 className={styles.nameh3}>{sneaker.name} </h1>
@@ -39,9 +41,11 @@ const Detail = () => {
             <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
            
             <div className={styles.buttons}>
-                <div> 
-                    <p>ADD CART   {<IoCartSharp/>}</p>
-                </div>
+                
+                    <button onClick={handleCart}>
+                        ADD CART.
+                    </button>
+               
             
             </div>
                 
