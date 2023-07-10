@@ -1,14 +1,35 @@
 .container{
 
-    margin-top: 2%;
+    margin-top: 10%;
     display: table-caption;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.letras{
+/*.letras{
     color: white;
     font-family: 'Russo One', sans-serif;
-    background-color: #ca1111;
+    background-color: #ca11116c;
     border: none;
-}
+}*/
+
+.selectBox{
+   
+    margin-bottom: 10px;
+    border-radius: 4px;
+   align-items: center;
+    padding: 5px 10px 5px 10px;
+    width: 150%;
+    color: white;
+    background-color:#ca1111;;
+    font-size: 12px;
+    font-family: 'Russo One', sans-serif;
+    }
+
+    .selectBox:hover {
+        border-color: #070707;
+      }
+      
+
+
+

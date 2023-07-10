@@ -23,15 +23,15 @@ const Filter = () => {
     return(
         <div className={style.container}>
 
-            <select onChange={(event) => handleFilterByGender(event)}className={style.letras}>
+            <select onChange={(event) => handleFilterByGender(event)}className={style.selectBox}>
                 <option defaultChecked value="all" className={style.letras}>Filter by Gender</option>
                 <option value="men"className={style.letras}>Men</option>
                 <option value="women"className={style.letras}>Women</option>
                 <option value="youth"className={style.letras}>Youth</option>
             </select>
 
-            <select onChange={(event) => handleFilterByCategory(event)}className={style.letras}>
-                <option defaultChecked value="all" className={style.letras}>Filter by Category</option>
+            <select onChange={(event) => handleFilterByCategory(event)}className={style.selectBox}>
+                <option defaultChecked value="all" className={style.letras}>Category</option>
                 <option value="other"className={style.letras}>Other</option>
                 <option value="running"className={style.letras}>Running</option>
                 <option value="lifestyle"className={style.letras}>Lifestyle</option>
@@ -39,8 +39,8 @@ const Filter = () => {
                 <option value="skateboarding"className={style.letras}>Skateboarding</option>
             </select>
 
-            <select onChange={(event) => handleFilterBrandName(event)}className={style.letras}>
-                <option defaultChecked value="all" className={style.letras}>Filter by Brand-Name</option>
+            <select onChange={(event) => handleFilterBrandName(event)}className={style.selectBox}>
+                <option defaultChecked value="all" className={style.letras}>Brand-Name</option>
                 <option value="Nike"className={style.letras}>Nike</option>
                 <option value="Vans"className={style.letras}>Vans</option>
                 <option value="Gucci"className={style.letras}>Gucci</option>

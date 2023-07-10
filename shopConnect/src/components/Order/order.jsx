@@ -20,14 +20,14 @@ const Order = () => {
     return(
         <div className={style.container}>
             {/* <label className={style.letras}>Order by Name</label> */}
-            <select onChange={(event) => handleOrderByName(event)}className={style.letras}>
+            <select className={style.selectBox} onChange={(event) => handleOrderByName(event)}>
                 <option defaultChecked value="0" className={style.letras}>Order by Name</option>
                 <option value="a-z"className={style.letras}>Ascendente</option>
                 <option value="z-a"className={style.letras}>Descendente</option>
             </select>
 
             {/* <label className={style.letras}>Order by Price</label> */}
-            <select onChange={(event) => handleOrderByPrice(event)}className={style.letras}>
+            <select className={style.selectBox} onChange={(event) => handleOrderByPrice(event)}>
                 <option defaultChecked value="0" className={style.letras}>Order by Price</option>
                 <option value="asc"className={style.letras}>Precio mas bajo</option>
                 <option value="des" className={style.letras}>Precio mas alto</option>
