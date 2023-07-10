@@ -37,9 +37,14 @@ const Detail = () => {
             <h3>{sneaker.color}</h3>
             
             <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
-
-            <button></button>
+           
+            <div className={styles.buttons}>
+                <div> 
+                    <p>ADD CART   {<IoCartSharp/>}</p>
+                </div>
             
+            </div>
+                
             </div>
             </div>
         </div>
