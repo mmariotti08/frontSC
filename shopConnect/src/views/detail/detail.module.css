@@ -33,12 +33,20 @@
     border-radius: 5px;
 
 }
+.data h2{
+    color: red;
+}
 .buttons{
 display: flex;
  background-color: red;
- width: 300px;
+
  justify-content: center;
  color: black;
  font-size: 25px;
  border-radius: 20px;
+}
+
+.buttons button{
+    background-color: red;
+    width: 300px;
 }
