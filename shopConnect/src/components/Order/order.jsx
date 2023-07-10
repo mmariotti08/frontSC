@@ -29,7 +29,7 @@ const Order = () => {
             {/* <label className={style.letras}>Order by Price</label> */}
             <select onChange={(event) => handleOrderByPrice(event)}className={style.letras}>
                 <option defaultChecked value="0" className={style.letras}>Order by Price</option>
-                <option value="des" value="asc"className={style.letras}>Precio mas bajo</option>
+                <option value="asc" className={style.letras}>Precio mas bajo</option>
                 <option value="des" className={style.letras}>Precio mas alto</option>
             </select>
 

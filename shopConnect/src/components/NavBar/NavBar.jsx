@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "../../../public/logopng..png";
+import logo from "../img/logo.png";
 import style from "./NavBar.module.css";
 import SearchBar from "../../../src/components/searchBar/searchBar";
 import { getProductName, getProducts } from "../../redux/actions";
