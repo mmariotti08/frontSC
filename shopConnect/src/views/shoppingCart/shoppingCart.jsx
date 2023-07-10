@@ -1,7 +1,7 @@
 import style from './shoppingCart.module.css'
 import { connect } from 'react-redux';
 import Card from '../../components/Card/Card'; 
-
+import { useEffect } from 'react';
 
 const ShoppingCart = ({ cart }) => {
 
@@ -12,6 +12,10 @@ const ShoppingCart = ({ cart }) => {
     const formattedPrice = (price / 100).toFixed(2);
     return `$${formattedPrice}`;
   };
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   return (
     <div className={style.containerGeneral}>
       <h1 className={style.titule}>Carrito de compras</h1>

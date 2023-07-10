@@ -1,14 +1,16 @@
+
 import "./Paginate.css";
 import { useState } from "react";
 import { paginate } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Paginate = ({ max }) => {
+
   const dispatch = useDispatch();
 
   const page = useSelector((state) => state.page);
 
-  const [input, setInput] = useState(1);
+  const [input, setInput] = useState(page);
 
   const nextPage = () => {
     setInput(parseInt(input) + 1);
@@ -31,6 +33,7 @@ const Paginate = ({ max }) => {
         setInput(1);
       } else {
         dispatch(paginate(parseInt(event.target.value)));
+       
       }
     }
   };
@@ -80,3 +83,4 @@ const Paginate = ({ max }) => {
 };
 
 export { Paginate };
+

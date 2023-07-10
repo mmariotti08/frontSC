@@ -1,11 +1,14 @@
 .container {
    display: flex;
-   justify-content: space-between;
+   justify-content: space-around;
    flex-wrap: nowrap;
    flex-direction: row;
    align-content: stretch;
    align-items: flex-start;
    background-color: rgb(219, 219, 219);
+
+  
+  
 }
 
 .integrantes h1{

@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vw;
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: #1a1a1a;
+    margin-left: 0;
+}
+.menu button {
+    border-radius: 0px;
+    font-size: 0.9em;
+    text-align: left;
+    padding-left: 25px;
+    width: 100%;
+}
+.menu h3 {
+    text-align: left;
+    margin-left: 10px;
+    margin-block-start: 0.7em;
+    margin-block-end: 0.7em;
+}
+.components {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 200px);
+}

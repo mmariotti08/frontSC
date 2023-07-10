@@ -1,3 +1,4 @@
+
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_DETAIL = 'GET_DETAIL'
 export const ADD_TO_CART = 'ADD_TO_CART'
@@ -11,3 +12,4 @@ export const PAGINATION = 'PAGINATION'
 export const FILER_BY_CATEGORY = 'FILER_BY_CATEGORY'
 export const FILTER_BY_GENDER = 'FILTER_BY_GENDER'
 export const FILTER_BRAND_NAME = 'FILTER_BRAND_NAME'
+export const GET_APPROVAL_ADMIN = "GET_APPROVAL_ADMIN";

@@ -1,6 +1,8 @@
+import styles from './MeasureSize.module.css'
+
 const MeasurSize = ()=>{
     return(
-        <div>
+        <div className={styles.container}>
             <h1>Guia de Talles</h1>
             <h3>Tomá las medidas de tus pies antes de elegir tus zapatillas, ojotas o calzado en general. Acordate de hacerlo al final de la jornada, ya que con el paso del día los pies pueden hincharse y así aumentar su tamaño. Distribuí el peso por igual en ambos pies y ponete unas medias que uses regularmente. Recordá medirte ambos pies. La medida entre ellos puede variar y tené en cuenta que siempre se toma como referencia el pie que tenga el mayor tamaño.</h3>
             <br/>

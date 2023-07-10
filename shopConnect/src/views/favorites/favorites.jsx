@@ -1,8 +1,12 @@
 import style from './favorites.module.css'
 import { connect } from 'react-redux';
 import Card from '../../components/Card/Card'; // Ruta correcta al componente Card
-
+import { useEffect } from 'react';
 const favorites = ({ fav }) => {
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   return (
     <div className={style.containerGeneral}>
       <h1 className={style.titule}>Mis Favoritos</h1>
