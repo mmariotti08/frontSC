@@ -47,8 +47,8 @@ function App() {
 
   return (
     <div>
-       <NavBar toggleCarousel={toggleCarousel} />
-        {!pathname.startsWith("/admin") && <NavBar />}
+        {!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />}
+       
       <Routes>
         <Route path="/login" element={<Login/>}/>
         <Route  path="/"  element={<Home toggle={toggle} />}/>

@@ -112,10 +112,4 @@ export const paginate = (value) => {
 
 
 
-// PAGINADO (NO TOQUE AQUÍ :p)
-export const paginate = (value) => {
-    return function(dispatch) {
-        return dispatch({type: PAGINATION, payload: value});
-    };
-};
 
