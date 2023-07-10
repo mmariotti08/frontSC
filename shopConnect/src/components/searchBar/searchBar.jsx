@@ -15,6 +15,13 @@ const SearchBar = ({ onSearch, toggleCarousel }) => {
     // }
 
   };
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSubmit(event);
+    }
+  };
+
 
 
   const handleSubmit = () => {
@@ -22,17 +29,21 @@ const SearchBar = ({ onSearch, toggleCarousel }) => {
     if (name.length > 0){
       toggleCarousel(false)
     }else{
-      toggleCarousel(true)
+      //toggleCarousel(true)
     }
-    setName('')
+    //setName('')
   };
+
 console.log(name);
+
+
   return (
     <div className={style.searchContainer}>
       <div className={style.inputContainer}>
         <input
           className={style.searchInput}
           onChange={handleChange}
+          onKeyDown={(event) => handleKeyPress(event)}
           type="search"
           name="search"
           value={name}
