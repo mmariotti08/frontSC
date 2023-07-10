@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION } from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME } from './actions-type';
 
 export const getProducts = () => {
     return async function(dispatch) {
@@ -82,6 +82,18 @@ export const paginate = (value) => {
       return dispatch({type: PAGINATION, payload: value});
   };
 };
+
+export const filterByCategory = (payload) => {
+  return { type: FILER_BY_CATEGORY, payload }
+}
+
+export const filterByGender = (payload) => {
+  return { type: FILTER_BY_GENDER, payload }
+}
+
+export const filterBrandName = (payload) => {
+  return { type: FILTER_BRAND_NAME, payload }
+}
 
 
 
