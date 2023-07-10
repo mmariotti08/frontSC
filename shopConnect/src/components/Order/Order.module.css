@@ -1,0 +1,14 @@
+.container{
+
+    margin-top: 12%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.letras{
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    background-color: #ca1111;
+    border: none;
+}

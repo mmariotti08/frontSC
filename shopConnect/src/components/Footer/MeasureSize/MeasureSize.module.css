@@ -1,0 +1,17 @@
+.container{  
+    background-color: aliceblue;
+    margin-top: 150px;
+    margin-left: 200px;
+    margin-right: 200px;
+
+}
+.container h1{
+    color: rgb(206, 22, 22);
+}
+.container h2{
+    color: black;
+}
+
+.container h3{
+    color:rgb(23, 23, 23);
+}

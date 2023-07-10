@@ -4,7 +4,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-
+    margin-bottom: 150px;
+   
 }
 
 .contDetail img{
@@ -25,4 +26,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+.data h1{
+    border: 1px solid white;
+    width: 300px;
+    border-radius: 5px;
+
 }

@@ -28,8 +28,8 @@ const Detail = () => {
             <h3>{sneaker.category}</h3>
             <h2>Color:</h2>
             <h3>{sneaker.color}</h3>
-
-            <h3>$ {sneaker.retail_price_cents}</h3>
+            
+            <h1>$ {sneaker.retail_price_cents}</h1>
             </div>
             </div>
         </div>

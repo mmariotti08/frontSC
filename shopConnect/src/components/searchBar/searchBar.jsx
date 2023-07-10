@@ -1,17 +1,32 @@
-import { useState } from "react";
-import style from "./searchBar.module.css";
+import {  useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import {  getProductName } from "../../redux/actions";
+import style from "./SearchBar.module.css";
 
-
-
-export default function SearchBar() {
+const SearchBar = ({ onSearch, toggleCarousel }) => {
   const [name, setName] = useState("");
-  const dispatch = useDispatch();
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     setName(event.target.value);
-  }
+    // if (name.length > 0){
+    //   toggleCarousel(false)
+    // }else{
+    //   toggleCarousel(true)
+    // }
 
+  };
+
+
+  const handleSubmit = () => {
+    onSearch(name);
+    if (name.length > 0){
+      toggleCarousel(false)
+    }else{
+      toggleCarousel(true)
+    }
+    setName('')
+  };
+console.log(name);
   return (
     <div className={style.searchContainer}>
       <div className={style.inputContainer}>
@@ -25,12 +40,12 @@ export default function SearchBar() {
         />
       </div>
       <div className={style.buttonContainer}>
-        <button className={style.searchButton}  >
+        <button className={style.searchButton} onClick={handleSubmit}>
           Search
         </button>
       </div>
     </div>
   );
-}
+};
 
-
+export default SearchBar;

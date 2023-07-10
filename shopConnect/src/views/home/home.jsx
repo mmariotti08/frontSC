@@ -1,22 +1,39 @@
-import ProductsContainer  from "../../components/productsContainer/productsContainer";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProducts } from "../../redux/actions";
-import style from './home.module.css'
+import ProductsContainer from "../../components/productsContainer/ProductsContainer";
+import Carousel from "../../components/carousel/Carousel";
+import Order from '../../components/Order/order'
+import { useDispatch } from "react-redux";
+import { getProducts, getProductName } from "../../redux/actions";
 
-const Home = () => {
+const Home = ({toggle}) => {
+  const dispatch = useDispatch();
+  const [showCarousel, setShowCarousel] = useState(true);
+  const [searchName, setSearchName] = useState("");
 
-    const dispatch = useDispatch();
-    useEffect(() => {
+
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+  const handleSearch = (name) => {
+      console.log(name);
+    setSearchName(name);
+    if (name.trim() === "") {
+      setShowCarousel(true);
       dispatch(getProducts());
-    }, [dispatch]);
-  
-    return (
-        <div className={style.home}>
+    } else {
+      setShowCarousel(false);
+      dispatch(getProductName(name));
+    }
+  };
 
-            <ProductsContainer />
-        </div>
-    );
+  return (
+    <div>
+      <Order/>
+      {toggle && <Carousel  /> }
+      <ProductsContainer  />
+    </div>
+  );
 };
 
-export default Home ;
+export default Home;
