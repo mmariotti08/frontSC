@@ -1,9 +1,11 @@
+
 import "./Paginate.css";
 import { useState } from "react";
 import { paginate } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Paginate = ({ max }) => {
+
   const dispatch = useDispatch();
 
   const page = useSelector((state) => state.page);
@@ -81,3 +83,4 @@ const Paginate = ({ max }) => {
 };
 
 export { Paginate };
+

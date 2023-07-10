@@ -1,11 +1,16 @@
-import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_PRODUCT_NAME, ORDER_BY_PRICE,ORDER_BY_NAME, PAGINATION } from "./actions-type";
+
+=======
+import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_PRODUCT_NAME, ORDER_BY_PRICE,ORDER_BY_NAME, PAGINATION, GET_APPROVAL_ADMIN } from "./actions-type";
+
 
 const initialState = {
   products: [],
   detail: [],
   cart: [],
+  getApprovalAdmin: false,
   fav: [],
   page: 1
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +50,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         fav: state.fav.filter(item => item.id !== action.payload),
       };
+
+    case GET_APPROVAL_ADMIN:
+      return {
+        ...state,
+        getApprovalAdmin: action.payload
+      };
+
     case ORDER_BY_NAME:
         const sortedShoes = [...state.products];
         const sortOrder = action.payload === 'a-z' ? 1 : -1;
@@ -72,6 +84,7 @@ const reducer = (state = initialState, action) => {
             return 0;
           });
       return { ...state, products: sortedPrice}
+
 
     case PAGINATION:
       return {
