@@ -1,21 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { Paginate } from "../paginate/paginate";
 import  Card  from "../Card/Card"
 import "./productsContainer.css"
 
 const productsContainer = () => {
     const products = useSelector(state => state.products);
 
-    
-    console.log(products)
-    console.log("products")
+    const page = useSelector((state) => state.page);
+
+    const perPage = 10;
+
+    const max = Math.ceil(products.length / perPage);
+
 
     return (
         <>
             
             <div className="container-recommended-products">
-                {products?.map(props => <Card key={props.id} props={props} />)}
+            {products.slice((page - 1) * perPage, (page - 1) * perPage + perPage)?.map(props => <Card key={props.id} props={props} />)}
             </div>
+            <Paginate max={max}/>
         </>
     );
 };

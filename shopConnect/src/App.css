@@ -1,7 +1,31 @@
+body {
+	overflow-y: scroll;
+  }
+  
+
+  body::-webkit-scrollbar {
+	width: 10px;
+	background-color: #f1f1f1;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+	background-color: #be0000;
+	border-radius: 5px;
+  }
+  
+
+  body {
+	scroll-behavior: smooth;
+  }
+
+
 #root {
-	max-width: 1280px;
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	max-width: 100vw;
 	margin: 0 auto;
-	padding: 2rem;
 	text-align: center;
 }
 

@@ -1,0 +1,67 @@
+.container {
+    margin-top: -70px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgb(157, 160, 163);
+}
+  
+  .word {
+    font-size: 180px;
+    font-family: "False", sans-serif;
+    font-weight: bold;
+    background: linear-gradient(to left, #26eec9, #07e970);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 10px;
+    width: 50vw; /* Ocupa la mitad derecha de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 4; /* Asegura que la palabra esté por encima del modelo 3D */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; 
+  }
+  
+  .canvasContainer {
+    flex: 1;
+    height: 100vh;
+    width: 50vw; /* Ocupa la mitad izquierda de la pantalla */
+    position: relative;
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+    z-index: 10; /* Asegura que el modelo 3D esté por debajo de la palabra */
+    align-items: center;
+  }
+  .buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #07e970;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #26eec9;
+  }
+  
+  .button:focus {
+    outline: none;
+  }
+  
