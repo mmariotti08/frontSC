@@ -5,6 +5,7 @@
   height: auto;
   opacity: 0;
   transition: 1s;
+  margin-top: 10%;
 }
 
 .loaded {
