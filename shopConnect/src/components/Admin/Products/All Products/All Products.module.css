@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/* .menu2 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+} */
+.container img {
+    width: 50px;
+}
+.container table {
+    table-layout: fixed;
+    width: 100%;
+}
+.evenRow {
+    background-color: #353535;
+}
+.container_button {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.container_button button {
+    width: 120px;
+}
+.Not_Available {
+    color: red;
+}
+.Available {
+    color: green;
+}
