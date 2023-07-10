@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProductsContainer from "../../components/productsContainer/ProductsContainer";
 import Carousel from "../../components/carousel/Carousel";
 import Order from '../../components/Order/order'
+import Filter from '../../components/Filter/Filter'
 import { useDispatch } from "react-redux";
 import { getProducts, getProductName } from "../../redux/actions";
 
@@ -32,6 +33,7 @@ const Home = ({toggle}) => {
     <div>
       {toggle && <Carousel  /> }
       <Order/>
+      <Filter />
       <ProductsContainer  />
     </div>
   );
