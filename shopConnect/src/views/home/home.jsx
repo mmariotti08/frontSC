@@ -14,6 +14,7 @@ const Home = ({toggle}) => {
 
   useEffect(() => {
     dispatch(getProducts());
+    window.scrollTo(0, 0);
   }, [dispatch]);
   const handleSearch = (name) => {
       console.log(name);
@@ -29,8 +30,8 @@ const Home = ({toggle}) => {
 
   return (
     <div>
-      <Order/>
       {toggle && <Carousel  /> }
+      <Order/>
       <ProductsContainer  />
     </div>
   );

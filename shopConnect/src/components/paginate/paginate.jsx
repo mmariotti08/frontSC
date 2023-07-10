@@ -8,7 +8,7 @@ const Paginate = ({ max }) => {
 
   const page = useSelector((state) => state.page);
 
-  const [input, setInput] = useState(1);
+  const [input, setInput] = useState(page);
 
   const nextPage = () => {
     setInput(parseInt(input) + 1);
@@ -31,6 +31,7 @@ const Paginate = ({ max }) => {
         setInput(1);
       } else {
         dispatch(paginate(parseInt(event.target.value)));
+       
       }
     }
   };
