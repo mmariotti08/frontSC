@@ -1,6 +1,9 @@
+import styles from './FrecuentQuestions.module.css'
+
 const FrecuentQuestions = ()=>{
    return(
-    <div>
+    <div className={styles.container}>
+       
         <h1>PAGOS</h1>
         <h2>¿Cuáles son los medios de pago disponibles?</h2>
         <p>Podrás abonar tus pedidos con Tarjeta de Crédito o por Mercado Pago a través de Cupones de Pago.</p>
@@ -11,6 +14,7 @@ const FrecuentQuestions = ()=>{
         <h2>¿Cómo sé que mi pago fue acreditado?</h2>
         <p>Una vez que tu pago haya sido acreditado correctamente por administración, recibirás un correo electrónico informándote el número de acreditación y el número de factura correspondiente.</p>
         <br/>
+      
         <h1>ENVIO Y RETIRO</h1>
         <h2>¿Cuáles son las formas de envío?</h2>
         <p>Envíos a domicilio: Envíos a cualquier punto del país</p>

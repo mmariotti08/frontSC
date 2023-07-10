@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    margin-top: 150px;
+   flex-direction: column;
+   background-color: aliceblue;
+}
+.container h1{
+    color: rgb(136, 29, 29);
+}
+.container p{
+    color: black;
+}
