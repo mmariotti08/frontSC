@@ -14,12 +14,14 @@ const Add_Product = () => {
         brand_name: "",
         category: [""],
         color: "",
-        gender: "",
+        gender: "Man",
         main_picture_url: "",
         retail_price_cents: 0,
         slug: "",
         status: "",
     });
+
+    console.log(data);
 
     const handleChange = ({ target: { name, value } }) => {
         setData({
