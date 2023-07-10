@@ -2,6 +2,7 @@ import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FA
 
 const initialState = {
   products: [],
+  copyProducts: [],
   detail: [],
   cart: [],
   fav: [],
@@ -14,6 +15,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        copyProducts: action.payload
       };
     case GET_PRODUCT_NAME:
       return {
