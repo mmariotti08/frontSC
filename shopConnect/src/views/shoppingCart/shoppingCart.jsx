@@ -1,7 +1,7 @@
 import style from './shoppingCart.module.css'
 import { connect } from 'react-redux';
 import Card from '../../components/Card/Card'; 
-
+import { useEffect } from 'react';
 
 const ShoppingCart = ({ cart }) => {
 
@@ -12,22 +12,26 @@ const ShoppingCart = ({ cart }) => {
     const formattedPrice = (price / 100).toFixed(2);
     return `$${formattedPrice}`;
   };
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   return (
-    <>
+    <div className={style.containerGeneral}>
       <h1 className={style.titule}>Carrito de compras</h1>
-    <div className={style.container}>
-      {cart.length === 0 ? (
-        <p className={style.mensaje}>No hay elementos en el carrito</p>
-        ) : (
-          <div>
-          {cart.map(item => (
-            <Card key={item.id} props={item}/>
-            ))}
+        <div className={style.container}>
+          {cart.length === 0 ? (
+            <p className={style.mensaje}>No hay elementos en el carrito</p>
+            ) : (
+              <>
+                {cart.map(item => (
+                    <Card key={item.id} props={item}/>
+                  ))}
+              </>
+          )}
         </div>
-      )}
-    </div>
-      <h3>Suma total: {formatPrice(totalPrice)}</h3>
-      </>
+      <h3 className={style.total}>Suma total: {formatPrice(totalPrice)}</h3>
+      </div>
   );
 };
 

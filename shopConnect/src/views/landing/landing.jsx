@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from 'react';
-import { Canvas } from 'react-three-fiber';
+// import { Canvas } from 'react-three-fiber';
 import { House } from '../../components/House/house';
-import { OrbitControls } from '@react-three/drei';
+// import { OrbitControls } from '@react-three/drei';
 import style from './Landing.module.css';
 import { Link } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const Landing = () => {
   <div className={style.word} >The Best Sneakers</div>
   
   <div className={style.buttonContainer}>
-    <Link to="/home" className={style.button}>
+    <Link to="/" className={style.button}>
       Ver Articulos
     </Link>
   </div>
