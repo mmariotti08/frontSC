@@ -14,7 +14,7 @@ import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Admin } from "./views/admin/Admin";
-import Landing from "./views/landing/Landing";
+import Landing from "./views/landing/landing";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
 axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 // axios.defaults.baseURL='http://localhost:3001/'
