@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
-import Login from "./components/login/Login";
+// import Login from "./components/login/Login";
 import Detail from "./views/detail/detail";
 import axios from "axios";
 import  Home  from "./views/home/home";
