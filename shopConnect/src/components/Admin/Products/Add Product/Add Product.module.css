@@ -114,4 +114,7 @@
     color: #ffffff;
     padding: 5px 10px;
     font-size: 14px;
-  }
+}
+.container_label_error {
+    display: flex;
+}
