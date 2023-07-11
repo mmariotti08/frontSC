@@ -23,7 +23,7 @@ const Detail = () => {
         return `${formattedPrice}`;
       };
     const handleCart = ()=>{
-        addToCart(sneaker.id)
+        addToCart(sneaker)
     }
     return (
         <div className={styles.contDetail}>
