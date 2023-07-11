@@ -45,7 +45,7 @@ function App() {
         {!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />}
        
       <Routes>
-        <Route path="/login" element={<Login/>}/>
+        {/* <Route path="/login" element={<Login/>}/> */}
         <Route  path="/"  element={<Home toggle={toggle} />}/>
         {/* RUTAS DEL FOOTER */}
         <Route path="/fQuestions" element={<FrecuentQuestions/>}/>
