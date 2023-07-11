@@ -64,13 +64,13 @@ const Add_Product = () => {
 
     const handleDraft = (event) => {
         event.preventDefault();
-        setData(data.status = "draft");
+        setData({ ...data, status: "draft" });
         submit(event);
     };
 
     const handleActive = (event) => {
         event.preventDefault();
-        setData(data.status = "active");
+        setData({ ...data, status: "active" });
         submit(event);
     };
 
@@ -127,7 +127,7 @@ const Add_Product = () => {
             stocks.map((stock, i) => i === index ? { ...stock, quantity: parseInt(value) } : stock)
         );
     };
-    console.log(stocks);
+
     return (
         <div className={styles.container}>
             <div>
