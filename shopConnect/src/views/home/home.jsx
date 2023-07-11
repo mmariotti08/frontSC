@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductsContainer from "../../components/productsContainer/ProductsContainer";
+import ProductsContainer from "../../components/productsContainer/productsContainer";
 import Carousel from "../../components/carousel/Carousel";
 import Order from '../../components/Order/order'
 import Filter from '../../components/Filter/Filter'

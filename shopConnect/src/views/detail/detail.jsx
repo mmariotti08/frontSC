@@ -24,6 +24,7 @@ const Detail = () => {
         return `${formattedPrice}`;
       };
 
+
     const handleCart = () => {
         if (cart.some(item => item.id === sneaker.id)) {
             dispatch(removeFromCart(sneaker.id));
