@@ -1,0 +1,26 @@
+.container{
+display: flex;
+background-image: url(../../../../public/wallhaven-951yzx_1920x1080.png);
+font-family: 'Bebas Neue', sans-serif;
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+
+ 
+
+.text{
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    margin-top: 150px; 
+    margin-right: 700px;
+    
+ 
+   
+}
+.text h2{
+    display: flex;
+    color: black;
+    font-size: 100x;
+}
