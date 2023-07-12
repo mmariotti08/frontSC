@@ -1,8 +1,9 @@
 
-import { GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_PRODUCT_NAME, ORDER_BY_PRICE,ORDER_BY_NAME, PAGINATION, GET_APPROVAL_ADMIN, FILTER_BY_GENDER, FILTER_BRAND_NAME, FILER_BY_CATEGORY } from "./actions-type";
+import { ADD_USER, GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_PRODUCT_NAME, ORDER_BY_PRICE,ORDER_BY_NAME, PAGINATION, GET_APPROVAL_ADMIN, FILTER_BY_GENDER, FILTER_BRAND_NAME, FILER_BY_CATEGORY, } from "./actions-type";
 
 
 const initialState = {
+  users:[],
   products: [],
   copyProducts: [],
   detail: [],
@@ -26,6 +27,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       }
+
+      case ADD_USER:
+      return {
+        ...state,
+        users: action.payload,
+      }
+
+
     case GET_DETAIL:
       return {
         ...state,

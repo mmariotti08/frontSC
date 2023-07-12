@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME } from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME } from './actions-type';
 
 
 
@@ -27,6 +27,18 @@ export const getProductName = (name) => {
       }
   };
 };
+
+export const addUser = (userData) => {
+	return async function(dispatch) {
+		console.log(userData)
+		try {
+			let response = await axios.post(`http://localhost:3001/user`, userData);
+			return dispatch({type: ADD_USER, payload: response.data});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+  };
 
 export const getDetail = (id)=>{
 		return async function(dispatch){

@@ -35,7 +35,6 @@ const SearchBar = ({ onSearch, toggleCarousel }) => {
     }
   };
 
-console.log(name);
 
 
   return (
