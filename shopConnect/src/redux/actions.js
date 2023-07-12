@@ -6,7 +6,7 @@ import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, RE
 export const getProducts = () => {
 		return async function(dispatch) {
 				try {
-						let response = await axios.get(`http://localhost:3001/products`);
+						let response = await axios.get(`products`);
 						
 						return dispatch({type: GET_PRODUCTS, payload: response.data});
 				} catch (error) {
@@ -19,7 +19,7 @@ export const getProducts = () => {
 export const getProductName = (name) => {
   return async function(dispatch) {
       try {
-          let response = await axios.get(`http://localhost:3001/products?name=${name}`);
+          let response = await axios.get(`products?name=${name}`);
           
           return dispatch({type: GET_PRODUCT_NAME, payload: response.data});
       } catch (error) {
@@ -42,7 +42,7 @@ export const addUser = (userData) => {
 
 export const getDetail = (id)=>{
 		return async function(dispatch){
-			 const response = await axios.get(`http://localhost:3001/products/${id}`);
+			 const response = await axios.get(`products/${id}`);
 
 			 dispatch({type: GET_DETAIL, payload: response.data})
 		}
@@ -86,7 +86,7 @@ export const removeFromFav = (itemId) => {
 export const getApproval = (adminData) => {
 	return async function(dispatch) {
 		try {
-			let response = await axios.post("http://localhost:3001/admin/login", adminData);
+			let response = await axios.post("admin/login", adminData);
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
 		} catch (error) {
 			console.log(error);
@@ -99,7 +99,7 @@ export const getApproval = (adminData) => {
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
-			await axios.post(`http://localhost:3001/products`, { product: data, stock: stock });
+			await axios.post(`products`, { product: data, stock: stock });
 			return
 		} catch (error) {
 			console.log(error);

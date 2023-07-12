@@ -48,9 +48,9 @@ const NavBar = ({toggleCarousel}) => {
 
   const [mensaje, setMensaje] = useState("");
   const mensajes = [
-    "3 CUOTAS sin interes con todas las tarjetas!",
-    "🚚 ENVIO gratuito en todas tus compras",
-    "DESCUENTO del 20% en productos seleccionados",
+    "💳 12 INSTALLMENTS on selected products!",
+    "🚚 FREE SHIPPING on selected products!",
+    "🛍️ 20% DISCOUNT on selected products!",
   ];
   
   useEffect(() => {
@@ -68,7 +68,7 @@ const NavBar = ({toggleCarousel}) => {
   }, []);
 
   const getStyledMessage = () => {
-    const halfLength = Math.ceil(mensaje.length / 5);
+    const halfLength = Math.ceil(mensaje.length / 2.3);
     const firstHalf = mensaje.slice(0, halfLength);
     const secondHalf = mensaje.slice(halfLength);
 

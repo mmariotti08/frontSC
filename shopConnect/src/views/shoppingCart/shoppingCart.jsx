@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Card from '../../components/Card/Card'; 
 import { useEffect } from 'react';
 
-const ShoppingCart = ({ cart }) => {
+const ShoppingCart = ({ cart}) => {
 
 
   const totalPrice = cart.reduce((total, item) => total + item.retail_price_cents, 0);
@@ -26,6 +26,7 @@ const ShoppingCart = ({ cart }) => {
               <>
                 {cart.map(item => (
                     <Card key={item.id} props={item}/>
+                    
                   ))}
               </>
           )}
