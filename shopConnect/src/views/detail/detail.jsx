@@ -10,6 +10,7 @@ import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/
 
 const Detail = () => {
     const dispatch = useDispatch();
+    const stock = useSelector((state)=>state.products)
     const sneaker = useSelector((state)=>state.detail);
     const cart = useSelector((state) => state.cart); // Agrega la selección del estado "cart"
     const fav = useSelector((state) => state.fav);
