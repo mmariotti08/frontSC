@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import { getDetail } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from './detail.module.css'
 import { IoCartOutline, IoCartSharp } from "react-icons/io5";
+import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
+
 
 
 const Detail = () => {
@@ -13,6 +15,9 @@ const Detail = () => {
     const cart = useSelector((state) => state.cart); // Agrega la selección del estado "cart"
     const fav = useSelector((state) => state.fav);
     const {id} = useParams();
+
+    const [selectSize, setSelectSize] = useState(null);
+    
     useEffect(()=>{
         dispatch(getDetail(id))
         window.scrollTo(0, 0);
@@ -23,7 +28,6 @@ const Detail = () => {
         const formattedPrice = (price / 100).toFixed(2);
         return `${formattedPrice}`;
       };
-
 
     const handleCart = () => {
         if (cart.some(item => item.id === sneaker.id)) {
@@ -39,6 +43,14 @@ const Detail = () => {
             dispatch(addToFav(sneaker));
         }
     };
+    
+  const handleSizeClick = (size) => {
+    if (selectSize === size) {
+      setSelectSize(null); 
+    } else {
+      setSelectSize(size);
+    }
+  };
 
     return (
         <div className={styles.contDetail}>
@@ -52,13 +64,26 @@ const Detail = () => {
                     <h3>{sneaker.category}</h3>
                     <h2>Color:</h2>
                     <h3>{sneaker.color}</h3>
+                    
+                    
+                        <h2>Sizes:</h2>
+                    <div className={styles.sizes}>
+                    {sneaker.Stocks?.map(s =>(
+                       
+                       s.quantity > 0 ? <button   className={`${styles.size} ${selectSize === s.size ? styles.select : ''}`}
+                       onClick={() => handleSizeClick(s.size)}>
+                        { s.size }
+                        </button> : <div className={styles.dess}>{s.size}</div>
+                    ))}
+                    </div>
+                  
                     <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
                     <div className={styles.buttons}>
-                        <button onClick={handleCart}>
-                            {cart.some(item => item.id === sneaker.id) ? "REMOVE FROM CART" : "ADD TO CART"}
+                        <button onClick={handleCart} className={`${cart.some(item => item.id === sneaker.id) ? styles.removeC : styles.addC}`}>
+                            {cart.some(item => item.id === sneaker.id) ? "REMOVE CART" : "ADD CART"}
                         </button>
-                        <button onClick={handleFav}>
-                            {fav.some(item => item.id === sneaker.id) ? "REMOVE FROM FAV" : "ADD TO FAV"}
+                        <button onClick={handleFav} className={`${fav.some(item => item.id === sneaker.id) ? styles.Nfav : styles.fav}`}>
+                            {fav.some(item => item.id === sneaker.id) ? <BsBookmarksFill/> : <BsBookmarks/>}
                         </button>
                     </div>
                 </div>

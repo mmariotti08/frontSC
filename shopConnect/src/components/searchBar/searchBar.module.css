@@ -14,9 +14,11 @@
   }
   
   .searchInput {
+    background-color: white;
+    color: #272727;
     padding: 13px;
     border-radius: 30px;
-    border: 1px solid #ccc;
+    border: 2px solid #a81111;
     font-size: 16px;
     flex: 1;
     transition: border-color 0.3s ease;
@@ -25,7 +27,7 @@
   
   .searchInput:focus {
     outline: none;
-    border-color: #ff416c;
+    border-color: #c9c9c9;
     background-color: azure;
   }
   

@@ -15,7 +15,7 @@
   
 }
 .nameh3{
-    margin-top: 25%;
+    margin-top: 12%;
 }
 .detailz{
     display: flex;
@@ -31,22 +31,97 @@
     border: 1px solid white;
     width: 300px;
     border-radius: 5px;
+    border-bottom: 3px solid black;
 
 }
 .data h2{
     color: red;
 }
 .buttons{
-display: flex;
- background-color: red;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
 
- justify-content: center;
- color: black;
- font-size: 25px;
- border-radius: 20px;
+
 }
 
-.buttons button{
-    background-color: red;
+.addC{
+    display: flex;
+    background-color: aliceblue;
     width: 300px;
+    margin: 10px;
+    justify-content: center;
+    border-radius: 40px;
+    border: 2px solid black;
+
+}
+.removeC{
+    display: flex;
+    background-color: rgb(166, 165, 165);
+    width: 300px;
+    margin: 10px;
+    justify-content: center;
+    border-radius: 40px;
+    border: 2px solid black;
+    color: rgb(41, 41, 41);
+
+}
+.fav{
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    margin: 10px;
+    background-color: aliceblue;
+    border-radius: 50px;
+    border: 2px solid black;
+}
+.Nfav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    margin: 10px;
+    background-color: rgb(166, 165, 165);
+    border-radius: 50px;
+    border: 2px solid rgb(0, 0, 0);
+}
+.sizes{
+    display: flex;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    
+   
+}
+.size{
+    display: flex;
+    justify-content: center;
+    width: 60px;
+    height: 40px;
+    background-color: #213547;;
+    margin: 3px;
+    border: 2px solid #213547;
+    border-radius: 100px;
+    align-items: center;
+    color: white;
+    padding-inline: 10px;
+
+    
+}
+.select{
+    background-color: red;
+}
+.dess{
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: 30px;
+    background-color:rgb(255, 255, 255);
+    margin: 3px;
+    border: 2px solid rgb(188, 188, 188);
+    border-radius: 100px;
+    align-items: center;
+    color: rgb(193, 193, 193);
 }
