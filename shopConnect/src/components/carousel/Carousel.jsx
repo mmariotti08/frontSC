@@ -44,17 +44,20 @@ export default function Carousel({ autoPlay = true  }) {
 
   return (
     <div className={styles.carousel}>
-      <img
+     
+
+      <div className={styles.buttonContainer}>
+        <button className={styles.button} onClick={previous}>
+          {"<"}
+        </button>
+
+ <img
         src={selectedImage}
         alt="Gentleman"
         className={`${styles.carouselImg} ${loaded ? styles.loaded : ""}`}
         onLoad={() => setLoaded(true)}
       />
 
-      <div className={styles.buttonContainer}>
-        <button className={styles.button} onClick={previous}>
-          {"<"}
-        </button>
         <button className={styles.button} onClick={next}>
           {">"}
         </button>
