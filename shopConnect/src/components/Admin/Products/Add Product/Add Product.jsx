@@ -40,8 +40,11 @@ const Add_Product = () => {
 
     const submit = ({ target: { name, value } }) => {
         data.slug = `${data.name.replace(/\s/g, "-")}`;
+        data.gender = [data.gender];
+
         const stockIsValid = stocks.every(stock => stock.size !== "" && stock.quantity > 0);
         const categoryIsValid = data.category.every(category => category !== "");
+        
         if(!categoryIsValid || !stockIsValid || !data.name.length || !data.brand_name.length || !data.color || !data.main_picture_url || data.retail_price_cents < 0) {
             setError(validation({ ...data, [name]: value }, stockIsValid, categoryIsValid));
         } else {
