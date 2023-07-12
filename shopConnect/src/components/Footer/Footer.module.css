@@ -1,39 +1,96 @@
+.todo{
+   display: flex;
+   flex-direction: column;
+}
+
 .container {
+   position: relative;
+   bottom:0;
+   left: 0;
+   width: 100%;
+   height: 150px;
    display: flex;
+   background-color:#ca1111 ;
    justify-content: space-around;
-   flex-wrap: nowrap;
-   flex-direction: row;
-   align-content: stretch;
-   align-items: flex-start;
-   background-color: rgb(219, 219, 219);
-
-  
-  
+   border-top: ridge 1px rgb(160, 160, 160);
+   color: rgb(255, 255, 255);
+   margin-top: 30px;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   text-shadow: black 0.1em 0.1em 0.2em
+}
+.container h1{
+   font-size: 16px;
 }
 
-.integrantes h1{
-
-   border-bottom: solid rgba(0, 0, 0, 0.384);
+.container h3{
+   font-size: 14px;
 }
 
-.link{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-   margin-top: -40px;
+
+.integrantes{
+   font-size: 10px;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+   gap: 5px;
+   grid-row-gap: 5px;
+   height: 50%;
+
 }
+
+.integrantes > :nth-child(4n + 1) {
+   margin-bottom: 5px;
+}
+
 
 .nombre{
    display: flex;
-   flex-direction: row;
-   justify-content: space-between;
+   flex-direction: column;
+   gap: 5px;
+   padding: 10px;
 }
 
-.mati{
-   margin-top: -10px;
-   font-size: 15px;
-   margin-inline: 20px;
-   font-family: 'Russo One', sans-serif;
+.nombre h3, a{
+   margin-bottom: 0;
+   margin-top: 0;
+}
+
+.nombre h3{
+   color: rgb(255, 255, 255);
+}
+
+.containerName{
+   display: flex;
+   flex-direction: column;
+}
+
+.help{
+   display: flex;
+   flex-direction: column;
+}
+.help{
+   color: rgb(255, 255, 255);
+}
+.help h3{
+   color: rgb(255, 255, 255);
+}
+
+.About{
+   display: flex;
+   flex-direction: column;
+}
+
+.About h1{
    color: black;
 }
+
+.derechos{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   font-size: 11px;
+   border: solid 1px gray;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 
