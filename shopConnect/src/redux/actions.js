@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT } from './actions-type';
+
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT } from './actions-type';
 
 export const getProducts = () => {
 	return async function(dispatch) {
@@ -13,22 +14,36 @@ export const getProducts = () => {
 };
 
 export const getProductName = (name) => {
-  	return async function(dispatch) {
-		try {
-			let response = await axios.get(`http://localhost:3001/products?name=${name}`);
-			return dispatch({type: GET_PRODUCT_NAME, payload: response.data});
-		} catch (error) {
-			console.error(error);
-		};
-  	};
+  return async function(dispatch) {
+      try {
+          let response = await axios.get(`products?name=${name}`);
+          
+          return dispatch({type: GET_PRODUCT_NAME, payload: response.data});
+      } catch (error) {
+          console.error(error);
+      }
+  };
 };
 
-export const getDetail = (id)=>{
-	return async function(dispatch){
-		const response = await axios.get(`http://localhost:3001/products/${id}`);
-		dispatch({type: GET_DETAIL, payload: response.data});
+export const addUser = (userData) => {
+	return async function(dispatch) {
+		console.log(userData)
+		try {
+			let response = await axios.post(`http://localhost:3001/user`, userData);
+			return dispatch({type: ADD_USER, payload: response.data});
+		} catch (error) {
+			console.error(error);
+		}
 	};
-};
+  };
+
+export const getDetail = (id)=>{
+		return async function(dispatch){
+			 const response = await axios.get(`products/${id}`);
+
+			 dispatch({type: GET_DETAIL, payload: response.data})
+		}
+}
 
 // Acción para agregar un elemento al carrito
 export const addToCart = (item) => {
@@ -66,7 +81,7 @@ export const removeFromFav = (itemId) => {
 export const getApproval = (adminData) => {
 	return async function(dispatch) {
 		try {
-			let response = await axios.post("http://localhost:3001/admin/login", adminData);
+			let response = await axios.post("admin/login", adminData);
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
 		} catch (error) {
 			console.log(error);
@@ -79,6 +94,7 @@ export const getApproval = (adminData) => {
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
+
 			await axios.post(`http://localhost:3001/products`, { product: data, stock: stock });
 			return;
 		} catch (error) {
@@ -92,6 +108,7 @@ export const getStock = () => {
 		try {
 			const response = await axios.get(`http://localhost:3001/stocks`);
 			return dispatch({ type: GET_STOCK, payload: response.data });
+
 		} catch (error) {
 			console.log(error);
 		};

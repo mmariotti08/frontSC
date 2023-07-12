@@ -1,5 +1,6 @@
+
 import { useDispatch, useSelector } from "react-redux";
-import { Paginate } from "../../../Paginate/Paginate";
+import { Paginate } from "../../../paginate/paginate";
 import styles from "./All Products.module.css";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../../../redux/actions";

@@ -1,7 +1,7 @@
 import {  useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {  getProductName, paginate  } from "../../redux/actions";
-import style from "./SearchBar.module.css";
+import style from "./searchBar.module.css";
 
 const SearchBar = ({ onSearch, toggleCarousel }) => {
   const [name, setName] = useState("");
@@ -35,7 +35,6 @@ const SearchBar = ({ onSearch, toggleCarousel }) => {
     }
   };
 
-console.log(name);
 
 
   return (

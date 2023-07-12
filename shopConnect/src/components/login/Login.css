@@ -1,0 +1,27 @@
+.container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+  margin-top: 1000px;
+  background-color: aquamarine;
+}
+
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-button {
+  align-self: flex-end;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #ff6464;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
