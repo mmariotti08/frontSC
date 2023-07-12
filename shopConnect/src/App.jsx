@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
 import Login from "./components/login/Login";
 import Detail from "./views/detail/detail";
+
 import {
   SignIn,
   SignUp,
@@ -13,11 +14,14 @@ import {
   useUser,
   RedirectToSignIn,
 } from "@clerk/clerk-react";
+
 import Home from "./views/home/home";
 import AboutUs from "./components/Footer/AboutUS/AboutUs";
 import MeasurSize from "./components/Footer/MeasureSize/MeasureSize";
 import ShoppingCart from "./views/shoppingCart/shoppingCart";
+
 import axios from "axios";
+
 import { Footer } from "./components/Footer/Footer";
 import Favorites from "./views/favorites/favorites";
 import "./App.css";
@@ -25,6 +29,8 @@ import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
+
+
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 // import Landing from "./views/landing/landing";
 // axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
@@ -109,6 +115,7 @@ function App() {
       </div>
     </ClerkProvider>
   );
+
 }
 
 export default App;

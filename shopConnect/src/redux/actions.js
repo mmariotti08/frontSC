@@ -1,20 +1,17 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME } from './actions-type';
 
-
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT } from './actions-type';
 
 export const getProducts = () => {
-		return async function(dispatch) {
-				try {
-						let response = await axios.get(`products`);
-						
-						return dispatch({type: GET_PRODUCTS, payload: response.data});
-				} catch (error) {
-						console.error(error);
-				}
+	return async function(dispatch) {
+		try {
+			let response = await axios.get(`http://localhost:3001/products`);
+			return dispatch({type: GET_PRODUCTS, payload: response.data});
+		} catch (error) {
+			console.error(error);
 		};
+	};
 };
-
 
 export const getProductName = (name) => {
   return async function(dispatch) {
@@ -47,8 +44,6 @@ export const getDetail = (id)=>{
 			 dispatch({type: GET_DETAIL, payload: response.data})
 		}
 }
-
-
 
 // Acción para agregar un elemento al carrito
 export const addToCart = (item) => {
@@ -99,13 +94,74 @@ export const getApproval = (adminData) => {
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
-			await axios.post(`products`, { product: data, stock: stock });
-			return
+
+			await axios.post(`http://localhost:3001/products`, { product: data, stock: stock });
+			return;
 		} catch (error) {
 			console.log(error);
 		};
 	};
 };
+
+export const getStock = () => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`http://localhost:3001/stocks`);
+			return dispatch({ type: GET_STOCK, payload: response.data });
+
+		} catch (error) {
+			console.log(error);
+		};
+	};
+};
+
+export const getStockID = (id) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`http://localhost:3001/stocks/${id}`);
+			return dispatch({ type: GET_STOCK_BY_ID, payload: response.data });
+		} catch (error) {
+			console.log(error);
+		};
+	};
+};
+
+export const putProducto = (id, product) => {
+	return async function(dispatch) {
+		try {
+			await axios.put(`http://localhost:3001/products/${id}`, { id, product });
+			return;
+		} catch (error) {
+			
+		};
+	};
+};
+
+export const getProductDraft = () => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`http://localhost:3001/products/draft`);
+			console.log(response.data);
+			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
+		} catch (error) {
+			console.log(error);
+		};
+	};
+};
+
+export const deleteProduct = (id) => {
+	return async function(dispatch) {
+		try {
+			console.log(id);
+			await axios.delete(`http://localhost:3001/products/${id}`);
+			return;
+		} catch (error) {
+			console.log(error);
+		};
+	};
+};
+
+// ^^^^ ACCIONES ADMIN (NO TOCAR) ^^^^
 
 export const orderByName = (payload) => {
   return{ type: ORDER_BY_NAME, payload }

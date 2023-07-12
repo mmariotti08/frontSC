@@ -1,5 +1,24 @@
 
-import { ADD_USER, GET_DETAIL, GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, REMOVE_FROM_FAV, ADD_TO_FAV, GET_PRODUCT_NAME, ORDER_BY_PRICE,ORDER_BY_NAME, PAGINATION, GET_APPROVAL_ADMIN, FILTER_BY_GENDER, FILTER_BRAND_NAME, FILER_BY_CATEGORY, } from "./actions-type";
+import {
+  GET_DETAIL,
+  GET_PRODUCTS,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  REMOVE_FROM_FAV,
+  ADD_TO_FAV,
+  GET_PRODUCT_NAME,
+  ORDER_BY_PRICE,
+  ORDER_BY_NAME,
+  PAGINATION,
+  GET_APPROVAL_ADMIN,
+  FILTER_BY_GENDER,
+  FILTER_BRAND_NAME,
+  FILER_BY_CATEGORY,
+  GET_STOCK,
+  GET_STOCK_BY_ID,
+  GET_PRODUCT_DRAFT,
+  ADD_USER
+} from "./actions-type";
 
 
 const initialState = {
@@ -9,9 +28,11 @@ const initialState = {
   detail: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
   getApprovalAdmin: false,
-  fav: JSON.parse(localStorage.getItem("fav")) || [],
-  page: 1
-
+  page: 1,
+  get_stock: [],
+  get_stock_by_id: [],
+  product_draft: [],
+fav: JSON.parse(localStorage.getItem("fav")) || [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,15 +41,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
-        copyProducts: action.payload
+        copyProducts: action.payload,
       };
     case GET_PRODUCT_NAME:
       return {
         ...state,
         products: action.payload,
-      }
 
-      case ADD_USER:
+      };
+    case ADD_USER:
+
       return {
         ...state,
         users: action.payload,
@@ -68,6 +90,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fav: updatedFavAdd,
+
       };
     }
       
@@ -84,17 +107,36 @@ const reducer = (state = initialState, action) => {
     case GET_APPROVAL_ADMIN:
       return {
         ...state,
-        getApprovalAdmin: action.payload
+        getApprovalAdmin: action.payload,
       };
+    case GET_STOCK:
+      return {
+        ...state,
+        get_stock: action.payload
+      };
+    case GET_STOCK_BY_ID:
+      return {
+        ...state,
+        get_stock_by_id: action.payload
+      };
+    case GET_PRODUCT_DRAFT:
+      console.log(action.payload);
+      return {
+        ...state,
+        product_draft: action.payload
+      };
+
 
     case ORDER_BY_NAME:{
 
       const sortedShoes = [...state.products];
       const sortOrder = action.payload === 'a-z' ? 1 : -1;
+
       sortedShoes.sort((shoeA, shoeB) => {
         if (shoeA.name > shoeB.name) {
           return 1 * sortOrder;
         }
+
             if (shoeB.name > shoeA.name) {
               return -1 * sortOrder;
             }
@@ -120,11 +162,13 @@ const reducer = (state = initialState, action) => {
         }
 
 
+
     case PAGINATION:
       return {
-          ...state,
-          page: action.payload
+        ...state,
+        page: action.payload,
       };
+
 
 
       case FILTER_BY_GENDER:{
@@ -180,6 +224,7 @@ const reducer = (state = initialState, action) => {
 
     case FILER_BY_CATEGORY:{
 
+
       let filterCategory;
       
       if (action.payload === 'other') {
@@ -204,6 +249,7 @@ const reducer = (state = initialState, action) => {
         }
 
           
+
     default:
       return state;
   }
