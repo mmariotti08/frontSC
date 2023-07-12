@@ -33,7 +33,6 @@ export const addUser = (userData) => {
 		console.log(userData)
 		try {
 			let response = await axios.post(`http://localhost:3001/user`, userData);
-			
 			return dispatch({type: ADD_USER, payload: response.data});
 		} catch (error) {
 			console.error(error);

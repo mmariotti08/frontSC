@@ -29,7 +29,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 // import Landing  from "./views/landing/Landing";
 import { Admin } from "./views/admin/Admin";
 
-import Landing from "./views/landing/Landing";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
