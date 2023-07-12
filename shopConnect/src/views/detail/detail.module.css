@@ -39,7 +39,7 @@
 .buttons{
 display: flex;
  background-color: red;
-
+ border: rgb(0, 0, 0) solid 2px;
  justify-content: center;
  color: black;
  font-size: 25px;
@@ -47,6 +47,7 @@ display: flex;
 }
 
 .buttons button{
+    border: solid black2;
     background-color: red;
     width: 300px;
 }
