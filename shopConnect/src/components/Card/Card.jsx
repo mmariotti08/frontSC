@@ -2,13 +2,15 @@ import "./Card.css";
 import { Link } from "react-router-dom";
 import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 
 
-const Card = ({ props, cart, fav, addToCart, removeFromCart, addToFav, removeFromFav }) => {
-
+const Card = ({ props, addToCart, removeFromCart, addToFav, removeFromFav }) => {
+  const cart = useSelector((state) => state.cart); // Agrega la selección del estado "cart"
+  const fav = useSelector((state) => state.fav);
   const buttonFav = fav.some(item => item.id === props.id);
+  const buttonCars = cart.some(item => item.id === props.id);
 
   const handleButtonFavClick = () => {
     if (buttonFav) {
@@ -17,8 +19,6 @@ const Card = ({ props, cart, fav, addToCart, removeFromCart, addToFav, removeFro
       addToFav(props);
     }
   };
-
-  const buttonCars = cart.some(item => item.id === props.id);
 
   const handleButtonCarsClick = () => {
     if (buttonCars) {
@@ -50,7 +50,6 @@ const Card = ({ props, cart, fav, addToCart, removeFromCart, addToFav, removeFro
           {buttonFav ? <BsBookmarksFill/> : <BsBookmarks />}
         </a>
       </div>
-
 
       <Link to={`/products/${props.id}`}>
         <div className="container-img-card">

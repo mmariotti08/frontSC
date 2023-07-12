@@ -7,12 +7,15 @@ import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 
 
+
 const Detail = () => {
     const dispatch = useDispatch();
+    const stock = useSelector((state)=>state.products)
     const sneaker = useSelector((state)=>state.detail);
     const cart = useSelector((state) => state.cart); // Agrega la selección del estado "cart"
     const fav = useSelector((state) => state.fav);
     const {id} = useParams();
+    
     useEffect(()=>{
         dispatch(getDetail(id))
         window.scrollTo(0, 0);
@@ -23,7 +26,6 @@ const Detail = () => {
         const formattedPrice = (price / 100).toFixed(2);
         return `${formattedPrice}`;
       };
-
 
     const handleCart = () => {
         if (cart.some(item => item.id === sneaker.id)) {
@@ -53,6 +55,15 @@ const Detail = () => {
                     <h2>Color:</h2>
                     <h3>{sneaker.color}</h3>
                     <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
+                    
+                    <div>
+                        {stock && stock.Stocks && stock.Stocks.map((s) => (
+                            <div key={s.size}>{s.size}</div>
+                        ))}
+                    </div>
+                  
+                    
+                   
                     <div className={styles.buttons}>
                         <button onClick={handleCart}>
                             {cart.some(item => item.id === sneaker.id) ? "REMOVE FROM CART" : "ADD TO CART"}
