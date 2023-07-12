@@ -54,16 +54,17 @@ const Detail = () => {
                     <h3>{sneaker.category}</h3>
                     <h2>Color:</h2>
                     <h3>{sneaker.color}</h3>
-                    <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
                     
-                    <div>
-                        {stock && stock.Stocks && stock.Stocks.map((s) => (
-                            <div key={s.size}>{s.size}</div>
-                        ))}
+                    
+                        <h3>SIZES</h3>
+                    <div className={styles.sizes}>
+                    {sneaker.Stocks?.map(s =>(
+                       
+                       s.quantity > 0 ? <button className={styles.size}>{ s.size }</button> : <div className={styles.dess}>{s.size}</div>
+                    ))}
                     </div>
                   
-                    
-                   
+                    <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
                     <div className={styles.buttons}>
                         <button onClick={handleCart}>
                             {cart.some(item => item.id === sneaker.id) ? "REMOVE FROM CART" : "ADD TO CART"}
