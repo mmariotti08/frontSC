@@ -15,7 +15,7 @@
   
 }
 .nameh3{
-    margin-top: 25%;
+    margin-top: 12%;
 }
 .detailz{
     display: flex;
@@ -38,15 +38,56 @@
 }
 .buttons{
 display: flex;
- background-color: red;
+justify-content: center;
 
- justify-content: center;
- color: black;
  font-size: 25px;
  border-radius: 20px;
+
 }
 
 .buttons button{
+    display: flex;
     background-color: red;
     width: 300px;
+    margin: 20px;
+    justify-content: center;
+
+}
+.sizes{
+    display: flex;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+   
+}
+.size{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #213547;;
+    margin: 3px;
+    border: 2px solid #213547;
+    border-radius: 100px;
+    align-items: center;
+    color: white;
+    padding-inline: 10px;
+    
+    
+}
+.dess{
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color:rgb(255, 255, 255);
+    margin: 3px;
+    border: 2px solid rgb(188, 188, 188);
+    border-radius: 100px;
+    align-items: center;
+    color: rgb(193, 193, 193);
+   
+   
+   
 }
