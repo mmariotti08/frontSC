@@ -1,11 +1,9 @@
 .container-recommended-products {
-    margin-top: 1px;
+    margin-top: -140px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding-top: 2px;
-    padding-bottom: 20px;
     border-radius: 15px;
     overflow: hidden;
     grid-template-columns: repeat(4, 1fr);

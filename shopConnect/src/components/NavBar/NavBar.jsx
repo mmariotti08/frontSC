@@ -3,10 +3,27 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import style from "./NavBar.module.css";
+import ReactModal from "react-modal";
+import Login from "../login/Login";
 import SearchBar from "../../../src/components/searchBar/searchBar";
 import { getProductName, getProducts } from "../../redux/actions";
+import { UserButton, useUser } from "@clerk/clerk-react"
+import "./modal.css";
+import { useAuth } from "@clerk/clerk-react";
 
 const NavBar = ({toggleCarousel}) => {
+
+  const { isSignedIn } = useUser();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const dispatch = useDispatch();
   // useEffect(() => {
@@ -31,9 +48,9 @@ const NavBar = ({toggleCarousel}) => {
 
   const [mensaje, setMensaje] = useState("");
   const mensajes = [
-    "3 CUOTAS sin interes con todas las tarjetas!",
-    "🚚 ENVIO gratuito en todas tus compras",
-    "DESCUENTO del 20% en productos seleccionados",
+    "💳 12 INSTALLMENTS on selected products!",
+    "🚚 FREE SHIPPING on selected products!",
+    "🛍️ 20% DISCOUNT on selected products!",
   ];
   
   useEffect(() => {
@@ -51,7 +68,7 @@ const NavBar = ({toggleCarousel}) => {
   }, []);
 
   const getStyledMessage = () => {
-    const halfLength = Math.ceil(mensaje.length / 5);
+    const halfLength = Math.ceil(mensaje.length / 2.3);
     const firstHalf = mensaje.slice(0, halfLength);
     const secondHalf = mensaje.slice(halfLength);
 
@@ -82,12 +99,31 @@ const NavBar = ({toggleCarousel}) => {
           <Link to="/favorites" className={style.navLink}>
             <ion-icon name="bookmarks-outline"></ion-icon>
           </Link>
-          <Link to="/Login" className={style.navLink}>
-            <ion-icon name="person-circle-outline"></ion-icon>
-          </Link>
+
+          {/* <ReactModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Form Modal"
+      >
+        <Login closeModal={closeModal} />
+      </ReactModal> */}
+     
+
+      {isSignedIn ? (
+        <div className={style.UserButton} >  <UserButton  /> </div>
+        ) : (
+          <Link to='/login' className={style.navLink} onClick={openModal}>
+              <ion-icon name="person-circle-outline"></ion-icon>
+            </Link>
+          )}
+         
+
+
+
           <Link to="/cart" className={style.navLink}>
             <ion-icon name="cart-outline"></ion-icon>
           </Link>
+         
         </div>
       </div>
     </>
