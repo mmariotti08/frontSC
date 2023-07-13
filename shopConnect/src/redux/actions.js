@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME } from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, 
+	ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, GET_PRODUCT_NAME, 
+	ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, 
+	FILTER_BY_ALL } from './actions-type';
 
 
 
@@ -109,18 +112,11 @@ export const paginate = (value) => {
   };
 };
 
-export const filterByCategory = (payload) => {
-  return { type: FILER_BY_CATEGORY, payload }
+export const filterByAll = (gender, brand, category) => {
+	return async function(dispatch){
+		const response = await axios.get(`fill?gender=${gender}&brand=${brand}&category=${category}`)
+		console.log('12', response.data)
+		return dispatch({ type: FILTER_BY_ALL, payload: response.data })
+	}
+ 
 }
-
-export const filterByGender = (payload) => {
-  return { type: FILTER_BY_GENDER, payload }
-}
-
-export const filterBrandName = (payload) => {
-  return { type: FILTER_BRAND_NAME, payload }
-}
-
-
-
-

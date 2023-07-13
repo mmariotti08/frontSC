@@ -1,7 +1,7 @@
 .container{
 
     margin-top: 10%;
-    display: table-caption;
+    display: table-cell;
     flex-direction: row;
     justify-content: space-around;
 }
