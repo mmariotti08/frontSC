@@ -7,7 +7,7 @@ export const getProducts = () => {
 			let response = await axios.get(`http://localhost:3001/products`);
 			return dispatch({type: GET_PRODUCTS, payload: response.data});
 		} catch (error) {
-			console.error(error);
+			console.error(error.response.data);
 		};
 	};
 };
@@ -93,7 +93,7 @@ export const getStock = () => {
 			const response = await axios.get(`http://localhost:3001/stocks`);
 			return dispatch({ type: GET_STOCK, payload: response.data });
 		} catch (error) {
-			console.log(error);
+			console.log(error.response.data);
 		};
 	};
 };
@@ -104,7 +104,7 @@ export const getStockID = (id) => {
 			const response = await axios.get(`http://localhost:3001/stocks/${id}`);
 			return dispatch({ type: GET_STOCK_BY_ID, payload: response.data });
 		} catch (error) {
-			console.log(error);
+			console.log(error.response.data);
 		};
 	};
 };
@@ -124,10 +124,9 @@ export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
 			const response = await axios.get(`http://localhost:3001/products/draft`);
-			console.log(response.data);
 			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
 		} catch (error) {
-			console.log(error);
+			console.log(error.response.data);
 		};
 	};
 };
@@ -135,11 +134,10 @@ export const getProductDraft = () => {
 export const deleteProduct = (id) => {
 	return async function(dispatch) {
 		try {
-			console.log(id);
 			await axios.delete(`http://localhost:3001/products/${id}`);
 			return;
 		} catch (error) {
-			console.log(error);
+			console.log(error.response.data);
 		};
 	};
 };

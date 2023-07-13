@@ -86,7 +86,6 @@ const reducer = (state = initialState, action) => {
         get_stock_by_id: action.payload
       };
     case GET_PRODUCT_DRAFT:
-      console.log(action.payload);
       return {
         ...state,
         product_draft: action.payload

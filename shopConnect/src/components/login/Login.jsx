@@ -1,6 +1,6 @@
 import React from 'react';
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+// import GoogleLogin from 'react-google-login';
+// import FacebookLogin from 'react-facebook-login';
 import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
 
