@@ -121,11 +121,14 @@ const reducer = (state = initialState, action) => {
 
 
       case FILTER_BY_ALL:{
-        return {
-          ...state,
-          products: action.payload,
+
+          return {
+            ...state,
+            products: action.payload,
+          }
         }
-      }
+        
+    
 
      
       

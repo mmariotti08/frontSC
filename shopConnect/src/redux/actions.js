@@ -112,9 +112,9 @@ export const paginate = (value) => {
   };
 };
 
-export const filterByAll = (gender, brand, category) => {
+export const filterByAll = ( brand, category, gender) => {
 	return async function(dispatch){
-		const response = await axios.get(`fill?gender=${gender}&brand=${brand}&category=${category}`)
+		const response = await axios.get(`fill?brand=${brand}&category=${category}&gender=${gender}`)
 		console.log('12', response.data)
 		return dispatch({ type: FILTER_BY_ALL, payload: response.data })
 	}
