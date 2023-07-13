@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const Login = ({ closeModal, addUser }) => {
   const { isSignedIn } = useUser();
-  console.log(isSignedIn);
+
 const dispatch = useDispatch();
 
   const handleCloseModal = () => {
@@ -17,22 +17,10 @@ const dispatch = useDispatch();
   const { accessToken } = useAuth();
 
   useEffect(() => {
-    console.log("aaaaaaa");
     if (isSignedIn) {
       dispatch(addUser(user));
     }
   }, [isSignedIn]);
-
-  const sendUserDataToBackend = async () => {
-    const { fullName, primaryEmailAddress  } = user;
-
-    try {
-      await addUser({ fullName, email: primaryEmailAddress?.email });
-      // Otros pasos después de enviar exitosamente los datos al backend
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className={style.container}>
