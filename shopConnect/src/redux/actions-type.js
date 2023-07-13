@@ -11,3 +11,9 @@ export const ORDER_BY_PRICE = 'ORDER_BY_PRICE'
 export const PAGINATION = 'PAGINATION'
 export const FILTER_BY_ALL = 'FILTER_BY_ALL'
 export const GET_APPROVAL_ADMIN = "GET_APPROVAL_ADMIN";
+export const GET_STOCK = "GET_STOCK";
+export const GET_STOCK_BY_ID = "GET_STOCK_BY_ID";
+export const GET_PRODUCT_DRAFT = "GET_PRODUCT_DRAFT";
+export const ADD_USER = "ADD_USER";
+
+

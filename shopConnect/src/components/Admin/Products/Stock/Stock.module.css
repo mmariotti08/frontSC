@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container thead th {
+    width: 100px;
+}
+.container tbody tr {
+    height: 30px;
+}
+.container thead tr {
+    height: 50px;
+}
+.container_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container_img img {
+    max-width: 200px;
+}
+.container_img_table {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.container_title_table {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+.container_title {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #1a1a1a;
+}
+.evenRow {
+    background-color: #353535;
+}
