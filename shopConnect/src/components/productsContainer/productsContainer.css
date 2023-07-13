@@ -12,3 +12,9 @@
      /* margin: 30px auto; /* Alineación central utilizando 'auto' para los márgenes laterales */
     
   }
+
+
+  .mensaje-error{
+    font-family: 'Russo One', sans-serif;
+    color: rgb(54, 54, 54);
+  }

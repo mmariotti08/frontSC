@@ -9,10 +9,10 @@ const favorites = ({ fav }) => {
   },[])
   return (
     <div className={style.containerGeneral}>
-      <h1 className={style.titule}>Mis Favoritos</h1>
+      <h1 className={style.titule}>My Favorites</h1>
         <div className={style.container}>
           {fav.length === 0 ? (
-            <p className={style.mensaje}>No hay elementos en favoritos</p>
+            <p className={style.mensaje}>Add products to your favorite</p>
           ) : (
             <>
               {fav.map(item => (

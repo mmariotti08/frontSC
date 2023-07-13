@@ -16,9 +16,12 @@ const productsContainer = () => {
 
     return (
         <>
-            
             <div className="container-recommended-products">
-            {products.slice((page - 1) * perPage, (page - 1) * perPage + perPage)?.map(props => <Card key={props.id} props={props} />)}
+                {products.length === 0 ? (
+                    <p className="mensaje-error">Your sneakers were not found👟</p>
+                ) : (
+                    products.slice((page - 1) * perPage, (page - 1) * perPage + perPage).map(props => <Card key={props.id} props={props} />)
+                )} 
             </div>
             <Paginate max={max}/>
         </>

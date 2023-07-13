@@ -2,6 +2,7 @@ import {  useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {  getProductName, paginate  } from "../../redux/actions";
 import style from "./searchBar.module.css";
+import { FaSearch } from "react-icons/fa";
 
 const SearchBar = ({ onSearch, toggleCarousel }) => {
   const [name, setName] = useState("");
@@ -52,7 +53,7 @@ const SearchBar = ({ onSearch, toggleCarousel }) => {
       </div>
       <div className={style.buttonContainer}>
         <button className={style.searchButton} onClick={handleSubmit}>
-          Search
+          <FaSearch/>
         </button>
       </div>
     </div>
