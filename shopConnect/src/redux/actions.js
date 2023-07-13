@@ -94,7 +94,7 @@ export const getApproval = (adminData) => {
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
-
+			console.log(data)
 			await axios.post(`http://localhost:3001/products`, { product: data, stock: stock });
 			return;
 		} catch (error) {

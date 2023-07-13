@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getStockID } from "../../../../redux/actions";
 import { getDetail } from "../../../../redux/actions";
-import { useEffect, useState } from "react";
-import { Paginate } from "../../../Paginate/Paginate";
+import { useEffect } from "react";
+import { Paginate } from "../../../paginate/paginate";
 import styles from "./Stock.module.css";
 
 const Stock = ({ productId }) => {
@@ -15,8 +15,6 @@ const Stock = ({ productId }) => {
 
     const product = useSelector(state => state.detail);
     const stock = useSelector(state => state.get_stock_by_id);
-
-    console.log(product);
 
     const options = ["Size", "Quantity"];
 

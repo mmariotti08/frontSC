@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { All_Products } from "../../components/Admin/Products/All Products/All Products";
 import { Add_Product } from "../../components/Admin/Products/Add Product/Add Product";
+import { Edit_Product } from "../../components/Admin/Products/Edit Product/Edit Product";
 import { Categories } from "../../components/Admin/Products/Categories/Categories";
 import { Stock } from "../../components/Admin/Products/Stock/Stock";
 import { Draft } from "../../components/Admin/Products/Draft/Draft";
@@ -12,7 +13,7 @@ const Menu = () => {
     const menu = [
         { label: "Orders" },
         { label: "Products", submenu: ["All products", "Add new", "Stock", "Categories", "Draft"] },
-        { label: "Users" }
+        { label: "Users", submenu: ["All users"] }
     ];
 
     const [option, setOption] = useState("");
@@ -24,12 +25,14 @@ const Menu = () => {
         "Add new": Add_Product,
         "Categories": Categories,
         "Stock": Stock,
-        "Draft": Draft
+        "Draft": Draft,
+        "Edit": Edit_Product
     };
 
     const ComponentToRender = componentMap[option];
 
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(paginate(1));
         window.scrollTo(0, 0);

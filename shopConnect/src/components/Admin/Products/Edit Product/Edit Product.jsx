@@ -1,24 +1,20 @@
-import { useState } from "react";
-import styles from "./Add Product.module.css";
-import { MdClear, MdAdd } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { createProduct } from "../../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
+import { useEffect, useState } from "react";
+import styles from "./Edit Product.module.css";
+import { MdClear, MdAdd } from "react-icons/md";
+import { getStockID } from "../../../../redux/actions";
+import { getDetail } from "../../../../redux/actions";
 
-const Add_Product = () => {
+const Edit_Product = ({ productId }) => {
     const dispatch = useDispatch();
+    
+    const product = useSelector(state => state.detail);
+    const stock = useSelector(state => state.get_stock_by_id);
 
     const [formOn, setFormOn] = useState(true);
-
     const [error, setError] = useState({});
-
-    const sizes = [
-        "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10",
-        "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15"
-    ];
-
-    const gender = ["Man", "Woman", "Unisex"];
-
+    const [stocks, setStocks] = useState([{ size: "", quantity: "1" }]);
     const [data, setData] = useState({
         name: "",
         brand_name: "",
@@ -30,6 +26,31 @@ const Add_Product = () => {
         slug: "",
         status: "",
     });
+
+    const gender = ["Man", "Woman", "Unisex"];
+    const sizes = ["5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15"];
+
+    useEffect(() => {
+        dispatch(getDetail(productId));
+        dispatch(getStockID(productId));
+    }, [productId, dispatch]);
+
+    useEffect(() => {
+        if (product && product.name) {
+            setData({
+                name: product.name,
+                brand_name: product.brand_name,
+                category: product.category,
+                color: product.color,
+                gender: product.gender[0],
+                main_picture_url: product.main_picture_url,
+                retail_price_cents: product.retail_price_cents,
+                slug: "",
+                status: "",
+            });
+            setStocks(stock);
+        };
+    }, [product]);
 
     const handleChange = ({ target: { name, value } }) => {
         setData({
@@ -49,22 +70,10 @@ const Add_Product = () => {
             setError(validation({ ...data, [name]: value }, stockIsValid, categoryIsValid));
         } else {
             dispatch(createProduct(data, stocks));
-            setData({
-                name: "",
-                brand_name: "",
-                category: [""],
-                color: "",
-                gender: "Man",
-                main_picture_url: "",
-                retail_price_cents: "0",
-                slug: "",
-                status: "",
-            });
             setStocks([{
                 size: "",
                 quantity: "1"
             }]);
-            setFormOn(false);
             setError({});
         };
     };
@@ -104,11 +113,6 @@ const Add_Product = () => {
     };
 
     // MANEJO DE STOCK
-    const [stocks, setStocks] = useState([{
-        size: "",
-        quantity: "1"
-    }]);
-
     const handleAddStock = () => {
         setStocks([
             ...stocks,
@@ -134,11 +138,11 @@ const Add_Product = () => {
             stocks.map((stock, i) => i === index ? { ...stock, quantity: parseInt(value) } : stock)
         );
     };
-
+    
     return (
         <div className={styles.container}>
             <div>
-                <h1>Add new product</h1>
+                <h1>Edit Product</h1>
             </div>
             <div className={styles.containerform}>
                 {!formOn
@@ -274,4 +278,4 @@ const Add_Product = () => {
     );
 };
 
-export { Add_Product };
+export { Edit_Product };
