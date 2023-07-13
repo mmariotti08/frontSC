@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getDetail } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -6,6 +6,8 @@ import styles from './detail.module.css'
 import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
+import Addreses from "../../components/Addreses/Addreses";
+import { Route,  Routes } from "react-router-dom";
 
 
 
@@ -52,6 +54,8 @@ const Detail = () => {
     }
   };
 
+  
+
     return (
         <div className={styles.contDetail}>
             <h1 className={styles.nameh3}>{sneaker.name} </h1>
@@ -64,9 +68,7 @@ const Detail = () => {
                     <h3>{sneaker.category}</h3>
                     <h2>Color:</h2>
                     <h3>{sneaker.color}</h3>
-                    
-                    
-                        <h2>Sizes:</h2>
+                    <h2>Sizes:</h2>
                     <div className={styles.sizes}>
                     {sneaker.Stocks?.map(s =>(
                        
@@ -85,6 +87,7 @@ const Detail = () => {
                         <button onClick={handleFav} className={`${fav.some(item => item.id === sneaker.id) ? styles.Nfav : styles.fav}`}>
                             {fav.some(item => item.id === sneaker.id) ? <BsBookmarksFill/> : <BsBookmarks/>}
                         </button>
+                        <Link to="/address" ><h2>address</h2></Link>
                     </div>
                 </div>
             </div>

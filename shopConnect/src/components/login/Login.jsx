@@ -5,6 +5,7 @@ import { addUser } from "../../redux/actions";
 import { useEffect } from "react";
 
 const Login = ({ closeModal, addUser }) => {
+
   const { isSignedIn } = useUser();
 
 const dispatch = useDispatch();

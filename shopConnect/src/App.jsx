@@ -29,6 +29,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
+import Addreses from "./components/Addreses/Addreses";
 
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -73,6 +74,7 @@ function App() {
         <Route path="/cart" element={<ShoppingCart/>}/>
         {/* <Route path="/landing" element={<Landing/>}/> */}
         <Route path="/favorites" element={<Favorites/>}/>
+        <Route path="/address" element={<Addreses/>} />
         <Route path="/admin" element={<Admin />} />
         <Route
             path="/sign-up/*"
