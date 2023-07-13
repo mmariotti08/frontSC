@@ -5,6 +5,7 @@ import styles from "./Edit Product.module.css";
 import { MdClear, MdAdd } from "react-icons/md";
 import { getStockID } from "../../../../redux/actions";
 import { getDetail } from "../../../../redux/actions";
+import { putProducto } from "../../../../redux/actions";
 
 const Edit_Product = ({ productId }) => {
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const Edit_Product = ({ productId }) => {
             });
             setStocks(stock);
         };
-    }, [product]);
+    }, [product, stock]);
 
     const handleChange = ({ target: { name, value } }) => {
         setData({
@@ -59,35 +60,21 @@ const Edit_Product = ({ productId }) => {
         });
     };
 
-    const submit = ({ target: { name, value } }) => {
-        data.slug = `${data.name.replace(/\s/g, "-")}`;
+    const handleUpdate = (event) => {
+        event.preventDefault();
         data.gender = [data.gender];
-
         const stockIsValid = stocks.every(stock => stock.size !== "" && stock.quantity > 0);
         const categoryIsValid = data.category.every(category => category !== "");
-        
         if(!categoryIsValid || !stockIsValid || !data.name.length || !data.brand_name.length || !data.color || !data.main_picture_url || data.retail_price_cents < 0) {
-            setError(validation({ ...data, [name]: value }, stockIsValid, categoryIsValid));
+            setError(validation({ ...data, [event.target.name]: event.target.value }, stockIsValid, categoryIsValid));
         } else {
-            dispatch(createProduct(data, stocks));
-            setStocks([{
-                size: "",
-                quantity: "1"
-            }]);
+            dispatch(putProducto(productId, data, stocks));
+            // setStocks([{
+            //     size: "",
+            //     quantity: "1"
+            // }]);
             setError({});
         };
-    };
-
-    const handleDraft = (event) => {
-        event.preventDefault();
-        data.status = "draft";
-        submit(event);
-    };
-
-    const handleActive = (event) => {
-        event.preventDefault();
-        data.status = "active";
-        submit(event);
     };
 
     // MANEJO DE CATEGORIAS
@@ -238,7 +225,7 @@ const Edit_Product = ({ productId }) => {
                                         name={`stock-size-${index}`}
                                         value={stock.size}
                                         onChange={(event) => handleChangeStockSize(event, index)}
-                                    >
+                                        >
                                         <option value="">Select Size</option>
                                         {sizes.map((size) => (
                                             <option key={size} value={size} disabled={stocks.some(stock => stock.size === size)}>
@@ -246,7 +233,10 @@ const Edit_Product = ({ productId }) => {
                                             </option>
                                         ))}
                                     </select>
-                                    <label htmlFor={`stock-quantity-${index}`}>Quantity</label>
+                                    <label
+                                        htmlFor={`stock-quantity-${index}`}
+                                        >Quantity
+                                    </label>
                                     <input
                                         type="number"
                                         id={`stock-quantity-${index}`}
@@ -259,8 +249,8 @@ const Edit_Product = ({ productId }) => {
                                     {stocks.length > 1 && (
                                         <button
                                             type="button"
-                                            onClick={() => handleRemoveStock(index)}>
-                                                <MdClear />
+                                            onClick={() => handleRemoveStock(index)}
+                                            ><MdClear />
                                         </button>
                                     )}
                                 </div>
@@ -268,8 +258,11 @@ const Edit_Product = ({ productId }) => {
                         </div>
                         {/* BUTTON */}
                         <div className={styles.container_button}>
-                            <button type="submit" onClick={handleDraft}>Save draft</button>
-                            <button type="submit" onClick={handleActive}>Publish</button>
+                            <button
+                                type="submit"
+                                onClick={handleUpdate}
+                                >Update
+                            </button>
                         </div>
                     </form>
                 }

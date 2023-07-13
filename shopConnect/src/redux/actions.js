@@ -126,13 +126,13 @@ export const getStockID = (id) => {
 	};
 };
 
-export const putProducto = (id, product) => {
+export const putProducto = (id, product, stock) => {
 	return async function(dispatch) {
 		try {
-			await axios.put(`http://localhost:3001/products/${id}`, { id, product });
+			await axios.put(`http://localhost:3001/products/${id}`, { product, stock });
 			return;
 		} catch (error) {
-			
+			console.log(error.response.data);
 		};
 	};
 };
