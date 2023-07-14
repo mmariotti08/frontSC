@@ -46,9 +46,9 @@ const Login = () => {
         <div className={styles.container}>
             <form>
                 <div>
-                    <label htmlFor="mail">Username or mail</label>
-                    {!access.access && <p>{error.message}</p>}
+                    <label htmlFor="mail">Email</label>
                     {error.n1 ? <p>{error.n1}</p> : <p>{error.e1}</p>}
+                    {!access.access && <p>{error.message}</p>}
                 </div>
                 <div>
                     <input type="text" name="mail" value={adminData.mail} onChange={handleChange} />
@@ -60,6 +60,10 @@ const Login = () => {
                 <div>
                     <input type="password" name="password" value={adminData.password} onChange={handleChange} />
                 </div>
+                {/* <div>
+                    <label htmlFor="rememberMe">Remember me</label>
+                    <input type="checkbox" name="rememberMe" checked={adminData.rememberMe} onChange={handleChange} />
+                </div> */}
                 <button type="SUBMIT" onClick={handleSubmit}>Submit</button>
             </form>
         </div>
