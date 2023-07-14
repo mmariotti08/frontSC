@@ -26,8 +26,6 @@ const SearchBar = ({ onSearch, toggleCarousel }) => {
     }
   };
 
-
-
   const handleSubmit = () => {
     onSearch(name);
     dispatch(paginate(1))
@@ -35,7 +33,6 @@ const SearchBar = ({ onSearch, toggleCarousel }) => {
       toggleCarousel(false)
     }
   };
-
 
 
   return (
