@@ -5,6 +5,7 @@ import { Edit_Product } from "../../components/Admin/Products/Edit Product/Edit 
 import { Categories } from "../../components/Admin/Products/Categories/Categories";
 import { Stock } from "../../components/Admin/Products/Stock/Stock";
 import { Draft } from "../../components/Admin/Products/Draft/Draft";
+import { All_Users } from "../../components/Admin/Users/All Users/All Users";
 import styles from "./Menu.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { paginate } from "../../redux/actions";
@@ -12,7 +13,7 @@ import { paginate } from "../../redux/actions";
 const Menu = () => {
     const menu = [
         { label: "Orders" },
-        { label: "Products", submenu: ["All products", "Add new", "Stock", "Categories", "Draft"] },
+        { label: "Products", submenu: ["All products", "Add new", "Categories", "Draft"] },
         { label: "Users", submenu: ["All users"] }
     ];
 
@@ -26,7 +27,8 @@ const Menu = () => {
         "Categories": Categories,
         "Stock": Stock,
         "Draft": Draft,
-        "Edit": Edit_Product
+        "Edit": Edit_Product,
+        "All users": All_Users
     };
 
     const ComponentToRender = componentMap[option];

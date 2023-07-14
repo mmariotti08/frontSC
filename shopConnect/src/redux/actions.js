@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT } from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT, GET_USERS } from './actions-type';
 
 export const getProducts = () => {
 	return async function(dispatch) {
@@ -81,12 +81,10 @@ export const removeFromFav = (itemId) => {
 export const getApproval = (adminData) => {
 	return async function(dispatch) {
 		try {
-			let response = await axios.post("admin/login", adminData);
+			let response = await axios.post(`http://localhost:3001/user/admin`, adminData);
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
 		} catch (error) {
-			console.log(error);
-			// LÍNEA TEMPORAL. MANTENER MIENSTRAS EL BACK NO ESTÉ LISTO
-			return dispatch({ type: GET_APPROVAL_ADMIN, payload: true });
+			console.log(error.response.data);
 		};
 	};
 };
@@ -98,7 +96,7 @@ export const createProduct = (data, stock) => {
 			await axios.post(`http://localhost:3001/products`, { product: data, stock: stock });
 			return;
 		} catch (error) {
-			console.log(error);
+			console.log(error.response.data);
 		};
 	};
 };
@@ -153,6 +151,17 @@ export const deleteProduct = (id) => {
 		try {
 			await axios.delete(`http://localhost:3001/products/${id}`);
 			return;
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getUsers = () => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`http://localhost:3001/user`);
+			return dispatch({ type: GET_USERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
 		};

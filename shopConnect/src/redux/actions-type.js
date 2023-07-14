@@ -17,5 +17,6 @@ export const GET_STOCK = "GET_STOCK";
 export const GET_STOCK_BY_ID = "GET_STOCK_BY_ID";
 export const GET_PRODUCT_DRAFT = "GET_PRODUCT_DRAFT";
 export const ADD_USER = "ADD_USER";
+export const GET_USERS = "GET_USERS";
 
 

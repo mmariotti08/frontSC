@@ -74,6 +74,8 @@ const Edit_Product = ({ productId }) => {
             //     quantity: "1"
             // }]);
             setError({});
+            setFormOn(false)
+            window.scrollTo(0, 0);
         };
     };
 
@@ -134,8 +136,7 @@ const Edit_Product = ({ productId }) => {
             <div className={styles.containerform}>
                 {!formOn
                     ? <>
-                        <h3>Product added successfully!</h3>
-                        <button onClick={() => setFormOn(!formOn)}>Add new product</button>
+                        <h3>Product edited successfully!</h3>
                     </>
                     : <form>
                         {/* NAME */}

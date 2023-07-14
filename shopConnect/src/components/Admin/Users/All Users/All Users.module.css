@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container thead tr {
+    height: 50px;
+}
+.container tbody tr {
+    height: 30px;
+}
+.container table {
+    table-layout: fixed;
+    width: 100%;
+}
+.evenRow {
+    background-color: #353535;
+}
+.container thead th:nth-child(3) {
+    width: 240px;
+}
+.container thead th:nth-child(5) {
+    width: 60px;
+}
+.container thead th:nth-child(6) {
+    width: 60px;
+}

@@ -14,7 +14,7 @@ const Stock = ({ productId }) => {
     }, [productId]);
 
     const product = useSelector(state => state.detail);
-    const stock = useSelector(state => state.get_stock_by_id);
+    const stock = useSelector(state => state.get_stock_by_id).sort((a, b) => a.size - b.size);
 
     const options = ["Size", "Quantity"];
 
@@ -45,8 +45,8 @@ const Stock = ({ productId }) => {
                         <tbody>
                             {stock
                                 .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
-                                ?.map(c => (
-                                    <tr key={c.id} className={c.id % 2 !== 0 ? styles.evenRow : null}>
+                                ?.map((c, index) => (
+                                    <tr key={`${c.id}-${index}`} className={index % 2 === 0 ? styles.evenRow : null}>
                                         {/* <td>{c.productId}</td> */}
                                         <td>{c.size}</td>
                                         <td>{c.quantity}</td>

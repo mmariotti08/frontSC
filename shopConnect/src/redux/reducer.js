@@ -17,7 +17,8 @@ import {
   GET_STOCK,
   GET_STOCK_BY_ID,
   GET_PRODUCT_DRAFT,
-  ADD_USER
+  ADD_USER,
+  GET_USERS
 } from "./actions-type";
 
 
@@ -32,7 +33,8 @@ const initialState = {
   get_stock: [],
   get_stock_by_id: [],
   product_draft: [],
-fav: JSON.parse(localStorage.getItem("fav")) || [],
+  allUsers: [],
+  fav: JSON.parse(localStorage.getItem("fav")) || [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -123,6 +125,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         product_draft: action.payload
+      };
+    case GET_USERS:
+      return {
+        ...state,
+        allUsers: action.payload
       };
 
 
