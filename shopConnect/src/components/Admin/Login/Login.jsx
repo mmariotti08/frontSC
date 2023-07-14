@@ -17,7 +17,13 @@ const Login = () => {
     });
 
     useEffect(() => {
-        if(!access.access) setError({message: access.message});
+        if(!access.access){
+            setError({message: access.message});
+            setAdminData({
+                mail: "",
+                password: ""
+            });
+        };
     }, [access]);
 
     const handleChange = ({ target: { name, value } }) => {
