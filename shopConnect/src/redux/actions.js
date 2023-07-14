@@ -114,9 +114,14 @@ export const paginate = (value) => {
 
 export const filterByAll = ( brand, category, gender) => {
 	return async function(dispatch){
-		const response = await axios.get(`fill?brand=${brand}&category=${category}&gender=${gender}`)
-		console.log('12', response.data)
+		try {
+			const response = await axios.get(`fill?brand=${brand}&category=${category}&gender=${gender}`)
+	
 		return dispatch({ type: FILTER_BY_ALL, payload: response.data })
+		} catch (error) {
+			alert("Incorrect filtering information - Reset Products or Apply Filters")
+		}
+		
 	}
  
 }

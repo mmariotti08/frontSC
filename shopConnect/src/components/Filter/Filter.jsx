@@ -8,26 +8,30 @@ const Filter = () => {
     const [brand, setBrand] = useState('');
     const [category, setCategory] = useState('');
     const [gender, setGender] = useState('');
+       
     
-  
-    const handleSubmit = (event) => {
+      const handleSubmit = (event) => {
       event.preventDefault();
-         dispatch(filterByAll(brand, category, gender ));
+     dispatch(filterByAll(brand, category, gender ));
+           
+                 
     };
 
     const handleClick = (event) => {
         event.preventDefault();
         dispatch(getProducts());
-        window.location.reload()
+        setBrand('')
+        setCategory('')
+        setGender('')
       };
     
     return(
         <div className={style.container}>
-        <form onSubmit={handleSubmit}>
-      <label>
-        Brand Name:
-        <select value={brand} onChange={(event) => setBrand(event.target.value)}>
-          <option value="">Select brand</option>
+        <form className={style.form} onSubmit={handleSubmit}>
+      <label className={style.label}>
+        Brand Name
+        <select className={style.select} value={brand} onChange={(event) => setBrand(event.target.value)}>
+          <option value="">-</option>
           <option value="Nike"className={style.letras}>Nike</option>
           <option value="Vans"className={style.letras}>Vans</option>
           <option value="Gucci"className={style.letras}>Gucci</option>
@@ -37,10 +41,10 @@ const Filter = () => {
           <option value="Air Jordan"className={style.letras}>Air Jordan</option>
         </select>
       </label>
-      <label>
-        Category:
-        <select value={category} onChange={(event) => setCategory(event.target.value)}>
-          <option value="">Select category</option>
+      <label className={style.label}>
+        Category
+        <select className={style.select} value={category} onChange={(event) => setCategory(event.target.value)}>
+          <option value="">-</option>
           <option value="other"className={style.letras}>Other</option>
           <option value="running"className={style.letras}>Running</option>
           <option value="lifestyle"className={style.letras}>Lifestyle</option>
@@ -48,17 +52,17 @@ const Filter = () => {
           <option value="skateboarding"className={style.letras}>Skateboarding</option> 
         </select>
       </label>
-      <label>
-        Gender:
-        <select value={gender} onChange={(event) => setGender(event.target.value)}>
-          <option value="">Select gender</option>
+      <label className={style.label}>
+        Gender
+        <select className={style.select} value={gender} onChange={(event) => setGender(event.target.value)}>
+          <option value="">-</option>
           <option value="men"className={style.letras}>Men</option>
           <option value="women"className={style.letras}>Women</option>
           <option value="youth"className={style.letras}>Youth</option> 
         </select>
       </label>
-      <button type="submit">Apply Filters</button>
-      <button onClick={(event) => handleClick(event)} >Load Products
+      <button className={style.button} type="submit">Apply Filters</button>
+      <button className={style.button} onClick={(event) => handleClick(event)}>Reset Products
       </button>
         </form>
         </div>
