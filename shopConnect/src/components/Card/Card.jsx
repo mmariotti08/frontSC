@@ -1,30 +1,41 @@
 import "./Card.css";
 import { Link } from "react-router-dom";
-import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { connect, useSelector } from 'react-redux';
-import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
+import { addToFav, removeFromFav } from '../../redux/actions';
+import { toast } from "react-toastify";
 
 
-const Card = ({ props, addToCart, removeFromCart, addToFav, removeFromFav }) => {
-  const cart = useSelector((state) => state.cart); // Agrega la selección del estado "cart"
+const Card = ({ props, addToFav, removeFromFav }) => {
+
   const fav = useSelector((state) => state.fav);
   const buttonFav = fav.some(item => item.id === props.id);
-  const buttonCars = cart.some(item => item.id === props.id);
 
   const handleButtonFavClick = () => {
     if (buttonFav) {
       removeFromFav(props.id);
+      toast.error('Shoe Removed😔', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     } else {
       addToFav(props);
-    }
-  };
-
-  const handleButtonCarsClick = () => {
-    if (buttonCars) {
-      removeFromCart(props.id);
-    } else {
-      addToCart(props);
+      toast.success('Shoe Added Successfully👟', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
   };
 
@@ -33,16 +44,13 @@ const Card = ({ props, addToCart, removeFromCart, addToFav, removeFromFav }) => 
     return `$${formattedPrice}`;
   };
 
+  const showAlert = (message) => {
+    alert(message);
+  };
+
   return (
     <div className="container-card">
       <div className="buttons">
-        <a
-          className='button-cars'
-          onClick={handleButtonCarsClick}
-        >
-          {buttonCars ? <IoCartSharp/> : <IoCartOutline />}
-        </a>
-
         <a
           className='button-fav'
           onClick={handleButtonFavClick}
@@ -73,4 +81,4 @@ const mapStateToProps = state => ({
   fav: state.fav
 });
 
-export default connect(mapStateToProps, { addToCart, removeFromCart, addToFav, removeFromFav })(Card);
+export default connect(mapStateToProps, { addToFav, removeFromFav })(Card);
