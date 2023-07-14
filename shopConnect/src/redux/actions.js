@@ -19,6 +19,7 @@ import {
   GET_STOCK,
   GET_STOCK_BY_ID,
   GET_PRODUCT_DRAFT,
+  FILTER_BY_ALL
 } from "./actions-type";
 
 export const getProducts = () => {
@@ -207,3 +208,16 @@ export const filterByGender = (payload) => {
 export const filterBrandName = (payload) => {
   return { type: FILTER_BRAND_NAME, payload };
 };
+export const filterByAll = ( brand, category, gender) => {
+	return async function(dispatch){
+		try {
+			const response = await axios.get(`fill?brand=${brand}&category=${category}&gender=${gender}`)
+	
+		return dispatch({ type: FILTER_BY_ALL, payload: response.data })
+		} catch (error) {
+			alert("Incorrect filtering information - Reset Products or Apply Filters")
+		}
+		
+	}
+ 
+}
