@@ -1,3 +1,4 @@
+
 .navBar {
   position: fixed;
   top:0;
@@ -8,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Valor alto para asegurarse de que la barra de navegación esté en la parte superior */
+  z-index: 100; /* Valor alto para asegurarse de que la barra de navegación esté en la parte superior */
   margin-bottom: 10px;
 }
 
@@ -57,6 +58,12 @@ ion-icon {
   font-size: 25px;
   margin-top: 55px;
   margin-left: 2px;
+  margin-right: 25px;
+}
+.userButton {
+  font-size: 55px;
+  margin-top: 865px;
+  margin-left: 25px;
   margin-right: 25px;
 }
 

@@ -1,11 +1,9 @@
 .container-recommended-products {
-    margin-top: 1px;
+    margin-top: -140px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding-top: 2px;
-    padding-bottom: 20px;
     border-radius: 15px;
     overflow: hidden;
     grid-template-columns: repeat(4, 1fr);
@@ -13,4 +11,10 @@
     margin-inline: 15%;
      /* margin: 30px auto; /* Alineación central utilizando 'auto' para los márgenes laterales */
     
+  }
+
+
+  .mensaje-error{
+    font-family: 'Russo One', sans-serif;
+    color: rgb(54, 54, 54);
   }

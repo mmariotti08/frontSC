@@ -1,23 +1,25 @@
 import styles from './MeasureSize.module.css'
 
 const MeasurSize = ()=>{
+    window.scrollTo(0, 0);
     return(
         <div className={styles.container}>
-            <h1>Guia de Talles</h1>
-            <h3>Tomá las medidas de tus pies antes de elegir tus zapatillas, ojotas o calzado en general. Acordate de hacerlo al final de la jornada, ya que con el paso del día los pies pueden hincharse y así aumentar su tamaño. Distribuí el peso por igual en ambos pies y ponete unas medias que uses regularmente. Recordá medirte ambos pies. La medida entre ellos puede variar y tené en cuenta que siempre se toma como referencia el pie que tenga el mayor tamaño.</h3>
+            <h1>Size Guide</h1>
+            <h3>Take the measurements of your feet before choosing your sneakers, sandals, or footwear in general. Remember to do it at the end of the day, as feet can swell and increase in size as the day goes on. Distribute the weight evenly on both feet and wear socks that you regularly use. Remember to measure both feet. The measurement between them may vary, and always take the foot with the larger size as the reference.</h3>
+
             <br/>
-            <h2>Paso 1:</h2>
-            <h3>Tomá un papel blanco y apoyalo en una superficie dura, perpendicular a la pared. Pegalo con cinta en los extremos para asegurarte de que no se mueva. Parate derecho y apoyá el talón contra el zócalo, sin que quede aire entre ambos.</h3>
+            <h2>Step 1:</h2>
+            <h3>Take a white paper and place it on a hard surface, perpendicular to the wall. Secure it with tape on the edges to make sure it doesn't move. Stand straight and place your heel against the baseboard, ensuring there is no gap between them.</h3>
             <br/>
             <img src="https://www.dexter.com.ar/on/demandware.static/-/Sites-Dexter-Library/default/dwe9ed6e8f/images/talles/tallespie1.jpg" />
             <br/>
-            <h2>Paso 2:</h2>
-            <h3>Con un lápiz o lapicera marcá sobre el papel el contorno entero del pie, el cual debe estar relajado, sin contraer los dedos. Acordate de repetir el proceso con el otro pie.</h3>
+            <h2>Step 2:</h2>
+            <h3>Using a pencil or pen, trace the entire outline of your foot on the paper. Your foot should be relaxed, without curling your toes. Remember to repeat the process with the other foot.</h3>
             <br/>
             <img src="https://www.dexter.com.ar/on/demandware.static/-/Sites-Dexter-Library/default/dw3419c4d9/images/talles/tallespie2.jpg" />
             <br/>
-            <h2>Paso 3:</h2>
-            <h3>Tomá la cinta métrica y medí la longitud que va desde el talón hasta dedo más largo que tengas. Repetí este paso con el otro pie. La medida más extensa, será el tamaño de referencia en centímetros.</h3>
+            <h2>Step 3:</h2>
+            <h3>Take the measuring tape and measure the length from the heel to the longest toe you have. Repeat this step with the other foot. The longest measurement will be the reference size in centimeters.</h3>
             <br/>
             <img src="https://www.dexter.com.ar/on/demandware.static/-/Sites-Dexter-Library/default/dw766e8056/images/talles/tallespie3.jpg" />
             <br/>
