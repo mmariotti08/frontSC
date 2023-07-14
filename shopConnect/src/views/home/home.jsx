@@ -20,11 +20,13 @@ const Home = ({ toggle }) => {
 	const { accessToken } = useAuth();
 
 	const user =  useUser();
+	console.log(user);
 	
 	if(isSignedIn) {
 		const userDestructuringprueba = {
 			name: user.user.fullName, // ? user.user.fullName : null , 
-			mail: user.user.primaryEmailAddress.emailAddress// ?  user.user.primaryEmailAddress.emailAddress : null,
+			mail: user.user.primaryEmailAddress.emailAddress,// ?  user.user.primaryEmailAddress.emailAddress : null,
+			password: "12345678"
 		};
 		dispatch(addUser(userDestructuringprueba));
 	};
@@ -36,6 +38,7 @@ const Home = ({ toggle }) => {
 		dispatch(getProducts());
 		window.scrollTo(0, 0);
 	}, [dispatch]);
+	
 	const handleSearch = (name) => {
 		
 		setSearchName(name);
