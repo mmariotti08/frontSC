@@ -47,6 +47,7 @@ const Home = ({ toggle }) => {
 
     loadData();
   }, [dispatch]);
+  
   const handleSearch = (name) => {
     setSearchName(name);
     if (name.trim() === "") {
