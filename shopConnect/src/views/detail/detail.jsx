@@ -12,17 +12,18 @@ import {
   removeFromFav,
 } from "../../redux/actions";
 
-import { ToastContainer , toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Detail = () => {
   const dispatch = useDispatch();
   const sneaker = useSelector((state) => state.detail);
-  const cart = useSelector((state) => state.cart); // Agrega la selección del estado "cart"
+  const cart = useSelector((state) => state.cart);
   const fav = useSelector((state) => state.fav);
   const { id } = useParams();
 
-  const [selectSize, setSelectSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [showSizeError, setShowSizeError] = useState(false);
 
   useEffect(() => {
     dispatch(getDetail(id));
@@ -35,27 +36,47 @@ const Detail = () => {
   };
 
   const handleCart = () => {
+    if (!selectedSize) {
+      setShowSizeError(true);
+      return;
+    }
+    setShowSizeError(false);
+  
     const selectedProduct = {
       ...sneaker,
-      size: selectSize, // Agrega la talla seleccionada al objeto del producto
+      size: selectedSize,
     };
-
-    if (cart.some((item) => item.id === sneaker.id)) {
-      dispatch(removeFromCart(sneaker.id));
+  
+    const isProductInCart = cart.some(
+      (item) => item.id === selectedProduct.id && item.size === selectedProduct.size
+    );
+  
+    if (isProductInCart) {
+      dispatch(removeFromCart(selectedProduct.id, selectedProduct.size));
+      toast.error('Shoe Removed😔', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       dispatch(addToCart(selectedProduct));
+      toast.success('Shoe Added Successfully👟', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
-
-//   const handleFav = () => {
-//     if (fav.some((item) => item.id === sneaker.id)) {
-//       dispatch(removeFromFav(sneaker.id));
-//     } else {
-//       dispatch(addToFav(sneaker));
-//     }
-//   };
-
-
 
   const handleFav = () => {
     if (fav.some((item) => item.id === sneaker.id)) {
@@ -69,9 +90,9 @@ const Detail = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
     } else {
-        dispatch(addToFav(sneaker));
+      dispatch(addToFav(sneaker));
       toast.success('Shoe Added Successfully👟', {
         position: "bottom-right",
         autoClose: 2000,
@@ -81,17 +102,17 @@ const Detail = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
     }
   };
 
-
   const handleSizeClick = (size) => {
-    if (selectSize === size) {
-      setSelectSize(null);
+    if (selectedSize === size) {
+      setSelectedSize(null);
     } else {
-      setSelectSize(size);
+      setSelectedSize(size);
     }
+    setShowSizeError(false);
   };
 
   return (
@@ -108,35 +129,41 @@ const Detail = () => {
           <h3>{sneaker.color}</h3>
           <h2>Sizes:</h2>
           <div className={styles.sizes}>
-            {sneaker.Stocks?.map((s) =>
+            {sneaker.Stocks?.map((s, index) =>
               s.quantity > 0 ? (
                 <button
+                  key={`${s.size}-${index}`}
                   className={`${styles.size} ${
-                    selectSize === s.size ? styles.select : ""
+                    selectedSize === s.size ? styles.select : ""
                   }`}
                   onClick={() => handleSizeClick(s.size)}
                 >
                   {s.size}
                 </button>
               ) : (
-                <div className={styles.dess}>{s.size}</div>
+                <div key={`${s.size}-${index}`} className={styles.dess}>
+                  {s.size}
+                </div>
               )
             )}
           </div>
           <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
+          {showSizeError && (
+            <p className={styles.errorMsg}>Please select a size.</p>
+          )}
           <div className={styles.buttons}>
-            <button
-              onClick={handleCart}
-              className={`${
-                cart.some((item) => item.id === sneaker.id)
-                  ? styles.removeC
-                  : styles.addC
-              }`}
-            >
-              {cart.some((item) => item.id === sneaker.id)
-                ? "REMOVE CART"
-                : "ADD CART"}
-            </button>
+          <button
+                onClick={handleCart}
+                className={`${
+                  cart.some((item) => item.id === sneaker.id && item.size === selectedSize)
+                    ? styles.removeC
+                    : styles.addC
+                }`}
+              >
+                {cart.some((item) => item.id === sneaker.id && item.size === selectedSize)
+                  ? "REMOVE CART"
+                  : "ADD CART"}
+          </button>
             <button
               onClick={handleFav}
               className={`${
@@ -150,7 +177,7 @@ const Detail = () => {
               ) : (
                 <BsBookmarks />
               )}
-              <ToastContainer/>
+              <ToastContainer />
             </button>
           </div>
         </div>

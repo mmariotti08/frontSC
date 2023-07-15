@@ -24,7 +24,7 @@ const SearchBar = ({toggleCarousel}) => {
   const handleSubmit = async () => {
     if (name.trim() === "") {
       // Si el nombre está vacío, muestra un error
-      toast.error("El search no puede estar vacío.");
+      toast.error("The search cannot be empty.");
       return;
     }
 
@@ -37,14 +37,13 @@ const SearchBar = ({toggleCarousel}) => {
     if (searchResults.length < 1) {
       // No se encontraron resultados válidos
       toast.error(
-        `No se encontraron resultados para el nombre del producto: ${name}`
+        `No results found for the product name: ${name}.`
       );
       return;
     }
     if (name.length > 0){
       toggleCarousel(false)
     }
-    // Realizar acciones adicionales si se encontraron resultados
   };
 
   useEffect(() => {

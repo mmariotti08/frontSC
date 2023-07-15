@@ -75,12 +75,13 @@ export const addToCart = (item) => {
 };
 
 // Acción para remover un elemento del carrito
-export const removeFromCart = (itemId) => {
+export const removeFromCart = (productId, size) => {
   return {
     type: REMOVE_FROM_CART,
-    payload: itemId,
+    payload: { productId, size },
   };
 };
+
 
 // Acción para agregar un elemento al carrito
 export const addToFav = (item) => {

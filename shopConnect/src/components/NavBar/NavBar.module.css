@@ -107,6 +107,22 @@ ion-icon {
   color: red;
 }
 
+.cartItemCount {
+  position: absolute;
+  top: 70px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 255, 255);
+  color: #ca1111;
+  font-size: 12px;
+  font-family: 'Russo One', sans-serif;
+  border-radius: 50%;
+}
+
 
 
 @media screen and (max-width: 768px) {
