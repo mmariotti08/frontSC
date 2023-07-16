@@ -55,10 +55,7 @@ const Detail = () => {
       setSelectSize(size);
     }
   };
-  const handleBuy = ()=>{
-    BuyButton()
-  }
-
+  
   
 
     return (
@@ -92,8 +89,8 @@ const Detail = () => {
                         <button onClick={handleFav} className={`${fav.some(item => item.id === sneaker.id) ? styles.Nfav : styles.fav}`}>
                             {fav.some(item => item.id === sneaker.id) ? <BsBookmarksFill/> : <BsBookmarks/>}
                         </button>
-                        <button  onClick={BuyButton}>buy</button>
                     </div>
+                        <BuyButton/>
                 </div>
             </div>
         </div>

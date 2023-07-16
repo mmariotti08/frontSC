@@ -2,6 +2,7 @@ import style from './shoppingCart.module.css'
 import { connect } from 'react-redux';
 import Card from '../../components/Card/Card'; 
 import { useEffect } from 'react';
+import BuyButton from '../../components/BuyButton/BuyButton';
 
 const ShoppingCart = ({ cart}) => {
 
@@ -30,6 +31,7 @@ const ShoppingCart = ({ cart}) => {
                   ))}
               </>
           )}
+          <BuyButton/>
         </div>
       <h3 className={style.total}>Suma total: {formatPrice(totalPrice)}</h3>
       </div>
