@@ -6,6 +6,7 @@ import { Categories } from "../../components/Admin/Products/Categories/Categorie
 import { Stock } from "../../components/Admin/Products/Stock/Stock";
 import { Draft } from "../../components/Admin/Products/Draft/Draft";
 import { All_Users } from "../../components/Admin/Users/All Users/All Users";
+import { User_Draft } from "../../components/Admin/Users/User Draft/User Draft";
 import styles from "./Menu.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { paginate } from "../../redux/actions";
@@ -13,11 +14,11 @@ import { paginate } from "../../redux/actions";
 const Menu = () => {
     const menu = [
         { label: "Orders" },
-        { label: "Products", submenu: ["All products", "Add new", "Categories", "Draft"] },
-        { label: "Users", submenu: ["All users"] }
+        { label: "Products", submenu: ["All products", "Add new", "Categories", "Product draft"] },
+        { label: "Users", submenu: ["All users", "User draft"] }
     ];
 
-    const [option, setOption] = useState("");
+    const [option, setOption] = useState("All products");
 
     const [productId, setProductId] = useState("");
 
@@ -26,9 +27,10 @@ const Menu = () => {
         "Add new": Add_Product,
         "Categories": Categories,
         "Stock": Stock,
-        "Draft": Draft,
+        "Product draft": Draft,
         "Edit": Edit_Product,
-        "All users": All_Users
+        "All users": All_Users,
+        "User draft": User_Draft,
     };
 
     const ComponentToRender = componentMap[option];

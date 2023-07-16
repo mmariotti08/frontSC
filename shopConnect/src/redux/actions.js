@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT, GET_USERS } from './actions-type';
+import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT, GET_USERS, GET_USERS_DRAFT } from './actions-type';
 
 export const getProducts = () => {
 	return async function(dispatch) {
@@ -135,6 +135,17 @@ export const putProducto = (id, product, stock) => {
 	};
 };
 
+export const putUser = (id, dataUser) => {
+	return async function(dispatch) {
+		try {
+			await axios.put(`http://localhost:3001/user/${id}`, dataUser);
+			return;
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
 export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
@@ -157,11 +168,33 @@ export const deleteProduct = (id) => {
 	};
 };
 
+export const deleteUser = (id) => {
+	return async function(dispatch) {
+		try {
+			await axios.delete(`http://localhost:3001/user/${id}`);
+			return;
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
 export const getUsers = () => {
 	return async function(dispatch) {
 		try {
 			const response = await axios.get(`http://localhost:3001/user`);
 			return dispatch({ type: GET_USERS, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getUsersDraft = () => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`http://localhost:3001/user/draft`);
+			return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
 		};

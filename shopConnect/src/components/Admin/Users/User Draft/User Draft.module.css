@@ -54,11 +54,3 @@
     padding-right: 8px;
     border-radius: 5px;
 }
-.container_button {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-.container_button button {
-    width: 100px;
-}
