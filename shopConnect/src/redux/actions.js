@@ -8,13 +8,13 @@ export const getUsers = ()=>{
 			let response = await axios.get(`user`)
 			return dispatch({type:GET_USERS, payload: response.data })
 		} catch (error) {
-			
+
 			console.error(error)
 		}
 	}
 }
 export const updateUser = (id, address)=>{
-	
+	console.log(address);
 	return async function(dispatch){
 		try {
 			await axios.put(`user/${id}`, address)

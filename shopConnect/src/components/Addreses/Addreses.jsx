@@ -7,13 +7,24 @@ import { useUser } from "@clerk/clerk-react";
 
 const Addreses = ()=>{
     const [data, setData]= useState({
-        address:"",
+        street:"",
         country:"",
         city:"",
         postalCode:0,
         description:""
 
     });
+    const direction={
+        address:{
+            street: data.street,
+            country: data.country,
+            city: data.city,
+            postalCode: data.postalCode,
+            description: data.description
+        }
+    }
+   
+
 
     const user = useUser()
     const users = useSelector((state)=> state.users)
@@ -23,17 +34,18 @@ const Addreses = ()=>{
         dispatch(getUsers())
         window.scrollTo(0, 0);
     },[dispatch])
+    
     const idUser = users.find(item => item.mail === user.user.primaryEmailAddress.emailAddress)
     
 
     const handleSumbit =(e)=>{
         e.preventDefault();
-        dispatch(updateUser(idUser.id, data))
+        dispatch(updateUser(idUser.id, direction))
     };
     const handleStreet = (e) => {
         setData({
             ...data,
-            address: e.target.value
+            street: e.target.value
         })
     };
     const handleCountry = (e)=>{
@@ -58,7 +70,7 @@ const Addreses = ()=>{
     const handleDescription = (e)=>{
         setData({
             ...data,
-            description: e.target.value4
+            description: e.target.value
         })
     }
     return (
@@ -67,7 +79,7 @@ const Addreses = ()=>{
                 <h1>Add Address</h1>
                 <div>
                     <label>Street Address</label>
-                    <input type="text" value={data.address} name='street' onChange={handleStreet} placeholder="Street Address..." />
+                    <input type="text" value={data.street} name='street' onChange={handleStreet} placeholder="Street Address..." />
                 </div>
                 <div>
                     <label>Country</label>
@@ -82,8 +94,8 @@ const Addreses = ()=>{
                     <input type="number" value={data.postalCode} name="postalCode" onChange={handlePostalCode} placeholder="Postal Code..."/>
                 </div>
                 <div>
-                    <label>Description(optional)</label>
-                    <input type="text" value={data.description} name="description" onChange={handleDescription} placeholder="Description55424wsedA(optional)"/>
+                    <label>Description</label>
+                    <input type="text" value={data.description} name="description" onChange={handleDescription} placeholder="Description(optional)"/>
                 </div>
                 <button type="sumbit">sumbbit</button>
             </form>

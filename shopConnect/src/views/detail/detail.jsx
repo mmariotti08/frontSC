@@ -8,6 +8,7 @@ import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 import Addreses from "../../components/Addreses/Addreses";
 import { Route,  Routes } from "react-router-dom";
+import BuyButton from "../../components/BuyButton/BuyButton";
 
 
 
@@ -21,6 +22,7 @@ const Detail = () => {
     const [selectSize, setSelectSize] = useState(null);
     
     useEffect(()=>{
+     
         dispatch(getDetail(id))
         window.scrollTo(0, 0);
 
@@ -53,6 +55,9 @@ const Detail = () => {
       setSelectSize(size);
     }
   };
+  const handleBuy = ()=>{
+    BuyButton()
+  }
 
   
 
@@ -87,7 +92,7 @@ const Detail = () => {
                         <button onClick={handleFav} className={`${fav.some(item => item.id === sneaker.id) ? styles.Nfav : styles.fav}`}>
                             {fav.some(item => item.id === sneaker.id) ? <BsBookmarksFill/> : <BsBookmarks/>}
                         </button>
-                        <Link to="/address" ><h2>address</h2></Link>
+                        <button  onClick={BuyButton}>buy</button>
                     </div>
                 </div>
             </div>
