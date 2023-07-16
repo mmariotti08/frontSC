@@ -15,9 +15,7 @@ export const GET_STOCK = "GET_STOCK";
 export const GET_STOCK_BY_ID = "GET_STOCK_BY_ID";
 export const GET_PRODUCT_DRAFT = "GET_PRODUCT_DRAFT";
 export const ADD_USER = "ADD_USER";
-export const FILER_BY_CATEGORY = "FILER_BY_CATEGORY";
-export const FILTER_BY_GENDER = "FILTER_BY_GENDER";
-export const FILTER_BRAND_NAME = "FILTER_BRAND_NAME";
+
 
 
 

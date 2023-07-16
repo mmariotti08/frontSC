@@ -13,9 +13,6 @@ import {
   ORDER_BY_PRICE,
   PAGINATION,
   GET_APPROVAL_ADMIN,
-  FILER_BY_CATEGORY,
-  FILTER_BY_GENDER,
-  FILTER_BRAND_NAME,
   GET_STOCK,
   GET_STOCK_BY_ID,
   GET_PRODUCT_DRAFT,
@@ -198,27 +195,11 @@ export const paginate = (value) => {
   };
 };
 
-export const filterByCategory = (payload) => {
-  return { type: FILER_BY_CATEGORY, payload };
-};
 
-export const filterByGender = (payload) => {
-  return { type: FILTER_BY_GENDER, payload };
-};
-
-export const filterBrandName = (payload) => {
-  return { type: FILTER_BRAND_NAME, payload };
-};
-export const filterByAll = ( brand, category, gender) => {
-	return async function(dispatch){
-		try {
-			const response = await axios.get(`fill?brand=${brand}&category=${category}&gender=${gender}`)
-	
-		return dispatch({ type: FILTER_BY_ALL, payload: response.data })
-		} catch (error) {
-			alert("Incorrect filtering information - Reset Products or Apply Filters")
-		}
-		
-	}
- 
+export const filterByAll = ( response) =>  {
+  if (response === 'null') {
+  return { type: FILTER_BY_ALL, payload: []}
+} else {
+  return { type: FILTER_BY_ALL, payload: response.data }
+}
 }

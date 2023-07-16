@@ -22,16 +22,15 @@ const Order = () => {
             {/* <label className={style.letras}>Order by Name</label> */}
             <select className={style.selectBox} onChange={(event) => handleOrderByName(event)}>
                 <option defaultChecked value="0" className={style.letras}>Order by Name</option>
-                <option value="a-z"className={style.letras}>Ascendente</option>
-                <option value="z-a"className={style.letras}>Descendente</option>
+                <option value="a-z"className={style.letras}>upward</option>
+                <option value="z-a"className={style.letras}>falling</option>
             </select>
 
             {/* <label className={style.letras}>Order by Price</label> */}
             <select className={style.selectBox} onChange={(event) => handleOrderByPrice(event)}>
                 <option defaultChecked value="0" className={style.letras}>Order by Price</option>
-                <option value="asc"className={style.letras}>Precio mas bajo</option>
-
-                <option value="des" className={style.letras}>Precio mas alto</option>
+                <option value="asc"className={style.letras}>lowest price</option>
+                <option value="des" className={style.letras}>highest price</option>
             </select>
 
 
