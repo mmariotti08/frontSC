@@ -9,6 +9,11 @@ import { putProducto } from "../../../../redux/actions";
 const All_Products = ({ option, setOption, setProductId }) => {
     const dispatch = useDispatch();
 
+    const formatPrice = (price) => {
+        const formattedPrice = (price / 100).toFixed(2);
+        return `${formattedPrice}`;
+      };
+
     useEffect(() => {
         dispatch(getProducts());
     }, []);
@@ -104,7 +109,7 @@ const All_Products = ({ option, setOption, setProductId }) => {
                                         </div>)}
                                     </td>
                                     <td className={counterStock(c.Stocks).includes('Not available') ? styles.Not_Available : styles.Available}>{counterStock(c.Stocks)}</td>
-                                    <td>${c.retail_price_cents}</td>
+                                    <td>${formatPrice(c.retail_price_cents)}</td>
                                     <td>{c.category.join(", ")}</td>
                                 </tr>
                         ))}

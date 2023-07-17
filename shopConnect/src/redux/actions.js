@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 import {
   GET_PRODUCTS,
   GET_DETAIL,
@@ -20,6 +21,7 @@ import {
   GET_USERS,
   GET_USERS_DRAFT
 } from "./actions-type";
+
 
 export const getProducts = () => {
 	return async function(dispatch) {
@@ -46,6 +48,7 @@ export const getProductName = (name) => {
 };
 
 export const addUser = (userData) => {
+
   return async function (dispatch) {
     console.log(userData);
     try {
@@ -117,6 +120,7 @@ export const createProduct = (data, stock) => {
 
 			await axios.post(`products`, { product: data, stock: stock });
 
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -150,7 +154,9 @@ export const getStockID = (id) => {
 export const putProducto = (id, product, stock) => {
 	return async function(dispatch) {
 		try {
+
 			await axios.put(`products/${id}`, { product, stock });
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -171,10 +177,22 @@ export const putUser = (id, dataUser) => {
 	};
 };
 
+export const updateUser = (id, address)=>{
+	console.log(address);
+	return async function(dispatch){
+		try {
+			await axios.put(`user/${id}`, address)
+			return;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+}
+
+
 export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
-
 
 			const response = await axios.get(`products/draft`);
 			console.log(response.data);
@@ -193,6 +211,7 @@ export const deleteProduct = (id) => {
 			console.log(id);
 			await axios.delete(`products/${id}`);
 
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -204,6 +223,7 @@ export const deleteUser = (id) => {
 	return async function(dispatch) {
 		try {
 			await axios.delete(`user/${id}`);
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);

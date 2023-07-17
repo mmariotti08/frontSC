@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = ({ toggle }) => {
+
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
@@ -74,6 +75,7 @@ const Home = ({ toggle }) => {
       )}
     </div>
   );
+
 };
 
 export default Home;

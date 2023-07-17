@@ -1,7 +1,9 @@
+
 import style from './shoppingCart.module.css';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { removeFromCart } from '../../redux/actions';
+
 
 
 const ShoppingCart = ({cart}) => {
@@ -39,6 +41,7 @@ const ShoppingCart = ({cart}) => {
 
   return (
     <div className={style.containerGeneral}>
+
       <h1 className={style.titule}>Shopping Cart</h1>
       <div className={style.container}>
         {cart.length === 0 ? (
@@ -61,6 +64,7 @@ const ShoppingCart = ({cart}) => {
             ))}
           </>
         )}
+
       </div>
       <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
       <button className={style.finalize}>Finalize Purchase</button>

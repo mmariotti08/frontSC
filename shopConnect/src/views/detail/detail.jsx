@@ -1,16 +1,17 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getDetail } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import styles from "./detail.module.css";
 import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
-import {
-  addToCart,
-  removeFromCart,
-  addToFav,
-  removeFromFav,
-} from "../../redux/actions";
+
+import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
+import Addreses from "../../components/Addreses/Addreses";
+import { Route,  Routes } from "react-router-dom";
+import BuyButton from "../../components/BuyButton/BuyButton";
+
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,7 +22,6 @@ const Detail = () => {
   const cart = useSelector((state) => state.cart);
   const fav = useSelector((state) => state.fav);
   const { id } = useParams();
-
   const [selectedSize, setSelectedSize] = useState(null);
   const [showSizeError, setShowSizeError] = useState(false);
   const [availableQuantity, setAvailableQuantity] = useState(0);
@@ -124,7 +124,10 @@ const Detail = () => {
     }
     setShowSizeError(false);
   };
+  
+  
 
+<
   return (
     <div className={styles.contDetail}>
       <h1 className={styles.nameh3}>{sneaker.name}</h1>
@@ -153,6 +156,7 @@ const Detail = () => {
               ) : (
                 <div key={`${s.size}-${index}`} className={styles.dess}>
                   {s.size}
+
                 </div>
               )
             )}
@@ -201,6 +205,7 @@ const Detail = () => {
               <ToastContainer />
             </button>
           </div>
+          <BuyButton/>
         </div>
       </div>
     </div>

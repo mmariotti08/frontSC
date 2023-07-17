@@ -1,0 +1,46 @@
+.cAddress{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15%;
+    margin-bottom: 20%;
+    align-items: center;
+    background-color:white ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ca1111;
+}
+.inputs{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.inputs label{
+    display: flex;
+    margin-right: 40px;
+    font-size: 25px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.inputs input{
+    width: 300px;
+    height: 30px;
+}
+.desc input{
+    display: flex;
+    height: 200px;
+    width: 300px;
+
+   
+}
+.desc label{
+    display: flex;
+    margin-right: 40px;
+    
+    font-size: 25px;
+}
+.butt{
+    background-color: #ca1111;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: aliceblue;
+}
+
+
