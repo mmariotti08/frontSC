@@ -41,12 +41,10 @@ const Detail = () => {
       return;
     }
     setShowSizeError(false);
-  
     const selectedProduct = {
       ...sneaker,
       size: selectedSize,
     };
-  
     const isProductInCart = cart.some(
       (item) => item.id === selectedProduct.id && item.size === selectedProduct.size
     );

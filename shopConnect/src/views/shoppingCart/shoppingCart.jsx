@@ -1,12 +1,14 @@
 import style from './shoppingCart.module.css';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { removeFromCart } from '../../redux/actions';
 
-const ShoppingCart = ({ cart }) => {
-  const dispatch = useDispatch();
-  const [, setCartM] = useState([]);
 
+const ShoppingCart = ({cart}) => {
+  const dispatch = useDispatch();
+  const sneaker = useSelector((state) => state.detail);
+  const [selectedSize, setSelectedSize] = useState(true);
+  
   const totalPrice = cart.reduce((total, item) => total + item.retail_price_cents, 0);
 
   const formatPrice = price => {
@@ -18,12 +20,22 @@ const ShoppingCart = ({ cart }) => {
     window.scrollTo(0, 0);
   }, []);
 
-
-  const handleCart = (productId) => {
-    dispatch(removeFromCart(productId));
-    const updatedCart = cart.filter(item => item.id !== productId);
-setCartM(updatedCart);
-};
+  
+  const handleRemove = () => {
+    if (selectedSize) {
+      return;
+    }
+    const selectedProduct = {
+      ...sneaker,
+      size: selectedSize,
+    };
+    const isProductInCart = cart.some(
+      (item) => item.id === selectedProduct.id && item.size === selectedProduct.size);
+  
+    if (isProductInCart) {
+      dispatch(removeFromCart(selectedProduct.id, selectedProduct.size));
+  }
+}
 
   return (
     <div className={style.containerGeneral}>
@@ -41,7 +53,7 @@ setCartM(updatedCart);
                 <h3 className={style.size}>Size</h3>
                 <h3 className={style.sizeI}>{item.size}</h3>
                 <button
-              onClick={() => handleCart(item.id)}
+              onClick={()=> handleRemove(item.productId, item.size)}
               className={style.removeC}
             >REMOVE CART</button>
             

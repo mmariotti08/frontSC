@@ -73,7 +73,7 @@ const Filter = () => {
       </button>
         </form>
         <div  className={style.information}>
-        {products.length === 0 ? <div>Information not found</div> : <div></div>}
+        {products.length === 0 ? <h2>Information not found</h2> : <div></div>}
         </div>
         </div>
     )
