@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 import {
   GET_PRODUCTS,
   GET_DETAIL,
@@ -13,9 +14,6 @@ import {
   ORDER_BY_PRICE,
   PAGINATION,
   GET_APPROVAL_ADMIN,
-  FILER_BY_CATEGORY,
-  FILTER_BY_GENDER,
-  FILTER_BRAND_NAME,
   GET_STOCK,
   GET_STOCK_BY_ID,
   GET_PRODUCT_DRAFT,
@@ -23,6 +21,7 @@ import {
   GET_USERS,
   GET_USERS_DRAFT
 } from "./actions-type";
+
 
 export const getProducts = () => {
 	return async function(dispatch) {
@@ -49,8 +48,9 @@ export const getProductName = (name) => {
 };
 
 export const addUser = (userData) => {
+
   return async function (dispatch) {
-    console.log(userData);
+    console.log("ssdfsdfsdf",userData);
     try {
       let response = await axios.post(`user`, userData);
       return dispatch({ type: ADD_USER, payload: response.data });
@@ -105,7 +105,7 @@ export const removeFromFav = (itemId) => {
 export const getApproval = (adminData) => {
 	return async function(dispatch) {
 		try {
-			let response = await axios.post(`http://localhost:3001/user/admin`, adminData);
+			let response = await axios.post(`user/admin`, adminData);
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
 		} catch (error) {
 			console.log(error.response.data);
@@ -119,6 +119,7 @@ export const createProduct = (data, stock) => {
 
 
 			await axios.post(`products`, { product: data, stock: stock });
+
 
 			return;
 		} catch (error) {
@@ -153,7 +154,9 @@ export const getStockID = (id) => {
 export const putProducto = (id, product, stock) => {
 	return async function(dispatch) {
 		try {
-			await axios.put(`http://localhost:3001/products/${id}`, { product, stock });
+
+			await axios.put(`products/${id}`, { product, stock });
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -164,9 +167,8 @@ export const putProducto = (id, product, stock) => {
 export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
-<
-=======
-			await axios.put(`products/${id}`, { id, product });
+
+			await axios.put(`user/${id}`, { id, dataUser });
 
 			return;
 		} catch (error) {
@@ -175,10 +177,22 @@ export const putUser = (id, dataUser) => {
 	};
 };
 
+export const updateUser = (id, address)=>{
+	console.log("acaaaaa",address, id);
+	return async function(dispatch){
+		try {
+			await axios.put(`user/${id}`, address)
+			return;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+}
+
+
 export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
-
 
 			const response = await axios.get(`products/draft`);
 			console.log(response.data);
@@ -197,6 +211,7 @@ export const deleteProduct = (id) => {
 			console.log(id);
 			await axios.delete(`products/${id}`);
 
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -207,7 +222,8 @@ export const deleteProduct = (id) => {
 export const deleteUser = (id) => {
 	return async function(dispatch) {
 		try {
-			await axios.delete(`http://localhost:3001/user/${id}`);
+			await axios.delete(`user/${id}`);
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -218,7 +234,7 @@ export const deleteUser = (id) => {
 export const getUsers = () => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(`http://localhost:3001/user`);
+			const response = await axios.get(`user`);
 			return dispatch({ type: GET_USERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -229,7 +245,7 @@ export const getUsers = () => {
 export const getUsersDraft = () => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(`http://localhost:3001/user/draft`);
+			const response = await axios.get(`user/draft`);
 			return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -253,27 +269,18 @@ export const paginate = (value) => {
   };
 };
 
-export const filterByCategory = (payload) => {
-  return { type: FILER_BY_CATEGORY, payload };
-};
 
-export const filterByGender = (payload) => {
-  return { type: FILTER_BY_GENDER, payload };
-};
+
+export const filterByAll = ( response) =>  {
+  if (response === 'null') {
+  return { type: FILTER_BY_ALL, payload: []}
+} else {
+  return { type: FILTER_BY_ALL, payload: response.data }
+}
+}
 
 export const filterBrandName = (payload) => {
   return { type: FILTER_BRAND_NAME, payload };
 };
-export const filterByAll = ( brand, category, gender) => {
-	return async function(dispatch){
-		try {
-			const response = await axios.get(`fill?brand=${brand}&category=${category}&gender=${gender}`)
-	
-		return dispatch({ type: FILTER_BY_ALL, payload: response.data })
-		} catch (error) {
-			alert("Incorrect filtering information - Reset Products or Apply Filters")
-		}
-		
-	}
- 
-}
+
+

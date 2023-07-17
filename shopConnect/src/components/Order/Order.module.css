@@ -1,6 +1,8 @@
 .container{
+
     border: none;
     margin-bottom: 30px;
+
     display:flex;
     flex-direction: row;
     justify-content: space-around;

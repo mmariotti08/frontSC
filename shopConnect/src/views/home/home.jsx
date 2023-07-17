@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = ({ toggle }) => {
+
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
@@ -27,8 +28,9 @@ const Home = ({ toggle }) => {
 
   if (isSignedIn) {
     const userDestructuringprueba = {
-      name: user.user.fullName, // ? user.user.fullName : null ,
-      mail: user.user.primaryEmailAddress.emailAddress, // ?  user.user.primaryEmailAddress.emailAddress : null,
+      name: user.user.fullName, 
+      mail: user.user.primaryEmailAddress.emailAddress, 
+      password: '12345678'
     };
     dispatch(addUser(userDestructuringprueba));
   }
@@ -74,6 +76,7 @@ const Home = ({ toggle }) => {
       )}
     </div>
   );
+
 };
 
 export default Home;

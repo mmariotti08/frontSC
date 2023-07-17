@@ -17,6 +17,7 @@ import {
   ADD_USER,
   GET_USERS,
   GET_USERS_DRAFT
+
 } from "./actions-type";
 
 const initialState = {
@@ -37,6 +38,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_USERS:
+      return{
+        ...state,
+        users: action.payload,
+      }
     case GET_PRODUCTS:
       return {
         ...state,
