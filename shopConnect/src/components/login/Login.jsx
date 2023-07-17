@@ -1,6 +1,6 @@
 import React from 'react';
-import { UserButton, SignIn, useAuth, useUser } from "@clerk/clerk-react";
-import style from './Login.css?inline';
+import { UserButton, SignUp, useAuth, useUser } from "@clerk/clerk-react";
+import style from './Login.module.css';
 import { connect, useDispatch } from "react-redux";
 import { addUser } from "../../redux/actions";
 import { useEffect } from "react";
@@ -27,10 +27,10 @@ const dispatch = useDispatch();
   return (
     <div className={style.container}>
       <div className={style.signInContainer}>
-        <SignIn />
+        <SignUp />
       </div>
       <UserButton />
-      <button className={style["close-button"]} onClick={handleCloseModal}>
+      <button className={style.butt} onClick={handleCloseModal}>
         Cerrar
       </button>
     </div>
