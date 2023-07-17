@@ -1,9 +1,12 @@
 .container{
 
-    margin-top: 1%;
+    border: none;
+    margin-bottom: 30px;
+
     display:flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 10%;
 }
 
 /*.letras{
@@ -14,10 +17,9 @@
 }*/
 
 .selectBox{
-   
     margin-bottom: 10px;
     border-radius: 4px;
-   align-items: center;
+    align-items: center;
     padding: 5px 10px 5px 10px;
     width: 150%;
     color: white;
