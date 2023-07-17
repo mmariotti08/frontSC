@@ -127,7 +127,7 @@ const Detail = () => {
   
   
 
-<
+
   return (
     <div className={styles.contDetail}>
       <h1 className={styles.nameh3}>{sneaker.name}</h1>
