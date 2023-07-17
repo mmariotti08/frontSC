@@ -5,14 +5,16 @@ import { connect, useDispatch } from "react-redux";
 import { addUser } from "../../redux/actions";
 import { useEffect } from "react";
 
+
 const Login = ({ closeModal, addUser }) => {
 
   const { isSignedIn } = useUser();
-
+  
 const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     closeModal();
+    
   };
 
   const user = useUser();
@@ -21,7 +23,9 @@ const dispatch = useDispatch();
   useEffect(() => {
     if (isSignedIn) {
       dispatch(addUser(user));
+
     }
+    window.scrollTo(0, 0);
   }, [isSignedIn]);
 
   return (

@@ -88,6 +88,11 @@ const Footer = () => {
           Buenos Aires – Argentina.
         </p>
       </div>
+      <div>
+      <Link to="/admin" >
+            <button>Admin</button>
+       </Link>
+      </div>
       </div>
   );
 };
