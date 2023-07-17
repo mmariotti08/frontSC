@@ -105,7 +105,7 @@ export const removeFromFav = (itemId) => {
 export const getApproval = (adminData) => {
 	return async function(dispatch) {
 		try {
-			let response = await axios.post(`http://localhost:3001/user/admin`, adminData);
+			let response = await axios.post(`user/admin`, adminData);
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
 		} catch (error) {
 			console.log(error.response.data);
@@ -153,7 +153,7 @@ export const getStockID = (id) => {
 export const putProducto = (id, product, stock) => {
 	return async function(dispatch) {
 		try {
-			await axios.put(`http://localhost:3001/products/${id}`, { product, stock });
+			await axios.put(`products/${id}`, { product, stock });
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -164,8 +164,7 @@ export const putProducto = (id, product, stock) => {
 export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
-<
-=======
+
 			await axios.put(`products/${id}`, { id, product });
 
 			return;
@@ -207,7 +206,7 @@ export const deleteProduct = (id) => {
 export const deleteUser = (id) => {
 	return async function(dispatch) {
 		try {
-			await axios.delete(`http://localhost:3001/user/${id}`);
+			await axios.delete(`user/${id}`);
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -218,7 +217,7 @@ export const deleteUser = (id) => {
 export const getUsers = () => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(`http://localhost:3001/user`);
+			const response = await axios.get(`user`);
 			return dispatch({ type: GET_USERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -229,7 +228,7 @@ export const getUsers = () => {
 export const getUsersDraft = () => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(`http://localhost:3001/user/draft`);
+			const response = await axios.get(`user/draft`);
 			return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -264,6 +263,7 @@ export const filterByGender = (payload) => {
 export const filterBrandName = (payload) => {
   return { type: FILTER_BRAND_NAME, payload };
 };
+
 export const filterByAll = ( brand, category, gender) => {
 	return async function(dispatch){
 		try {
@@ -276,4 +276,4 @@ export const filterByAll = ( brand, category, gender) => {
 		
 	}
  
-}
+};
