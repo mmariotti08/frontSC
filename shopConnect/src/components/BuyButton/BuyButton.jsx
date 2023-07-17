@@ -30,7 +30,7 @@ const BuyButton = ()=>{
         console.log('fsdfsdf');
         return navigate('/addAddress')
     }else{
-        return alert('a comprar papeer')
+        return alert('redirige a compra')
     }
    }
     
