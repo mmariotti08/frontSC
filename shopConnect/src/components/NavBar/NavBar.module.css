@@ -1,3 +1,4 @@
+
 .navBar {
   position: fixed;
   top:0;
@@ -8,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Valor alto para asegurarse de que la barra de navegación esté en la parte superior */
+  z-index: 100; /* Valor alto para asegurarse de que la barra de navegación esté en la parte superior */
   margin-bottom: 10px;
 }
 
@@ -59,6 +60,12 @@ ion-icon {
   margin-left: 2px;
   margin-right: 25px;
 }
+.userButton {
+  font-size: 55px;
+  margin-top: 865px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
 
 .navLink:focus {
   outline: none;
@@ -98,6 +105,22 @@ ion-icon {
 
 .firstHalf {
   color: red;
+}
+
+.cartItemCount {
+  position: absolute;
+  top: 70px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 255, 255);
+  color: #ca1111;
+  font-size: 12px;
+  font-family: 'Russo One', sans-serif;
+  border-radius: 50%;
 }
 
 

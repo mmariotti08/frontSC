@@ -1,17 +1,20 @@
 .container{  
     background-color: aliceblue;
-    margin-top: 150px;
+    margin-top: 200px;
     margin-left: 200px;
     margin-right: 200px;
 
 }
 .container h1{
-    color: rgb(206, 22, 22);
+    color: #ca1111;
+    font-family: 'Russo One', sans-serif;
 }
 .container h2{
+    font-family: 'Russo One', sans-serif;
     color: black;
 }
 
 .container h3{
-    color:rgb(23, 23, 23);
+    font-family: 'Russo One', sans-serif;
+    color: rgb(100, 100, 100);
 }
