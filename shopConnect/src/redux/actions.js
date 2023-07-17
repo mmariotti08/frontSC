@@ -27,7 +27,7 @@ import {
 export const getProducts = () => {
 	return async function(dispatch) {
 		try {
-			let response = await axios.get(`http://localhost:3001/products`);
+			let response = await axios.get(`products`);
 			return dispatch({type: GET_PRODUCTS, payload: response.data});
 		} catch (error) {
 			console.error(error.response.data);
@@ -52,7 +52,7 @@ export const addUser = (userData) => {
   return async function (dispatch) {
     console.log(userData);
     try {
-      let response = await axios.post(`http://localhost:3001/user`, userData);
+      let response = await axios.post(`user`, userData);
       return dispatch({ type: ADD_USER, payload: response.data });
     } catch (error) {
       console.error(error);
@@ -116,8 +116,10 @@ export const getApproval = (adminData) => {
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
-			console.log(data)
-			await axios.post(`http://localhost:3001/products`, { product: data, stock: stock });
+
+
+			await axios.post(`products`, { product: data, stock: stock });
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -128,7 +130,7 @@ export const createProduct = (data, stock) => {
 export const getStock = () => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(`http://localhost:3001/stocks`);
+			const response = await axios.get(`stocks`);
 			return dispatch({ type: GET_STOCK, payload: response.data });
 
 		} catch (error) {
@@ -140,7 +142,7 @@ export const getStock = () => {
 export const getStockID = (id) => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(`http://localhost:3001/stocks/${id}`);
+			const response = await axios.get(`stocks/${id}`);
 			return dispatch({ type: GET_STOCK_BY_ID, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -162,7 +164,10 @@ export const putProducto = (id, product, stock) => {
 export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
-			await axios.put(`http://localhost:3001/user/${id}`, dataUser);
+<
+=======
+			await axios.put(`products/${id}`, { id, product });
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -173,7 +178,11 @@ export const putUser = (id, dataUser) => {
 export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.get(`http://localhost:3001/products/draft`);
+
+
+			const response = await axios.get(`products/draft`);
+			console.log(response.data);
+
 			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -184,7 +193,10 @@ export const getProductDraft = () => {
 export const deleteProduct = (id) => {
 	return async function(dispatch) {
 		try {
-			await axios.delete(`http://localhost:3001/products/${id}`);
+
+			console.log(id);
+			await axios.delete(`products/${id}`);
+
 			return;
 		} catch (error) {
 			console.log(error.response.data);
