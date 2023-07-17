@@ -24,8 +24,6 @@ const All_Users = ({ option, setOption }) => {
     const [editing, setEditing] = useState(null);
     const [userEdits, setUserEdits] = useState({});
 
-    console.log(userEdits);
-
     const handleChange = ({ target: { value, name } }) => {
         setUserEdits({
             ...userEdits,
