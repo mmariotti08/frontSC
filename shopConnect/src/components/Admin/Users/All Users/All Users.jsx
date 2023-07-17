@@ -152,7 +152,7 @@ const All_Users = ({ option, setOption }) => {
                                             c.administrator && adminCount <= 1
                                             ? "Admin"
                                             : (
-                                                <select defaultValue={c.administrator ? "Admin" : "User"} onChange={(e) => handleChange(e, 'administrator')}>
+                                                <select name="administrator" defaultValue={c.administrator ? "Admin" : "User"} onChange={handleChange}>
                                                     <option value="Admin">Admin</option>
                                                     <option value="User">User</option>
                                                 </select>
