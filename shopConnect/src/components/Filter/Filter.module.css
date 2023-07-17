@@ -2,9 +2,11 @@
     display:flex;
     height: 15vh;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 5%;
+    margin-top: 2%;
     /*background-color: rgb(59, 58, 58);*/
     justify-content: center;
+    border: none;
   }
 
   .form {
