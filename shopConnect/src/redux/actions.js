@@ -168,7 +168,7 @@ export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
 
-			await axios.put(`user/${id}`, { id, dataUser });
+			await axios.put(`user/${id}`, dataUser);
 
 			return;
 		} catch (error) {

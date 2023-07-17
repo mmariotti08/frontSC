@@ -12,7 +12,7 @@ const All_Users = ({ option, setOption }) => {
         dispatch(getUsers());
     }, []);
 
-    const users = useSelector(state => state.allUsers);
+    const users = useSelector(state => state.users);
 
     const adminCount = users.reduce((count, user) => user.administrator ? count + 1 : count, 0);
 
@@ -23,8 +23,6 @@ const All_Users = ({ option, setOption }) => {
 
     const [editing, setEditing] = useState(null);
     const [userEdits, setUserEdits] = useState({});
-
-    console.log(userEdits);
 
     const handleChange = ({ target: { value, name } }) => {
         setUserEdits({
