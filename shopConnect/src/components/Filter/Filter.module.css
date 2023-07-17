@@ -1,32 +1,65 @@
-.container{
+.container {
+  display:inline-table;
+ 
+  height: 15vh;
+  overflow: hidden;
+  margin-bottom: 15px;
+  /*background-color: rgb(59, 58, 58);*/
 
-    margin-top: 10%;
-    display: table-caption;
-    flex-direction: row;
-    justify-content: space-around;
+  
+}
+
+.form {
+  width: 700px;
+  background-color: #ca1111;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /*.letras{
-    color: white;
-    font-family: 'Russo One', sans-serif;
-    background-color: #ca11116c;
-    border: none;
+  color: white;
+  font-family: 'Russo One', sans-serif;
+  background-color: #ca11116c;
+  border: none;
 }*/
 
-.selectBox{
-   
-    margin-bottom: 10px;
-    border-radius: 4px;
-   align-items: center;
-    padding: 5px 10px 5px 10px;
-    width: 150%;
-    color: white;
-    background-color:#ca1111;;
-    font-size: 15px;
-    font-family: 'Russo One', sans-serif;
-    }
+.select{
+ margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+ align-items: center;
+  padding: 5px 10px 5px 10px;
 
-    .selectBox:hover {
-        border-color: #070707;
-      }
-      
+  color: white;
+  background-color:#ca1111;;
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  }
+
+  .select:hover {
+      border-color: #070707;
+    }
+    
+  .label{
+      font-size: 15px;
+      font-family: 'Russo One', sans-serif;
+      color: white;
+      margin-right: 12px;
+     
+  }
+
+  .button{
+      margin-left: 15px;
+      font-size: 15px;
+      font-family: 'Russo One', sans-serif;
+      color: #ca1111;
+  }
+
+  .information{
+color: black;
+ margin-top: 2%;
+ border-radius: 8px;
+ font-family: 'Russo One', sans-serif;
+height: 40px;
+  }

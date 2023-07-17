@@ -1,24 +1,21 @@
-import { useState } from "react";
-import styles from "./Add Product.module.css";
-import { MdClear, MdAdd } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { createProduct } from "../../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
+import { useEffect, useState } from "react";
+import styles from "./Edit Product.module.css";
+import { MdClear, MdAdd } from "react-icons/md";
+import { getStockID } from "../../../../redux/actions";
+import { getDetail } from "../../../../redux/actions";
+import { putProducto } from "../../../../redux/actions";
 
-const Add_Product = () => {
+const Edit_Product = ({ productId }) => {
     const dispatch = useDispatch();
+    
+    const product = useSelector(state => state.detail);
+    const stock = useSelector(state => state.get_stock_by_id);
 
     const [formOn, setFormOn] = useState(true);
-
     const [error, setError] = useState({});
-
-    const sizes = [
-        "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10",
-        "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15"
-    ];
-
-    const gender = ["Man", "Woman", "Unisex"];
-
+    const [stocks, setStocks] = useState([{ size: "", quantity: "1" }]);
     const [data, setData] = useState({
         name: "",
         brand_name: "",
@@ -31,6 +28,31 @@ const Add_Product = () => {
         status: "",
     });
 
+    const gender = ["Man", "Woman", "Unisex"];
+    const sizes = ["5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15"];
+
+    useEffect(() => {
+        dispatch(getDetail(productId));
+        dispatch(getStockID(productId));
+    }, [productId, dispatch]);
+
+    useEffect(() => {
+        if (product && product.name) {
+            setData({
+                name: product.name,
+                brand_name: product.brand_name,
+                category: product.category,
+                color: product.color,
+                gender: product.gender[0],
+                main_picture_url: product.main_picture_url,
+                retail_price_cents: product.retail_price_cents,
+                slug: "",
+                status: "",
+            });
+            setStocks(stock);
+        };
+    }, [product, stock]);
+
     const handleChange = ({ target: { name, value } }) => {
         setData({
             ...data,
@@ -38,47 +60,23 @@ const Add_Product = () => {
         });
     };
 
-    const submit = ({ target: { name, value } }) => {
-        data.slug = `${data.name.replace(/\s/g, "-")}`;
+    const handleUpdate = (event) => {
+        event.preventDefault();
         data.gender = [data.gender];
-
         const stockIsValid = stocks.every(stock => stock.size !== "" && stock.quantity > 0);
         const categoryIsValid = data.category.every(category => category !== "");
-        
         if(!categoryIsValid || !stockIsValid || !data.name.length || !data.brand_name.length || !data.color || !data.main_picture_url || data.retail_price_cents < 0) {
-            setError(validation({ ...data, [name]: value }, stockIsValid, categoryIsValid));
+            setError(validation({ ...data, [event.target.name]: event.target.value }, stockIsValid, categoryIsValid));
         } else {
-            dispatch(createProduct(data, stocks));
-            setData({
-                name: "",
-                brand_name: "",
-                category: [""],
-                color: "",
-                gender: "Man",
-                main_picture_url: "",
-                retail_price_cents: "0",
-                slug: "",
-                status: "",
-            });
-            setStocks([{
-                size: "",
-                quantity: "1"
-            }]);
-            setFormOn(false);
+            dispatch(putProducto(productId, data, stocks));
+            // setStocks([{
+            //     size: "",
+            //     quantity: "1"
+            // }]);
             setError({});
+            setFormOn(false)
+            window.scrollTo(0, 0);
         };
-    };
-
-    const handleDraft = (event) => {
-        event.preventDefault();
-        data.status = "draft";
-        submit(event);
-    };
-
-    const handleActive = (event) => {
-        event.preventDefault();
-        data.status = "active";
-        submit(event);
     };
 
     // MANEJO DE CATEGORIAS
@@ -104,11 +102,6 @@ const Add_Product = () => {
     };
 
     // MANEJO DE STOCK
-    const [stocks, setStocks] = useState([{
-        size: "",
-        quantity: "1"
-    }]);
-
     const handleAddStock = () => {
         setStocks([
             ...stocks,
@@ -134,17 +127,16 @@ const Add_Product = () => {
             stocks.map((stock, i) => i === index ? { ...stock, quantity: parseInt(value) } : stock)
         );
     };
-
+    
     return (
         <div className={styles.container}>
             <div>
-                <h1>Add new product</h1>
+                <h1>Edit Product</h1>
             </div>
             <div className={styles.containerform}>
                 {!formOn
                     ? <>
-                        <h3>Product added successfully!</h3>
-                        <button onClick={() => setFormOn(!formOn)}>Add new product</button>
+                        <h3>Product edited successfully!</h3>
                     </>
                     : <form>
                         {/* NAME */}
@@ -234,7 +226,7 @@ const Add_Product = () => {
                                         name={`stock-size-${index}`}
                                         value={stock.size}
                                         onChange={(event) => handleChangeStockSize(event, index)}
-                                    >
+                                        >
                                         <option value="">Select Size</option>
                                         {sizes.map((size) => (
                                             <option key={size} value={size} disabled={stocks.some(stock => stock.size === size)}>
@@ -242,7 +234,10 @@ const Add_Product = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    <label htmlFor={`stock-quantity-${index}`}>Quantity</label>
+                                    <label
+                                        htmlFor={`stock-quantity-${index}`}
+                                        >Quantity
+                                    </label>
                                     <input
                                         type="number"
                                         id={`stock-quantity-${index}`}
@@ -255,8 +250,8 @@ const Add_Product = () => {
                                     {stocks.length > 1 && (
                                         <button
                                             type="button"
-                                            onClick={() => handleRemoveStock(index)}>
-                                                <MdClear />
+                                            onClick={() => handleRemoveStock(index)}
+                                            ><MdClear />
                                         </button>
                                     )}
                                 </div>
@@ -264,8 +259,11 @@ const Add_Product = () => {
                         </div>
                         {/* BUTTON */}
                         <div className={styles.container_button}>
-                            <button type="submit" onClick={handleDraft}>Save draft</button>
-                            <button type="submit" onClick={handleActive}>Publish</button>
+                            <button
+                                type="submit"
+                                onClick={handleUpdate}
+                                >Update
+                            </button>
                         </div>
                     </form>
                 }
@@ -274,4 +272,4 @@ const Add_Product = () => {
     );
 };
 
-export { Add_Product };
+export { Edit_Product };

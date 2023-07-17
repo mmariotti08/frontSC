@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-
 import { Paginate } from "../paginate/paginate";
 import  Card  from "../Card/Card"
 import "./productsContainer.css"

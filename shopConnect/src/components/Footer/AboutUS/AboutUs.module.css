@@ -1,10 +1,20 @@
 .container{
-display: flex;
-background-image: url(../../../../public/wallhaven-951yzx_1920x1080.png);
-font-family: 'Bebas Neue', sans-serif;
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;
+    display: flex;
+    background-image: url(../../../../public/wallhaven-951yzx_1920x1080.png);
+    font-family: 'Bebas Neue', sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container h1, h2, h3 {
+    margin-left: 30px;
+}
+
+.container h1{
+    color: #ca1111;
+    text-shadow: -3px 4px 32px rgba(0, 0, 0, 0.6);
+    font-family: 'Russo One', sans-serif;
 }
 
  

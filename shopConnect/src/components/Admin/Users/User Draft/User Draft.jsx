@@ -1,73 +1,74 @@
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Draft.module.css";
-import { getProductDraft } from "../../../../redux/actions";
-import { putProducto } from "../../../../redux/actions";
-import { deleteProduct } from "../../../../redux/actions";
+import styles from "./User Draft.module.css";
+import { getUsersDraft } from "../../../../redux/actions";
+import { putUser } from "../../../../redux/actions";
+import { deleteUser } from "../../../../redux/actions";
 import { useEffect, useState } from "react";
 import { Paginate } from "../../../paginate/paginate";
 
-const Draft = ({ option, setOption, setProductId }) => {
+const User_Draft = ({ option, setOption, setProductId }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProductDraft());
+        dispatch(getUsersDraft());
     }, []);
 
-    const products = useSelector(state => state.product_draft);
+    const users = useSelector(state => state.users_draft);
 
-    // MANEJO DE MENUS Y OPCIONES
     const options = {
-        label_head_table: ["ID", "Image", "Name", "Price", "Categories"],
-        menu_options: ["Edit", "Publish", "Stock", "Delete"]
+        // menu1: ["Add new", "Import", "Export"],
+        label_table: ["Name", "Last name", "Mail", "Phone", "Role"],
+        mini_menu: ["Edit", "Publish", "Delete"]
     };
 
     // RENDERING
-    const handleClick = async (option, productId = "") => {
+    const handleClick = async (option, userId = "") => {
         if(option === "Publish") {
-            await dispatch(putProducto(productId, { status: "active" }));
-            dispatch(getProductDraft());
+            await dispatch(putUser(userId, { active: true }));
+            dispatch(getUsersDraft());
         } else if(option === "Delete") {
-            await dispatch(deleteProduct(productId));
-            dispatch(getProductDraft());
+            await dispatch(deleteUser(userId));
+            dispatch(getUsersDraft());
         } else {
             setOption(option);
-            setProductId(productId);
+            //cambiar
+            setProductId(userId);
         };
     };
-    
-    // MENU_OPTIONS
-    const [showMenu, setShowMenu] = useState(false);
-    const [currentProductId, setCurrentProductId] = useState(null);
 
-    const handleMouseEnter = (productId) => {
+    // MINI MENU
+    const [showMenu, setShowMenu] = useState(false);
+    const [currentUsersId, setCurrentUsersId] = useState(null);
+
+    const handleMouseEnter = (userId) => {
         setShowMenu(true);
-        setCurrentProductId(productId);
+        setCurrentUsersId(userId);
     };
 
     const handleMouseLeave = () => {
         setShowMenu(false);
-        setCurrentProductId(null);
+        setCurrentUsersId(null);
     };
-
+    
     // PAGINADO
     const page = useSelector((state) => state.page);
-    const perPage = 10;
-    const max = Math.ceil(products.length / perPage);
-    
+    const perPage = 15;
+    const max = Math.ceil(users.length / perPage);
+
     return (
         <div className={styles.container}>
             <div>
-                <h1>Product Draft</h1>
+                <h1>User Draft</h1>
             </div>
             <div>
                 <table>
                     <thead>
                         <tr>
-                            {options.label_head_table.map((c, index) => (<th key={index}>{c}</th>))}
+                            {options.label_table.map((c, index) => (<th key={index}>{c}</th>))}
                         </tr>
                     </thead>
-                    <tbody>
-                    {products
+                    <tbody className={styles.table_body}>
+                    {users
                         .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
                         ?.map((c, index) => (
                             <tr
@@ -76,16 +77,14 @@ const Draft = ({ option, setOption, setProductId }) => {
                                 onMouseEnter={() => handleMouseEnter(c.id)}
                                 onMouseLeave={handleMouseLeave}
                                 >
-                                <td>{c.id}</td>
-                                <td><img src={c.main_picture_url} alt="" /></td>
                                 <td>
                                     {c.name}
-                                    {showMenu && currentProductId === c.id && (
-                                    <div className={styles.menu_options}>
+                                    {showMenu && currentUsersId === c.id && (
+                                    <div className={styles.menu3}>
                                         <ul>
-                                            {options.menu_options.map(option => (
+                                            {options.mini_menu.map(option => (
                                                 <li
-                                                    key={`menu_options-${option}`}
+                                                    key={`menu3-${option}`}
                                                     // CONFIGURAR RENDERIZADO V V V
                                                     onClick={() => handleClick(option, c.id)}
                                                     >
@@ -95,17 +94,18 @@ const Draft = ({ option, setOption, setProductId }) => {
                                         </ul>
                                     </div>)}
                                 </td>
-                                {/* <td className={counterStock(c.Stocks).includes('Not available') ? styles.Not_Available : styles.Available}>{counterStock(c.Stocks)}</td> */}
-                                <td>${c.retail_price_cents}</td>
-                                <td>{c.category.join(", ")}</td>
+                                <td>{c.last_name}</td>
+                                <td>{c.mail}</td>
+                                <td>{c.phone}</td>
+                                <td>{c.administrator ? "Admin" : "User"}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            {products.length > perPage && <Paginate max={max}/>}
+            {users.length > perPage && <Paginate max={max}/>}
         </div>
     );
 };
 
-export { Draft };
+export { User_Draft };

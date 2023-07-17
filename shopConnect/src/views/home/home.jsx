@@ -7,58 +7,75 @@ import { useDispatch } from "react-redux";
 import { getProducts, getProductName } from "../../redux/actions";
 import { useUser, useAuth } from "@clerk/clerk-react";
 import { addUser } from "../../redux/actions";
+import { Loader } from "../../components/Loader/Loader";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = ({ toggle }) => {
-	const dispatch = useDispatch();
 
-	const { isSignedIn } = useUser();
-	
-	const handleCloseModal = () => {
-		closeModal();
-	};
-	
-	const { accessToken } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
-	const user =  useUser();
-	console.log(user);
-	
-	if(isSignedIn) {
-		const userDestructuringprueba = {
-			name: user.user.fullName, // ? user.user.fullName : null , 
-			mail: user.user.primaryEmailAddress.emailAddress,// ?  user.user.primaryEmailAddress.emailAddress : null,
-			password: "12345678"
-		};
-		dispatch(addUser(userDestructuringprueba));
-	};
- 
-	const [showCarousel, setShowCarousel] = useState(true);
-	const [searchName, setSearchName] = useState("");
+  const { isSignedIn } = useUser();
 
-	useEffect(() => {
-		dispatch(getProducts());
-		window.scrollTo(0, 0);
-	}, [dispatch]);
-	
-	const handleSearch = (name) => {
-		
-		setSearchName(name);
-		if (name.trim() === "") {
-			setShowCarousel(true);
-			dispatch(getProducts());
-		} else {
-			setShowCarousel(false);
-			dispatch(getProductName(name));
-		}
-	};
+  const handleCloseModal = () => {
+    closeModal();
+  };
 
-	return (
-		<div>
-			{toggle && <Carousel />}
-			<Order />
-			<Filter />
-			<ProductsContainer />
-		</div>
-	);
+  const { accessToken } = useAuth();
+
+  const user = useUser();
+
+  if (isSignedIn) {
+    const userDestructuringprueba = {
+      name: user.user.fullName, // ? user.user.fullName : null ,
+      mail: user.user.primaryEmailAddress.emailAddress, // ?  user.user.primaryEmailAddress.emailAddress : null,
+    };
+    dispatch(addUser(userDestructuringprueba));
+  }
+
+  const [showCarousel, setShowCarousel] = useState(true);
+  const [searchName, setSearchName] = useState("");
+
+  useEffect(() => {
+    const loadData = async () => {
+      // Simulación de tiempo de carga
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      dispatch(getProducts());
+      window.scrollTo(0, 0);
+      setIsLoading(false); // Finaliza la carga
+    };
+
+    loadData();
+  }, [dispatch]);
+  
+  const handleSearch = (name) => {
+    setSearchName(name);
+    if (name.trim() === "") {
+      setShowCarousel(true);
+      dispatch(getProducts());
+    } else {
+      setShowCarousel(false);
+      dispatch(getProductName(name));
+    }
+  };
+
+  return (
+    <div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {toggle && <Carousel />}
+          <Order />
+          <Filter />
+          <ProductsContainer />
+          <ToastContainer />
+        </>
+      )}
+    </div>
+  );
+
 };
 
 export default Home;
