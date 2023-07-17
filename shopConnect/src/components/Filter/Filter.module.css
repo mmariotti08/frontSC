@@ -1,55 +1,65 @@
 .container {
-    display:flex;
-    height: 15vh;
-    overflow: hidden;
-    margin-bottom: 15px;
-    /*background-color: rgb(59, 58, 58);*/
-    justify-content: center;
-  }
+  display:inline-table;
+ 
+  height: 15vh;
+  overflow: hidden;
+  margin-bottom: 15px;
+  /*background-color: rgb(59, 58, 58);*/
 
-  .form {
-    width: 700px;
-    background-color: #ca1111;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
+  
+}
+
+.form {
+  width: 700px;
+  background-color: #ca1111;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 
 /*.letras{
-    color: white;
-    font-family: 'Russo One', sans-serif;
-    background-color: #ca11116c;
-    border: none;
+  color: white;
+  font-family: 'Russo One', sans-serif;
+  background-color: #ca11116c;
+  border: none;
 }*/
 
 .select{
-   margin-left: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-   align-items: center;
-    padding: 5px 10px 5px 10px;
- 
-    color: white;
-    background-color:#ca1111;;
-    font-size: 15px;
-    font-family: 'Russo One', sans-serif;
-    }
+ margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+ align-items: center;
+  padding: 5px 10px 5px 10px;
 
-    .select:hover {
-        border-color: #070707;
-      }
-      
-    .label{
-        font-size: 15px;
-        font-family: 'Russo One', sans-serif;
-        color: white;
-        margin-right: 12px;
-       
-    }
+  color: white;
+  background-color:#ca1111;;
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  }
 
-    .button{
-        margin-left: 15px;
-        font-size: 15px;
-        font-family: 'Russo One', sans-serif;
-        color: #ca1111;
+  .select:hover {
+      border-color: #070707;
     }
+    
+  .label{
+      font-size: 15px;
+      font-family: 'Russo One', sans-serif;
+      color: white;
+      margin-right: 12px;
+     
+  }
+
+  .button{
+      margin-left: 15px;
+      font-size: 15px;
+      font-family: 'Russo One', sans-serif;
+      color: #ca1111;
+  }
+
+  .information{
+color: black;
+ margin-top: 2%;
+ border-radius: 8px;
+ font-family: 'Russo One', sans-serif;
+height: 40px;
+  }

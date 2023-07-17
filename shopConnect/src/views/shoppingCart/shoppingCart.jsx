@@ -1,8 +1,14 @@
 import style from './shoppingCart.module.css';
-import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { removeFromCart } from '../../redux/actions';
 
-const ShoppingCart = ({ cart }) => {
+
+const ShoppingCart = ({cart}) => {
+  const dispatch = useDispatch();
+  const sneaker = useSelector((state) => state.detail);
+  const [selectedSize, setSelectedSize] = useState(true);
+  
   const totalPrice = cart.reduce((total, item) => total + item.retail_price_cents, 0);
 
   const formatPrice = price => {
@@ -13,6 +19,23 @@ const ShoppingCart = ({ cart }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  
+  const handleRemove = () => {
+    if (selectedSize) {
+      return;
+    }
+    const selectedProduct = {
+      ...sneaker,
+      size: selectedSize,
+    };
+    const isProductInCart = cart.some(
+      (item) => item.id === selectedProduct.id && item.size === selectedProduct.size);
+  
+    if (isProductInCart) {
+      dispatch(removeFromCart(selectedProduct.id, selectedProduct.size));
+  }
+}
 
   return (
     <div className={style.containerGeneral}>
@@ -25,16 +48,22 @@ const ShoppingCart = ({ cart }) => {
             {cart.map(item => (
               <div key={item.id} className={style.product}>
                 <img src={item.main_picture_url} alt={item.main_picture_url} className={style.image} />
-                <h2>{item.name}</h2>
-                <p>{formatPrice(item.retail_price_cents)}</p>
-                <h3>talla</h3>
-                <p>{item.size}</p>
+                <h3 className={style.name}>{item.name}</h3>
+                <h3 className={style.price}>{formatPrice(item.retail_price_cents)}</h3>
+                <h3 className={style.size}>Size</h3>
+                <h3 className={style.sizeI}>{item.size}</h3>
+                <button
+              onClick={()=> handleRemove(item.productId, item.size)}
+              className={style.removeC}
+            >REMOVE CART</button>
+            
               </div>
             ))}
           </>
         )}
       </div>
-      <h3 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h3>
+      <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
+      <button className={style.finalize}>Finalize Purchase</button>
     </div>
   );
 };

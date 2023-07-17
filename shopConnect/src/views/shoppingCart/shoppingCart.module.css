@@ -1,35 +1,110 @@
-.containerGeneral{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 35px;
+.titule{
+    font-size: 30px;
+    margin-top: 12%;
+    font-family: 'Russo One', sans-serif;
 }
 
 .container{
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-
+    background-color: rgb(238, 238, 247);
+    display: inline-block;
+    width: 90%; 
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 8px;
 }
-
-.titule{
-    margin-top: 200px;
-    font-family: 'Russo One', sans-serif;
-    color: rgb(54, 54, 54);
+.product{
+    box-sizing: border-box;
+    color: black;
+    /*display: inline-block;*/
+    background-color: rgba(210, 208, 211, 0.726);
+    border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.195);
+    transition: transform 0.3s ease;
+    display: grid;
+    grid-template-rows: 80px 80px;
+    grid-template-columns: 1fr 1fr 0.8fr 0.8fr 0.8fr 0.8fr;
+ 
 }
-.carta{
-    width: 10px;
-    height: 10px;
-}
-
 .mensaje{
+    font-size: 30px;
+  
     font-family: 'Russo One', sans-serif;
-    color: rgb(54, 54, 54);
+}
+.divClear{
+    margin-top: 2%;
+    
+}
+.buttonClear{
+    font-size: 20px;
+    font-family: 'Russo One', sans-serif;
+    color: #ca1111;
+    display: flex;
+    background-color: rgba(166, 165, 165, 0.466);
+    width: 200px;
+    margin: 30px;
+    justify-content: center;
+    border-radius: 40px;
+    border: 2px solid  #ca1111;
+}
+
+
+.removeC{
+    width: 130px;
+    height: 30px;
+    border: 2px solid  #ca1111;
+    font-size: 13px;
+    font-family: 'Russo One', sans-serif;
+    color: #ca1111;
+    background-color: rgba(166, 165, 165, 0.466);
+    margin-top: 30%;
+}
+
+.image{
+    width: 180px;
+    height: 180px;
+    border-radius: 8px 8px 8px 8px;   
+}
+
+.name{
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+    margin-top: 15%;
+}
+
+.price{
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+    margin-top: 30%;
+}
+
+.size{
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+    margin-top: 30%;
+}
+.sizeI{
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+    margin-top: 30%;
 }
 
 .total{
     font-family: 'Russo One', sans-serif;
-    color: rgb(54, 54, 54);
+    text-align: end;
+    margin-right: 10%;
+}
+
+.finalize{
+    font-size: 20px;
+    font-family: 'Russo One', sans-serif;
+    color: #ca1111;
+    display: flex;
+    background-color: rgba(166, 165, 165, 0.466);
+    width: 300px;
+    margin: 30px;
+    justify-content: center;
+    border-radius: 40px;
+    border: 2px solid  #ca1111;
+  
+
 }

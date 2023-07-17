@@ -5,7 +5,7 @@ import style from "./searchBar.module.css";
 import { FaSearch } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-const SearchBar = ({toggleCarousel}) => {
+const SearchBar = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
 
@@ -41,9 +41,7 @@ const SearchBar = ({toggleCarousel}) => {
       );
       return;
     }
-    if (name.length > 0){
-      toggleCarousel(false)
-    }
+   
   };
 
   useEffect(() => {

@@ -1,21 +1,28 @@
+import axios from 'axios'
 import { useState } from "react";
 import { filterByAll, getProducts } from "../../redux/actions";
 import style from "./Filter.module.css"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Filter = () => {
     const dispatch = useDispatch();
     const [brand, setBrand] = useState('');
     const [category, setCategory] = useState('');
     const [gender, setGender] = useState('');
+    const products = useSelector(state => state.products);
        
     
-      const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
-     dispatch(filterByAll(brand, category, gender ));
+      try {
+        let response = await axios.get(`fill?brand=${brand}&category=${category}&gender=${gender}`)
+        dispatch(filterByAll(response));
+      } catch (error) {
+        dispatch(filterByAll('null'))
+      }
+    };
            
                  
-    };
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -65,6 +72,9 @@ const Filter = () => {
       <button className={style.button} onClick={(event) => handleClick(event)}>Reset Products
       </button>
         </form>
+        <div  className={style.information}>
+        {products.length === 0 ? <h2>Information not found</h2> : <div></div>}
+        </div>
         </div>
     )
 }
