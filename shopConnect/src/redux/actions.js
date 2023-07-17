@@ -168,7 +168,7 @@ export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
 
-			await axios.put(`user/${id}`, { id, dataUser });
+			await axios.put(`user/${id}`, dataUser);
 
 			return;
 		} catch (error) {
@@ -178,7 +178,7 @@ export const putUser = (id, dataUser) => {
 };
 
 export const updateUser = (id, address)=>{
-	console.log("acaaaaa",address, id);
+	
 	return async function(dispatch){
 		try {
 			await axios.put(`user/${id}`, address)

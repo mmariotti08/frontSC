@@ -37,8 +37,8 @@ import Addreses from "./components/Addreses/Addreses";
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 // import Landing from "./views/landing/landing";
 // axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
-axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
-// axios.defaults.baseURL='http://localhost:3001/'
+// axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
+axios.defaults.baseURL='http://localhost:3001/'
 
 
 function App() {
