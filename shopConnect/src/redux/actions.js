@@ -50,7 +50,7 @@ export const getProductName = (name) => {
 export const addUser = (userData) => {
 
   return async function (dispatch) {
-    console.log(userData);
+    console.log("ssdfsdfsdf",userData);
     try {
       let response = await axios.post(`user`, userData);
       return dispatch({ type: ADD_USER, payload: response.data });
@@ -168,7 +168,7 @@ export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
 
-			await axios.put(`products/${id}`, { id, product });
+			await axios.put(`user/${id}`, { id, dataUser });
 
 			return;
 		} catch (error) {
@@ -178,7 +178,7 @@ export const putUser = (id, dataUser) => {
 };
 
 export const updateUser = (id, address)=>{
-	console.log(address);
+	console.log("acaaaaa",address, id);
 	return async function(dispatch){
 		try {
 			await axios.put(`user/${id}`, address)

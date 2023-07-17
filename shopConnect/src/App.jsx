@@ -37,8 +37,8 @@ import Addreses from "./components/Addreses/Addreses";
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 // import Landing from "./views/landing/landing";
 // axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
-axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
-// axios.defaults.baseURL='http://localhost:3001/'
+// axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
+axios.defaults.baseURL='http://localhost:3001/'
 
 
 function App() {
@@ -78,7 +78,7 @@ function App() {
         <Route path="/cart" element={<ShoppingCart/>}/>
         {/* <Route path="/landing" element={<Landing/>}/> */}
         <Route path="/favorites" element={<Favorites/>}/>
-        <Route path="/address" element={<Addreses/>} />
+        <Route path="/addAddress" element={<Addreses/>} />
         <Route path="/admin" element={<Admin />} />
         <Route
             path="/sign-up/*"

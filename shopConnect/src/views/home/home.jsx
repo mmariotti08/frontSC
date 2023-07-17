@@ -28,8 +28,9 @@ const Home = ({ toggle }) => {
 
   if (isSignedIn) {
     const userDestructuringprueba = {
-      name: user.user.fullName, // ? user.user.fullName : null ,
-      mail: user.user.primaryEmailAddress.emailAddress, // ?  user.user.primaryEmailAddress.emailAddress : null,
+      name: user.user.fullName, 
+      mail: user.user.primaryEmailAddress.emailAddress, 
+      password: '12345678'
     };
     dispatch(addUser(userDestructuringprueba));
   }
