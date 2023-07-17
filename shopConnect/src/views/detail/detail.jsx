@@ -5,14 +5,10 @@ import { useEffect, useState } from "react";
 import styles from "./detail.module.css";
 import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
-
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 import Addreses from "../../components/Addreses/Addreses";
 import { Route,  Routes } from "react-router-dom";
 import BuyButton from "../../components/BuyButton/BuyButton";
-
-
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -127,7 +123,7 @@ const Detail = () => {
   
   
 
-<
+
   return (
     <div className={styles.contDetail}>
       <h1 className={styles.nameh3}>{sneaker.name}</h1>
