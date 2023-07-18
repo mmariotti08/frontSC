@@ -1,3 +1,17 @@
 .buyB{
-    background-color: red;
+    display: flex;
+    font-size: 30px;
+    font-family: 'Russo One', sans-serif;
+    color: rgb(226, 226, 226);
+    display: flex;
+    background-color: #ca1111;
+    width: 300px;
+    height: 80px;
+    margin: 30px;
+    justify-content: center;
+    border-radius: 40px;
+    border: 2px solid  #000000;
+    align-items: center;
+  
+    
 }
