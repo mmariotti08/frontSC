@@ -16,11 +16,12 @@ import {
   GET_PRODUCT_DRAFT,
   ADD_USER,
   GET_USERS,
-  GET_USERS_DRAFT
-
+  GET_USERS_DRAFT,
+  CREATE_ORDER
 } from "./actions-type";
 
 const initialState = {
+  orders: [],
   users: [],
   products: [],
   copyProducts: [],
@@ -39,7 +40,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USERS:
-      return{
+      return {
         ...state,
         users: action.payload,
       }
@@ -49,6 +50,12 @@ const reducer = (state = initialState, action) => {
         products: action.payload,
         copyProducts: action.payload,
       };
+    case CREATE_ORDER:
+
+      return {
+        ...state,
+        orders: action.payload,
+      }
     case GET_PRODUCT_NAME:
       return {
         ...state,
@@ -75,14 +82,14 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case REMOVE_FROM_CART:{
+    case REMOVE_FROM_CART: {
       const updatedCart = state.cart.filter(
         (item) =>
           item.id !== action.payload.productId ||
           item.size !== action.payload.size
       );
 
-      localStorage.setItem("cart", JSON.stringify(updatedCart)); 
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
       return {
         ...state,
         cart: updatedCart,

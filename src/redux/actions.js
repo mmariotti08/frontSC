@@ -19,7 +19,8 @@ import {
   GET_PRODUCT_DRAFT,
   FILTER_BY_ALL,
   GET_USERS,
-  GET_USERS_DRAFT
+  GET_USERS_DRAFT,
+  CREATE_ORDER
 } from "./actions-type";
 
 
@@ -46,6 +47,18 @@ export const getProductName = (name) => {
     }
   };
 };
+
+export const createOrder = (data) => {
+	return async function(dispatch) {
+		console.log(data)
+		try {
+			let response = await axios.post(`http://localhost:3001/payments`, data);
+			return dispatch({type: CREATE_ORDER, payload: response.data});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+  };
 
 export const addUser = (userData) => {
 

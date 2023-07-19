@@ -3,11 +3,51 @@ import style from './shoppingCart.module.css';
 import { connect, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { removeFromCart } from '../../redux/actions';
-
+import { Link } from 'react-router-dom';
+import { createOrder } from '../../redux/actions';
 
 
 const ShoppingCart = ({cart}) => {
   const dispatch = useDispatch();
+
+  const checkout = async () => {
+    const cartDestructuring = cart.map((item) => ({
+      idPrice: item.idPrice,
+      quantity: 1,
+      currency: "usd",
+    }));
+
+
+    try {
+      
+      const response = await fetch("http://localhost:3001/payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items: cartDestructuring }),
+      });
+      dispatch(createOrder(cartDestructuring))
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.url);
+        if (data.url) {
+          window.location.assign(data.url);
+        }
+      } else {
+        console.error("Error en la solicitud fetch:", response.status);
+      }
+    } catch (error) {
+      console.error("Error en la solicitud fetch:", error);
+    }
+  };
+
+
+
+
+
+
   const [, setCart] = useState([])
   
   const totalPrice = cart.reduce((total, item) => total + item.retail_price_cents, 0);
@@ -29,6 +69,8 @@ const ShoppingCart = ({cart}) => {
     }
 
   return (
+    <nav className={style.containerGeneral} >
+
     <div className={style.containerGeneral}>
 
       <h1 className={style.titule}>Shopping Cart</h1>
@@ -57,7 +99,35 @@ const ShoppingCart = ({cart}) => {
       </div>
       <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
       <button className={style.finalize}>Finalize Purchase</button>
+
+
+
+      <div className="modal-footer">
+          {cart.length > 0 ? (
+            <Link onClick={checkout} className={style.buyNow}>
+              Buy Now
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          )}
+        </div>
+      </div>
+      <div>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header bg-dark text-white"></div>
+          </div>
+        </div>
+      
+
     </div>
+    </nav>
   );
 };
 
