@@ -13,7 +13,7 @@ import { useAuth } from "@clerk/clerk-react";
 
 const NavBar = ({ toggleCarousel }) => {
   const { isSignedIn } = useUser();
-
+  const { signOut } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -76,7 +76,20 @@ const NavBar = ({ toggleCarousel }) => {
       </p>
     );
   };
+  const handleLogout = async () => {
+    await signOut();
+  };
 
+  useEffect(() => {
+    // Escuchar cambios en el estado de autenticación
+    if (isSignedIn) {
+      const unlisten = () => {
+        // Si el usuario cierra sesión, redirigir al Home
+        window.location.href = "/";
+      };
+      return unlisten;
+    }
+  }, [isSignedIn]);
   return (
     <>
       <div className={style.navBar}>
@@ -99,7 +112,7 @@ const NavBar = ({ toggleCarousel }) => {
 
           {isSignedIn ? (
             <div className={style.UserButton}>
-              <UserButton />
+              <UserButton onClick={handleLogout}/>
             </div>
           ) : (
             <Link to="/login" className={style.navLink} onClick={openModal}>
