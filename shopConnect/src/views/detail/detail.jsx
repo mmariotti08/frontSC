@@ -6,7 +6,7 @@ import styles from './detail.module.css'
 import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
-
+import { Link } from "react-router-dom";
 
 
 const Detail = () => {
@@ -85,7 +85,10 @@ const Detail = () => {
                         <button onClick={handleFav} className={`${fav.some(item => item.id === sneaker.id) ? styles.Nfav : styles.fav}`}>
                             {fav.some(item => item.id === sneaker.id) ? <BsBookmarksFill/> : <BsBookmarks/>}
                         </button>
+                        
                     </div>
+                            <Link className={styles.buyNow}>Buy Now 
+                            </Link>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT } from './actions-type';
+import { CREATE_ORDER, GET_PRODUCTS, GET_DETAIL, REMOVE_FROM_CART, ADD_TO_CART, ADD_TO_FAV, REMOVE_FROM_FAV, ADD_USER, GET_PRODUCT_NAME, ORDER_BY_NAME, ORDER_BY_PRICE, PAGINATION,GET_APPROVAL_ADMIN, FILER_BY_CATEGORY, FILTER_BY_GENDER, FILTER_BRAND_NAME, GET_STOCK, GET_STOCK_BY_ID, GET_PRODUCT_DRAFT } from './actions-type';
 
 export const getProducts = () => {
 	return async function(dispatch) {
@@ -27,10 +27,22 @@ export const getProductName = (name) => {
 
 export const addUser = (userData) => {
 	return async function(dispatch) {
-		console.log(userData)
 		try {
 			let response = await axios.post(`http://localhost:3001/user`, userData);
 			return dispatch({type: ADD_USER, payload: response.data});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+  };
+  
+
+  export const createOrder = (data) => {
+	return async function(dispatch) {
+		console.log(data)
+		try {
+			let response = await axios.post(`http://localhost:3001/payments`, data);
+			return dispatch({type: CREATE_ORDER, payload: response.data});
 		} catch (error) {
 			console.error(error);
 		}

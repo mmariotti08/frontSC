@@ -17,11 +17,13 @@ import {
   GET_STOCK,
   GET_STOCK_BY_ID,
   GET_PRODUCT_DRAFT,
-  ADD_USER
+  ADD_USER,
+  CREATE_ORDER
 } from "./actions-type";
 
 
 const initialState = {
+  orders: [],
   users:[],
   products: [],
   copyProducts: [],
@@ -55,7 +57,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       }
+      case CREATE_ORDER:
 
+      return {
+        ...state,
+        orders: action.payload,
+      }
 
     case GET_DETAIL:
       return {

@@ -8,6 +8,7 @@ import { getProducts, getProductName } from "../../redux/actions";
 import { useUser, useAuth } from "@clerk/clerk-react";
 import { addUser } from "../../redux/actions";
 
+
 const Home = ({ toggle }) => {
 	const dispatch = useDispatch();
 

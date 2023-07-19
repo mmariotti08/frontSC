@@ -1,4 +1,4 @@
-.ReactModal__Overlay {
+/* .ReactModal__Overlay {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,10 +12,8 @@
     border: none;
     outline: none;
     padding: 20px;
-    max-width: 450px; /* Ajusta el ancho máximo según tus necesidades */
-    max-height: 600px; /* Ajusta la altura máxima según tus necesidades */
-    width: 90%; /* Ajusta el ancho según tus necesidades */
-    height: 90%; /* Ajusta la altura según tus necesidades */
-    margin: auto; /* Agrega esta línea para centrar horizontalmente */
-    /* Resto de estilos... */
-  }
+    max-width: 450px; 
+    max-height: 600px; 
+    width: 90%; 
+    height: 90%; 
+  } */
