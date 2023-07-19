@@ -1,18 +1,17 @@
 
-import { useDispatch, useSelector } from "react-redux";
-import { Paginate } from "../../../paginate/paginate";
 import styles from "./All Products.module.css";
 import { useEffect, useState } from "react";
-import { getProducts } from "../../../../redux/actions";
-import { putProducto } from "../../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { Paginate } from "../../../paginate/paginate";
+import { getProducts, putProducto } from "../../../../redux/actions";
 
-const All_Products = ({ option, setOption, setProductId }) => {
+const All_Products = ({ setOption, setProductId }) => {
     const dispatch = useDispatch();
 
     const formatPrice = (price) => {
         const formattedPrice = (price / 100).toFixed(2);
         return `${formattedPrice}`;
-      };
+    };
 
     useEffect(() => {
         dispatch(getProducts());
@@ -70,51 +69,56 @@ const All_Products = ({ option, setOption, setProductId }) => {
                 {/* <div className={styles.container_button}>
                     {options.menu1.map(c => (<button key={c} onClick={() => handleClick(c)}>{c}</button>))}
                 </div> */}
-                <button onClick={() => handleClick("Add new")}>Add new</button>
+                <button onClick={() => handleClick("Add product")}>Add product</button>
             </div>
             <div>
-                <table>
-                    <thead className={styles.menu2}>
-                        <tr>
-                            {options.menu2.map((c, index) => (<th key={index}>{c}</th>))}
-                        </tr>
-                    </thead>
-                    <tbody className={styles.table_body}>
-                        {products
-                            .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
-                            ?.map((c, index) => (
-                                <tr
-                                    key={`${c.id}-${index}`}
-                                    className={index % 2 === 0 ? styles.evenRow : null}
-                                    onMouseEnter={() => handleMouseEnter(c.id)}
-                                    onMouseLeave={handleMouseLeave}
-                                    >
-                                    <td>{c.id}</td>
-                                    <td><img src={c.main_picture_url} alt="" /></td>
-                                    <td>
-                                        {c.name}
-                                        {showMenu && currentProductId === c.id && (
-                                        <div className={styles.menu3}>
-                                            <ul>
-                                                {options.menu3.map(option => (
-                                                    <li
-                                                        key={`menu3-${option}`}
-                                                        // CONFIGURAR RENDERIZADO V V V
-                                                        onClick={() => handleClick(option, c.id)}
-                                                        >
-                                                        <p>{option}</p>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>)}
-                                    </td>
-                                    <td className={counterStock(c.Stocks).includes('Not available') ? styles.Not_Available : styles.Available}>{counterStock(c.Stocks)}</td>
-                                    <td>${formatPrice(c.retail_price_cents)}</td>
-                                    <td>{c.category.join(", ")}</td>
-                                </tr>
-                        ))}
-                    </tbody>
-                </table>
+                {!products.length
+                    ? <div className={styles.container_no_banned}>
+                        <h3>There are no available products.</h3>
+                    </div>
+                    :<table>
+                        <thead className={styles.menu2}>
+                            <tr>
+                                {options.menu2.map((c, index) => (<th key={index}>{c}</th>))}
+                            </tr>
+                        </thead>
+                        <tbody className={styles.table_body}>
+                            {products
+                                .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
+                                ?.map((c, index) => (
+                                    <tr
+                                        key={`${c.id}-${index}`}
+                                        className={index % 2 === 0 ? styles.evenRow : null}
+                                        onMouseEnter={() => handleMouseEnter(c.id)}
+                                        onMouseLeave={handleMouseLeave}
+                                        >
+                                        <td>{c.id}</td>
+                                        <td><img src={c.main_picture_url} alt="" /></td>
+                                        <td>
+                                            {c.name}
+                                            {showMenu && currentProductId === c.id && (
+                                            <div className={styles.menu3}>
+                                                <ul>
+                                                    {options.menu3.map(option => (
+                                                        <li
+                                                            key={`menu3-${option}`}
+                                                            // CONFIGURAR RENDERIZADO V V V
+                                                            onClick={() => handleClick(option, c.id)}
+                                                            >
+                                                            <p>{option}</p>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>)}
+                                        </td>
+                                        <td className={counterStock(c.Stocks).includes('Not available') ? styles.Not_Available : styles.Available}>{counterStock(c.Stocks)}</td>
+                                        <td>${formatPrice(c.retail_price_cents)}</td>
+                                        <td>{c.category.join(", ")}</td>
+                                    </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                }
             </div>
             {products.length > perPage && <Paginate max={max}/>}
         </div>

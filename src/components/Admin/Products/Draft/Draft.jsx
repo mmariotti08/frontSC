@@ -53,6 +53,11 @@ const Draft = ({ option, setOption, setProductId }) => {
     const page = useSelector((state) => state.page);
     const perPage = 10;
     const max = Math.ceil(products.length / perPage);
+
+    const formatPrice = (price) => {
+        const formattedPrice = (price / 100).toFixed(2);
+        return `${formattedPrice}`;
+    };
     
     return (
         <div className={styles.container}>
@@ -60,48 +65,53 @@ const Draft = ({ option, setOption, setProductId }) => {
                 <h1>Product Draft</h1>
             </div>
             <div>
-                <table>
-                    <thead>
-                        <tr>
-                            {options.label_head_table.map((c, index) => (<th key={index}>{c}</th>))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {products
-                        .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
-                        ?.map((c, index) => (
-                            <tr
-                                key={`${c.id}-${index}`}
-                                className={index % 2 === 0 ? styles.evenRow : null}
-                                onMouseEnter={() => handleMouseEnter(c.id)}
-                                onMouseLeave={handleMouseLeave}
-                                >
-                                <td>{c.id}</td>
-                                <td><img src={c.main_picture_url} alt="" /></td>
-                                <td>
-                                    {c.name}
-                                    {showMenu && currentProductId === c.id && (
-                                    <div className={styles.menu_options}>
-                                        <ul>
-                                            {options.menu_options.map(option => (
-                                                <li
-                                                    key={`menu_options-${option}`}
-                                                    // CONFIGURAR RENDERIZADO V V V
-                                                    onClick={() => handleClick(option, c.id)}
-                                                    >
-                                                    <p>{option}</p>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>)}
-                                </td>
-                                {/* <td className={counterStock(c.Stocks).includes('Not available') ? styles.Not_Available : styles.Available}>{counterStock(c.Stocks)}</td> */}
-                                <td>${c.retail_price_cents}</td>
-                                <td>{c.category.join(", ")}</td>
+                {!products.length
+                    ? <div className={styles.container_no_banned}>
+                        <h3>There are no products in draft.</h3>
+                    </div>
+                    :<table>
+                        <thead>
+                            <tr>
+                                {options.label_head_table.map((c, index) => (<th key={index}>{c}</th>))}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {products
+                            .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
+                            ?.map((c, index) => (
+                                <tr
+                                    key={`${c.id}-${index}`}
+                                    className={index % 2 === 0 ? styles.evenRow : null}
+                                    onMouseEnter={() => handleMouseEnter(c.id)}
+                                    onMouseLeave={handleMouseLeave}
+                                    >
+                                    <td>{c.id}</td>
+                                    <td><img src={c.main_picture_url} alt="" /></td>
+                                    <td>
+                                        {c.name}
+                                        {showMenu && currentProductId === c.id && (
+                                        <div className={styles.menu_options}>
+                                            <ul>
+                                                {options.menu_options.map(option => (
+                                                    <li
+                                                        key={`menu_options-${option}`}
+                                                        // CONFIGURAR RENDERIZADO V V V
+                                                        onClick={() => handleClick(option, c.id)}
+                                                        >
+                                                        <p>{option}</p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>)}
+                                    </td>
+                                    {/* <td className={counterStock(c.Stocks).includes('Not available') ? styles.Not_Available : styles.Available}>{counterStock(c.Stocks)}</td> */}
+                                    <td>${formatPrice(c.retail_price_cents)}</td>
+                                    <td>{c.category.join(", ")}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                }
             </div>
             {products.length > perPage && <Paginate max={max}/>}
         </div>

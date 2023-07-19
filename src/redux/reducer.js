@@ -16,7 +16,8 @@ import {
   GET_PRODUCT_DRAFT,
   ADD_USER,
   GET_USERS,
-  GET_USERS_DRAFT
+  GET_USERS_DRAFT,
+  GET_ALL_ORDERS
 
 } from "./actions-type";
 
@@ -34,6 +35,7 @@ const initialState = {
   allUsers: [],
   users_draft: [],
   fav: JSON.parse(localStorage.getItem("fav")) || [],
+  all_Orders: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -148,6 +150,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         users_draft: action.payload
+      };
+    case GET_ALL_ORDERS:
+      return {
+        ...state,
+        all_Orders: action.payload
       };
 
     case ORDER_BY_NAME: {

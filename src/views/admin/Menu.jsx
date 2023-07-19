@@ -7,15 +7,16 @@ import { Stock } from "../../components/Admin/Products/Stock/Stock";
 import { Draft } from "../../components/Admin/Products/Draft/Draft";
 import { All_Users } from "../../components/Admin/Users/All Users/All Users";
 import { User_Draft } from "../../components/Admin/Users/User Draft/User Draft";
+import { All_Orders } from "../../components/Admin/Orders/All Orders/All Orders";
 import styles from "./Menu.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { paginate } from "../../redux/actions";
 
 const Menu = () => {
     const menu = [
-        { label: "Orders" },
-        { label: "Products", submenu: ["All products", "Add new", "Categories", "Product draft"] },
-        { label: "Users", submenu: ["All users", "User draft"] }
+        { label: "Orders", submenu: ["All orders"] },
+        { label: "Products", submenu: ["All products", "Add product", "Categories", "Draft"] },
+        { label: "Users", submenu: ["All users", "Banned"] }
     ];
 
     const [option, setOption] = useState("All products");
@@ -24,13 +25,14 @@ const Menu = () => {
 
     const componentMap = {
         "All products": All_Products,
-        "Add new": Add_Product,
+        "Add product": Add_Product,
         "Categories": Categories,
         "Stock": Stock,
-        "Product draft": Draft,
+        "Draft": Draft,
         "Edit": Edit_Product,
         "All users": All_Users,
-        "User draft": User_Draft,
+        "Banned": User_Draft,
+        "All orders": All_Orders,
     };
 
     const ComponentToRender = componentMap[option];

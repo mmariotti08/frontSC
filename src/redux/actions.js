@@ -19,7 +19,8 @@ import {
   GET_PRODUCT_DRAFT,
   FILTER_BY_ALL,
   GET_USERS,
-  GET_USERS_DRAFT
+  GET_USERS_DRAFT,
+  GET_ALL_ORDERS
 } from "./actions-type";
 
 
@@ -247,6 +248,17 @@ export const getUsersDraft = () => {
 		try {
 			const response = await axios.get(`user/draft`);
 			return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getAllOrders = () => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`order`);
+			return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
 		};

@@ -138,7 +138,7 @@ const Add_Product = () => {
     return (
         <div className={styles.container}>
             <div>
-                <h1>Add new product</h1>
+                <h1>Add Product</h1>
             </div>
             <div className={styles.containerform}>
                 {!formOn

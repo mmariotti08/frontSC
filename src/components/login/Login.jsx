@@ -14,7 +14,6 @@ const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     closeModal();
-    
   };
 
   const user = useUser();
