@@ -1,27 +1,15 @@
 .container{
-
-    border: none;
-    margin-bottom: 30px;
-
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 10%;
+    
+    margin-bottom: 10px;
+    display:inline-table;
+    margin-top: 2%;
 }
-
-/*.letras{
-    color: white;
-    font-family: 'Russo One', sans-serif;
-    background-color: #ca11116c;
-    border: none;
-}*/
 
 .selectBox{
     margin-bottom: 10px;
     border-radius: 4px;
-    align-items: center;
     padding: 5px 10px 5px 10px;
-    width: 150%;
+    width: 85%;
     color: white;
     background-color:#ca1111;;
     font-size: 15px;
