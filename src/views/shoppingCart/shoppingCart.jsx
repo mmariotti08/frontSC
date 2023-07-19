@@ -1,25 +1,21 @@
+import style from "./shoppingCart.module.css";
+import { connect, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { removeFromCart } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import { createOrder } from "../../redux/actions";
 
-import style from './shoppingCart.module.css';
-import { connect, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { removeFromCart } from '../../redux/actions';
-import { Link } from 'react-router-dom';
-import { createOrder } from '../../redux/actions';
-
-
-const ShoppingCart = ({cart}) => {
+const ShoppingCart = ({ cart }) => {
   const dispatch = useDispatch();
-
+  
   const checkout = async () => {
     const cartDestructuring = cart.map((item) => ({
       idPrice: item.idPrice,
       quantity: 1,
-      currency: "usd",
     }));
-
-
+    console.log(cartDestructuring);
+    
     try {
-      
       const response = await fetch("http://localhost:3001/payments", {
         method: "POST",
         headers: {
@@ -27,7 +23,7 @@ const ShoppingCart = ({cart}) => {
         },
         body: JSON.stringify({ items: cartDestructuring }),
       });
-      dispatch(createOrder(cartDestructuring))
+      
 
       if (response.ok) {
         const data = await response.json();
@@ -42,16 +38,14 @@ const ShoppingCart = ({cart}) => {
       console.error("Error en la solicitud fetch:", error);
     }
   };
-
-
-
-
-
-
-  const [, setCart] = useState([])
   
-  const totalPrice = cart.reduce((total, item) => total + item.retail_price_cents, 0);
-  const formatPrice = price => {
+  const [, setCart] = useState([]);
+
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.retail_price_cents,
+    0
+  );
+  const formatPrice = (price) => {
     const formattedPrice = (price / 100).toFixed(2);
     return `$${formattedPrice}`;
   };
@@ -60,59 +54,57 @@ const ShoppingCart = ({cart}) => {
     window.scrollTo(0, 0);
   }, []);
 
-  
   const handleRemove = (productId, size) => {
     const isProductInCart = cart.filter(
-      (item) => item.id !== productId || item.size !== size);
-      setCart(isProductInCart) 
-      dispatch(removeFromCart(productId, size));
-    }
+      (item) => item.id !== productId || item.size !== size
+    );
+    setCart(isProductInCart);
+    dispatch(removeFromCart(productId, size));
+  };
 
   return (
-    <nav className={style.containerGeneral} >
-
-    <div className={style.containerGeneral}>
-
-      <h1 className={style.titule}>Shopping Cart</h1>
-      <div className={style.container}>
-        {cart.length === 0 ? (
-          <p className={style.mensaje}>Add products to your cart</p>
-        ) : (
-          <>
-            {cart.map(( item) => (
-              <div key={item.id} className={style.product}>
-                <img src={item.main_picture_url} alt={item.main_picture_url} className={style.image} />
-                <h3 className={style.name}>{item.name}</h3>
-                <h3 className={style.price}>{formatPrice(item.retail_price_cents)}</h3>
-                <h3 className={style.size}>Size</h3>
-                <h3 className={style.sizeI}>{item.size}</h3>
-                <button
-              onClick={()=> handleRemove(item.id, item.size)}
-              className={style.removeC}
-            >REMOVE CART</button>
-            
-              </div>
-            ))}
-          </>
-        )}
-
-      </div>
-      <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
-      <button className={style.finalize}>Finalize Purchase</button>
-
-
-
-      <div className="modal-footer">
+    <nav className={style.containerGeneral}>
+      <div className={style.containerGeneral}>
+        <h1 className={style.titule}>Shopping Cart</h1>
+        <div className={style.container}>
+          {cart.length === 0 ? (
+            <p className={style.mensaje}>Add products to your cart</p>
+          ) : (
+            <>
+              {cart.map((item) => (
+                <div key={item.id} className={style.product}>
+                  <img
+                    src={item.main_picture_url}
+                    alt={item.main_picture_url}
+                    className={style.image}
+                  />
+                  <h3 className={style.name}>{item.name}</h3>
+                  <h3 className={style.price}>
+                    {formatPrice(item.retail_price_cents)}
+                  </h3>
+                  <h3 className={style.size}>Size</h3>
+                  <h3 className={style.sizeI}>{item.size}</h3>
+                  <button
+                    onClick={() => handleRemove(item.id, item.size)}
+                    className={style.removeC}>
+                    REMOVE CART
+                  </button>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+        <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
+        <div className="modal-footer">
           {cart.length > 0 ? (
-            <Link onClick={checkout} className={style.buyNow}>
+            <Link onClick={checkout} className={style.finalize} >
               Buy Now
             </Link>
           ) : (
             <button
               type="button"
               className="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
+              data-bs-dismiss="modal">
               Close
             </button>
           )}
@@ -124,15 +116,13 @@ const ShoppingCart = ({cart}) => {
             <div className="modal-header bg-dark text-white"></div>
           </div>
         </div>
-      
-
-    </div>
+      </div>
     </nav>
   );
 };
 
-const mapStateToProps = state => ({
-  cart: state.cart
+const mapStateToProps = (state) => ({
+  cart: state.cart,
 });
 
 export default connect(mapStateToProps)(ShoppingCart);

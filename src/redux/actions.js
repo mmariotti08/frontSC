@@ -50,7 +50,7 @@ export const getProductName = (name) => {
 
 export const createOrder = (data) => {
 	return async function(dispatch) {
-		console.log(data)
+		alert(data)
 		try {
 			let response = await axios.post(`http://localhost:3001/payments`, data);
 			return dispatch({type: CREATE_ORDER, payload: response.data});
