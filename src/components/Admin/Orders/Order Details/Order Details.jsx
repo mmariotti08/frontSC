@@ -1,7 +1,7 @@
 import styles from "./Order Details.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderId, getUserId, getDetail } from "../../../../redux/actions";
+import { getOrderId, getUserId } from "../../../../redux/actions";
 
 const Order_Details = ({ orderId }) => {
     const dispatch = useDispatch();
@@ -94,7 +94,7 @@ const Order_Details = ({ orderId }) => {
                                 className={index % 2 === 0 ? styles.evenRow : null}
                                 >
                                 <td><img src={c.Product.main_picture_url} alt="" /></td>
-                                <td>{c.Product.brand_name}</td>
+                                <td>{c.Product.name}</td>
                                 <td>{c.size}</td>
                                 <td>{c.quantity}</td>
                             </tr>

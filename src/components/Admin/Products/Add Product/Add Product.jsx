@@ -4,6 +4,7 @@ import { MdClear, MdAdd } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../../redux/actions";
 import validation from "./validation";
+import { Upload_Image } from "../../Others/Upload Image/Upload Image";
 
 const Add_Product = () => {
     const dispatch = useDispatch();
@@ -134,6 +135,7 @@ const Add_Product = () => {
             stocks.map((stock, i) => i === index ? { ...stock, quantity: parseInt(value) } : stock)
         );
     };
+    
 
     return (
         <div className={styles.container}>
@@ -270,6 +272,7 @@ const Add_Product = () => {
                     </form>
                 }
             </div>
+            <Upload_Image />
         </div>
     );
 };
