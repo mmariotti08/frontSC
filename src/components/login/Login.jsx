@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 const Login = ({ closeModal, addUser }) => {
 
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   
 const dispatch = useDispatch();
 
@@ -17,16 +17,15 @@ const dispatch = useDispatch();
     
   };
 
-  const user = useUser();
   const { accessToken } = useAuth();
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (isSignedIn) {
       dispatch(addUser(user));
 
     }
     window.scrollTo(0, 0);
-  }, [isSignedIn]);
+  }, [isSignedIn]); */
 
   return (
     <div className={style.container}>
