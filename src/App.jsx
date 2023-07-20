@@ -29,7 +29,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
-
+import UserBanned from "./views/userBanned/UserBanner";
 import Addreses from "./components/Addreses/Addreses";
 
 
@@ -115,7 +115,7 @@ function App() {
             }
           />
         </Routes>
-
+        <UserBanned/>
         {!pathname.startsWith("/admin") && <Footer />}
       </div>
     </ClerkProvider>

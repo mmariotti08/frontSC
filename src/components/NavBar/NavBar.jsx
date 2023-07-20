@@ -15,7 +15,7 @@ const NavBar = ({ toggleCarousel }) => {
   const { isSignedIn } = useUser();
   const userss = useSelector((state)=> state.users)
   const user = useUser(true)
-      const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const { signOut } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
