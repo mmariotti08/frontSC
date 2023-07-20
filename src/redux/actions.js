@@ -20,7 +20,9 @@ import {
   FILTER_BY_ALL,
   GET_USERS,
   GET_USERS_DRAFT,
-  GET_ALL_ORDERS
+  GET_ALL_ORDERS,
+  GET_USER_ID,
+  GET_ORDER_ID
 } from "./actions-type";
 
 
@@ -259,6 +261,28 @@ export const getAllOrders = () => {
 		try {
 			const response = await axios.get(`order`);
 			return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getUserId = (userId) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`user/${userId}`);
+			return dispatch({ type: GET_USER_ID, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getOrderId = (orderId) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`order/${orderId}`);
+			return dispatch({ type: GET_ORDER_ID, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
 		};

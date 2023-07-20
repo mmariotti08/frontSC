@@ -11,6 +11,8 @@ import { All_Orders } from "../../components/Admin/Orders/All Orders/All Orders"
 import styles from "./Menu.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { paginate } from "../../redux/actions";
+import { Redirection } from "../../components/Admin/Others/Redirection/Redirection";
+import { Order_Details } from "../../components/Admin/Orders/Order Details/Order Details";
 
 const Menu = () => {
     const menu = [
@@ -20,8 +22,8 @@ const Menu = () => {
     ];
 
     const [option, setOption] = useState("All products");
-
     const [productId, setProductId] = useState("");
+    const [orderId, setOrderId] = useState("");
 
     const componentMap = {
         "All products": All_Products,
@@ -33,6 +35,7 @@ const Menu = () => {
         "All users": All_Users,
         "Banned": User_Draft,
         "All orders": All_Orders,
+        "Order Details": Order_Details
     };
 
     const ComponentToRender = componentMap[option];
@@ -55,7 +58,9 @@ const Menu = () => {
                         ))}
                     </div>
                 ))}
-
+                <div className={styles.redirection}>
+                    <Redirection />
+                </div>
             </div>
             <div className={styles.components}>
                 {ComponentToRender &&
@@ -64,6 +69,8 @@ const Menu = () => {
                         setOption={setOption}
                         setProductId={setProductId}
                         productId={productId}
+                        setOrderId={setOrderId}
+                        orderId={orderId}
                         />
                 }
             </div>
