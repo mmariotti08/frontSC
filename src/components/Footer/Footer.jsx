@@ -30,7 +30,7 @@ const Footer = () => {
 
           <div className={styles.nombre}>
             <a href="https://github.com/Marye05" target="_blank">
-              <h3> Maryelys Orozco </h3>
+              <h3> Maryeris Orozco </h3>
             </a>
           </div>
 

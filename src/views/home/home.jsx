@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import ProductsContainer from "../../components/productsContainer/productsContainer";
 import Carousel from "../../components/carousel/Carousel";
-import Order from "../../components/Order/order";
 import Filter from "../../components/Filter/Filter";
 import { useDispatch } from "react-redux";
 import { getProducts, getProductName } from "../../redux/actions";
@@ -27,6 +26,15 @@ const Home = ({ toggle }) => {
   const { accessToken } = useAuth();
 
   const user = useUser();
+
+  if (isSignedIn) {
+    const userDestructuringprueba = {
+      name: user.user.fullName, 
+      mail: user.user.primaryEmailAddress.emailAddress, 
+      password: '123456789'
+    };
+    dispatch(addUser(userDestructuringprueba));
+  }
 
   const [showCarousel, setShowCarousel] = useState(true);
   const [searchName, setSearchName] = useState("");
@@ -85,7 +93,6 @@ const Home = ({ toggle }) => {
       ) : (
         <>
           {toggle && <Carousel />}
-          <Order />
           <Filter />
           <ProductsContainer />
           <ToastContainer />

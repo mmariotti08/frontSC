@@ -128,6 +128,11 @@ const NavBar = ({ toggleCarousel }) => {
               <ion-icon name="person-circle-outline"></ion-icon>
             </Link>
           )}
+           {isSignedIn && (
+        <Link to="/profile" className={style.navLink}>
+          <ion-icon name="person-outline"></ion-icon>
+        </Link>
+      )}
 
           {isSignedIn && idUser && idUser.administrator === true ? ( // Renderizar el botón de admin solo si el usuario tiene la propiedad "administrator" en true
             <Link to="/admin" className={style.navLink} onClick={openModal}>
