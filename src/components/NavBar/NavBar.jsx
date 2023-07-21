@@ -119,8 +119,13 @@ const NavBar = ({ toggleCarousel }) => {
               <ion-icon name="person-circle-outline"></ion-icon>
             </Link>
           )}
+           {isSignedIn && (
+        <Link to="/profile" className={style.navLink}>
+          <ion-icon name="person-outline"></ion-icon>
+        </Link>
+      )}
 
-          <Link to="/cart" className={style.navLink}>
+            <Link to="/cart" className={style.navLink}>
             <ion-icon name="cart-outline"></ion-icon>
             {cartItemCount > 0 && (
               <span className={style.cartItemCount}>{cartItemCount}</span>

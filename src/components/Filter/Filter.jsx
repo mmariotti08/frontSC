@@ -35,7 +35,9 @@ const Filter = () => {
     
     return(
         <div className={style.container}>
+
           <Order />
+          
         <form className={style.form} onSubmit={handleSubmit}>
       <label className={style.label}>
         Brand Name

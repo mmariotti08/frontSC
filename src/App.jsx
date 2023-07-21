@@ -31,6 +31,7 @@ import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
 
 import Addreses from "./components/Addreses/Addreses";
+import Profile from "./views/profile/Profile"
 
 
 
@@ -79,6 +80,7 @@ function App() {
         <Route path="/favorites" element={<Favorites/>}/>
         <Route path="/addAddress" element={<Addreses/>} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
             path="/sign-up/*"
             element={
@@ -93,11 +95,13 @@ function App() {
           <Route
             path="/login"
             element={
+              <>
               <SignIn
                 redirectUrl={"/login"}
                 routing="path"
                 path="/login"
               />
+              </>
             }
           />
 
@@ -107,6 +111,7 @@ function App() {
               <>
                 <SignedIn>
                   <Login />
+            
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn />

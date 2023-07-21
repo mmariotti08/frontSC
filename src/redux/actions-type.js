@@ -20,4 +20,5 @@ export const FILTER_BY_GENDER = "FILTER_BY_GENDER";
 export const FILTER_BRAND_NAME = "FILTER_BRAND_NAME";
 export const GET_USERS = "GET_USERS";
 export const GET_USERS_DRAFT = "GET_USERS_DRAFT";
+export const UPDATE_ONE_USER = "UPDATE_ONE_USER"
 
