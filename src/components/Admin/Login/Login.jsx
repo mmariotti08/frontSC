@@ -3,9 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { getApproval } from "../../../redux/actions";
 import validation from "./validation";
 import styles from './Login.module.css';
+import { useUser } from "@clerk/clerk-react";
 
 const Login = () => {
     const dispatch = useDispatch();
+
+    const { isLoaded, isSignedIn, user } = useUser();
+
+    useEffect(() => {
+        if(isSignedIn) {
+            adminData.mail = user.primaryEmailAddress.emailAddress;
+            adminData.password = null;
+            dispatch(getApproval(adminData));
+        }
+    }, [isLoaded]);
+
 
     const access = useSelector(state => state.getApprovalAdmin);
 
