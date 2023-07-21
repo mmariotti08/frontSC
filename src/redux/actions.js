@@ -57,7 +57,6 @@ export const addUser = (userData) => {
   return async function (dispatch) {
     try {
       let response = await axios.post(`user`, userData);
-			console.log('response :>> ', response);
 			toast.success(response.data.message)
 			return response;
     } catch (error) {
@@ -223,7 +222,6 @@ export const getUsers = () => {
 	return async function(dispatch) {
 		try {
 			const response = await axios.get(`user`);
-			console.log('getUser :>> ', response);
 			return dispatch({ type: GET_USERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);

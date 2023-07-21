@@ -16,7 +16,6 @@ const UserBanned = ({ setNavBarEnabled }) => {
     dispatch(getUsers())
 }, [dispatch])
 const idUser = userss.length > 0 ? userss.find(item => item.mail === user.user?.primaryEmailAddress.emailAddress) : null;
-console.log('idUser :>> ', idUser);
 
 useEffect(() => {
   if (isSignedIn && idUser && idUser.active === false) { // Cambia la condición a idUser.validate === false
