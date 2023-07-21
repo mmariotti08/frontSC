@@ -4,8 +4,6 @@ import { Menu } from "./Menu";
 import { useNavigate } from "react-router-dom";
 import styles from "./Admin.module.css";
 import { useEffect } from "react";
-import { useUser } from "@clerk/clerk-react";
-import { getApproval } from "../../redux/actions";
 
 const Admin = () => {
     const navigate = useNavigate();
