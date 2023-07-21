@@ -1,41 +1,25 @@
 .container {
 
-    display:flex;
-    height: 15vh;
-    overflow: hidden;
-    margin-bottom: 5%;
-    margin-top: 2%;
-    /*background-color: rgb(59, 58, 58);*/
-    justify-content: center;
-    border: none;
-  }
-
-
-  
-
+  float: left;
+  overflow: hidden;
+  margin-bottom: 15px;
+    }
 
 .form {
-  width: 700px;
+  width: 245px;
   background-color: #ca1111;
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 7.5%;
 }
 
-/*.letras{
-  color: white;
-  font-family: 'Russo One', sans-serif;
-  background-color: #ca11116c;
-  border: none;
-}*/
-
 .select{
- margin-left: 10px;
-  margin-bottom: 10px;
+ margin-left: 2px;
+  margin-bottom: 15px;
   border-radius: 4px;
- align-items: center;
+  align-items: center;
   padding: 5px 10px 5px 10px;
-
   color: white;
   background-color:#ca1111;;
   font-size: 15px;
@@ -51,14 +35,13 @@
       font-family: 'Russo One', sans-serif;
       color: white;
       margin-right: 12px;
-     
   }
 
-  .button{
-      margin-left: 15px;
+  .button{      
       font-size: 15px;
       font-family: 'Russo One', sans-serif;
       color: #ca1111;
+      margin-bottom: 15px;
   }
 
   .information{
@@ -66,5 +49,4 @@ color: black;
  margin-top: 2%;
  border-radius: 8px;
  font-family: 'Russo One', sans-serif;
-height: 40px;
   }

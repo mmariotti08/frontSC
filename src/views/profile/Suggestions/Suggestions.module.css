@@ -1,0 +1,39 @@
+.container{
+    margin-top: 12%;
+   justify-content: center;
+    padding: 10px;
+    margin-left: 2%;
+    width: 60%;
+    background-color: rgba(210, 208, 211, 0.623);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.195);
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.divSug{
+    display: flex;
+  display: inline-block;
+  
+ }
+ .send{
+    font-family: 'Russo One', sans-serif;
+    font-size: 15px;
+    padding: 8px;
+    border: 1px solid #b91414;
+    border-radius: 4px;
+    color:rgb(29, 28, 28);
+    margin: 10px;
+    background-color:rgba(235, 232, 232, 0.836);
+}
+
+.text{
+   padding: 2px;
+  
+}
+
+
+.label{
+    font-family: 'Russo One', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
