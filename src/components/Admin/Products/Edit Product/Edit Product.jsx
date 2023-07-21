@@ -6,6 +6,7 @@ import { MdClear, MdAdd } from "react-icons/md";
 import { getStockID } from "../../../../redux/actions";
 import { getDetail } from "../../../../redux/actions";
 import { putProducto } from "../../../../redux/actions";
+import { Upload_Image } from "../../Others/Upload Image/Upload Image";
 
 const Edit_Product = ({ productId }) => {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Edit_Product = ({ productId }) => {
     const product = useSelector(state => state.detail);
     const stock = useSelector(state => state.get_stock_by_id);
 
+    const [image, setImage] = useState([]);
     const [formOn, setFormOn] = useState(true);
     const [error, setError] = useState({});
     const [stocks, setStocks] = useState([{ size: "", quantity: "1" }]);
@@ -22,7 +24,7 @@ const Edit_Product = ({ productId }) => {
         category: [""],
         color: "",
         gender: "Man",
-        main_picture_url: "",
+        main_picture_url: [""],
         retail_price_cents: "0",
         slug: "",
         status: "",
@@ -50,6 +52,7 @@ const Edit_Product = ({ productId }) => {
                 status: "",
             });
             setStocks(stock);
+            setImage(product.main_picture_url)
         };
     }, [product, stock]);
 
@@ -63,16 +66,14 @@ const Edit_Product = ({ productId }) => {
     const handleUpdate = (event) => {
         event.preventDefault();
         data.gender = [data.gender];
+        data.main_picture_url = image;
+
         const stockIsValid = stocks.every(stock => stock.size !== "" && stock.quantity > 0);
         const categoryIsValid = data.category.every(category => category !== "");
         if(!categoryIsValid || !stockIsValid || !data.name.length || !data.brand_name.length || !data.color || !data.main_picture_url || data.retail_price_cents < 0) {
             setError(validation({ ...data, [event.target.name]: event.target.value }, stockIsValid, categoryIsValid));
         } else {
             dispatch(putProducto(productId, data, stocks));
-            // setStocks([{
-            //     size: "",
-            //     quantity: "1"
-            // }]);
             setError({});
             setFormOn(false)
             window.scrollTo(0, 0);
@@ -195,14 +196,6 @@ const Edit_Product = ({ productId }) => {
                         <select name="gender" value={data.gender} onChange={handleChange}>
                             {gender.map((props) => <option key={props} value={props}>{props}</option>)}
                         </select>
-                        {/* IMAGE */}
-                        <div>
-                            <div className={styles.container_label_error}>
-                                <label htmlFor="main_picture_url">Image</label>
-                                {error.mp1 && <p>{error.mp1}</p>}
-                            </div>
-                            <input type="text" name="main_picture_url" value={data.main_picture_url} onChange={handleChange} />
-                        </div>
                         {/* PRICE */}
                         <div>
                             <div className={styles.container_label_error}>
@@ -256,6 +249,14 @@ const Edit_Product = ({ productId }) => {
                                     )}
                                 </div>
                             ))}
+                        </div>
+                        {/* IMAGE */}
+                        <div>
+                            <div className={styles.container_label_error}>
+                                <label htmlFor="main_picture_url">Image</label>
+                                {error.mp1 && <p>{error.mp1}</p>}
+                            </div>
+                            <Upload_Image image={image} setImage={setImage} />
                         </div>
                         {/* BUTTON */}
                         <div className={styles.container_button}>

@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.evenRow {
+    background-color: #353535;
+}
+.container table {
+    table-layout: fixed;
+    width: 100%;
+}
+.container tbody tr {
+    height: 40px;
+}
+.container thead tr {
+    height: 50px;
+    background-color: #1a1a1a;
+}
+.container_user_order {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+.container_user_order div {
+    width: 300px;
+    background-color: #1a1a1a;
+}
+.container_user_order p {
+    vertical-align: top;
+    text-align: left;
+    font-size: 13px;
+    padding-left: 25px;
+    color: #ffffff;
+    font-weight: initial;
+}
+.container_user_order h4 {
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.container h3 {
+    margin-left: 0px;
+}
+.container_info_table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container_info_table img {
+    width: 90px;
+}
