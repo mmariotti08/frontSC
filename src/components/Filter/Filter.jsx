@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Order from '../Order/order'
 import { useState } from "react";
 import { filterByAll, getProducts } from "../../redux/actions";
 import style from "./Filter.module.css"
@@ -34,6 +35,9 @@ const Filter = () => {
     
     return(
         <div className={style.container}>
+
+          <Order />
+          
         <form className={style.form} onSubmit={handleSubmit}>
       <label className={style.label}>
         Brand Name
