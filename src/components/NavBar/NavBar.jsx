@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../img/logo.png";
 import style from "./NavBar.module.css";
 import ReactModal from "react-modal";
@@ -29,7 +29,7 @@ const NavBar = ({ toggleCarousel }) => {
     }, [dispatch])
 
   const idUser = userss.length > 0 ? userss.find(item => item.mail === user.user?.primaryEmailAddress.emailAddress) : null;
-  console.log('idUser :>> ', idUser);
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -105,10 +105,10 @@ const NavBar = ({ toggleCarousel }) => {
         <div className={style.mensajes}>{getStyledMessage()}</div>
 
         <div className={style.name} onClick={resetDrivers}>
-          <Link to="/">
+          <NavLink exact to="/">
             <img src={logo} alt="logo" className={style.logo} />
             <h1 className={style.word}>ShopConnect</h1>
-          </Link>
+          </NavLink>
         </div>
 
         <div className={style.searchBarContainer}>
