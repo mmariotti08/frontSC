@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 
 import {
@@ -19,7 +20,8 @@ import {
   GET_PRODUCT_DRAFT,
   FILTER_BY_ALL,
   GET_USERS,
-  GET_USERS_DRAFT
+  GET_USERS_DRAFT,
+  UPDATE_ONE_USER
 } from "./actions-type";
 
 
@@ -52,9 +54,12 @@ export const addUser = (userData) => {
   return async function (dispatch) {
     try {
       let response = await axios.post(`user`, userData);
-      return dispatch({ type: ADD_USER, payload: response.data });
+			console.log('response :>> ', response);
+			toast.success(response.data.message)
+			return response;
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
+			toast.success(error.response.data)
     }
   };
 };
@@ -108,7 +113,7 @@ export const getApproval = (adminData) => {
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -123,7 +128,7 @@ export const createProduct = (data, stock) => {
 			return;
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -135,7 +140,7 @@ export const getStock = () => {
 
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -159,7 +164,7 @@ export const putProducto = (id, product, stock) => {
 			return;
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -199,7 +204,7 @@ export const getProductDraft = () => {
 			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -234,6 +239,7 @@ export const getUsers = () => {
 	return async function(dispatch) {
 		try {
 			const response = await axios.get(`user`);
+			console.log('getUser :>> ', response);
 			return dispatch({ type: GET_USERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -278,8 +284,17 @@ export const filterByAll = ( response) =>  {
 }
 }
 
-export const filterBrandName = (payload) => {
-  return { type: FILTER_BRAND_NAME, payload };
+export const updateOneUser = (id, dataUser) => {
+	return async function(dispatch) {
+		try {
+
+			const response = await axios.put(`user/${id}`, dataUser);
+console.log('15', response.data)
+			return dispatch({type: UPDATE_ONE_USER, payload: response.data})
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
 };
 
 

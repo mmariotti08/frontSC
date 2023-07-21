@@ -1,13 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getDetail } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import styles from "./detail.module.css";
-import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
-import Addreses from "../../components/Addreses/Addreses";
-import { Route,  Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,7 +16,8 @@ const Detail = () => {
   const { id } = useParams();
   const [selectedSize, setSelectedSize] = useState(null);
   const [showSizeError, setShowSizeError] = useState(false);
-  const [availableQuantity, setAvailableQuantity] = useState(0);
+  const [selectedQuantity, setSelectedQuantity] = useState(1); // Initialize selectedQuantity with 1
+  const [availableQuantity, setAvailableQuantity] = useState(0); // New state for available quantity
 
   useEffect(() => {
     dispatch(getDetail(id));
@@ -27,7 +25,7 @@ const Detail = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    // Actualizar la cantidad disponible cuando se selecciona un tamaño
+    // Update available quantity when a size is selected
     if (selectedSize) {
       const selectedStock = sneaker.Stocks.find((s) => s.size === selectedSize);
       setAvailableQuantity(selectedStock ? selectedStock.quantity : 0);
@@ -40,7 +38,7 @@ const Detail = () => {
   };
 
   const handleCart = () => {
-    if (!selectedSize) {
+    if (!selectedSize || selectedQuantity < 1 || selectedQuantity > availableQuantity) {
       setShowSizeError(true);
       return;
     }
@@ -49,15 +47,16 @@ const Detail = () => {
     const selectedProduct = {
       ...sneaker,
       size: selectedSize,
+      quantity: selectedQuantity,
     };
 
     const isProductInCart = cart.some(
-      (item) =>
-        item.id === selectedProduct.id && item.size === selectedProduct.size
+      (item) => item.id === selectedProduct.id && item.size === selectedProduct.size
     );
 
     if (isProductInCart) {
       dispatch(removeFromCart(selectedProduct.id, selectedProduct.size));
+      setSelectedQuantity((prevQuantity) => prevQuantity + selectedProduct.quantity);
       toast.error("Shoe Removed😔", {
         position: "bottom-right",
         autoClose: 2000,
@@ -69,6 +68,7 @@ const Detail = () => {
         theme: "light",
       });
     } else {
+      setSelectedQuantity((prevQuantity) => prevQuantity - selectedQuantity);
       dispatch(addToCart(selectedProduct));
       toast.success("Shoe Added Successfully👟", {
         position: "bottom-right",
@@ -114,17 +114,31 @@ const Detail = () => {
   const handleSizeClick = (size) => {
     if (selectedSize === size) {
       setSelectedSize(null);
+      setSelectedQuantity(1); // Reset selectedQuantity to 1 when size is deselected
     } else {
       setSelectedSize(size);
+      const selectedStock = sneaker.Stocks.find((s) => s.size === size);
+      setAvailableQuantity(selectedStock ? selectedStock.quantity : 0);
+      setSelectedQuantity(1); // Reset selectedQuantity to 1 when size is selected
     }
     setShowSizeError(false);
   };
-  
-  
 
+  const handleIncreaseQuantity = () => {
+    if (selectedQuantity < availableQuantity) {
+      setSelectedQuantity((prevQuantity) => prevQuantity + 1);
+    }
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (selectedQuantity > 1) {
+      setSelectedQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
 
   return (
     <div className={styles.contDetail}>
+      <ToastContainer/>
       <h1 className={styles.nameh3}>{sneaker.name}</h1>
       <div className={styles.detailz}>
         <img src={sneaker.main_picture_url} alt="background" />
@@ -139,7 +153,7 @@ const Detail = () => {
           <div className={styles.sizes}>
             {sneaker.Stocks?.map((s, index) =>
               s.quantity > 0 ? (
-                <button
+                <div
                   key={`${s.size}-${index}`}
                   className={`${styles.size} ${
                     selectedSize === s.size ? styles.select : ""
@@ -147,11 +161,10 @@ const Detail = () => {
                   onClick={() => handleSizeClick(s.size)}
                 >
                   {s.size}
-                </button>
+                </div>
               ) : (
                 <div key={`${s.size}-${index}`} className={styles.dess}>
                   {s.size}
-
                 </div>
               )
             )}
@@ -160,9 +173,27 @@ const Detail = () => {
             <p className={styles.errorMsg}>Please select a size.</p>
           )}
           {selectedSize && (
-            <p className={styles.availableQuantity}>
-              Available Quantity: {availableQuantity}
-            </p>
+            <div className={styles.quantityContainer}>
+              <p>Available Quantity: {availableQuantity}</p>
+              <div className={styles.quantityButtons}>
+                <button onClick={handleDecreaseQuantity} disabled={selectedQuantity <= 1}>
+                  -
+                </button>
+                <input
+                  type="number"
+                  value={selectedQuantity}
+                  onChange={(e) => {
+                    const newQuantity = parseInt(e.target.value);
+                    setSelectedQuantity(
+                      isNaN(newQuantity) ? 0 : Math.min(newQuantity, availableQuantity)
+                    );
+                  }}
+                />
+                <button onClick={handleIncreaseQuantity} disabled={selectedQuantity >= availableQuantity}>
+                  +
+                </button>
+              </div>
+            </div>
           )}
           <h1>$ {formatPrice(sneaker.retail_price_cents)}</h1>
           <div className={styles.buttons}>
@@ -197,7 +228,6 @@ const Detail = () => {
               ) : (
                 <BsBookmarks />
               )}
-              <ToastContainer />
             </button>
           </div>
         </div>
