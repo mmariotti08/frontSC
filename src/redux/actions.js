@@ -30,7 +30,7 @@ export const getProducts = () => {
 			return dispatch({type: GET_PRODUCTS, payload: response.data});
 		} catch (error) {
 			console.error(error.response.data);
-		};
+		}
 	};
 };
 
@@ -50,7 +50,6 @@ export const getProductName = (name) => {
 export const addUser = (userData) => {
 
   return async function (dispatch) {
-    console.log("ssdfsdfsdf",userData);
     try {
       let response = await axios.post(`user`, userData);
       return dispatch({ type: ADD_USER, payload: response.data });

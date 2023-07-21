@@ -30,7 +30,7 @@ const Home = ({ toggle }) => {
     const userDestructuringprueba = {
       name: user.user.fullName, 
       mail: user.user.primaryEmailAddress.emailAddress, 
-      password: '12345678'
+      password: '123456789'
     };
     dispatch(addUser(userDestructuringprueba));
   }

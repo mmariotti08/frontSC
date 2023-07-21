@@ -8,7 +8,6 @@ import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 import Addreses from "../../components/Addreses/Addreses";
 import { Route,  Routes } from "react-router-dom";
-import BuyButton from "../../components/BuyButton/BuyButton";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -201,7 +200,6 @@ const Detail = () => {
               <ToastContainer />
             </button>
           </div>
-          <BuyButton/>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import style from './shoppingCart.module.css';
 import { connect, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { removeFromCart } from '../../redux/actions';
+import BuyButton from '../../components/BuyButton/BuyButton';
 
 
 
@@ -48,6 +49,7 @@ const ShoppingCart = ({cart}) => {
               onClick={()=> handleRemove(item.id, item.size)}
               className={style.removeC}
             >REMOVE CART</button>
+
             
               </div>
             ))}
@@ -56,7 +58,8 @@ const ShoppingCart = ({cart}) => {
 
       </div>
       <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
-      <button className={style.finalize}>Finalize Purchase</button>
+      <BuyButton/>
+
     </div>
   );
 };
