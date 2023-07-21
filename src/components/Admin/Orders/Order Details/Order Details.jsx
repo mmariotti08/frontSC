@@ -15,8 +15,6 @@ const Order_Details = ({ orderId }) => {
     const order = useSelector(state => state.get_order_id);
     const user = useSelector(state => state.get_user_id);
 
-    console.log(order.OrderProducts);
-
     useEffect(() => {
         dispatch(getOrderId(orderId));
     }, [orderId]);
@@ -93,7 +91,7 @@ const Order_Details = ({ orderId }) => {
                                 key={`${c.id}-${index}`}
                                 className={index % 2 === 0 ? styles.evenRow : null}
                                 >
-                                <td><img src={c.Product.main_picture_url} alt="" /></td>
+                                <td><img src={c.Product.main_picture_url[0]} alt="" /></td>
                                 <td>{c.Product.name}</td>
                                 <td>{c.size}</td>
                                 <td>{c.quantity}</td>

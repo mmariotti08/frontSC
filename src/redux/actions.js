@@ -119,11 +119,7 @@ export const getApproval = (adminData) => {
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
-
-
 			await axios.post(`products`, { product: data, stock: stock });
-
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -136,7 +132,6 @@ export const getStock = () => {
 		try {
 			const response = await axios.get(`stocks`);
 			return dispatch({ type: GET_STOCK, payload: response.data });
-
 		} catch (error) {
 			console.log(error.response.data);
 		};
@@ -157,9 +152,7 @@ export const getStockID = (id) => {
 export const putProducto = (id, product, stock) => {
 	return async function(dispatch) {
 		try {
-
 			await axios.put(`products/${id}`, { product, stock });
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -170,9 +163,7 @@ export const putProducto = (id, product, stock) => {
 export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
-
 			await axios.put(`user/${id}`, dataUser);
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -181,7 +172,6 @@ export const putUser = (id, dataUser) => {
 };
 
 export const updateUser = (id, address)=>{
-	
 	return async function(dispatch){
 		try {
 			await axios.put(`user/${id}`, address)
@@ -192,14 +182,10 @@ export const updateUser = (id, address)=>{
 	}
 }
 
-
 export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
-
 			const response = await axios.get(`products/draft`);
-			console.log(response.data);
-
 			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -210,11 +196,7 @@ export const getProductDraft = () => {
 export const deleteProduct = (id) => {
 	return async function(dispatch) {
 		try {
-
-			console.log(id);
 			await axios.delete(`products/${id}`);
-
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -226,7 +208,6 @@ export const deleteUser = (id) => {
 	return async function(dispatch) {
 		try {
 			await axios.delete(`user/${id}`);
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);

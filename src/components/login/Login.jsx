@@ -17,6 +17,10 @@ const dispatch = useDispatch();
   };
 
   const user = useUser();
+
+  console.log("aqui");
+  console.log(user);
+  console.log("aqui");
   const { accessToken } = useAuth();
 
   useEffect(() => {

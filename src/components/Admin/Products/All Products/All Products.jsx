@@ -93,7 +93,7 @@ const All_Products = ({ setOption, setProductId }) => {
                                         onMouseLeave={handleMouseLeave}
                                         >
                                         <td>{c.id}</td>
-                                        <td><img src={c.main_picture_url} alt="" /></td>
+                                        <td><img src={c.main_picture_url[0]} alt="" /></td>
                                         <td>
                                             {c.name}
                                             {showMenu && currentProductId === c.id && (
