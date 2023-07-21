@@ -138,7 +138,7 @@ const Detail = () => {
 
   return (
     <div className={styles.contDetail}>
-      <ToastContainer /> 
+      <ToastContainer/>
       <h1 className={styles.nameh3}>{sneaker.name}</h1>
       <div className={styles.detailz}>
         <img src={sneaker.main_picture_url} alt="background" />
