@@ -23,3 +23,5 @@ export const GET_USERS_DRAFT = "GET_USERS_DRAFT";
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 export const GET_USER_ID = "GET_USER_ID";
 export const GET_ORDER_ID = "GET_ORDER_ID";
+export const UPDATE_ONE_USER = "UPDATE_ONE_USER"
+

@@ -1,0 +1,48 @@
+.container{
+    margin-top: 12%;
+    display: grip;
+  
+    margin-left: 1%;
+    width: 95%;
+    background-color: rgba(210, 208, 211, 0.623);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.195);
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+.h2{
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+    font-size: 30px;
+}
+
+.label{
+    font-family: 'Russo One', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.input {
+    margin:10px;
+    width: 20%;
+    padding: 8px;
+    border: 1px solid #b91414;
+    border-radius: 4px;
+    background-color: rgba(166, 165, 165, 0.466);
+}
+
+.button{
+    font-family: 'Russo One', sans-serif;
+    font-size: 15px;
+    padding: 8px;
+    border: 1px solid #b91414;
+    border-radius: 4px;
+    color:rgb(29, 28, 28);
+    margin: 10px;
+    background-color:rgba(235, 232, 232, 0.836);
+}
+
+.image{
+    width: 115px;
+    height: 110px;
+    border-radius: 8px 8px 8px 8px; 
+}

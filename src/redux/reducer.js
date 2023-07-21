@@ -19,7 +19,8 @@ import {
   GET_USERS_DRAFT,
   GET_ALL_ORDERS,
   GET_USER_ID,
-  GET_ORDER_ID
+  GET_ORDER_ID,
+  UPDATE_ONE_USER
 
 } from "./actions-type";
 
@@ -214,6 +215,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+    }
+
+    case UPDATE_ONE_USER:{
+      return{
+        ...state,
+        users: action.payload
+      }
     }
 
     default:
