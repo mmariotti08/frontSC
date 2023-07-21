@@ -31,12 +31,15 @@ import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
 import UserBanned from "./views/userBanned/UserBanner";
 import Addreses from "./components/Addreses/Addreses";
+import Profile from "./views/profile/Profile"
 
 
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 // import Landing from "./views/landing/landing";
+
 /*  axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/' */
+
 axios.defaults.baseURL='http://localhost:3001/'
 
 
@@ -79,6 +82,7 @@ function App() {
         <Route path="/favorites" element={<Favorites/>}/>
         <Route path="/addAddress" element={<Addreses/>} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
             path="/sign-up/*"
             element={
@@ -93,11 +97,13 @@ function App() {
           <Route
             path="/login"
             element={
+              <>
               <SignIn
                 redirectUrl={"/login"}
                 routing="path"
                 path="/login"
               />
+              </>
             }
           />
 
@@ -107,6 +113,7 @@ function App() {
               <>
                 <SignedIn>
                   <Login />
+            
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn />
