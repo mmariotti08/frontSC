@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 
 import {
@@ -50,13 +51,16 @@ export const getProductName = (name) => {
 
 export const addUser = (userData) => {
 
-  return async function (dispatch) {
+  return async function () {
     console.log("ssdfsdfsdf",userData);
     try {
       let response = await axios.post(`user`, userData);
-      return dispatch({ type: ADD_USER, payload: response.data });
+			console.log('response :>> ', response);
+			toast.success(response.data.message)
+			return response;
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
+			toast.success(error.response.data)
     }
   };
 };
@@ -236,6 +240,7 @@ export const getUsers = () => {
 	return async function(dispatch) {
 		try {
 			const response = await axios.get(`user`);
+			console.log('getUser :>> ', response);
 			return dispatch({ type: GET_USERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
