@@ -27,6 +27,15 @@ const Home = ({ toggle }) => {
 
   const user = useUser();
 
+  if (isSignedIn) {
+    const userDestructuringprueba = {
+      name: user.user.fullName, 
+      mail: user.user.primaryEmailAddress.emailAddress, 
+      password: '123456789'
+    };
+    dispatch(addUser(userDestructuringprueba));
+  }
+
   const [showCarousel, setShowCarousel] = useState(true);
   const [searchName, setSearchName] = useState("");
 

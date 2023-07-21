@@ -51,8 +51,7 @@ export const getProductName = (name) => {
 
 export const addUser = (userData) => {
 
-  return async function () {
-    console.log("ssdfsdfsdf",userData);
+  return async function (dispatch) {
     try {
       let response = await axios.post(`user`, userData);
 			console.log('response :>> ', response);
