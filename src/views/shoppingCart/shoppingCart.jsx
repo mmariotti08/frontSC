@@ -2,7 +2,8 @@ import style from './shoppingCart.module.css';
 import { connect, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { removeFromCart } from '../../redux/actions';
-import BuyButton from '../../components/BuyButton/BuyButton';
+import BuyButton from "../../components/BuyButton/BuyButton";
+
 
 const ShoppingCart = ({ cart }) => {
   const dispatch = useDispatch();
@@ -59,8 +60,14 @@ const ShoppingCart = ({ cart }) => {
           </>
         )}
       </div>
+      <div className={style.buy}>
+   
       <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
+
+      </div>
+
       <BuyButton/>
+
     </div>
 
   );

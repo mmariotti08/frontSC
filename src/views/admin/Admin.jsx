@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Login } from "../../components/Admin/Login/Login";
 import { Menu } from "./Menu";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,8 @@ const Admin = () => {
 
     useEffect(() => {
         !access.access && navigate('/admin');
-      }, [access.access, navigate]);
+    }, [access.access, navigate]);
+
     return (
         <div className={styles.container_admin}>
             {access.access 

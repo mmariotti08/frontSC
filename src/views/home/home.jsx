@@ -13,28 +13,15 @@ import "react-toastify/dist/ReactToastify.css";
 const Home = ({ toggle }) => {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [userAdded, setUserAdded] = useState(false);
   const dispatch = useDispatch();
 
   const { isSignedIn } = useUser();
-  const userRef = useRef(null);
 
   const handleCloseModal = () => {
     closeModal();
   };
 
-  const { accessToken } = useAuth();
-
   const user = useUser();
-
-  if (isSignedIn) {
-    const userDestructuringprueba = {
-      name: user.user.fullName, 
-      mail: user.user.primaryEmailAddress.emailAddress, 
-      password: '123456789'
-    };
-    dispatch(addUser(userDestructuringprueba));
-  }
 
   const [showCarousel, setShowCarousel] = useState(true);
   const [searchName, setSearchName] = useState("");
@@ -51,17 +38,8 @@ const Home = ({ toggle }) => {
     loadData();
   }, [dispatch]);
 
-  useEffect(() => {
-    // Verificar si el mensaje ya fue mostrado previamente en esta sesión
-    const isMessageShown = localStorage.getItem("userAddedMessageShown");
+  const [userAdded, setUserAdded] = useState(false);
 
-    if (!userAdded && isSignedIn && !isMessageShown) {
-      // Mostrar el mensaje de toast solo la primera vez que se loguea
-      toast.success("Mail has been registered!");
-      localStorage.setItem("userAddedMessageShown", true); // Almacenar en LocalStorage que se mostró el mensaje
-    }
-  }, [isSignedIn, userAdded]);
-  
   useEffect(() => {
     if (isSignedIn && !userAdded) {
       const userCreate = {

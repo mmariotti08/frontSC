@@ -21,6 +21,9 @@ import {
   FILTER_BY_ALL,
   GET_USERS,
   GET_USERS_DRAFT,
+  GET_ALL_ORDERS,
+  GET_USER_ID,
+  GET_ORDER_ID,
   UPDATE_ONE_USER
 } from "./actions-type";
 
@@ -54,7 +57,6 @@ export const addUser = (userData) => {
   return async function (dispatch) {
     try {
       let response = await axios.post(`user`, userData);
-			console.log('response :>> ', response);
 			toast.success(response.data.message)
 			return response;
     } catch (error) {
@@ -120,11 +122,7 @@ export const getApproval = (adminData) => {
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
-
-
 			await axios.post(`products`, { product: data, stock: stock });
-
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -137,7 +135,6 @@ export const getStock = () => {
 		try {
 			const response = await axios.get(`stocks`);
 			return dispatch({ type: GET_STOCK, payload: response.data });
-
 		} catch (error) {
 			console.log(error.response.data);
 		}
@@ -158,9 +155,7 @@ export const getStockID = (id) => {
 export const putProducto = (id, product, stock) => {
 	return async function(dispatch) {
 		try {
-
 			await axios.put(`products/${id}`, { product, stock });
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -171,9 +166,7 @@ export const putProducto = (id, product, stock) => {
 export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
-
 			await axios.put(`user/${id}`, dataUser);
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -182,7 +175,6 @@ export const putUser = (id, dataUser) => {
 };
 
 export const updateUser = (id, address)=>{
-	
 	return async function(dispatch){
 		try {
 			await axios.put(`user/${id}`, address)
@@ -193,14 +185,10 @@ export const updateUser = (id, address)=>{
 	}
 }
 
-
 export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
-
 			const response = await axios.get(`products/draft`);
-			console.log(response.data);
-
 			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -211,11 +199,7 @@ export const getProductDraft = () => {
 export const deleteProduct = (id) => {
 	return async function(dispatch) {
 		try {
-
-			console.log(id);
 			await axios.delete(`products/${id}`);
-
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -227,7 +211,6 @@ export const deleteUser = (id) => {
 	return async function(dispatch) {
 		try {
 			await axios.delete(`user/${id}`);
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -239,7 +222,6 @@ export const getUsers = () => {
 	return async function(dispatch) {
 		try {
 			const response = await axios.get(`user`);
-			console.log('getUser :>> ', response);
 			return dispatch({ type: GET_USERS, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
@@ -252,6 +234,39 @@ export const getUsersDraft = () => {
 		try {
 			const response = await axios.get(`user/draft`);
 			return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getAllOrders = () => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`order`);
+			return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getUserId = (userId) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`user/${userId}`);
+			return dispatch({ type: GET_USER_ID, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getOrderId = (orderId) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`order/${orderId}`);
+			return dispatch({ type: GET_ORDER_ID, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
 		};
