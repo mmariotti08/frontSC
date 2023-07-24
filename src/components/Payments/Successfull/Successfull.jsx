@@ -1,43 +1,45 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import style from './successfull.module.css';
-import { fetchOrders } from '../../../redux/actions';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom'
+import { fetchOrderData } from '../../../redux/actions'; // Importa la acción definida anteriormente
+import style from './successfull.module.css'
 
-const Successful = () => {
-  const dispatch = useDispatch();
-  const orders = useSelector((state) => state.orders);
-  const userId = useSelector((state) => state.userId);
-  const location = useLocation();
+const Successfull = ({ orderData, fetchOrderData }) => {
+  const { external_reference } = useParams();       
 
   useEffect(() => {
-    dispatch(fetchOrders()); // Cargar las órdenes cuando el componente se monte
-  }, [dispatch]);
+    // Llama a la acción para obtener los datos del endpoint
+    fetchOrderData(external_reference);
+  }, [fetchOrderData, external_reference]);
 
-  // Obtener los parámetros de la URL
-  const queryParams = new URLSearchParams(location.search);
-  const externalReference = queryParams.get('external_reference');
-
-  // Filtrar las órdenes por userId y externalReference
-  const userOrder = orders.find((order) => order.userId === userId && order.externalReference === externalReference);
+  // Filtra la orden más reciente (la última creada)
+  const latestOrder = orderData.length > 0 ? orderData[orderData.length - 1] : null;
 
   return (
     <div className={style.boton}>
-      <h2>Detalles de la Compra</h2>
-      {userOrder ? (
-        <>
-          <p>ID: {userOrder.id}</p>
-          <p>Total Amount: {userOrder.total_amount}</p>
-          <p>Description: {userOrder.description}</p>
-          <p>Status: {userOrder.status}</p>
-          <p>Payment Method: {userOrder.payment_method}</p>
-          {/* Renderizar más propiedades de la orden si es necesario */}
-        </>
+      {latestOrder ? (
+        <div>
+          <h2>Detalles de la última compra</h2>
+          <p>Referencia externa: {external_reference}</p>
+          <p>Orden ID: {latestOrder.id}</p>
+          <p>Total Amount: {latestOrder.total_amount}</p>
+          <p>Talla: {latestOrder.OrderProducts[0].size}</p>
+          <p>Cantidad: {latestOrder.OrderProducts[0].quantity}</p>
+          {/* Agrega aquí más detalles de la compra que desees mostrar */}
+        </div>
       ) : (
-        <p>No se encontró información sobre la compra.</p>
+        <p>No se encontró ninguna orden para la referencia externa: {external_reference}</p>
       )}
     </div>
   );
 };
 
-export default Successful;
+const mapStateToProps = (state) => ({
+  orderData: state.orderData,
+});
+
+const mapDispatchToProps = {
+  fetchOrderData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Successfull);
