@@ -1,95 +1,85 @@
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
+import { LiaShippingFastSolid } from 'react-icons/lia';
+import { RiSecurePaymentLine } from 'react-icons/ri';
+import { BsCreditCard2Back, BsClock } from 'react-icons/bs';
 
 const Footer = () => {
-  return (
-    <div className={styles.todo}>
-    <div className={styles.container}>
+	const members = [
+		{ name: "Matias Mariotti", github: "https://github.com/mmariotti08" },
+		{ name: "Brayan Anacona", github: "https://github.com/brayan4nacona" },
+		{ name: "Mauricio Rubilar", github: "https://github.com/MRubilarRiffo" },
+		{ name: "Maryeris Orozco", github: "https://github.com/Marye05" },
+		{ name: "José Orellana", github: "https://github.com/joseaot" },
+		{ name: "Luis Sánchez", github: "https://github.com/luissanchez92" },
+		{ name: "José Centeno", github: "https://github.com/JoseMcmW" },
+		{ name: "Nicolás Moreno", github: "https://github.com/JNicolasmm" }
+	];
 
-      <div className={styles.containerName}>
-        <h1>Members</h1>
-        <div className={styles.integrantes}>
-          <div className={styles.nombre}>
-            <a href="https://github.com/mmariotti08" target="_blank">
-              <h3> Matias Mariotti</h3>
-            </a>
-          </div>
+	const helps = [
+		{ to: "/aboutUs", title: "About Us" },
+		{ to: "/fQuestions", title: "Frecuent Questions" },
+		{ to: "/measureSize", title: "How to measure your size?" }
+	];
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/brayan4nacona" target="_blank">
-              <h3> Brayan Anacona</h3>
-            </a>
-          </div>
+	const elements = [
+		{ title: "Fast Shipping", text: "Receive in 2 to 5 business days throughout Argentina", icon: LiaShippingFastSolid },
+		{ title: "Secure Payment", text: "We rely on Mercado Pago, one of the safest payment processors", icon: RiSecurePaymentLine },
+		{ title: "24/7 Support", text: "Contact us 24 hours a day, 7 days a week", icon: BsClock },
+		{ title: "Flexible Payments", text: "Pay in up to 6 interest-free installments", icon: BsCreditCard2Back }
+	];	
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/MRubilarRiffo" target="_blank">
-              <h3> Mauricio Rubiale</h3>
-            </a>
-          </div>
+	return (
+		<div className={styles.todo}>
+			<div id={styles.container_elements}>
+				{elements.map((element, index) => (
+					<div
+						key={`${index}-${element}`}
+						className={styles.div_elements}
+						>
+						<div className={styles.ico}>
+							<element.icon />
+						</div>
+						<div className={styles.text}>
+							<h3>{element.title}</h3>
+							<span>{element.text}</span>
+						</div>
+					</div>
+				))}
+			</div>
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/Marye05" target="_blank">
-              <h3> Maryeris Orozco </h3>
-            </a>
-          </div>
+			<div className={styles.container}>
+				<div className={styles.containerName}>
+					<h1>Members</h1>
+					<div className={styles.integrantes}>
+						{members.map((member, index) => (
+							<div key={`${index}-${member}`} className={styles.nombre}>
+								<a href={member.github} target="_blank">
+									<h3>{member.name}</h3>
+								</a>
+							</div>
+						))}
+					</div>
+				</div>
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/joseaot" target="_blank">
-              <h3>Jose Orellana</h3>
-            </a>
-          </div>
+				<div className={styles.help}>
+					{helps.map((help, index) => (
+						<Link key={`${index}-${help}`} to={help.to} >
+							<h3>{help.title}</h3>
+						</Link>
+					))}
+				</div>
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/luissanchez92" target="_blank">
-              <h3> Luis Sanchez </h3>
-            </a>
-          </div>
-
-          <div className={styles.nombre}>
-            <a href="https://github.com/JoseMcmW" target="_blank">
-              <h3>Jose Centeno</h3>
-            </a>
-          </div>
-
-          <div className={styles.nombre}>
-            <a href="https://github.com/JNicolasmm" target="_blank">
-              <h3>Nicolas Moreno</h3>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.help}>
-        <Link to="/aboutUs">
-          <h3>About Us</h3>
-        </Link>
-        <Link to="/fQuestions">
-          <h3>Frecuent Questions</h3>
-        </Link>
-        <Link to="/measureSize">
-          <h3>How to measure your size?</h3>
-        </Link>
-      </div>
-
-      <div>
-        <ScrollToTopButton />
-      </div>
-
-    </div>
-      <div className={styles.derechos}>
-        <p>
-          © Copyright 2023 ShopConnect, TODOS LOS DERECHOS
-          RESERVADOS. Las fotos contenidas en este site, el logotipo y las
-          marcas son propiedad de ShopConnect y/o de sus respectivos
-          titulares. Está prohibida la reproducción total o parcial, sin la
-          expresa autorización de la administradora de la tienda virtual.
-          ShopConnect, empresa perteneciente al grupo 18 Henry S.A. con domicilio en
-          Buenos Aires – Argentina.
-        </p>
-      </div>
-      </div>
-  );
+				<div>
+					<ScrollToTopButton />
+				</div>
+			</div>
+			<div className={styles.derechos}>
+				<p>© ShopConnect - 2023</p>
+			</div>
+		</div>
+	);
 };
 
 

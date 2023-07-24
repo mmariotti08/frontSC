@@ -5,24 +5,17 @@ import logo from "../img/logo.png";
 import style from "./NavBar.module.css";
 import SearchBar from "../../../src/components/searchBar/searchBar";
 import { getProductName, getProducts, getUsers } from "../../redux/actions";
-import { UserButton, useUser } from "@clerk/clerk-react";
-import "./modal.css";
-import { useAuth } from "@clerk/clerk-react";
+import { Login_v2 } from "../../views/new Login/Login v2";
+import { Menu_Login } from "../New Login/Menu Login/Menu Login";
+// import { UserButton, useUser } from "@clerk/clerk-react";
+// import { useAuth } from "@clerk/clerk-react";
 
 const NavBar = ({ toggleCarousel }) => {
 	const dispatch = useDispatch();
-	
-	const { isSignedIn } = useUser();
-	const { signOut } = useAuth();
-
-	const userss = useSelector((state) => state.users);
-	const user = useUser(true);
 
 	useEffect(() => {
 		dispatch(getUsers());
 	}, [dispatch]);
-
-	const idUser = userss.length > 0 ? userss.find((item) => item.mail === user.user?.primaryEmailAddress.emailAddress): null;
 
 	const cart = useSelector((state) => state.cart);
 	const cartItemCount = cart.length;
@@ -50,7 +43,7 @@ const NavBar = ({ toggleCarousel }) => {
 
 	useEffect(() => {
 		let index = 0;
-		setMensaje(mensajes[0]); // Establecer el primer mensaje como el estado inicial
+		setMensaje(mensajes[0]);
 
 		const interval = setInterval(() => {
 			setMensaje(mensajes[index]);
@@ -75,77 +68,85 @@ const NavBar = ({ toggleCarousel }) => {
 		);
 	};
 
-	const handleLogout = async () => {
-		await signOut();
-	};
+	// TEST LOGIN V2
+
+	const [singIn, setSignIn] = useState(false);
+	const [menuOn, setMenuOn] = useState(false);
+	const [googleAccessToken, setGoogleAccessToken] = useState(() => {
+		const storedAccessToken = localStorage.getItem('googleAccessToken');
+		return storedAccessToken ? JSON.parse(storedAccessToken) : null;
+	});
 
 	useEffect(() => {
-		if (isSignedIn) {
-			const unlisten = () => {
-				window.location.href = "/";
-			};
-		return unlisten;
-		}
-	}, [isSignedIn]);
+		localStorage.setItem('googleAccessToken', JSON.stringify(googleAccessToken));
+	}, [googleAccessToken]);
 
-	const { pathname } = useLocation();
+	const {isAuthenticated, user} = useSelector(state => state.auth_token);
+
+	const handleClick = () => {
+		setSignIn(true);
+		setMenuOn(true);
+	};
 
 	return (
 		<>
-			{!pathname.startsWith("/admin") && (
-				<>
-					<div className={style.navBar}>
-						<div className={style.mensajes}>{getStyledMessage()}</div>
+			{singIn && !isAuthenticated
+				&& <Login_v2
+					singIn={singIn}
+					setSignIn={setSignIn}
+					googleAccessToken={googleAccessToken}
+					setGoogleAccessToken={setGoogleAccessToken}
+				/>}
 
-						<div className={style.name} onClick={resetDrivers}>
-							<Link to="/">
-								<img src={logo} alt="logo" className={style.logo} />
-								<h1 className={style.word}>ShopConnect</h1>
-							</Link>
-						</div>
+			<div className={style.navBar}>
+				<div className={style.mensajes}>{getStyledMessage()}</div>
 
-						<div className={style.searchBarContainer}>
-							<SearchBar
-								onSearch={handleSearch}
-								toggleCarousel={toggleCarousel}
-								/>
-							</div>
-							<div className={style.container}>
-							<Link to="/favorites" className={style.navLink}>
-								<ion-icon name="bookmarks-outline"></ion-icon>
-							</Link>
-
-							{isSignedIn ? (
-								<div className={style.UserButton}>
-								<UserButton onClick={handleLogout} />
-								</div>
-							) : (
-								<Link to="/login" className={style.navLink} >
-								<ion-icon name="person-circle-outline"></ion-icon>
-								</Link>
-							)}
-							{isSignedIn && (
-								<Link to="/profile" className={style.navLink}>
-								<ion-icon name="person-outline"></ion-icon>
-								</Link>
-							)}
-
-							{isSignedIn && idUser && idUser.administrator === true ? ( // Renderizar el botón de admin solo si el usuario tiene la propiedad "administrator" en true
-								<Link to="/admin" className={style.navLink} >
-								<ion-icon name="cog-outline"></ion-icon>
-								</Link>
-							) : null}
-
-							<Link to="/cart" className={style.navLink}>
-								<ion-icon name="cart-outline"></ion-icon>
-								{cartItemCount > 0 && (
-									<span className={style.cartItemCount}>{cartItemCount}</span>
-								)}
-							</Link>
-						</div>
+				<div className={style.logo_input_icons}>
+					<div className={style.container_logXname} onClick={resetDrivers}>
+						<Link to="/">
+							<img src={logo} alt="logo" className={style.logo} />
+							<span className={style.word}>SHOPCONNECT</span>
+						</Link>
 					</div>
-				</>
-			)}
+
+					<div className={style.searchBarContainer}>
+						<SearchBar
+							onSearch={handleSearch}
+							toggleCarousel={toggleCarousel}
+							/>
+					</div>
+
+					<div className={style.container_icon}>
+
+						<div id={style.container_menu_login}>
+							<button onClick={handleClick}>
+								{user?.picture
+									? <img src={user.picture} alt="" />
+									: <ion-icon name="person-circle-outline"></ion-icon>
+								}
+							</button>
+							{isAuthenticated && menuOn
+								&& <Menu_Login
+									singIn={singIn}
+									setSignIn={setSignIn}
+									googleAccessToken={googleAccessToken}
+									setGoogleAccessToken={setGoogleAccessToken}
+								/>}
+						</div>
+
+						<Link to="/favorites" className={style.navLink}>
+							<ion-icon name="bookmarks-outline"></ion-icon>
+						</Link>
+
+						<Link to="/cart" className={style.navLink}>
+							<ion-icon name="cart-outline"></ion-icon>
+							{cartItemCount > 0 && (
+								<span className={style.cartItemCount}>{cartItemCount}</span>
+							)}
+						</Link>
+					</div>
+				</div>
+			</div>
 		</>
 	);
 };
