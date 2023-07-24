@@ -24,7 +24,8 @@ import {
   GET_ALL_ORDERS,
   GET_USER_ID,
   GET_ORDER_ID,
-  UPDATE_ONE_USER
+  UPDATE_ONE_USER,
+  FETCH_ORDERS_SUCCESS
 } from "./actions-type";
 
 
@@ -311,5 +312,20 @@ console.log('15', response.data)
 		};
 	};
 };
+
+export const fetchOrders = () => {
+	return async (dispatch) => {
+	try {
+		const response = await axios.get('/order'); // Reemplaza '/api/orders' con tu endpoint real
+		const orders = response.data; // Asumiendo que el endpoint devuelve un arreglo de órdenes
+		dispatch({ type: FETCH_ORDERS_SUCCESS, payload: orders });
+	} catch (error) {
+		// Manejar errores si es necesario
+		console.error(error);
+	}
+};
+};
+
+  
 
 
