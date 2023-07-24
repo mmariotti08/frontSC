@@ -1,3 +1,45 @@
-.buyB{
-    background-color: red;
+/* BuyButton.module.css */
+.buyB {
+    position: relative;
+    font-size: 30px;
+    font-family: 'Russo One', sans-serif;
+    color: rgb(226, 226, 226);
+    background-color: #ca1111;
+    width: 300px;
+    height: 80px;
+    margin: 30px;
+    justify-content: center;
+    border-radius: 40px;
+    border: 2px solid #000000;
+    align-items: center;
+    cursor: pointer; /* Cambia el cursor al hacer hover para indicar que es un elemento interactivo */
+}
+
+.buyB::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #f62913, #ca1f0e,#9e1509 , #710a05, #450000); /* Modifica los colores según tu preferencia */
+    background-size: 800%;
+    border-radius: 10px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+}
+
+@keyframes glowing {
+    0%{
+        background-position: 0 0;
+    }
+
+    50%{
+        background-position: 400% 0;
+    }
+
+    100%{
+        background-position: 0 0;
+    }
 }

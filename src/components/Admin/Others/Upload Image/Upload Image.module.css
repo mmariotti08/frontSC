@@ -1,0 +1,31 @@
+.dropzone {
+    border: 2px dotted #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+}
+.dropzone p {
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+}
+.container_img {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+.container_img_button {
+    position: relative;
+    display: inline-block;
+}
+.container_img_button button{
+    all: unset;
+    color: red;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.container_img_button button:hover{
+    outline: none;
+}

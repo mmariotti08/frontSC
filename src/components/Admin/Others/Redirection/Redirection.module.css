@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+.container button {
+    border-radius: 0px;
+    font-size: 0.9em;
+    text-align: left;
+    padding-left: 25px;
+    width: 100%;
+}

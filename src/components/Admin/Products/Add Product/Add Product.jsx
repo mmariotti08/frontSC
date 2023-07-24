@@ -4,13 +4,14 @@ import { MdClear, MdAdd } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../../redux/actions";
 import validation from "./validation";
+import { Upload_Image } from "../../Others/Upload Image/Upload Image";
 
 const Add_Product = () => {
     const dispatch = useDispatch();
 
     const [formOn, setFormOn] = useState(true);
-
     const [error, setError] = useState({});
+    const [image, setImage] = useState([]);
 
     const sizes = [
         "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10",
@@ -25,7 +26,7 @@ const Add_Product = () => {
         category: [""],
         color: "",
         gender: "Man",
-        main_picture_url: "",
+        main_picture_url: [""],
         retail_price_cents: "0",
         slug: "",
         status: "",
@@ -41,11 +42,12 @@ const Add_Product = () => {
     const submit = ({ target: { name, value } }) => {
         data.slug = `${data.name.replace(/\s/g, "-")}`;
         data.gender = [data.gender];
+        data.main_picture_url = image;
 
         const stockIsValid = stocks.every(stock => stock.size !== "" && stock.quantity > 0);
         const categoryIsValid = data.category.every(category => category !== "");
         
-        if(!categoryIsValid || !stockIsValid || !data.name.length || !data.brand_name.length || !data.color || !data.main_picture_url || data.retail_price_cents < 0) {
+        if(!categoryIsValid || !stockIsValid || !data.name.length || !data.brand_name.length || !data.color || !data.main_picture_url.length || data.retail_price_cents < 0) {
             setError(validation({ ...data, [name]: value }, stockIsValid, categoryIsValid));
         } else {
             dispatch(createProduct(data, stocks));
@@ -134,11 +136,11 @@ const Add_Product = () => {
             stocks.map((stock, i) => i === index ? { ...stock, quantity: parseInt(value) } : stock)
         );
     };
-
+    
     return (
         <div className={styles.container}>
             <div>
-                <h1>Add new product</h1>
+                <h1>Add Product</h1>
             </div>
             <div className={styles.containerform}>
                 {!formOn
@@ -148,30 +150,30 @@ const Add_Product = () => {
                     </>
                     : <form>
                         {/* NAME */}
-                        <div>
-                            <div className={styles.container_label_error}>
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
                                 <label htmlFor="name">Product name</label>
                                 {error.n1 && <p>{error.n1}</p>}
                             </div>
                             <input type="text" name="name" value={data.name} onChange={handleChange} />
                         </div>
                         {/* BRAND NAME */}
-                        <div>
-                            <div className={styles.container_label_error}>
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
                                 <label htmlFor="brand_name">Brand name</label>
                                 {error.bn1 && <p>{error.bn1}</p>}
                             </div>
                             <input type="text" name="brand_name" value={data.brand_name} onChange={handleChange} />
                         </div>
                         {/* CATEGORY */}
-                        <div className={styles.category2}>
-                            <label htmlFor="category">Category</label>
-                            {error.ca1 && <p>{error.ca1}</p>}
-                            <button type="button" onClick={handleAddCategory}><MdAdd /></button>
-                        </div>
-                        <div className={styles.container_category}>
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
+                                <label htmlFor="category">Category</label>
+                                {error.ca1 && <p>{error.ca1}</p>}
+                                <button className={styles.button_plus} type="button" onClick={handleAddCategory}><MdAdd /></button>
+                            </div>
                             {data.category.map((category, index) => (
-                                <div key={index} className={styles.category}>
+                                <div key={index} className={styles.input_button}>
                                     <input
                                         type="text"
                                         name={`category-${index}`}
@@ -189,45 +191,39 @@ const Add_Product = () => {
                             ))}
                         </div>
                         {/* COLOR */}
-                        <div>
-                            <div className={styles.container_label_error}>
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
                                 <label htmlFor="color">Color</label>
                                 {error.c1 && <p>{error.c1}</p>}
                             </div>
                             <input type="text" name="color" value={data.color} onChange={handleChange} />
                         </div>
                         {/* GENDER */}
-                        <div>
-                            <label htmlFor="gender">Gender</label>
-                        </div>
-                        <select name="gender" value={data.gender} onChange={handleChange}>
-                            {gender.map((props) => <option key={props} value={props}>{props}</option>)}
-                        </select>
-                        {/* IMAGE */}
-                        <div>
-                            <div className={styles.container_label_error}>
-                                <label htmlFor="main_picture_url">Image</label>
-                                {error.mp1 && <p>{error.mp1}</p>}
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
+                                <label htmlFor="gender">Gender</label>
                             </div>
-                            <input type="text" name="main_picture_url" value={data.main_picture_url} onChange={handleChange} />
+                            <select name="gender" value={data.gender} onChange={handleChange}>
+                                {gender.map((props) => <option key={props} value={props}>{props}</option>)}
+                            </select>
                         </div>
                         {/* PRICE */}
-                        <div>
-                            <div className={styles.container_label_error}>
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
                                 <label htmlFor="retail_price_cents">Price</label>
                                 {error.p1 && <p>{error.p1}</p>}
                             </div>
                             <input type="number" name="retail_price_cents" value={data.retail_price_cents} onChange={handleChange} min={0} pattern="[0-9]*" />
                         </div>
                         {/* STOCK */}
-                        <div className={styles.category2}>
-                            <label htmlFor="stock">Stock</label>
-                            {error.s1 && <p>{error.s1}</p>}
-                            <button type="button" onClick={handleAddStock}><MdAdd /></button>
-                        </div>
-                        <div className={styles.container_category}>
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
+                                <label htmlFor="stock">Stock</label>
+                                {error.s1 && <p>{error.s1}</p>}
+                                <button className={styles.button_plus} type="button" onClick={handleAddStock}><MdAdd /></button>
+                            </div>
                             {stocks.map((stock, index) => (
-                                <div key={index} className={styles.category}>
+                                <div key={index} className={styles.input_button}>
                                     <label htmlFor={`stock-size-${index}`}>Size</label>
                                     <select
                                         id={`stock-size-${index}`}
@@ -261,6 +257,14 @@ const Add_Product = () => {
                                     )}
                                 </div>
                             ))}
+                        </div>
+                        {/* IMAGE */}
+                        <div className={styles.props}>
+                            <div className={styles.label_error_button}>
+                                <label htmlFor="main_picture_url">Image</label>
+                                {error.mp1 && <p>{error.mp1}</p>}
+                            </div>
+                            <Upload_Image image={image} setImage={setImage} />
                         </div>
                         {/* BUTTON */}
                         <div className={styles.container_button}>

@@ -17,8 +17,11 @@ import {
   ADD_USER,
   GET_USERS,
   GET_USERS_DRAFT,
-  UPDATE_ONE_USER
-
+  GET_ALL_ORDERS,
+  GET_USER_ID,
+  GET_ORDER_ID,
+  UPDATE_ONE_USER,
+  FETCH_ORDERS_SUCCESS
 } from "./actions-type";
 
 const initialState = {
@@ -35,6 +38,10 @@ const initialState = {
   allUsers: [],
   users_draft: [],
   fav: JSON.parse(localStorage.getItem("fav")) || [],
+  all_Orders: [],
+  get_user_id: [],
+  get_order_id: [],
+  orders: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -150,6 +157,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         users_draft: action.payload
       };
+    case GET_ALL_ORDERS:
+      return {
+        ...state,
+        all_Orders: action.payload
+      };
+    case GET_USER_ID:
+      return {
+        ...state,
+        get_user_id: action.payload
+      };
+    case GET_ORDER_ID:
+      return {
+        ...state,
+        get_order_id: action.payload
+      };
 
     case ORDER_BY_NAME: {
       const sortedShoes = [...state.products];
@@ -202,6 +224,9 @@ const reducer = (state = initialState, action) => {
         users: action.payload
       }
     }
+    case FETCH_ORDERS_SUCCESS:
+      return { ...state, orders: action.payload };
+
 
     default:
       return state;

@@ -16,7 +16,6 @@ const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     closeModal();
-    
   };
 
   const { accessToken } = useAuth();

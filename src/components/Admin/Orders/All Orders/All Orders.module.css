@@ -1,29 +1,26 @@
+.container_no_banned {
+    width: 400px;
+    background-color: #1A1A1A;
+    border-radius: 10px;
+    padding: 1.25em;
+}
 .container {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.container thead tr {
-    height: 50px;
-}
-.container tbody tr {
-    height: 50px;
+.evenRow {
+    background-color: #353535;
 }
 .container table {
     table-layout: fixed;
     width: 100%;
 }
-.evenRow {
-    background-color: #353535;
+.container tbody tr {
+    height: 60px;
 }
-.container thead th:nth-child(3) {
-    width: 240px;
-}
-.container thead th:nth-child(5) {
-    width: 60px;
-}
-.container thead th:nth-child(6) {
-    width: 60px;
+.container thead tr {
+    height: 50px;
 }
 .menu3 ul {
     display: flex;
@@ -53,10 +50,4 @@
     padding-left: 8px;
     padding-right: 8px;
     border-radius: 5px;
-}
-.container_no_banned {
-    width: 400px;
-    background-color: #1A1A1A;
-    border-radius: 10px;
-    padding: 1.25em;
 }
