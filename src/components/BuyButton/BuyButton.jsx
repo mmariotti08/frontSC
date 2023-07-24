@@ -33,8 +33,8 @@ const BuyButton = ()=>{
             return navigate('/addAddress')
         }else{
             const response= await axios.post('payment',{cardPey,idUser})
+            console.log('info de button',response);
             const info=response.data;
-            console.log('info de button',info);
             window.location.href= info.init_point;
         }
     }
