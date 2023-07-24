@@ -43,7 +43,7 @@ const Detail = () => {
   const handleCart = () => {
     if (!selectedSize || selectedQuantity < 1 || selectedQuantity > availableQuantity) {
       setShowSizeError(true);
-      console.log(setShowSizeError);
+     
       return;
     }
     setShowSizeError(false);

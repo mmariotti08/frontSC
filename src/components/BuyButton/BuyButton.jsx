@@ -34,6 +34,7 @@ const BuyButton = ()=>{
         }else{
             const response= await axios.post('payment',{cardPey,idUser})
             const info=response.data;
+            console.log('info de button',info);
             window.location.href= info.init_point;
         }
     }
