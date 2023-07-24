@@ -308,7 +308,7 @@ export const updateOneUser = (id, dataUser) => {
 
 export const fetchOrderData = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:3001/order");
+    const response = await axios.get("/order");
     const orderData = response.data; // Asumiendo que los datos están en el campo "data"
     dispatch({ type: FETCH_ORDER_SUCCESS, payload: orderData });
   } catch (error) {
@@ -325,7 +325,7 @@ export const fetchUserOrders = (external_reference) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/order?userId=${external_reference}`
+        `/order?userId=${external_reference}`
       );
       const userOrders = response.data.filter(
         (order) => order.status === "accredited"
