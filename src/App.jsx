@@ -14,14 +14,11 @@ import {
   useUser,
   RedirectToSignIn,
 } from "@clerk/clerk-react";
-
 import Home from "./views/home/home";
 import AboutUs from "./components/Footer/AboutUS/AboutUs";
 import MeasurSize from "./components/Footer/MeasureSize/MeasureSize";
 import ShoppingCart from "./views/shoppingCart/shoppingCart";
-
 import axios from "axios";
-
 import { Footer } from "./components/Footer/Footer";
 import Favorites from "./views/favorites/favorites";
 import "./App.css";
@@ -29,15 +26,20 @@ import NavBar from "./components/NavBar/NavBar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
-
+import UserBanned from "./views/userBanned/UserBanner";
 import Addreses from "./components/Addreses/Addreses";
+import Successfull from "./components/Payments/Successfull/Successfull";
+import Failed from "./components/Payments/Failed/Failed";
+import Profile from "./views/profile/Profile"
 
 
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 // import Landing from "./views/landing/landing";
- axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
-// axios.defaults.baseURL='http://localhost:3001/'
+
+axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
+
+//axios.defaults.baseURL='http://localhost:3001/'
 
 
 function App() {
@@ -64,7 +66,8 @@ function App() {
       
 
     <div>
-        {!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />}
+      {/* {!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />} */}
+      <NavBar toggleCarousel={toggleCarousel} />
        
       <Routes>
         <Route path="/login" element={<Login/>}/>
@@ -78,7 +81,10 @@ function App() {
         {/* <Route path="/landing" element={<Landing/>}/> */}
         <Route path="/favorites" element={<Favorites/>}/>
         <Route path="/addAddress" element={<Addreses/>} />
+        <Route path="/successfull" element={<Successfull/>} />
+        <Route path="/failed" element={<Failed/>} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
             path="/sign-up/*"
             element={
@@ -93,11 +99,13 @@ function App() {
           <Route
             path="/login"
             element={
+              <>
               <SignIn
                 redirectUrl={"/login"}
                 routing="path"
                 path="/login"
               />
+              </>
             }
           />
 
@@ -107,6 +115,7 @@ function App() {
               <>
                 <SignedIn>
                   <Login />
+            
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn />
@@ -115,7 +124,7 @@ function App() {
             }
           />
         </Routes>
-
+        <UserBanned/>
         {!pathname.startsWith("/admin") && <Footer />}
       </div>
     </ClerkProvider>

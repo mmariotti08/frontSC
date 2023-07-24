@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 
 import {
@@ -19,7 +20,12 @@ import {
   GET_PRODUCT_DRAFT,
   FILTER_BY_ALL,
   GET_USERS,
-  GET_USERS_DRAFT
+  GET_USERS_DRAFT,
+  GET_ALL_ORDERS,
+  GET_USER_ID,
+  GET_ORDER_ID,
+  UPDATE_ONE_USER,
+  FETCH_ORDERS_SUCCESS
 } from "./actions-type";
 
 
@@ -30,7 +36,7 @@ export const getProducts = () => {
 			return dispatch({type: GET_PRODUCTS, payload: response.data});
 		} catch (error) {
 			console.error(error.response.data);
-		};
+		}
 	};
 };
 
@@ -50,12 +56,13 @@ export const getProductName = (name) => {
 export const addUser = (userData) => {
 
   return async function (dispatch) {
-    console.log("ssdfsdfsdf",userData);
     try {
       let response = await axios.post(`user`, userData);
-      return dispatch({ type: ADD_USER, payload: response.data });
+			toast.success(response.data.message)
+			return response;
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
+			toast.success(error.response.data)
     }
   };
 };
@@ -109,22 +116,18 @@ export const getApproval = (adminData) => {
 			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
 export const createProduct = (data, stock) => {
 	return async function(dispatch) {
 		try {
-
-
 			await axios.post(`products`, { product: data, stock: stock });
-
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -133,10 +136,9 @@ export const getStock = () => {
 		try {
 			const response = await axios.get(`stocks`);
 			return dispatch({ type: GET_STOCK, payload: response.data });
-
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -154,22 +156,18 @@ export const getStockID = (id) => {
 export const putProducto = (id, product, stock) => {
 	return async function(dispatch) {
 		try {
-
 			await axios.put(`products/${id}`, { product, stock });
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
 export const putUser = (id, dataUser) => {
 	return async function(dispatch) {
 		try {
-
 			await axios.put(`user/${id}`, dataUser);
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -178,7 +176,6 @@ export const putUser = (id, dataUser) => {
 };
 
 export const updateUser = (id, address)=>{
-	
 	return async function(dispatch){
 		try {
 			await axios.put(`user/${id}`, address)
@@ -189,29 +186,21 @@ export const updateUser = (id, address)=>{
 	}
 }
 
-
 export const getProductDraft = () => {
 	return async function(dispatch) {
 		try {
-
 			const response = await axios.get(`products/draft`);
-			console.log(response.data);
-
 			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
 export const deleteProduct = (id) => {
 	return async function(dispatch) {
 		try {
-
-			console.log(id);
 			await axios.delete(`products/${id}`);
-
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -223,7 +212,6 @@ export const deleteUser = (id) => {
 	return async function(dispatch) {
 		try {
 			await axios.delete(`user/${id}`);
-
 			return;
 		} catch (error) {
 			console.log(error.response.data);
@@ -247,6 +235,39 @@ export const getUsersDraft = () => {
 		try {
 			const response = await axios.get(`user/draft`);
 			return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getAllOrders = () => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`order`);
+			return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getUserId = (userId) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`user/${userId}`);
+			return dispatch({ type: GET_USER_ID, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const getOrderId = (orderId) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.get(`order/${orderId}`);
+			return dispatch({ type: GET_ORDER_ID, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
 		};
@@ -279,8 +300,32 @@ export const filterByAll = ( response) =>  {
 }
 }
 
-export const filterBrandName = (payload) => {
-  return { type: FILTER_BRAND_NAME, payload };
+export const updateOneUser = (id, dataUser) => {
+	return async function(dispatch) {
+		try {
+
+			const response = await axios.put(`user/${id}`, dataUser);
+console.log('15', response.data)
+			return dispatch({type: UPDATE_ONE_USER, payload: response.data})
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
 };
+
+export const fetchOrders = () => {
+	return async (dispatch) => {
+	try {
+		const response = await axios.get('/order'); // Reemplaza '/api/orders' con tu endpoint real
+		const orders = response.data; // Asumiendo que el endpoint devuelve un arreglo de órdenes
+		dispatch({ type: FETCH_ORDERS_SUCCESS, payload: orders });
+	} catch (error) {
+		// Manejar errores si es necesario
+		console.error(error);
+	}
+};
+};
+
+  
 
 

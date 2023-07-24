@@ -54,3 +54,9 @@
     padding-right: 8px;
     border-radius: 5px;
 }
+.container_no_banned {
+    width: 400px;
+    background-color: #1A1A1A;
+    border-radius: 10px;
+    padding: 1.25em;
+}

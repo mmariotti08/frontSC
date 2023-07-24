@@ -7,30 +7,35 @@ import { Stock } from "../../components/Admin/Products/Stock/Stock";
 import { Draft } from "../../components/Admin/Products/Draft/Draft";
 import { All_Users } from "../../components/Admin/Users/All Users/All Users";
 import { User_Draft } from "../../components/Admin/Users/User Draft/User Draft";
+import { All_Orders } from "../../components/Admin/Orders/All Orders/All Orders";
 import styles from "./Menu.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { paginate } from "../../redux/actions";
+import { Redirection } from "../../components/Admin/Others/Redirection/Redirection";
+import { Order_Details } from "../../components/Admin/Orders/Order Details/Order Details";
 
 const Menu = () => {
     const menu = [
-        { label: "Orders" },
-        { label: "Products", submenu: ["All products", "Add new", "Categories", "Product draft"] },
-        { label: "Users", submenu: ["All users", "User draft"] }
+        { label: "Orders", submenu: ["All orders"] },
+        { label: "Products", submenu: ["All products", "Add product", "Categories", "Draft"] },
+        { label: "Users", submenu: ["All users", "Banned"] }
     ];
 
     const [option, setOption] = useState("All products");
-
     const [productId, setProductId] = useState("");
+    const [orderId, setOrderId] = useState("");
 
     const componentMap = {
         "All products": All_Products,
-        "Add new": Add_Product,
+        "Add product": Add_Product,
         "Categories": Categories,
         "Stock": Stock,
-        "Product draft": Draft,
+        "Draft": Draft,
         "Edit": Edit_Product,
         "All users": All_Users,
-        "User draft": User_Draft,
+        "Banned": User_Draft,
+        "All orders": All_Orders,
+        "Order Details": Order_Details
     };
 
     const ComponentToRender = componentMap[option];
@@ -53,7 +58,9 @@ const Menu = () => {
                         ))}
                     </div>
                 ))}
-
+                <div className={styles.redirection}>
+                    <Redirection />
+                </div>
             </div>
             <div className={styles.components}>
                 {ComponentToRender &&
@@ -62,6 +69,8 @@ const Menu = () => {
                         setOption={setOption}
                         setProductId={setProductId}
                         productId={productId}
+                        setOrderId={setOrderId}
+                        orderId={orderId}
                         />
                 }
             </div>

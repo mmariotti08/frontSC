@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ProductsContainer from "../../components/productsContainer/productsContainer";
 import Carousel from "../../components/carousel/Carousel";
-import Order from "../../components/Order/order";
 import Filter from "../../components/Filter/Filter";
 import { useDispatch } from "react-redux";
 import { getProducts, getProductName } from "../../redux/actions";
 import { useUser, useAuth } from "@clerk/clerk-react";
 import { addUser } from "../../redux/actions";
 import { Loader } from "../../components/Loader/Loader";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = ({ toggle }) => {
@@ -22,18 +21,7 @@ const Home = ({ toggle }) => {
     closeModal();
   };
 
-  const { accessToken } = useAuth();
-
   const user = useUser();
-
-  if (isSignedIn) {
-    const userDestructuringprueba = {
-      name: user.user.fullName, 
-      mail: user.user.primaryEmailAddress.emailAddress, 
-      password: '12345678'
-    };
-    dispatch(addUser(userDestructuringprueba));
-  }
 
   const [showCarousel, setShowCarousel] = useState(true);
   const [searchName, setSearchName] = useState("");
@@ -49,8 +37,23 @@ const Home = ({ toggle }) => {
 
     loadData();
   }, [dispatch]);
-  
-  const handleSearch = (name) => {
+
+  const [userAdded, setUserAdded] = useState(false);
+
+  useEffect(() => {
+    if (isSignedIn && !userAdded) {
+      const userCreate = {
+        name: user.user.fullName, 
+        last_name: user.user.lastName,
+        mail: user.user.primaryEmailAddress.emailAddress, 
+        idUser: user.user.id,
+      };
+      dispatch(addUser(userCreate));
+      setUserAdded(true); // Actualizar el estado para que no se llame addUser nuevamente
+    }
+  }, [isSignedIn, userAdded, dispatch, user.user]);
+
+ const handleSearch = (name) => {
     setSearchName(name);
     if (name.trim() === "") {
       setShowCarousel(true);
@@ -68,7 +71,6 @@ const Home = ({ toggle }) => {
       ) : (
         <>
           {toggle && <Carousel />}
-          <Order />
           <Filter />
           <ProductsContainer />
           <ToastContainer />

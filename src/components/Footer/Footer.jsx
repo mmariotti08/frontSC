@@ -30,7 +30,7 @@ const Footer = () => {
 
           <div className={styles.nombre}>
             <a href="https://github.com/Marye05" target="_blank">
-              <h3> Maryelys Orozco </h3>
+              <h3> Maryeris Orozco </h3>
             </a>
           </div>
 
@@ -87,11 +87,6 @@ const Footer = () => {
           ShopConnect, empresa perteneciente al grupo 18 Henry S.A. con domicilio en
           Buenos Aires – Argentina.
         </p>
-      </div>
-      <div>
-      <Link to="/admin" >
-            <button>Admin</button>
-       </Link>
       </div>
       </div>
   );
