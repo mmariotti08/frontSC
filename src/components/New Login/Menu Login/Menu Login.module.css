@@ -1,0 +1,18 @@
+#menu_login {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 15px;
+    width: 100px;
+    position: fixed;
+    background-color: #000000;
+    margin-top: 60px;
+    border: 1px solid black;
+    z-index: 8999;
+}
+#menu_login a {
+    color: white;
+}
+#menu_login a:hover {
+    font-size: 20px;
+}

@@ -24,7 +24,9 @@ import {
   GET_ALL_ORDERS,
   GET_USER_ID,
   GET_ORDER_ID,
-  UPDATE_ONE_USER
+  UPDATE_ONE_USER,
+  LOGIN,
+  LOGOUT
 } from "./actions-type";
 
 
@@ -269,6 +271,38 @@ export const getOrderId = (orderId) => {
 			return dispatch({ type: GET_ORDER_ID, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
+		};
+	};
+};
+
+export const auth_google_Login = (token) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.post(`/auth/google-login`, token);
+			return dispatch({ type: LOGIN, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const auth_mail_Login = (user) => {
+	return async function(dispatch) {
+		try {
+			const response = await axios.post(`/auth/login`, user);
+			return dispatch({ type: LOGIN, payload: response.data });
+		} catch (error) {
+			console.log(error.response.data);
+		};
+	};
+};
+
+export const logout = () => {
+	return async function(dispatch) {
+		try {
+			return dispatch({ type: LOGOUT });
+		} catch (error) {
+			console.log(error);
 		};
 	};
 };

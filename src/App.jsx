@@ -5,23 +5,21 @@ import Login from "./components/login/Login";
 import Detail from "./views/detail/detail";
 
 import {
-  SignIn,
-  SignUp,
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
-  RedirectToSignIn,
+	SignIn,
+	SignUp,
+	ClerkProvider,
+	SignedIn,
+	SignedOut,
+	UserButton,
+	useUser,
+	RedirectToSignIn,
 } from "@clerk/clerk-react";
 
 import Home from "./views/home/home";
 import AboutUs from "./components/Footer/AboutUS/AboutUs";
 import MeasurSize from "./components/Footer/MeasureSize/MeasureSize";
 import ShoppingCart from "./views/shoppingCart/shoppingCart";
-
 import axios from "axios";
-
 import { Footer } from "./components/Footer/Footer";
 import Favorites from "./views/favorites/favorites";
 import "./App.css";
@@ -31,104 +29,102 @@ import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
 import UserBanned from "./views/userBanned/UserBanner";
 import Addreses from "./components/Addreses/Addreses";
-import Profile from "./views/profile/Profile"
-
-
+import Profile from "./views/profile/Profile";
+import { Login_v2 } from "./views/new Login/Login v2";
+import { gapi } from "gapi-script";
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 // import Landing from "./views/landing/landing";
 
 //axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
-axios.defaults.baseURL='http://localhost:3001/'
-
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
-  const dispatch = useDispatch();
 
-  if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
-    throw "Missing Publishable Key";
-  }
+	const clientId = "1027048250245-li9gor30unv7ieg8tkk77fpbh78cahbs.apps.googleusercontent.com";
+	
+    // TEST LOGIN V2
+	useEffect(() => {
+		const start = () => {
+			gapi.client.init({
+				clientId: clientId,
+				scope: ""
+			});
+		};
+		gapi.load('client:auth2', start);
+	});
 
-  const { pathname } = useLocation();
 
-  const [toggle, setToggle] = useState(true);
+	const dispatch = useDispatch();
 
-  const toggleCarousel = (show) => {
-    setToggle(show);
-  };
+	if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
+		throw "Missing Publishable Key";
+	}
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+	const { pathname } = useLocation();
 
-  return (
-    <ClerkProvider publishableKey={clerkPubKey}>
-      
+	const [toggle, setToggle] = useState(true);
 
-    <div>
-      {/* {!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />} */}
-      <NavBar toggleCarousel={toggleCarousel} />
-       
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route  path="/"  element={<Home toggle={toggle} />}/>
-        {/* RUTAS DEL FOOTER */}
-        <Route path="/fQuestions" element={<FrecuentQuestions/>}/>
-        <Route path="/measureSize" element={<MeasurSize/>}/>
-        <Route path="/aboutUs" element={<AboutUs/>}/>
-        <Route path="/products/:id" element={<Detail/>}/>
-        <Route path="/cart" element={<ShoppingCart/>}/>
-        {/* <Route path="/landing" element={<Landing/>}/> */}
-        <Route path="/favorites" element={<Favorites/>}/>
-        <Route path="/addAddress" element={<Addreses/>} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route
-            path="/sign-up/*"
-            element={
-              <SignUp
-                redirectUrl={"/login"}
-                routing="path"
-                path="/sign-up"
-              />
-            }
-          />
+	const toggleCarousel = (show) => {
+		setToggle(show);
+	};
 
-          <Route
-            path="/login"
-            element={
-              <>
-              <SignIn
-                redirectUrl={"/login"}
-                routing="path"
-                path="/login"
-              />
-              </>
-            }
-          />
+	useEffect(() => {
+		dispatch(getProducts());
+	}, []);
 
-          <Route
-            path="/login"
-            element={
-              <>
-                <SignedIn>
-                  <Login />
-            
-                </SignedIn>
-                <SignedOut>
-                  <RedirectToSignIn />
-                </SignedOut>
-              </>
-            }
-          />
-        </Routes>
-        <UserBanned/>
-        {!pathname.startsWith("/admin") && <Footer />}
-      </div>
-    </ClerkProvider>
-  );
+	return (
+		<ClerkProvider publishableKey={clerkPubKey}>
+			<div id="container_app">
+				{!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />}
+				<Routes>
+					<Route path="/login" element={<Login />} />
+					<Route path="/" element={<Home toggle={toggle} />} />
+					{/* RUTAS DEL FOOTER */}
+					<Route path="/fQuestions" element={<FrecuentQuestions />} />
+					<Route path="/measureSize" element={<MeasurSize />} />
+					<Route path="/aboutUs" element={<AboutUs />} />
+					<Route path="/products/:id" element={<Detail />} />
+					<Route path="/cart" element={<ShoppingCart />} />
+					{/* <Route path="/landing" element={<Landing/>}/> */}
+					<Route path="/favorites" element={<Favorites />} />
+					<Route path="/addAddress" element={<Addreses />} />
+					<Route path="/admin" element={<Admin />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route
+						path="/sign-up/*"
+						element={
+						<SignUp redirectUrl={"/login"} routing="path" path="/sign-up" />
+						}
+					/>
 
+					<Route
+						path="/sign-in"
+						element={
+							<SignIn redirectUrl={"/login"} routing="path" path="/sign-in" />
+						}
+					/>
+
+					<Route
+						path="/login"
+						element={
+						<>
+							<SignedIn>
+								<Login />
+							</SignedIn>
+							<SignedOut>
+								<RedirectToSignIn />
+							</SignedOut>
+						</>
+						}
+					/>
+				</Routes>
+				<UserBanned />
+				{!pathname.startsWith("/admin") && <Footer />}
+			</div>
+		</ClerkProvider>
+	);
 }
 
 export default App;
