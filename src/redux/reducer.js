@@ -20,8 +20,8 @@ import {
   GET_ALL_ORDERS,
   GET_USER_ID,
   GET_ORDER_ID,
-  UPDATE_ONE_USER
-
+  UPDATE_ONE_USER,
+  FETCH_ORDERS_SUCCESS
 } from "./actions-type";
 
 const initialState = {
@@ -40,7 +40,8 @@ const initialState = {
   fav: JSON.parse(localStorage.getItem("fav")) || [],
   all_Orders: [],
   get_user_id: [],
-  get_order_id: []
+  get_order_id: [],
+  orders: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -223,6 +224,9 @@ const reducer = (state = initialState, action) => {
         users: action.payload
       }
     }
+    case FETCH_ORDERS_SUCCESS:
+      return { ...state, orders: action.payload };
+
 
     default:
       return state;

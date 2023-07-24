@@ -39,7 +39,7 @@ const BuyButton = ()=>{
     }
     
     return(
-       <button onClick={selectRoute} className={styles.buyB}>BUY NOW</button>
+        <button onClick={selectRoute} className={styles.buyB}>BUY NOW</button>
     )
 
 };
