@@ -9,6 +9,7 @@ import Addreses from "../../components/Addreses/Addreses";
 import { Route,  Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { log } from "console";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const Detail = () => {
   const handleCart = () => {
     if (!selectedSize || selectedQuantity < 1 || selectedQuantity > availableQuantity) {
       setShowSizeError(true);
+      console.log(setShowSizeError);
       return;
     }
     setShowSizeError(false);
