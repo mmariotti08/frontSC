@@ -32,7 +32,7 @@ const BuyButton = ()=>{
         }else if(!idUser.address){
             return navigate('/addAddress')
         }else{
-            const response= await axios.post('http://localhost:3001/payment',{cardPey,idUser})
+            const response= await axios.post('payment',{cardPey,idUser})
             const info=response.data;
             window.location.href= info.init_point;
         }
