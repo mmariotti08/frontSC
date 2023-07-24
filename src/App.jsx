@@ -30,7 +30,7 @@ import UserBanned from "./views/userBanned/UserBanner";
 import Addreses from "./components/Addreses/Addreses";
 import Successfull from "./components/Payments/Successfull/Successfull";
 import Failed from "./components/Payments/Failed/Failed";
-import Profile from "./views/profile/Profile"
+import Profile from "./views/profile/profile"
 
 
 
