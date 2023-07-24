@@ -21,7 +21,9 @@ const Detail = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [showSizeError, setShowSizeError] = useState(false);
   const [availableQuantity, setAvailableQuantity] = useState(0);
-
+  
+console.log(sneaker)
+console.log(cart);
   useEffect(() => {
     dispatch(getDetail(id));
     window.scrollTo(0, 0);

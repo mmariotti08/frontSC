@@ -1,46 +1,151 @@
-.cAddress{
-    display: flex;
-    flex-direction: column;
-    margin-top: 15%;
-    margin-bottom: 20%;
-    align-items: center;
-    background-color:white ;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #ca1111;
+.cAddress {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0px;
+  align-items: center;
+  background-color: white;
+  font-family: sans-serif;
+  color: #000000;
+  min-width: 800px;
+  border-radius: 15px;
 }
-.inputs{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    
+/* Address.module.css */
+
+
+
+
+
+
+.loading {
+  font-size: 18px;
+  color: #333;
+  padding: 20px;
 }
-.inputs label{
-    display: flex;
-    margin-right: 40px;
-    font-size: 25px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+.inputs label {
+  display: flex;
+  margin-right: 40px;
+  font-size: 20px;
+  font-family: "Nexa", sans-serif;
 }
-.inputs input{
-    width: 300px;
-    height: 30px;
+.inputs input {
+  width: 450px;
+  height: 35px;
+  border-radius: 30px;
+  background-color: white;
+  outline: none;
+  color: #000000;
+  font-size: 19px;
+  padding: 12px;
+  font-family: "Nexa1", sans-serif;
+
 }
-.desc input{
-    display: flex;
+
+.inputs input:hover {
+  background-color: rgb(222, 222, 222);
+}
+.inputs input:focus {
+  outline: none;
+  border-color: #a43939;
+}
+.desc input {
+  height: 200px;
+  width: 450px;
+  border-radius: 15px;
+  background-color: white;
+  font-size: 19px;
+  color: #000000;
+  padding: 5px;
+  font-family: "Nexa1", sans-serif;
+
+}
+
+.desc input:hover {
+  background-color: rgb(222, 222, 222);
+}
+.desc input:focus {
+  outline: none;
+  border-color: #9a2543;
+}
+.desc label {
+  display: flex;
+  margin-right: 40px;
+
+  font-size: 25px;
+}
+.butt {
+  background-color: #ca1111;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: aliceblue;
+}
+.finalize {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: #005eff;
+  color: #000000;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  font-size: 205%;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de sombra al pasar el cursor */
+.finalize:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #96e8fb;
+  color: black;
+}
+
+/* Efecto de expansión al hacer clic */
+.finalize:active {
+  transform: scale(0.95);
+}
+
+/* Efecto de onda al hacer clic */
+.finalize:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: waveEffect 0.5s ease-out;
+}
+.errorMessage{
+  font-family: "Nexa1" , sans-serif ;
+  color: #ca1111;
+}
+
+
+@keyframes waveEffect {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.3;
+  }
+  100% {
+    width: 200px;
     height: 200px;
-    width: 300px;
-
-   
+    opacity: 0;
+  }
 }
-.desc label{
-    display: flex;
-    margin-right: 40px;
-    
-    font-size: 25px;
+@font-face {
+  font-family: "Nexa";
+  src: url("../../../public/fonts/Nexa-Heavy.ttf") format("truetype");
+  /* Agrega otros formatos de fuente si es necesario para mayor compatibilidad */
 }
-.butt{
-    background-color: #ca1111;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: aliceblue;
+@font-face {
+  font-family: "Nexa1";
+  src: url("../../../public/fonts/Nexa-ExtraLight.ttf") format("truetype");
+  /* Agrega otros formatos de fuente si es necesario para mayor compatibilidad */
 }
-
-

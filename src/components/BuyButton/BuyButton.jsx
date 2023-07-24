@@ -8,14 +8,21 @@ import styles from './BuyButton.module.css'
 
 const BuyButton = ()=>{
     const userss = useSelector((state)=> state.users)
+    const cart = useSelector((state)=> state.cart)
+    
+    console.log(cart);
+
+
     const user = useUser(true)
-    console.log(user);
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
+    
+
+
     useEffect(()=>{
         
-        dispatch(getUsers())
+        dispatch(getUsers()  )
     }, [dispatch])
 
     // const idUser = userss.find(item => item.mail === user.user?.primaryEmailAddress.emailAddress )
@@ -30,12 +37,12 @@ const BuyButton = ()=>{
         console.log('fsdfsdf');
         return navigate('/addAddress')
     }else{
-        return alert('redirige a compra')
+        return (checkout())
     }
    }
     
     return(
-       <button onClick={selectRoute} className={styles.buyB}>Buy</button>
+       <button onClick={selectRoute} className={styles.finalize}>Buy Now </button>
     )
 
 };

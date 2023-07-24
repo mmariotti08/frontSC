@@ -4,41 +4,20 @@ import { useEffect, useState } from "react";
 import { removeFromCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../redux/actions";
+import BuyButton from "../../components/BuyButton/BuyButton";
+import Addreses from "../../components/Addreses/Addreses";
 
 const ShoppingCart = ({ cart }) => {
   const dispatch = useDispatch();
-  
-  const checkout = async () => {
-    const cartDestructuring = cart.map((item) => ({
-      idPrice: item.idPrice,
-      quantity: 1,
-    }));
-    console.log(cartDestructuring);
-    
-    try {
-      const response = await fetch("http://localhost:3001/payments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items: cartDestructuring }),
-      });
-      
+  console.log(cart);
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data.url);
-        if (data.url) {
-          window.location.assign(data.url);
-        }
-      } else {
-        console.error("Error en la solicitud fetch:", response.status);
-      }
-    } catch (error) {
-      console.error("Error en la solicitud fetch:", error);
-    }
+  const [show, setShow] = useState(false);
+  const [showAddreses, setShowAddreses] = useState(false);
+  console.log(showAddreses);
+  const handleClick = () => {
+    setShow(true);
   };
-  
+
   const [, setCart] = useState([]);
 
   const totalPrice = cart.reduce(
@@ -63,53 +42,92 @@ const ShoppingCart = ({ cart }) => {
   };
 
   return (
-    <nav className={style.containerGeneral}>
-      <div className={style.containerGeneral}>
+    // <div className={`${
+    //   showAddreses ? style.showAddreses : style.containerGeneral
+    // }`}>
+    <div className={style.containerGeneral
+    }>
+        <div className={`${
+      showAddreses ? style.showAddreses : style.contenedor
+    }`}  >
+
+        <div className={style.container }>
         <h1 className={style.titule}>Shopping Cart</h1>
-        <div className={style.container}>
           {cart.length === 0 ? (
             <p className={style.mensaje}>Add products to your cart</p>
-          ) : (
+            ) : (
             <>
               {cart.map((item) => (
-                <div key={item.id} className={style.product}>
+                <div
+                key={item.id}
+                className={`${
+                    showAddreses ? style.showAddresesProduct : style.product
+                  }`}>
                   <img
                     src={item.main_picture_url}
                     alt={item.main_picture_url}
-                    className={style.image}
-                  />
-                  <h3 className={style.name}>{item.name}</h3>
-                  <h3 className={style.price}>
-                    {formatPrice(item.retail_price_cents)}
-                  </h3>
-                  <h3 className={style.size}>Size</h3>
-                  <h3 className={style.sizeI}>{item.size}</h3>
+                    className={`${
+                      showAddreses ? style.showAddresesImage : style.image
+                    }`}
+                    />
+                      <h3 className={style.name}>{item.name}</h3>
+                  {showAddreses ? null : (
+                    <>
+                      <h3 className={style.price}>
+                        {formatPrice(item.retail_price_cents)}
+                      </h3>
+                      <h3 className={style.size}>Size</h3>
+                      <h3 className={style.sizeI}>{item.size}</h3>
                   <button
-                    onClick={() => handleRemove(item.id, item.size)}
-                    className={style.removeC}>
+                  onClick={() => handleRemove(item.id, item.size)}
+                  className={style.removeC}>
                     REMOVE CART
                   </button>
+                    </>
+                  )}
                 </div>
               ))}
             </>
           )}
+          <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
         </div>
-        <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
-        <div className="modal-footer">
-          {cart.length > 0 ? (
-            <Link onClick={checkout} className={style.finalize} >
-              Buy Now
-            </Link>
+          <div>
+
+        {show && <Addreses />}
+          </div>
+          </div>
+
+        <div  style={{ marginTop: showAddreses ? "-180px": '12px'}} className={style.CButton}>
+          {cart.length > 1 ?  (
+            <>
+              {/* <Link onClick={checkout}  className={style.finalize} >
+                Buy Now
+              </Link> */}
+              {/* <BuyButton/> */}
+
+              {showAddreses ? null : ( 
+
+ <button
+                onClick={() => {
+                  setShowAddreses(true);
+                  handleClick();
+                }}
+                className={style.finalize}
+                type="button">
+                Buy Now
+              </button>
+
+
+              )}
+               
+              
+
+              
+            </>
           ) : (
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal">
-              Close
-            </button>
+            <h1> ShopConect</h1>
           )}
         </div>
-      </div>
       <div>
         <div className="modal-dialog">
           <div className="modal-content">
@@ -117,7 +135,7 @@ const ShoppingCart = ({ cart }) => {
           </div>
         </div>
       </div>
-    </nav>
+    </div>
   );
 };
 

@@ -1,3 +1,55 @@
-.buyB{
-    background-color: red;
-}
+.finalize {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    padding: 16px 32px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    font-size: 205%;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Efecto de sombra al pasar el cursor */
+  .finalize:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #96fb99;
+    color: black;
+  }
+  
+  /* Efecto de expansión al hacer clic */
+  .finalize:active {
+    transform: scale(0.95);
+  }
+  
+  /* Efecto de onda al hacer clic */
+  .finalize:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: waveEffect 0.5s ease-out;
+  }
+  
+  @keyframes waveEffect {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 0.3;
+    }
+    100% {
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+  }

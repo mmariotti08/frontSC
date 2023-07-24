@@ -1,0 +1,42 @@
+.create-review-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'nexa';
+  }
+  
+  .rating-container {
+    font-size: 30px;
+  }
+  
+  .star {
+    cursor: pointer;
+  }
+  
+  .star.filled {
+    color: #f1c40f; /* Change this color for filled stars */
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db; /* Change this color for the button background */
+    color: #ffffff; /* Change this color for the button text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Nexa" , sans-serif;
+  }
+  
+  .submit-button:hover {
+    background-color: #2980b9; /* Change this color for the button hover state */
+  }
+  

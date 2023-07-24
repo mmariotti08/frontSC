@@ -85,7 +85,7 @@ const NavBar = ({ toggleCarousel }) => {
     if (isSignedIn) {
       const unlisten = () => {
         // Si el usuario cierra sesión, redirigir al Home
-        window.location.href = "/";
+        // window.location.href = "/";
       };
       return unlisten;
     }

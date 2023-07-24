@@ -1,154 +1,217 @@
-.titule{
-    font-size: 30px;
-    margin-top: 12%;
-    font-family: 'Russo One', sans-serif;
+.titule {
+  font-size: 30px;
+  margin-top: 12%;
+  font-family: "Nexa", sans-serif;
+
+  color: black;
 }
 
-.container{
-    background-color: rgb(238, 238, 247);
-    display: inline-block;
-    width: 90%; 
-    box-sizing: border-box;
-    padding: 10px;
-    border-radius: 8px;
+.showAddreses {
+  margin-top: 330px;
+  background-color: rgb(204, 204, 204);
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  justify-content: space-around;
 }
-.product{
-    box-sizing: border-box;
-    color: black;
-    /*display: inline-block;*/
-    background-color: rgba(210, 208, 211, 0.726);
-    border-radius: 8px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.195);
-    transition: transform 0.3s ease;
-    display: grid;
-    grid-template-rows: 80px 80px;
-    grid-template-columns: 1fr 1fr 0.8fr 0.8fr 0.8fr 0.8fr;
- 
-}
-.mensaje{
-    font-size: 30px;
-  
-    font-family: 'Russo One', sans-serif;
-}
-.divClear{
-    margin-top: 2%;
-    
-}
-.buttonClear{
-    font-size: 20px;
-    font-family: 'Russo One', sans-serif;
-    color: #ca1111;
-    display: flex;
-    background-color: rgba(166, 165, 165, 0.466);
-    width: 200px;
-    margin: 30px;
-    justify-content: center;
-    border-radius: 40px;
-    border: 2px solid  #ca1111;
+.CButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.removeC{
-    width: 130px;
-    height: 30px;
-    border: 2px solid  #ca1111;
-    font-size: 13px;
-    font-family: 'Russo One', sans-serif;
-    color: #ca1111;
-    background-color: rgba(166, 165, 165, 0.466);
-    margin-top: 30%;
+.containerGeneral {
+  margin-top: -130px;
+  background-color: rgb(204, 204, 204);
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.product {
+  margin-top: 5px;
+  display: grid;
+  grid-template-rows: 80px 80px;
+  grid-template-columns: 1fr 1fr 0.8fr 0.8fr 0.8fr 0.8fr;
+  align-items: center; /* Centrar verticalmente */
+  justify-items: center; /* Centrar horizontalmente */
+  width: 80%;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.805);
+  border-radius: 8px;
+  box-shadow: 0 10px 10px rgb(71, 71, 71);
+  transition: transform 0.3s ease;
+  border-color: silver;
+  margin-left: 9%;
+}
+.showAddresesProduct {
+  display: flex;
+  background-color: rgb(172, 166, 166);
+  border-color: black;
+  width: 400px;
+  height: 200px;
+  margin-top: 10px;
+  color: black;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px 25px 0px 25px;
 }
 
-.image{
-    width: 180px;
-    height: 180px;
-    border-radius: 8px 8px 8px 8px;   
+.product:hover {
+  background-color: rgba(246, 231, 200, 0.662);
+}
+.mensaje {
+  font-size: 30px;
+
+  font-family: "Nexa", sans-serif;
+}
+.divClear {
+  margin-top: 2%;
+}
+.buttonClear {
+  font-size: 20px;
+  font-family: "Nexa", sans-serif;
+
+  color: #ca1111;
+  display: flex;
+  background-color: rgba(166, 165, 165, 0.466);
+  width: 200px;
+  margin: 30px;
+  justify-content: center;
+  border-radius: 40px;
+  border: 2px solid #ca1111;
 }
 
-.name{
-    font-family: 'Russo One', sans-serif;
-    text-align: center;
-    margin-top: 15%;
+.removeC {
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  border: 2px solid #ca1111;
+  font-size: 17px;
+  font-family: "Nexa", sans-serif;
+  color: #ca1111;
+  background-color: rgba(166, 165, 165, 0.466);
+  margin-top: 30%;
+}
+.removeC:hover {
+  background-color: #ca1111;
+  color: #fff;
 }
 
-.price{
-    font-family: 'Russo One', sans-serif;
-    text-align: center;
-    margin-top: 30%;
+.image {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px 8px 8px 8px;
+  margin-top: 30%;
+}
+.showAddresesImage {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px 8px 8px 8px;
+  margin-top: 10%;
 }
 
-.size{
-    font-family: 'Russo One', sans-serif;
-    text-align: center;
-    margin-top: 30%;
-}
-.sizeI{
-    font-family: 'Russo One', sans-serif;
-    text-align: center;
-    margin-top: 30%;
+.name {
+  font-family: Nexa;
+  text-align: center;
+  margin-top: 15%;
+  font-size: 21px;
 }
 
-.total{
-    font-family: 'Russo One', sans-serif;
-    text-align: end;
-    margin-right: 10%;
+.price {
+  font-family: "Nexa", sans-serif;
+  text-align: center;
+  margin-top: 30%;
 }
 
+.size {
+  font-family: "Nexa", sans-serif;
+
+  text-align: center;
+  margin-top: 30%;
+}
+.sizeI {
+  font-family: "Nexa", sans-serif;
+
+  text-align: center;
+  margin-top: 30%;
+}
+
+.total {
+  margin-top: 100px;
+  font-family: "Nexa", sans-serif;
+  margin-right: 10%;
+  color: black;
+  font-size: 30px;
+}
 
 /* Estilos básicos del enlace */
 .finalize {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    display: inline-block;
-    padding: 16px 32px;
-    background-color: #4caf50;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 50px;
-    font-size: 205%;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  /* Efecto de sombra al pasar el cursor */
-  .finalize:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #96fb99;
-    color: black;
-  }
-  
-  /* Efecto de expansión al hacer clic */
-  .finalize:active {
-    transform: scale(0.95);
-  }
-  
-  /* Efecto de onda al hacer clic */
-  .finalize:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  font-family: "Nexa", sans-serif;
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: #4caf50;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de sombra al pasar el cursor */
+.finalize:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #96fb99;
+  color: black;
+}
+
+/* Efecto de expansión al hacer clic */
+.finalize:active {
+  transform: scale(0.95);
+}
+
+/* Efecto de onda al hacer clic */
+.finalize:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: waveEffect 0.5s ease-out;
+}
+
+@keyframes waveEffect {
+  0% {
     width: 0;
     height: 0;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    animation: waveEffect 0.5s ease-out;
+    opacity: 0.3;
   }
-  
-  @keyframes waveEffect {
-    0% {
-      width: 0;
-      height: 0;
-      opacity: 0.3;
-    }
-    100% {
-      width: 200px;
-      height: 200px;
-      opacity: 0;
-    }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
   }
-  
+}
+
+@font-face {
+  font-family: "Nexa";
+  src: url("../../../public/fonts/Nexa-Heavy.ttf") format("truetype");
+  /* Agrega otros formatos de fuente si es necesario para mayor compatibilidad */
+}

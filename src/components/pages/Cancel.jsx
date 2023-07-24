@@ -6,6 +6,7 @@ function Cancel() {
     <div className={styles.container}>
       <h1 className={styles.word}>Purchase cancelled!</h1>
       <Link to="/" className={styles.button}>Back to home</Link>
+      
     </div>
   );
 }
