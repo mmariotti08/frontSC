@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 import { LiaShippingFastSolid } from 'react-icons/lia';
-import { RiSecurePaymentLine } from 'react-icons/ri';
-import { BsCreditCard2Back, BsClock } from 'react-icons/bs';
+import { RiSecurePaymentLine, RiWhatsappLine, RiMailLine } from 'react-icons/ri';
+import { BsCreditCard2Back, BsClock, BsFillSuitHeartFill, BsGithub } from 'react-icons/bs';
+import { AiOutlineClose } from 'react-icons/Ai';
+import { useState } from "react";
 
 const Footer = () => {
 	const members = [
@@ -17,18 +19,37 @@ const Footer = () => {
 		{ name: "Nicolás Moreno", github: "https://github.com/JNicolasmm" }
 	];
 
-	const helps = [
-		{ to: "/aboutUs", title: "About Us" },
-		{ to: "/fQuestions", title: "Frecuent Questions" },
-		{ to: "/measureSize", title: "How to measure your size?" }
-	];
-
 	const elements = [
 		{ title: "Fast Shipping", text: "Receive in 2 to 5 business days throughout Argentina", icon: LiaShippingFastSolid },
 		{ title: "Secure Payment", text: "We rely on Mercado Pago, one of the safest payment processors", icon: RiSecurePaymentLine },
 		{ title: "24/7 Support", text: "Contact us 24 hours a day, 7 days a week", icon: BsClock },
 		{ title: "Flexible Payments", text: "Pay in up to 6 interest-free installments", icon: BsCreditCard2Back }
-	];	
+	];
+
+	const useful_links = [
+		{
+		  title: "About Us",
+		  text: "We are a modern and exclusive brand of sneakers and fashion items.",
+		  helps: [
+			{ to: "https://wa.me/56999999999", title: "+56 9 9999 9999", icon: RiWhatsappLine },
+			{ to: "mailto:info@shopconnect.com", title: "info@shopconnect.com", icon: RiMailLine }
+		  ]
+		},
+		{
+		  title: "Useful Links",
+		  helps: [
+			{ to: "/aboutUs", title: "About Us" },
+			{ to: "/fQuestions", title: "Frequent Questions" },
+			{ to: "/measureSize", title: "How to measure your size?" }
+		  ]
+		}
+	];
+
+	const [membersOn, setMembersOn] = useState(false)
+
+	const handleClick = () => {
+		setMembersOn(!membersOn)
+	};
 
 	return (
 		<div className={styles.todo}>
@@ -49,38 +70,53 @@ const Footer = () => {
 				))}
 			</div>
 
-			<div className={styles.container}>
-				<div className={styles.containerName}>
-					<h1>Members</h1>
-					<div className={styles.integrantes}>
+			<div id={styles.useful_links}>
+				{useful_links.map((c, index) => (
+					<div
+						key={`${index}-${c}`}
+						className={styles.useful_links_div}
+						>
+						<h3>{c.title}</h3>
+						{c.text && <h4>{c.text}</h4>}
+						<div className={styles.container_links}>
+							{c.helps.map((help, index) => (
+								<Link key={`${index}-${help}`} to={help.to} >
+									{help.icon && <help.icon />}
+									<span>{help.title}</span>
+								</Link>
+							))}
+						</div>
+
+					</div>
+				))}
+			</div>
+
+			<div className={styles.derechos}>
+				<p>© SHOPCONNECT - 2023</p>
+				<p id={styles.made_whith} onClick={handleClick}>Made with <BsFillSuitHeartFill /> group 16</p>
+			</div>
+			
+			{membersOn &&
+				<div className={styles.container_members}>
+					<button onClick={handleClick}><AiOutlineClose /></button>
+					<h3>Members</h3>
+					<div className={styles.members}>
 						{members.map((member, index) => (
-							<div key={`${index}-${member}`} className={styles.nombre}>
+							<div key={`${index}-${member}`}>
 								<a href={member.github} target="_blank">
-									<h3>{member.name}</h3>
+									<BsGithub />
+									<span>{member.name}</span>
 								</a>
 							</div>
 						))}
 					</div>
 				</div>
-
-				<div className={styles.help}>
-					{helps.map((help, index) => (
-						<Link key={`${index}-${help}`} to={help.to} >
-							<h3>{help.title}</h3>
-						</Link>
-					))}
-				</div>
-
-				<div>
-					<ScrollToTopButton />
-				</div>
-			</div>
-			<div className={styles.derechos}>
-				<p>© ShopConnect - 2023</p>
+			}
+			<div id={styles.scroll_buttom}>
+				<ScrollToTopButton />
 			</div>
 		</div>
 	);
 };
-
 
 export { Footer };
