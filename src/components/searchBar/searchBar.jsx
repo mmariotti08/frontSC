@@ -54,20 +54,15 @@ const SearchBar = () => {
 
   return (
     <div className={style.searchContainer}>
-      <div className={style.inputContainer}>
-        <input
-          onKeyPress={handleKeyPress}
-          className={style.searchInput}
-          onChange={handleChange}
-          value={name}
-          placeholder="Search..."
-        />
-      </div>
-      <div className={style.buttonContainer}>
-        <button className={style.searchButton} onClick={handleSubmit}>
-          <FaSearch />
-        </button>
-      </div>
+      <input
+        onKeyPress={handleKeyPress}
+        onChange={handleChange}
+        value={name}
+        placeholder="Search..."
+      />
+      <button onClick={handleSubmit}>
+        <FaSearch />
+      </button>
     </div>
   );
 };
