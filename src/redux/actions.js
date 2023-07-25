@@ -27,6 +27,7 @@ import {
   LOGOUT,
   FETCH_ORDER_SUCCESS,
   FETCH_USER_ORDERS_SUCCESS,
+  ADD_ADDRESS
 } from "./actions-type";
 
 export const getProducts = () => {
@@ -177,7 +178,7 @@ export const updateUser = (id, address) => {
   return async function (dispatch) {
     try {
       await axios.put(`user/${id}`, address);
-      return;
+      return dispatch({ type: ADD_ADDRESS, payload: address });
     } catch (error) {
       console.error(error);
     }
