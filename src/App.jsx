@@ -3,17 +3,6 @@ import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
 import Login from "./components/login/Login";
 import Detail from "./views/detail/detail";
-
-import {
-  SignIn,
-  SignUp,
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
-  RedirectToSignIn,
-} from "@clerk/clerk-react";
 import Home from "./views/home/home";
 import AboutUs from "./components/Footer/AboutUS/AboutUs";
 import MeasurSize from "./components/Footer/MeasureSize/MeasureSize";
@@ -28,108 +17,66 @@ import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
 import UserBanned from "./views/userBanned/UserBanner";
 import Addreses from "./components/Addreses/Addreses";
+import { gapi } from "gapi-script";
 import Successfull from "./components/Payments/Successfull/Successfull";
 import Failed from "./components/Payments/Failed/Failed";
-import Profile from "./views/profile/Profile"
+import Profile from "./views/profile/profile";
+import { ToastContainer } from "react-toastify";
 
+// axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
-
-const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
-// import Landing from "./views/landing/landing";
-
-//axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
-
-axios.defaults.baseURL='http://localhost:3001/'
-
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
-  const dispatch = useDispatch();
+	const clientId = "1027048250245-li9gor30unv7ieg8tkk77fpbh78cahbs.apps.googleusercontent.com";
+    // TEST LOGIN V2
+	useEffect(() => {
+		const start = () => {
+			gapi.client.init({
+				clientId: clientId,
+				scope: ""
+			});
+		};
+		gapi.load('client:auth2', start);
+	});
 
-  if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
-    throw "Missing Publishable Key";
-  }
+	const dispatch = useDispatch();
 
-  const { pathname } = useLocation();
+	const { pathname } = useLocation();
 
-  const [toggle, setToggle] = useState(true);
+	const [toggle, setToggle] = useState(true);
 
-  const toggleCarousel = (show) => {
-    setToggle(show);
-  };
+	const toggleCarousel = (show) => {
+		setToggle(show);
+	};
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+	useEffect(() => {
+		dispatch(getProducts());
+	}, []);
 
-  return (
-    <ClerkProvider publishableKey={clerkPubKey}>
-      
-
-    <div>
-      {/* {!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />} */}
-      <NavBar toggleCarousel={toggleCarousel} />
-       
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route  path="/"  element={<Home toggle={toggle} />}/>
-        {/* RUTAS DEL FOOTER */}
-        <Route path="/fQuestions" element={<FrecuentQuestions/>}/>
-        <Route path="/measureSize" element={<MeasurSize/>}/>
-        <Route path="/aboutUs" element={<AboutUs/>}/>
-        <Route path="/products/:id" element={<Detail/>}/>
-        <Route path="/cart" element={<ShoppingCart/>}/>
-        {/* <Route path="/landing" element={<Landing/>}/> */}
-        <Route path="/favorites" element={<Favorites/>}/>
-        <Route path="/addAddress" element={<Addreses/>} />
-        <Route path="/successfull" element={<Successfull/>} />
-        <Route path="/failed" element={<Failed/>} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route
-            path="/sign-up/*"
-            element={
-              <SignUp
-                redirectUrl={"/login"}
-                routing="path"
-                path="/sign-up"
-              />
-            }
-          />
-
-          <Route
-            path="/login"
-            element={
-              <>
-              <SignIn
-                redirectUrl={"/login"}
-                routing="path"
-                path="/login"
-              />
-              </>
-            }
-          />
-
-          <Route
-            path="/login"
-            element={
-              <>
-                <SignedIn>
-                  <Login />
-            
-                </SignedIn>
-                <SignedOut>
-                  <RedirectToSignIn />
-                </SignedOut>
-              </>
-            }
-          />
-        </Routes>
-        <UserBanned/>
-        {!pathname.startsWith("/admin") && <Footer />}
-      </div>
-    </ClerkProvider>
-  );
-
-}
+	return (
+		<div id="container_app">
+			{!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />}
+			<Routes>
+				<Route path="/login" element={<Login/>}/>
+				<Route  path="/"  element={<Home toggle={toggle} />}/>
+				<Route path="/fQuestions" element={<FrecuentQuestions/>}/>
+				<Route path="/measureSize" element={<MeasurSize/>}/>
+				<Route path="/aboutUs" element={<AboutUs/>}/>
+				<Route path="/products/:id" element={<Detail/>}/>
+				<Route path="/cart" element={<ShoppingCart/>}/>
+				<Route path="/favorites" element={<Favorites/>}/>
+				<Route path="/addAddress" element={<Addreses/>} />
+				<Route path="/successfull" element={<Successfull/>} />
+				<Route path="/failed" element={<Failed/>} />
+				<Route path="/admin" element={<Admin />} />
+				<Route path="/profile" element={<Profile />} />
+			</Routes>
+				{/* <UserBanned /> */}
+			{!pathname.startsWith("/admin") && <Footer />}
+			<ToastContainer />
+		</div>
+	);
+};
 
 export default App;

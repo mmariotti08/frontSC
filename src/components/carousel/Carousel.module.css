@@ -1,38 +1,61 @@
 .carousel {
-  width: 70%;
-  height: auto;
-  margin-bottom: 30px;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
-  justify-content: center;
-  
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
 }
-
 
 .carouselImg {
   width: 100%;
   height: auto;
   opacity: 0;
   transition: 1s;
-  
 }
 
 .loaded {
   opacity: 1;
 }
 
-.buttonContainer {
+.container_buttons {
   display: flex;
-  justify-content: center;
-  margin-top: 15px;
+  flex-wrap: nowrap;
+  position: absolute;
+  bottom: 10px;
+  gap: 50px;
 }
 
-.button {
-  color: white;
-  background-color: #333333;
-  padding: 8px;
-  margin: 0 5px;
+.container_buttons button {
+  all: initial;
+  display: flex;
+  color: #ffffff;
   cursor: pointer;
+  font-size: 30px;
+  outline: none !important;
+  border: 3px solid #CA1111;
+  border-radius: 100%;
+  background-color: #CA1111;
+}
+
+.container_buttons button:hover {
+  display: flex;
+  font-size: 35px;
+  border-radius: 100%;
+}
+
+@media (max-width: 768px) {
+  .container_buttons {
+    bottom: 5px;
+    gap: 30px;
+  }
+
+  .container_buttons button {
+    font-size: 15px;
+    border: 1px solid #CA1111;
+  }
+
+  .container_buttons button:hover {
+    font-size: 18px;
+    border-radius: 100%;
+  }
 }

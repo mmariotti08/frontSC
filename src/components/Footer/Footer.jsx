@@ -1,96 +1,122 @@
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
+import { LiaShippingFastSolid } from 'react-icons/lia';
+import { RiSecurePaymentLine, RiWhatsappLine, RiMailLine } from 'react-icons/ri';
+import { BsCreditCard2Back, BsClock, BsFillSuitHeartFill, BsGithub } from 'react-icons/bs';
+import { AiOutlineClose } from 'react-icons/Ai';
+import { useState } from "react";
 
 const Footer = () => {
-  return (
-    <div className={styles.todo}>
-    <div className={styles.container}>
+	const members = [
+		{ name: "Matias Mariotti", github: "https://github.com/mmariotti08" },
+		{ name: "Brayan Anacona", github: "https://github.com/brayan4nacona" },
+		{ name: "Mauricio Rubilar", github: "https://github.com/MRubilarRiffo" },
+		{ name: "Maryeris Orozco", github: "https://github.com/Marye05" },
+		{ name: "José Orellana", github: "https://github.com/joseaot" },
+		{ name: "Luis Sánchez", github: "https://github.com/luissanchez92" },
+		{ name: "José Centeno", github: "https://github.com/JoseMcmW" },
+		{ name: "Nicolás Moreno", github: "https://github.com/JNicolasmm" }
+	];
 
-      <div className={styles.containerName}>
-        <h1>Members</h1>
-        <div className={styles.integrantes}>
-          <div className={styles.nombre}>
-            <a href="https://github.com/mmariotti08" target="_blank">
-              <h3> Matias Mariotti</h3>
-            </a>
-          </div>
+	const elements = [
+		{ title: "Fast Shipping", text: "Receive in 2 to 5 business days throughout Argentina", icon: LiaShippingFastSolid },
+		{ title: "Secure Payment", text: "We rely on Mercado Pago, one of the safest payment processors", icon: RiSecurePaymentLine },
+		{ title: "24/7 Support", text: "Contact us 24 hours a day, 7 days a week", icon: BsClock },
+		{ title: "Flexible Payments", text: "Pay in up to 6 interest-free installments", icon: BsCreditCard2Back }
+	];
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/brayan4nacona" target="_blank">
-              <h3> Brayan Anacona</h3>
-            </a>
-          </div>
+	const useful_links = [
+		{
+		  title: "About Us",
+		  text: "We are a modern and exclusive brand of sneakers and fashion items.",
+		  helps: [
+			{ to: "https://wa.me/56999999999", title: "+56 9 9999 9999", icon: RiWhatsappLine },
+			{ to: "mailto:info@shopconnect.com", title: "info@shopconnect.com", icon: RiMailLine }
+		  ]
+		},
+		{
+		  title: "Useful Links",
+		  helps: [
+			{ to: "/aboutUs", title: "About Us" },
+			{ to: "/fQuestions", title: "Frequent Questions" },
+			{ to: "/measureSize", title: "How to measure your size?" }
+		  ]
+		}
+	];
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/MRubilarRiffo" target="_blank">
-              <h3> Mauricio Rubiale</h3>
-            </a>
-          </div>
+	const [membersOn, setMembersOn] = useState(false)
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/Marye05" target="_blank">
-              <h3> Maryeris Orozco </h3>
-            </a>
-          </div>
+	const handleClick = () => {
+		setMembersOn(!membersOn)
+	};
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/joseaot" target="_blank">
-              <h3>Jose Orellana</h3>
-            </a>
-          </div>
+	return (
+		<div className={styles.todo}>
+			<div id={styles.container_elements}>
+				{elements.map((element, index) => (
+					<div
+						key={`${index}-${element}`}
+						className={styles.div_elements}
+						>
+						<div className={styles.ico}>
+							<element.icon />
+						</div>
+						<div className={styles.text}>
+							<h3>{element.title}</h3>
+							<span>{element.text}</span>
+						</div>
+					</div>
+				))}
+			</div>
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/luissanchez92" target="_blank">
-              <h3> Luis Sanchez </h3>
-            </a>
-          </div>
+			<div id={styles.useful_links}>
+				{useful_links.map((c, index) => (
+					<div
+						key={`${index}-${c}`}
+						className={styles.useful_links_div}
+						>
+						<h3>{c.title}</h3>
+						{c.text && <h4>{c.text}</h4>}
+						<div className={styles.container_links}>
+							{c.helps.map((help, index) => (
+								<Link key={`${index}-${help}`} to={help.to} >
+									{help.icon && <help.icon />}
+									<span>{help.title}</span>
+								</Link>
+							))}
+						</div>
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/JoseMcmW" target="_blank">
-              <h3>Jose Centeno</h3>
-            </a>
-          </div>
+					</div>
+				))}
+			</div>
 
-          <div className={styles.nombre}>
-            <a href="https://github.com/JNicolasmm" target="_blank">
-              <h3>Nicolas Moreno</h3>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.help}>
-        <Link to="/aboutUs">
-          <h3>About Us</h3>
-        </Link>
-        <Link to="/fQuestions">
-          <h3>Frecuent Questions</h3>
-        </Link>
-        <Link to="/measureSize">
-          <h3>How to measure your size?</h3>
-        </Link>
-      </div>
-
-      <div>
-        <ScrollToTopButton />
-      </div>
-
-    </div>
-      <div className={styles.derechos}>
-        <p>
-          © Copyright 2023 ShopConnect, TODOS LOS DERECHOS
-          RESERVADOS. Las fotos contenidas en este site, el logotipo y las
-          marcas son propiedad de ShopConnect y/o de sus respectivos
-          titulares. Está prohibida la reproducción total o parcial, sin la
-          expresa autorización de la administradora de la tienda virtual.
-          ShopConnect, empresa perteneciente al grupo 18 Henry S.A. con domicilio en
-          Buenos Aires – Argentina.
-        </p>
-      </div>
-      </div>
-  );
+			<div className={styles.derechos}>
+				<p>© SHOPCONNECT - 2023</p>
+				<p id={styles.made_whith} onClick={handleClick}>Made with <BsFillSuitHeartFill /> group 16</p>
+			</div>
+			
+			{membersOn &&
+				<div className={styles.container_members}>
+					<button onClick={handleClick}><AiOutlineClose /></button>
+					<h3>Members</h3>
+					<div className={styles.members}>
+						{members.map((member, index) => (
+							<div key={`${index}-${member}`}>
+								<a href={member.github} target="_blank">
+									<BsGithub />
+									<span>{member.name}</span>
+								</a>
+							</div>
+						))}
+					</div>
+				</div>
+			}
+			<div id={styles.scroll_buttom}>
+				<ScrollToTopButton />
+			</div>
+		</div>
+	);
 };
-
 
 export { Footer };

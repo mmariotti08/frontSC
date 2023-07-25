@@ -44,7 +44,7 @@ const ShoppingCart = ({ cart }) => {
               const subtotal = calculateSubtotal(item.quantity, item.retail_price_cents);
               return (
                 <div key={item.id} className={style.product}>
-                  <img src={item.main_picture_url} alt={item.main_picture_url} className={style.image} />
+                  <img src={item.main_picture_url[0]} alt={item.main_picture_url[0]} className={style.image} />
                   <h3 className={style.name}>{item.name}</h3>
                   <h3 className={style.sizeI}>Size: {item.size}</h3>
                   <h3 className={style.price}>Unit price: {formatPrice(item.retail_price_cents)}</h3>

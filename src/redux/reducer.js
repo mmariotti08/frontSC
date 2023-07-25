@@ -21,6 +21,8 @@ import {
   GET_USER_ID,
   GET_ORDER_ID,
   UPDATE_ONE_USER,
+  LOGIN,
+  LOGOUT,
   FETCH_ORDER_SUCCESS,
 } from "./actions-type";
 
@@ -42,6 +44,12 @@ const initialState = {
   get_user_id: [],
   get_order_id: [],
   lastOrder: [],
+  auth_token: JSON.parse(localStorage.getItem("auth")) || {
+    isAuthenticated: false,
+    token: null
+  },
+  orderData: [],
+  userOrders: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -156,6 +164,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         get_order_id: action.payload,
+      };
+    case LOGIN:
+      localStorage.setItem("auth", JSON.stringify(action.payload));
+      return {
+        ...state,
+        auth_token: action.payload
+      };
+    case LOGOUT:
+      localStorage.removeItem('auth');
+      return {
+        ...state,
+        auth_token: { isAuthenticated: false, token: null }
       };
 
     case ORDER_BY_NAME: {
