@@ -7,7 +7,7 @@ import SearchBar from "../../../src/components/searchBar/searchBar";
 import { getProductName, getProducts, getUsers } from "../../redux/actions";
 import { Login_v2 } from "../../views/new Login/Login v2";
 import { Menu_Login } from "../New Login/Menu Login/Menu Login";
-import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/Ai';
+import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs';
 
 const NavBar = ({ toggleCarousel }) => {
