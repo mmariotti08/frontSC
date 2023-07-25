@@ -8,7 +8,9 @@ const BuyButton = ()=>{
     const navigate = useNavigate()
 
     const { isAuthenticated, user } = useSelector(state => state.auth_token);
+
     const cardPey = useSelector((state)=> state.cart)
+    console.log(user);
     const selectRoute = async()=>{
         if(!isAuthenticated){
             toast.success("Log In before continuing");
@@ -16,12 +18,14 @@ const BuyButton = ()=>{
         }else if(!user.address){
             return navigate('/addAddress')
         }else{
-            const response= await axios.post('payment', { cardPey, user })
+            console.log("aqui");
+            const response = await axios.post('payment', { cardPey, user })
+            console.log(response);
             const info=response.data;
             window.location.href= info.init_point;
         }
     }
-    
+
     return(
         <button onClick={selectRoute} className={styles.buyB}>BUY NOW</button>
     );
