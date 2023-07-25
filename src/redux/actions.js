@@ -8,6 +8,7 @@ import {
   ADD_TO_CART,
   ADD_TO_FAV,
   REMOVE_FROM_FAV,
+  ADD_USER,
   GET_PRODUCT_NAME,
   ORDER_BY_NAME,
   ORDER_BY_PRICE,
@@ -26,7 +27,6 @@ import {
   LOGIN,
   LOGOUT,
   FETCH_ORDER_SUCCESS,
-  FETCH_USER_ORDERS_SUCCESS,
 } from "./actions-type";
 
 export const getProducts = () => {
@@ -341,33 +341,12 @@ export const updateOneUser = (id, dataUser) => {
   };
 };
 
-export const fetchOrderData = () => async (dispatch) => {
+export const fetchOrderData = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get("/order");
-    const orderData = response.data; // Asumiendo que los datos están en el campo "data"
+    const response = await axios.get(`/order?userId=${userId}`);
+    const orderData = response.data;
     dispatch({ type: FETCH_ORDER_SUCCESS, payload: orderData });
   } catch (error) {
     // Aquí también podrías manejar un tipo de acción para el caso de error si lo necesitas
   }
-};
-
-export const fetchUserOrdersSuccess = (userOrders) => ({
-  type: FETCH_USER_ORDERS_SUCCESS,
-  payload: userOrders,
-});
-
-export const fetchUserOrders = (external_reference) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(
-        `/order?userId=${external_reference}`
-      );
-      const userOrders = response.data.filter(
-        (order) => order.status === "accredited"
-      );
-      dispatch(fetchUserOrdersSuccess(userOrders));
-    } catch (error) {
-      console.error("Error fetching user orders:", error);
-    }
-  };
 };
