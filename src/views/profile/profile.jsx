@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from './Profile.module.css';
-import { useUser } from '@clerk/clerk-react';
+// import { useUser } from '@clerk/clerk-react';
 import Suggestions from './Suggestions/Suggestions';
 
 
