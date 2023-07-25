@@ -8,12 +8,13 @@ const BuyButton = ()=>{
     const navigate = useNavigate()
 
     const { isAuthenticated, user } = useSelector(state => state.auth_token);
+    const userAddress = useSelector((state) => state.auth_token.user.address);
     const cardPey = useSelector((state)=> state.cart)
     const selectRoute = async()=>{
         if(!isAuthenticated){
             toast.success("Log In before continuing");
             // <Login_v2 />
-        }else if(!user.address){
+        }else if(userAddress){
             return navigate('/addAddress')
         }else{
             const response= await axios.post('payment', { cardPey, user })
