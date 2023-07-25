@@ -1,23 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getApproval } from "../../../redux/actions";
+import { getApproval, auth_mail_Login } from "../../../redux/actions";
 import validation from "./validation";
 import styles from './Login.module.css';
-import { useUser } from "@clerk/clerk-react";
 
 const Login = () => {
     const dispatch = useDispatch();
-
-    const { isLoaded, isSignedIn, user } = useUser();
-
-    useEffect(() => {
-        if(isSignedIn) {
-            adminData.mail = user.primaryEmailAddress.emailAddress;
-            adminData.password = null;
-            dispatch(getApproval(adminData));
-        }
-    }, [isLoaded]);
-
 
     const access = useSelector(state => state.getApprovalAdmin);
 
@@ -50,7 +38,8 @@ const Login = () => {
         if(adminData.mail.length < 3 || adminData.password.length < 6 || !adminData.mail.length || !adminData.password.length) {
             setError(validation({...adminData, [event.target.name]: event.target.value }));
         } else {
-            dispatch(getApproval(adminData));
+            dispatch(auth_mail_Login(adminData));
+            // dispatch(getApproval(adminData));
         };
     };
 

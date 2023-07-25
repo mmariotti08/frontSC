@@ -8,15 +8,15 @@ import { useEffect } from "react";
 const Admin = () => {
     const navigate = useNavigate();
 
-    const access = useSelector(state => state.getApprovalAdmin);
+    const { user } = useSelector(state => state.auth_token);
 
     useEffect(() => {
-        !access.access && navigate('/admin');
-    }, [access.access, navigate]);
+        !user?.administrator && navigate('/admin');
+    }, [user?.administrator, navigate]);
 
     return (
         <div className={styles.container_admin}>
-            {access.access 
+            {user?.administrator
                 ? <Menu /> 
                 : <Login />}
         </div>

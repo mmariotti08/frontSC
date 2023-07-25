@@ -1,8 +1,6 @@
 .boton{
-    margin-top: 60px;
-    margin-right: 60px;
     box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.75);
-    border-radius: 50%;
+    border-radius: 100%;
     color: black;
 }
 

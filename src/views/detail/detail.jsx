@@ -7,9 +7,8 @@ import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 import Addreses from "../../components/Addreses/Addreses";
 import { Route,  Routes } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { log } from "console";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -142,10 +141,14 @@ const Detail = () => {
 
   return (
     <div className={styles.contDetail}>
-      <ToastContainer/>
       <h1 className={styles.nameh3}>{sneaker.name}</h1>
       <div className={styles.detailz}>
-        <img src={sneaker.main_picture_url} alt="background" />
+        <div>
+          {sneaker.main_picture_url &&
+            sneaker.main_picture_url.map((c, i) => (
+              <img key={i} src={c} alt="background" />
+          ))}
+        </div>
         <div className={styles.data}>
           <h2>Brand:</h2>
           <h3>{sneaker.brand_name}</h3>

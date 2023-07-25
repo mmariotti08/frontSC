@@ -21,8 +21,9 @@ import {
   GET_USER_ID,
   GET_ORDER_ID,
   UPDATE_ONE_USER,
+  LOGIN,
+  LOGOUT,
   FETCH_ORDER_SUCCESS,
-  FETCH_USER_ORDERS_SUCCESS,
 } from "./actions-type";
 
 const initialState = {
@@ -42,6 +43,11 @@ const initialState = {
   all_Orders: [],
   get_user_id: [],
   get_order_id: [],
+  lastOrder: [],
+  auth_token: JSON.parse(localStorage.getItem("auth")) || {
+    isAuthenticated: false,
+    token: null
+  },
   orderData: [],
   userOrders: [],
 };
@@ -159,6 +165,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         get_order_id: action.payload,
       };
+    case LOGIN:
+      localStorage.setItem("auth", JSON.stringify(action.payload));
+      return {
+        ...state,
+        auth_token: action.payload
+      };
+    case LOGOUT:
+      localStorage.removeItem('auth');
+      return {
+        ...state,
+        auth_token: { isAuthenticated: false, token: null }
+      };
 
     case ORDER_BY_NAME: {
       const sortedShoes = [...state.products];
@@ -211,16 +229,17 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     }
-    case FETCH_ORDER_SUCCESS:
+    case FETCH_ORDER_SUCCESS: {
+      // Filtrar las órdenes que coinciden con el userId
+      const userId = "YOUR_USER_ID"; // Reemplaza "YOUR_USER_ID" con tu identificador de usuario
+      const filteredOrders = action.payload.filter((order) => order.userId === userId);
+
       return {
         ...state,
-        orderData: action.payload,
+        userOrders: filteredOrders, // Actualizar las órdenes del usuario
+        lastOrder: action.payload[action.payload.length - 1], // Actualizar la última compra del usuario
       };
-    case FETCH_USER_ORDERS_SUCCESS:
-      return {
-        ...state,
-        userOrders: action.payload,
-      };
+    }
 
     default:
       return state;
