@@ -4,7 +4,7 @@ import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 import { LiaShippingFastSolid } from 'react-icons/lia';
 import { RiSecurePaymentLine, RiWhatsappLine, RiMailLine } from 'react-icons/ri';
 import { BsCreditCard2Back, BsClock, BsFillSuitHeartFill, BsGithub } from 'react-icons/bs';
-import { AiOutlineClose } from 'react-icons/Ai';
+import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from "react";
 
 const Footer = () => {
