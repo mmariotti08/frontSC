@@ -22,7 +22,6 @@ import {
   GET_ORDER_ID,
   UPDATE_ONE_USER,
   FETCH_ORDER_SUCCESS,
-  FETCH_USER_ORDERS_SUCCESS,
 } from "./actions-type";
 
 const initialState = {
@@ -42,8 +41,7 @@ const initialState = {
   all_Orders: [],
   get_user_id: [],
   get_order_id: [],
-  orderData: [],
-  userOrders: [],
+  lastOrder: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -211,16 +209,17 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     }
-    case FETCH_ORDER_SUCCESS:
+    case FETCH_ORDER_SUCCESS: {
+      // Filtrar las órdenes que coinciden con el userId
+      const userId = "YOUR_USER_ID"; // Reemplaza "YOUR_USER_ID" con tu identificador de usuario
+      const filteredOrders = action.payload.filter((order) => order.userId === userId);
+
       return {
         ...state,
-        orderData: action.payload,
+        userOrders: filteredOrders, // Actualizar las órdenes del usuario
+        lastOrder: action.payload[action.payload.length - 1], // Actualizar la última compra del usuario
       };
-    case FETCH_USER_ORDERS_SUCCESS:
-      return {
-        ...state,
-        userOrders: action.payload,
-      };
+    }
 
     default:
       return state;
