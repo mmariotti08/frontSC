@@ -29,7 +29,6 @@ axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
 	const clientId = "1027048250245-li9gor30unv7ieg8tkk77fpbh78cahbs.apps.googleusercontent.com";
-	
     // TEST LOGIN V2
 	useEffect(() => {
 		const start = () => {
