@@ -1,6 +1,5 @@
 import axios from "axios";
-import { toast } from 'react-toastify';
-
+import { toast } from "react-toastify";
 
 import {
   GET_PRODUCTS,
@@ -9,7 +8,6 @@ import {
   ADD_TO_CART,
   ADD_TO_FAV,
   REMOVE_FROM_FAV,
-  ADD_USER,
   GET_PRODUCT_NAME,
   ORDER_BY_NAME,
   ORDER_BY_PRICE,
@@ -26,19 +24,20 @@ import {
   GET_ORDER_ID,
   UPDATE_ONE_USER,
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  FETCH_ORDER_SUCCESS,
+  FETCH_USER_ORDERS_SUCCESS,
 } from "./actions-type";
 
-
 export const getProducts = () => {
-	return async function(dispatch) {
-		try {
-			let response = await axios.get(`products`);
-			return dispatch({type: GET_PRODUCTS, payload: response.data});
-		} catch (error) {
-			console.error(error.response.data);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`products`);
+      return dispatch({ type: GET_PRODUCTS, payload: response.data });
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  };
 };
 
 export const getProductName = (name) => {
@@ -55,15 +54,14 @@ export const getProductName = (name) => {
 };
 
 export const addUser = (userData) => {
-
   return async function (dispatch) {
     try {
       let response = await axios.post(`user`, userData);
-			toast.success(response.data.message)
-			return response;
+      toast.success(response.data.message);
+      return response;
     } catch (error) {
       console.error(error.response.data);
-			toast.success(error.response.data)
+      toast.success(error.response.data);
     }
   };
 };
@@ -92,7 +90,6 @@ export const removeFromCart = (productId, size) => {
   };
 };
 
-
 // Acción para agregar un elemento al carrito
 export const addToFav = (item) => {
   return {
@@ -111,168 +108,168 @@ export const removeFromFav = (itemId) => {
 
 // ACCIONES ADMIN (NO TOCAR)
 export const getApproval = (adminData) => {
-	return async function(dispatch) {
-		try {
-			let response = await axios.post(`user/admin`, adminData);
-			return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data })
-		} catch (error) {
-			console.log(error.response.data);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      let response = await axios.post(`user/admin`, adminData);
+      return dispatch({ type: GET_APPROVAL_ADMIN, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const createProduct = (data, stock) => {
-	return async function(dispatch) {
-		try {
-			await axios.post(`products`, { product: data, stock: stock });
-			return;
-		} catch (error) {
-			console.log(error.response.data);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      await axios.post(`products`, { product: data, stock: stock });
+      return;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getStock = () => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`stocks`);
-			return dispatch({ type: GET_STOCK, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`stocks`);
+      return dispatch({ type: GET_STOCK, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getStockID = (id) => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`stocks/${id}`);
-			return dispatch({ type: GET_STOCK_BY_ID, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`stocks/${id}`);
+      return dispatch({ type: GET_STOCK_BY_ID, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const putProducto = (id, product, stock) => {
-	return async function(dispatch) {
-		try {
-			await axios.put(`products/${id}`, { product, stock });
-			return;
-		} catch (error) {
-			console.log(error.response.data);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      await axios.put(`products/${id}`, { product, stock });
+      return;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const putUser = (id, dataUser) => {
-	return async function(dispatch) {
-		try {
-			await axios.put(`user/${id}`, dataUser);
-			return;
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      await axios.put(`user/${id}`, dataUser);
+      return;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
-export const updateUser = (id, address)=>{
-	return async function(dispatch){
-		try {
-			await axios.put(`user/${id}`, address)
-			return;
-		} catch (error) {
-			console.error(error);
-		}
-	}
-}
+export const updateUser = (id, address) => {
+  return async function (dispatch) {
+    try {
+      await axios.put(`user/${id}`, address);
+      return;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 export const getProductDraft = () => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`products/draft`);
-			return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`products/draft`);
+      return dispatch({ type: GET_PRODUCT_DRAFT, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const deleteProduct = (id) => {
-	return async function(dispatch) {
-		try {
-			await axios.delete(`products/${id}`);
-			return;
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      await axios.delete(`products/${id}`);
+      return;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const deleteUser = (id) => {
-	return async function(dispatch) {
-		try {
-			await axios.delete(`user/${id}`);
-			return;
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      await axios.delete(`user/${id}`);
+      return;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getUsers = () => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`user`);
-			return dispatch({ type: GET_USERS, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`user`);
+      return dispatch({ type: GET_USERS, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getUsersDraft = () => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`user/draft`);
-			return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`user/draft`);
+      return dispatch({ type: GET_USERS_DRAFT, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getAllOrders = () => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`order`);
-			return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`order`);
+      return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getUserId = (userId) => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`user/${userId}`);
-			return dispatch({ type: GET_USER_ID, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`user/${userId}`);
+      return dispatch({ type: GET_USER_ID, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getOrderId = (orderId) => {
-	return async function(dispatch) {
-		try {
-			const response = await axios.get(`order/${orderId}`);
-			return dispatch({ type: GET_ORDER_ID, payload: response.data });
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`order/${orderId}`);
+      return dispatch({ type: GET_ORDER_ID, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const auth_google_Login = (token) => {
@@ -324,27 +321,53 @@ export const paginate = (value) => {
   };
 };
 
-
-
-export const filterByAll = ( response) =>  {
-  if (response === 'null') {
-  return { type: FILTER_BY_ALL, payload: []}
-} else {
-  return { type: FILTER_BY_ALL, payload: response.data }
-}
-}
-
-export const updateOneUser = (id, dataUser) => {
-	return async function(dispatch) {
-		try {
-
-			const response = await axios.put(`user/${id}`, dataUser);
-console.log('15', response.data)
-			return dispatch({type: UPDATE_ONE_USER, payload: response.data})
-		} catch (error) {
-			console.log(error.response.data);
-		};
-	};
+export const filterByAll = (response) => {
+  if (response === "null") {
+    return { type: FILTER_BY_ALL, payload: [] };
+  } else {
+    return { type: FILTER_BY_ALL, payload: response.data };
+  }
 };
 
+export const updateOneUser = (id, dataUser) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(`user/${id}`, dataUser);
+      console.log("15", response.data);
+      return dispatch({ type: UPDATE_ONE_USER, payload: response.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 
+export const fetchOrderData = () => async (dispatch) => {
+  try {
+    const response = await axios.get("/order");
+    const orderData = response.data; // Asumiendo que los datos están en el campo "data"
+    dispatch({ type: FETCH_ORDER_SUCCESS, payload: orderData });
+  } catch (error) {
+    // Aquí también podrías manejar un tipo de acción para el caso de error si lo necesitas
+  }
+};
+
+export const fetchUserOrdersSuccess = (userOrders) => ({
+  type: FETCH_USER_ORDERS_SUCCESS,
+  payload: userOrders,
+});
+
+export const fetchUserOrders = (external_reference) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `/order?userId=${external_reference}`
+      );
+      const userOrders = response.data.filter(
+        (order) => order.status === "accredited"
+      );
+      dispatch(fetchUserOrdersSuccess(userOrders));
+    } catch (error) {
+      console.error("Error fetching user orders:", error);
+    }
+  };
+};

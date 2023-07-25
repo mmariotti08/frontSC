@@ -42,6 +42,7 @@ const Detail = () => {
   const handleCart = () => {
     if (!selectedSize || selectedQuantity < 1 || selectedQuantity > availableQuantity) {
       setShowSizeError(true);
+     
       return;
     }
     setShowSizeError(false);
@@ -143,7 +144,12 @@ const Detail = () => {
       <ToastContainer/>
       <h1 className={styles.nameh3}>{sneaker.name}</h1>
       <div className={styles.detailz}>
-        <img src={sneaker.main_picture_url} alt="background" />
+        <div>
+          {sneaker.main_picture_url &&
+            sneaker.main_picture_url.map((c, i) => (
+              <img key={i} src={c} alt="background" />
+          ))}
+        </div>
         <div className={styles.data}>
           <h2>Brand:</h2>
           <h3>{sneaker.brand_name}</h3>

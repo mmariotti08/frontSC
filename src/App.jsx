@@ -17,10 +17,12 @@ import { Admin } from "./views/admin/Admin";
 import FrecuentQuestions from "./components/Footer/FrecuentQuestions/FrecuentQuestions";
 import UserBanned from "./views/userBanned/UserBanner";
 import Addreses from "./components/Addreses/Addreses";
-import Profile from "./views/profile/Profile";
 import { gapi } from "gapi-script";
+import Successfull from "./components/Payments/Successfull/Successfull";
+import Failed from "./components/Payments/Failed/Failed";
+import Profile from "./views/profile/profile";
 
-//axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
+// axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -56,21 +58,21 @@ function App() {
 		<div id="container_app">
 			{!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />}
 			<Routes>
-				<Route path="/login" element={<Login />} />
-				<Route path="/" element={<Home toggle={toggle} />} />
-				{/* RUTAS DEL FOOTER */}
-				<Route path="/fQuestions" element={<FrecuentQuestions />} />
-				<Route path="/measureSize" element={<MeasurSize />} />
-				<Route path="/aboutUs" element={<AboutUs />} />
-				<Route path="/products/:id" element={<Detail />} />
-				<Route path="/cart" element={<ShoppingCart />} />
-				{/* <Route path="/landing" element={<Landing/>}/> */}
-				<Route path="/favorites" element={<Favorites />} />
-				<Route path="/addAddress" element={<Addreses />} />
+				<Route path="/login" element={<Login/>}/>
+				<Route  path="/"  element={<Home toggle={toggle} />}/>
+				<Route path="/fQuestions" element={<FrecuentQuestions/>}/>
+				<Route path="/measureSize" element={<MeasurSize/>}/>
+				<Route path="/aboutUs" element={<AboutUs/>}/>
+				<Route path="/products/:id" element={<Detail/>}/>
+				<Route path="/cart" element={<ShoppingCart/>}/>
+				<Route path="/favorites" element={<Favorites/>}/>
+				<Route path="/addAddress" element={<Addreses/>} />
+				<Route path="/successfull" element={<Successfull/>} />
+				<Route path="/failed" element={<Failed/>} />
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/profile" element={<Profile />} />
 			</Routes>
-			{/* <UserBanned /> */}
+				{/* <UserBanned /> */}
 			{!pathname.startsWith("/admin") && <Footer />}
 		</div>
 	);

@@ -13,26 +13,31 @@ const Home = ({ toggle }) => {
 
 	const [isLoading, setIsLoading] = useState(true);	
 
-	useEffect(() => {
-		const loadData = async () => {
-			await new Promise((resolve) => setTimeout(resolve, 2000));
-			dispatch(getProducts());
-			window.scrollTo(0, 0);
-			setIsLoading(false);
-		};
-		loadData();
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	const loadData = async () => {
+	// 		await new Promise((resolve) => setTimeout(resolve, 2000));
+	// 		dispatch(getProducts());
+	// 		window.scrollTo(0, 0);
+	// 		setIsLoading(false);
+	// 	};
+	// 	loadData();
+	// }, [dispatch]);
 
 	return (
 		<div>
-			{isLoading
+			{/* {isLoading
 				? <Loader />
 				: <>
 					{toggle && <Carousel />}
 					<Filter />
 					<ProductsContainer />
 					<ToastContainer />
-				</>}
+				</>} */}
+
+					{toggle && <Carousel />}
+					<Filter />
+					<ProductsContainer />
+					<ToastContainer />
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 import "./Card.css";
 import { Link } from "react-router-dom";
-import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/Ai';
 import { connect, useSelector } from 'react-redux';
 import { addToFav, removeFromFav } from '../../redux/actions';
 import { toast } from "react-toastify";
@@ -55,13 +55,13 @@ const Card = ({ props, addToFav, removeFromFav }) => {
           className='button-fav'
           onClick={handleButtonFavClick}
         >
-          {buttonFav ? <BsBookmarksFill/> : <BsBookmarks />}
+          {buttonFav ? <AiFillHeart/> : <AiOutlineHeart />}
         </a>
       </div>
 
       <Link to={`/products/${props.id}`}>
         <div className="container-img-card">
-          <img src={props.main_picture_url} alt="" />
+          <img src={props.main_picture_url[0]} alt="" />
         </div>
         <div className="props-card">
           <div className="container-name">
