@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import ProductsContainer from "../../components/productsContainer/productsContainer";
 import Carousel from "../../components/carousel/Carousel";
-import Filter from "../../components/Filter/Filter";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/actions";
 import { Loader } from "../../components/Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "./home.module.css";
+import { Link } from "react-router-dom";
 
 const Home = ({ toggle }) => {
 	const dispatch = useDispatch();
 
-	const [isLoading, setIsLoading] = useState(true);	
+	const [isLoading, setIsLoading] = useState(true);
 
 	// useEffect(() => {
 	// 	const loadData = async () => {
@@ -22,8 +23,10 @@ const Home = ({ toggle }) => {
 	// 	loadData();
 	// }, [dispatch]);
 
+	const perPage = 8;
+
 	return (
-		<div>
+		<div id={styles.container_home}>
 			{/* {isLoading
 				? <Loader />
 				: <>
@@ -33,8 +36,13 @@ const Home = ({ toggle }) => {
 				</>} */}
 
 					{toggle && <Carousel />}
-					<Filter />
-					<ProductsContainer />
+					{/* <Filter /> */}
+					<div className={styles.container_prodcuts}>
+						<h2 className={styles.title}>FEATURED PRODUCTS</h2>
+						<ProductsContainer perPage={perPage} />
+					</div>
+					<Link to="/products" id={styles.see_more}><button>SEE MORE</button></Link>
+					
 		</div>
 	);
 };

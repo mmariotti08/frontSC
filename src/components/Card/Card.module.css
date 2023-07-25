@@ -1,0 +1,142 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 230px;
+    height: 350px;
+    background-color: #FBFBFB;
+    border-radius: 4px;
+    border: 1px solid #cbcbcb;
+    padding-bottom: 10px;
+    box-shadow: 0px 0px 25px -10px #CA1111bf;
+    position: relative;
+    margin-top: 20px;
+}
+
+.card:hover {
+    border: 2px solid #CA1111;
+    transition: border 0.3s;
+}
+
+.container_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 230px;
+    height: 230px;
+    overflow: hidden;
+}
+
+.container_img img {
+    background-color: #ECEFF0;
+    width: 230px;
+}
+
+.container_img img:hover {
+    width: 240px;
+    transition: width 0.3s;
+}
+
+.button_fav {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 25px;
+}
+
+.props_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+}
+.props_card h4 {
+    margin-block-start: 10px;
+    margin-block-end: 0px;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+    font-weight: bold;
+    font-family: 'Russo One', sans-serif;
+}
+
+.props_card h5 {
+    margin-block-start: 0px;
+    margin-block-end: 5px;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+    font-weight: bold;
+}
+
+.price {
+    position: absolute;
+    bottom: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-top: 50px;
+        width: 160px;
+        height: 290px;
+        margin-top: 20px;
+    }
+
+    .container_img {
+        width: 160px;
+        height: 160px;
+        overflow: hidden;
+    }
+
+    .container_img img {
+        width: 160px;
+    }
+
+    .container_img img:hover {
+        width: 170px;
+        transition: width 0.3s;
+    }
+}
+
+/* .props_card {
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .container_name {
+    height: 70%;
+} */
+
+/* .container_name h4 {
+    color: rgba(255, 255, 255, 0.87);
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+} */
+
+/* .props_card h3 {
+    color: rgba(0, 0, 0, 0.87);
+    margin-block-start: 0.4em;
+    margin-block-end: 0.4em;
+} */
+
+/* .button-cars {
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+} */
+
+/* .button_fav {
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+} */
+
+/* .buttons{
+    margin-left: 190px;
+    background-color: none;
+} */
+
+/* .price{
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+} */

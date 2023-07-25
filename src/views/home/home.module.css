@@ -1,9 +1,41 @@
-.container{
-    background-color: antiquewhite;
-    color: aliceblue;
-    margin-top: 1080px;
+#container_home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 100%;
 }
-.home{
-    color: aliceblue;
-    margin-top: 200px;
+
+#see_more {
+    width: 150px;
+    margin-bottom: 50PX;
+    margin-top: 50PX;
+    font-weight: bold;
+}
+
+#see_more button {
+    width: 100%;
+}
+
+#see_more button:hover {
+    background-color: #CA1111;
+    transition: background-color 0.25s;
+}
+
+.container_prodcuts {
+    margin-top: 90px;
+}
+
+.title {
+    margin-left: 90px;
+    text-align: left;
+    color: #CA1111;
+    font-weight: bold;
+    font-family: 'Russo One', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .title {
+        margin-left: 40px;
+    }
 }
