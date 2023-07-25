@@ -300,6 +300,7 @@ export const auth_mail_Login = (user) => {
 export const logout = () => {
 	return async function(dispatch) {
 		try {
+			toast.success("Successful logout")
 			return dispatch({ type: LOGOUT });
 		} catch (error) {
 			console.log(error);

@@ -1,10 +1,10 @@
 import styles from "./Login v2.module.css";
 import { Mail_Login } from "../../components/New Login/Mail Login/Mail Login";
 import { Google_Login } from "../../components/New Login/Google Login/Google Login";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdClose } from 'react-icons/io';
 
-const Login_v2 = ({ singIn, setSignIn, setGoogleAccessToken }) => {
+const Login_v2 = ({ setSignIn, setGoogleAccessToken }) => {
     const containerSignInRef = useRef(null);
     
     useEffect(() => {
@@ -32,6 +32,8 @@ const Login_v2 = ({ singIn, setSignIn, setGoogleAccessToken }) => {
         };
     };
 
+    const [modeSingUp, setSingUp] = useState(false);
+
     return (
         <div
             className={styles.background}
@@ -50,16 +52,32 @@ const Login_v2 = ({ singIn, setSignIn, setGoogleAccessToken }) => {
                     <IoMdClose />
                 </button>
                 <div className={styles.title}>
-                    <h2>Sign In</h2>
-                    <span>Do you not have an account yet? <strong>Sign Up</strong></span>
+                    <h2>{modeSingUp ? "Sign Up" : "Sign In"}</h2>
+                    <span>
+                        {modeSingUp
+                            ? "Do you already have an account? "
+                            : "Do you not have an account yet? "
+                        }
+                        <strong
+                            onClick={() => setSingUp(!modeSingUp)}
+                            >
+                            {modeSingUp ? "Sign In" : "Sign Up"}
+                        </strong>
+                    </span>
                 </div>
-                <Mail_Login />
+                <Mail_Login
+                    modeSingUp={modeSingUp}
+                    setSingUp={setSingUp}
+                    />
                 <div id={styles.or}>
                     <div className={styles.hr_line}></div>
                     <span>OR</span>
                     <div className={styles.hr_line}></div>
                 </div>
-                <Google_Login setGoogleAccessToken={setGoogleAccessToken} />
+                <Google_Login
+                    setGoogleAccessToken={setGoogleAccessToken}
+                    modeSingUp={modeSingUp}
+                    />
             </div>
         </div>
     );

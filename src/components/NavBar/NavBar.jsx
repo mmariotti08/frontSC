@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import style from "./NavBar.module.css";
 import SearchBar from "../../../src/components/searchBar/searchBar";
 import { getProductName, getProducts, getUsers } from "../../redux/actions";
 import { Login_v2 } from "../../views/new Login/Login v2";
 import { Menu_Login } from "../New Login/Menu Login/Menu Login";
-// import { UserButton, useUser } from "@clerk/clerk-react";
-// import { useAuth } from "@clerk/clerk-react";
+import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/Ai';
+import { BsPerson } from 'react-icons/bs';
 
 const NavBar = ({ toggleCarousel }) => {
 	const dispatch = useDispatch();
@@ -85,7 +85,7 @@ const NavBar = ({ toggleCarousel }) => {
 
 	const handleClick = () => {
 		setSignIn(true);
-		setMenuOn(true);
+		setMenuOn(!menuOn);
 	};
 
 	return (
@@ -119,27 +119,28 @@ const NavBar = ({ toggleCarousel }) => {
 					<div className={style.container_icon}>
 
 						<div id={style.container_menu_login}>
-							<button onClick={handleClick}>
+							<a onClick={handleClick} className={style.navLink}>
 								{user?.picture
 									? <img src={user.picture} alt="" />
-									: <ion-icon name="person-circle-outline"></ion-icon>
+									: <BsPerson />
 								}
-							</button>
+							</a>
 							{isAuthenticated && menuOn
 								&& <Menu_Login
 									singIn={singIn}
 									setSignIn={setSignIn}
 									googleAccessToken={googleAccessToken}
 									setGoogleAccessToken={setGoogleAccessToken}
+									setMenuOn={setMenuOn}
 								/>}
 						</div>
 
 						<Link to="/favorites" className={style.navLink}>
-							<ion-icon name="bookmarks-outline"></ion-icon>
+							<AiOutlineHeart />
 						</Link>
 
 						<Link to="/cart" className={style.navLink}>
-							<ion-icon name="cart-outline"></ion-icon>
+							<AiOutlineShoppingCart />
 							{cartItemCount > 0 && (
 								<span className={style.cartItemCount}>{cartItemCount}</span>
 							)}
