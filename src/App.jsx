@@ -21,6 +21,7 @@ import { gapi } from "gapi-script";
 import Successfull from "./components/Payments/Successfull/Successfull";
 import Failed from "./components/Payments/Failed/Failed";
 import Profile from "./views/profile/profile";
+import { ToastContainer } from "react-toastify";
 
 // axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
@@ -74,6 +75,7 @@ function App() {
 			</Routes>
 				{/* <UserBanned /> */}
 			{!pathname.startsWith("/admin") && <Footer />}
+			<ToastContainer />
 		</div>
 	);
 };

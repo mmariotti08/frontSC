@@ -5,7 +5,6 @@ import Filter from "../../components/Filter/Filter";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/actions";
 import { Loader } from "../../components/Loader/Loader";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = ({ toggle }) => {
@@ -31,13 +30,11 @@ const Home = ({ toggle }) => {
 					{toggle && <Carousel />}
 					<Filter />
 					<ProductsContainer />
-					<ToastContainer />
 				</>} */}
 
 					{toggle && <Carousel />}
 					<Filter />
 					<ProductsContainer />
-					<ToastContainer />
 		</div>
 	);
 };

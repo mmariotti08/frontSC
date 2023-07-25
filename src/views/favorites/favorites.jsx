@@ -2,7 +2,6 @@ import style from './favorites.module.css'
 import { connect } from 'react-redux';
 import Card from '../../components/Card/Card';
 import { useEffect } from 'react';
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const favorites = ({ fav }) => {
@@ -25,7 +24,6 @@ const favorites = ({ fav }) => {
           </>
         )}
       </div>
-      <ToastContainer /> {/* Agrega el ToastContainer aquí para que se muestre en el componente favorites */}
     </div>
   );
 };

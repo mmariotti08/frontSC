@@ -2,17 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useSelector  } from "react-redux"
 import styles from './BuyButton.module.css'
 import axios from 'axios'
-import { Login_v2 } from "../../views/new Login/Login v2";
+import { toast } from "react-toastify";
 
 const BuyButton = ()=>{
     const navigate = useNavigate()
 
-    const { user } = useSelector(state => state.auth_token);
+    const { isAuthenticated, user } = useSelector(state => state.auth_token);
     const cardPey = useSelector((state)=> state.cart)
-    
     const selectRoute = async()=>{
-        if(!user.user){
-            <Login_v2 />
+        if(!isAuthenticated){
+            toast.success("Log In before continuing");
+            // <Login_v2 />
         }else if(!user.address){
             return navigate('/addAddress')
         }else{
