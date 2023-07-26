@@ -75,14 +75,12 @@ export const getDetail = (id) => {
 };
 
 // Acción para agregar un elemento al carrito
-
 export const addToCart = (item, user) => {
-  console.log('userAction',user)
+  console.log('userAction***',user, item)
   return async function (dispatch) { 
     try {
-      const response = await axios.post('/car', {item, user}); 
+      const response = await axios.post('car',{item, user}); 
       console.log(response.data);
-
       dispatch({
         type: 'ADD_TO_CART', 
         payload: response.data, 
@@ -97,7 +95,7 @@ export const removeFromCart = (id) => {
   console.log('idfront',id)
   return async function (dispatch) { 
     try {
-      const response = await axios.delete(`/car/${id}`); 
+      const response = await axios.delete(`car/${id}`); 
       console.log(response.data);
 
       dispatch({
