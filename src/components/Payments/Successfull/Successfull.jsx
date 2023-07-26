@@ -42,11 +42,15 @@ const Successfull = () => {
   };
 
   console.log(userOrders);
+  const productId =
+  userOrders.length > 0 && userOrders[0].OrderProducts.length > 0
+    ? userOrders[0].OrderProducts[0].id
+    : '10';
   const [form, setForm] = useState({
     rating: '',
     opinion: "",
     UserId: idReview,
-    ProductId:'10'
+    ProductId:productId
     ,
   });
 
