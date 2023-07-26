@@ -7,10 +7,13 @@ import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Opinions from './Opinions'
+
 
 const Detail = () => {
   const dispatch = useDispatch();
   const sneaker = useSelector((state) => state.detail);
+  
   const cart = useSelector((state) => state.cart);
   const fav = useSelector((state) => state.fav);
   const { id } = useParams();
@@ -18,6 +21,11 @@ const Detail = () => {
   const [showSizeError, setShowSizeError] = useState(false);
   const [selectedQuantity, setSelectedQuantity] = useState(1); // Initialize selectedQuantity with 1
   const [availableQuantity, setAvailableQuantity] = useState(0); // New state for available quantity
+
+ 
+  
+  
+
 
   useEffect(() => {
     dispatch(getDetail(id));
@@ -36,7 +44,7 @@ const Detail = () => {
     const formattedPrice = (price / 100).toFixed(2);
     return `${formattedPrice}`;
   };
-
+  
   const handleCart = () => {
     if (!selectedSize || selectedQuantity < 1 || selectedQuantity > availableQuantity) {
       setShowSizeError(true);
@@ -50,13 +58,13 @@ const Detail = () => {
       size: selectedSize,
       quantity: selectedQuantity,
     };
-
+    
     const isProductInCart = cart.some(
       (item) => item.id === selectedProduct.id && item.size === selectedProduct.size
-    );
-
-    if (isProductInCart) {
-      dispatch(removeFromCart(selectedProduct.id, selectedProduct.size));
+      );
+      
+      if (isProductInCart) {
+        dispatch(removeFromCart(selectedProduct.id, selectedProduct.size));
       setSelectedQuantity((prevQuantity) => prevQuantity + selectedProduct.quantity);
       toast.error("Shoe Removed😔", {
         position: "bottom-right",
@@ -83,7 +91,7 @@ const Detail = () => {
       });
     }
   };
-
+  
   const handleFav = () => {
     if (fav.some((item) => item.id === sneaker.id)) {
       dispatch(removeFromFav(sneaker.id));
@@ -111,7 +119,7 @@ const Detail = () => {
       });
     }
   };
-
+  
   const handleSizeClick = (size) => {
     if (selectedSize === size) {
       setSelectedSize(null);
@@ -124,18 +132,46 @@ const Detail = () => {
     }
     setShowSizeError(false);
   };
-
+  
   const handleIncreaseQuantity = () => {
     if (selectedQuantity < availableQuantity) {
       setSelectedQuantity((prevQuantity) => prevQuantity + 1);
     }
   };
-
+  
   const handleDecreaseQuantity = () => {
     if (selectedQuantity > 1) {
       setSelectedQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
+  
+
+  const users = sneaker && sneaker.Users ?  sneaker.Users : [];
+  const ratingsArray =   users.map(user => user.Reviews.rating.split(',').map(Number));
+  
+  // Calcular la suma de todos los ratings y la cantidad total de ratings
+  let sumRatings = 0;
+  let totalRatings = 0;
+  
+   ratingsArray.forEach(ratings => {
+    const sumRating = ratings.reduce((total, value) => total + value, 0);
+    sumRatings += sumRating;
+    totalRatings += ratings.length;
+  });
+  
+  // Calcular el promedio general
+  const averageRating = sumRatings / totalRatings;
+  
+  console.log("Promedio general de ratings:", averageRating);
+  
+  
+const stars = Array.from({ length : Math.round(averageRating)}, (_, index ) =>  <span key= {index} >⭐</span> )
+  // Calcular el promedio del rating
+ 
+const opinionsArray =   users.map(user => ({ name: user.name, opinion: user.Reviews.opinion }));
+
+
+
 
   return (
     <div className={styles.contDetail}>
@@ -145,11 +181,12 @@ const Detail = () => {
           {sneaker.main_picture_url &&
             sneaker.main_picture_url.map((c, i) => (
               <img key={i} src={c} alt="background" />
-          ))}
+              ))}
         </div>
         <div className={styles.data}>
           <h2>Brand:</h2>
           <h3>{sneaker.brand_name}</h3>
+          <p>{stars}</p>
           <h2>Category:</h2>
           <h3>{sneaker.category}</h3>
           <h2>Color:</h2>
@@ -235,6 +272,10 @@ const Detail = () => {
               )}
             </button>
           </div>
+          <div>
+      
+      <Opinions opinions={opinionsArray} />
+    </div>
         </div>
       </div>
     </div>

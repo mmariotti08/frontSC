@@ -9,14 +9,11 @@ import {
   ADD_TO_FAV,
   REMOVE_FROM_FAV,
   GET_PRODUCT_NAME,
-  ORDER_BY_NAME,
-  ORDER_BY_PRICE,
   PAGINATION,
   GET_APPROVAL_ADMIN,
   GET_STOCK,
   GET_STOCK_BY_ID,
   GET_PRODUCT_DRAFT,
-  FILTER_BY_ALL,
   GET_USERS,
   GET_USERS_DRAFT,
   GET_ALL_ORDERS,
@@ -26,7 +23,8 @@ import {
   LOGIN,
   LOGOUT,
   FETCH_ORDER_SUCCESS,
-  ADD_ADDRESS
+  ADD_ADDRESS,
+  FILTER_ORDER
 } from "./actions-type";
 
 export const getProducts = () => {
@@ -261,6 +259,20 @@ export const getUserId = (userId) => {
   };
 };
 
+export const createReview = (data) => {
+  return async function (dispatch) {
+    console.log(data);
+    try {
+      let response = await axios.post(`review`, data );
+      return response.data;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+
+
+
 export const getOrderId = (orderId) => {
   return async function (dispatch) {
     try {
@@ -273,6 +285,7 @@ export const getOrderId = (orderId) => {
 };
 
 export const auth_google_Login = (token) => {
+
 	return async function(dispatch) {
 		try {
 			const response = await axios.post(`auth/google-login`, token);
@@ -303,17 +316,10 @@ export const logout = () => {
 			console.log(error);
 		}
 	};
+
 };
 
 // ^^^^ ACCIONES ADMIN (NO TOCAR) ^^^^
-
-export const orderByName = (payload) => {
-  return { type: ORDER_BY_NAME, payload };
-};
-
-export const orderByPrice = (payload) => {
-  return { type: ORDER_BY_PRICE, payload };
-};
 
 export const paginate = (value) => {
   return function (dispatch) {
@@ -321,13 +327,20 @@ export const paginate = (value) => {
   };
 };
 
-export const filterByAll = (response) => {
-  if (response === "null") {
-    return { type: FILTER_BY_ALL, payload: [] };
-  } else {
-    return { type: FILTER_BY_ALL, payload: response.data };
+export const filter_order = (toFilter) => {
+  return async function (dispatch) {
+    try {
+      if (toFilter === 'null') {
+        return dispatch({ type: FILTER_ORDER, payload: [] })
+      } else {
+        let response = await axios.get(`http://localhost:3001/fill?brand=${toFilter.brand}&category=${toFilter.category}&gender=${toFilter.gender}&order=${toFilter.order}&asc_desc=${toFilter.asc_desc}`)
+        return dispatch({ type: FILTER_ORDER, payload: response.data })
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
-};
+}
 
 export const updateOneUser = (id, dataUser) => {
   return async function (dispatch) {

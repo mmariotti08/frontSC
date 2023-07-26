@@ -1,4 +1,5 @@
 .container {
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,6 +9,7 @@
   /* float: left; */
   /* overflow: hidden; */
   /* margin-bottom: 15px; */
+
 }
 
 .form {
@@ -20,15 +22,33 @@
 }
 
 .select{
+
   margin-left: 2px;
   margin-bottom: 15px;
   border-radius: 4px;
   align-items: center;
   padding: 5px 10px 5px 10px;
   color: white;
-  background-color:#ca1111;;
+  background-color: #ca1111;
   font-size: 15px;
   font-family: 'Russo One', sans-serif;
+}
+
+.select:hover {
+  border-color: #070707;
+}
+
+.label {
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  color: white;
+  margin-right: 12px;
+}
+
+.button {
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+
   }
 
 .select:hover {
@@ -54,4 +74,5 @@
   margin-top: 2%;
   border-radius: 8px;
   font-family: 'Russo One', sans-serif;
+
 }

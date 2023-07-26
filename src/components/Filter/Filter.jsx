@@ -1,11 +1,14 @@
+
 import axios from 'axios';
 import Order from '../Order/order';
+
 import { useState } from "react";
-import { filterByAll, getProducts } from "../../redux/actions";
+import { filter_order, getProducts } from "../../redux/actions";
 import style from "./Filter.module.css"
 import { useDispatch, useSelector } from "react-redux";
 
 const Filter = () => {
+
 	const dispatch = useDispatch();
 
 	const [brand, setBrand] = useState('');
@@ -82,3 +85,13 @@ const Filter = () => {
 export default Filter;
 
 
+        <button className={style.button} onClick={(event) => handleClick(event)}>Reset Products</button>
+      </form>
+
+      <div className={style.information}>
+        {products.length === 0 ? <h2>Information not found</h2> : <div></div>}
+      </div>
+    </div>
+  )
+}
+export default Filter;
