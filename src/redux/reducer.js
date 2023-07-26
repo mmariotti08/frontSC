@@ -50,6 +50,7 @@ const initialState = {
   },
   orderData: [],
   userOrders: [],
+  
 };
 
 const reducer = (state = initialState, action) => {
@@ -159,23 +160,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         get_user_id: action.payload,
+        users: action.payload,  
       };
     case GET_ORDER_ID:
       return {
         ...state,
         get_order_id: action.payload,
+        users: action.payload,
       };
     case LOGIN:
       localStorage.setItem("auth", JSON.stringify(action.payload));
       return {
         ...state,
-        auth_token: action.payload
+        auth_token: action.payload,
       };
     case LOGOUT:
       localStorage.removeItem('auth');
       return {
         ...state,
-        auth_token: { isAuthenticated: false, token: null }
+        auth_token: { isAuthenticated: false, token: null },
       };
 
     case ORDER_BY_NAME: {
@@ -229,6 +232,7 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     }
+    
     case FETCH_ORDER_SUCCESS:
       return {
         ...state,

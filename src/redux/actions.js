@@ -27,7 +27,7 @@ import {
   LOGOUT,
   FETCH_ORDER_SUCCESS,
   FETCH_USER_ORDERS_SUCCESS,
-} from "./actions-type";
+  } from "./actions-type";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -254,6 +254,7 @@ export const getUserId = (userId) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(`user/${userId}`);
+      console.log('15', response.data)
       return dispatch({ type: GET_USER_ID, payload: response.data });
     } catch (error) {
       console.log(error.response.data);
@@ -329,17 +330,20 @@ export const filterByAll = (response) => {
   }
 };
 
+// FUNCIONES DEL PERFIL DE USUARIO
 export const updateOneUser = (id, dataUser) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
+
       const response = await axios.put(`user/${id}`, dataUser);
-      console.log("15", response.data);
-      return dispatch({ type: UPDATE_ONE_USER, payload: response.data });
+  console.log('44', response.data)
+      return dispatch({type: UPDATE_ONE_USER, payload: response.data})
     } catch (error) {
       console.log(error.response.data);
-    }
+    };
   };
 };
+
 
 export const fetchOrderData = () => async (dispatch) => {
   try {
