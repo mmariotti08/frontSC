@@ -13,7 +13,6 @@ const BuyButton = ()=>{
     const selectRoute = async()=>{
         if(!isAuthenticated){
             toast.success("Log In before continuing");
-            // <Login_v2 />
         }else if(userAddress){
             return navigate('/addAddress')
         }else{
