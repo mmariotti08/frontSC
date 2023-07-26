@@ -8,7 +8,6 @@ import {
   ADD_TO_CART,
   ADD_TO_FAV,
   REMOVE_FROM_FAV,
-  ADD_USER,
   GET_PRODUCT_NAME,
   ORDER_BY_NAME,
   ORDER_BY_PRICE,
@@ -27,7 +26,6 @@ import {
   LOGIN,
   LOGOUT,
   FETCH_ORDER_SUCCESS,
-  FETCH_USER_ORDERS_SUCCESS,
   ADD_ADDRESS
 } from "./actions-type";
 
@@ -281,7 +279,7 @@ export const auth_google_Login = (token) => {
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -292,7 +290,7 @@ export const auth_mail_Login = (user) => {
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -303,7 +301,7 @@ export const logout = () => {
 			return dispatch({ type: LOGOUT });
 		} catch (error) {
 			console.log(error);
-		};
+		}
 	};
 };
 
@@ -349,6 +347,6 @@ export const fetchOrderData = (userId) => async (dispatch) => {
     const orderData = response.data;
     dispatch({ type: FETCH_ORDER_SUCCESS, payload: orderData });
   } catch (error) {
-    // Aquí también podrías manejar un tipo de acción para el caso de error si lo necesitas
+    // Aquí también podrías manejar un tipo de acción para el caso de error
   }
 };
