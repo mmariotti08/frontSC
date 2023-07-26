@@ -46,7 +46,7 @@ const Successfull = () => {
     rating: '',
     opinion: "",
     UserId: idReview,
-    ProductId: lastOrder.OrderProducts[0].id
+    ProductId: lastOrder[0].OrderProducts[0].id
     ,
   });
 
