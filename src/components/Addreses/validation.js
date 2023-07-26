@@ -11,7 +11,7 @@ const validation = (data, error, setError)=>{
 /// country
     if(!data.country){
         errors.country = 'The country field is required.';
-      }else if(!/^[^a-zA-Z]$/.test(data.country)){
+      }else if(!/^[a-zA-Z]+$/.test(data.country)){
         errors.country= 'Numbers and special characters are not allowed'
       } else {
         errors.country = '';
@@ -20,7 +20,7 @@ const validation = (data, error, setError)=>{
 /// city
     if(!data.city){
         errors.city = 'The city field is required.';
-      } else if(!/^[^a-zA-Z]$/.test(data.city)){
+      } else if(!/^[a-zA-Z]+$/.test(data.city)){
         errors.city = 'Numbers and special characters are not allowed'
       }else {
         errors.city = '';
