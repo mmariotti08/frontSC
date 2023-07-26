@@ -65,13 +65,13 @@ const Filter = () => {
   return (
     <div className={style.container}>
       <div className={style.containerOrder}>
-        <select className={style.selectBox} onChange={(event) => handleSetOrder(event.target.value)}>
+        <select className={style.select} onChange={(event) => handleSetOrder(event.target.value)}>
           <option defaultChecked value="" hidden className={style.letras}>Order by Name</option>
           <option value="a-z" className={style.letras}>A - Z</option>
           <option value="z-a" className={style.letras}>Z - A</option>
         </select>
 
-        <select className={style.selectBox} onChange={(event) => handleSetOrder(event.target.value)}>
+        <select className={style.select} onChange={(event) => handleSetOrder(event.target.value)}>
           <option defaultChecked value="" hidden className={style.letras}>Order by Price</option>
           <option value="asc" className={style.letras}>lowest price</option>
           <option value="desc" className={style.letras}>highest price</option>
