@@ -24,9 +24,9 @@ import Profile from "./views/profile/profile";
 import { ToastContainer } from "react-toastify";
 import ProductsContainer from "./components/productsContainer/productsContainer";
 
-axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
+// axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/';
 
-// axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
 	const clientId = "1027048250245-li9gor30unv7ieg8tkk77fpbh78cahbs.apps.googleusercontent.com";

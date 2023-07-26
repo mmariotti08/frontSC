@@ -62,9 +62,9 @@ const Successfull = () => {
                       alt={orderProduct.name}
                       className={style.imagen}
                     />
-                    <p>Product: {orderProduct.name}</p>
-                    <p>Quantity: {orderProduct.quantity}</p>
-                    <p>Size: {orderProduct.size}</p>
+                    <p className={style.p}>Product: {orderProduct.name}</p>
+                    <p className={style.p}>Quantity: {orderProduct.quantity}</p>
+                    <p className={style.p}>Size: {orderProduct.size}</p>
                     {/* Agrega otros detalles del OrderProduct */}
                   </div>
                 ))}

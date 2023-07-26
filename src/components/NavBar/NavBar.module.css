@@ -19,6 +19,10 @@
   color: black;
 }
 
+.cartItemCount{
+  color: white;
+}
+
 .container_logXname a{
   display: flex;
   flex-direction: row;

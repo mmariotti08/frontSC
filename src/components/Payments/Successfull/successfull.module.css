@@ -13,7 +13,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: beige;
+  background-color: rgb(243, 243, 170);
   color: #ca1111;
   padding-inline: 50px;
   padding-bottom: 20px;
@@ -22,7 +22,7 @@
 }
 
 .home{
-  background-color: brown;
+  background-color: #ca1111;
   color: white;
 }
 
@@ -41,5 +41,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  margin-inline: 10px;
+}
 
+.p{
+  display: flex;
+  margin-inline: 10px;
 }
