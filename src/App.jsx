@@ -79,6 +79,6 @@ function App() {
 			<ToastContainer />
 		</div>
 	);
-};
+}
 
 export default App;

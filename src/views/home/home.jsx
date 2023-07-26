@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProductsContainer from "../../components/productsContainer/productsContainer";
 import Carousel from "../../components/carousel/Carousel";
 import { useDispatch } from "react-redux";
