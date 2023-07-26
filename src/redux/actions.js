@@ -8,7 +8,6 @@ import {
   ADD_TO_CART,
   ADD_TO_FAV,
   REMOVE_FROM_FAV,
-  ADD_USER,
   GET_PRODUCT_NAME,
   ORDER_BY_NAME,
   ORDER_BY_PRICE,
@@ -27,7 +26,6 @@ import {
   LOGIN,
   LOGOUT,
   FETCH_ORDER_SUCCESS,
-  FETCH_USER_ORDERS_SUCCESS,
   ADD_ADDRESS
 } from "./actions-type";
 
@@ -298,22 +296,22 @@ export const getOrderId = (orderId) => {
 export const auth_google_Login = (token) => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.post(`/auth/google-login`, token);
+			const response = await axios.post(`auth/google-login`, token);
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
 export const auth_mail_Login = (user) => {
 	return async function(dispatch) {
 		try {
-			const response = await axios.post(`/auth/login`, user);
+			const response = await axios.post(`auth/login`, user);
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		};
+		}
 	};
 };
 
@@ -324,7 +322,7 @@ export const logout = () => {
 			return dispatch({ type: LOGOUT });
 		} catch (error) {
 			console.log(error);
-		};
+		}
 	};
 };
 
@@ -366,10 +364,10 @@ export const updateOneUser = (id, dataUser) => {
 
 export const fetchOrderData = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`/order?userId=${userId}`);
+    const response = await axios.get(`order?userId=${userId}`);
     const orderData = response.data;
     dispatch({ type: FETCH_ORDER_SUCCESS, payload: orderData });
   } catch (error) {
-    // Aquí también podrías manejar un tipo de acción para el caso de error si lo necesitas
+    // Aquí también podrías manejar un tipo de acción para el caso de error
   }
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import style from "./successfull.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,18 +9,17 @@ const Successfull = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   // const externalReference = params.get("external_reference");
-  const userId = params.get("external_reference"); 
+  const userId = params.get("external_reference");
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-
     dispatch(getAllOrders());
     dispatch(getUserId(userId));
   }, [dispatch, userId]);
 
   // Obtiene la lista de órdenes y usuarios del estado utilizando useSelector
-  const allOrders = useSelector((state) => state.all_Orders); 
+  const allOrders = useSelector((state) => state.all_Orders);
   const user = useSelector((state) => state.get_user_id);
 
   // Filtra las órdenes que pertenecen al usuario con el userId dado
@@ -35,48 +34,54 @@ const Successfull = () => {
     navigate("/");
   };
 
-
-
   return (
-    <div className={style.boton}>
-      <h1>Successful purchase🎉!</h1>
-      {/* <p>External Reference: {externalReference}</p>
+    <>
+      <h1 className={style.titulo}>Successful purchase🎉!</h1>
+      <div className={style.boton}>
+        {/* <p>External Reference: {externalReference}</p>
       <p>User ID: {userId}</p> */}
 
-      {user && (
-        <div>
-          <h2>Thank you for your purchase {user.name} !</h2>
-          {/* Muestra otros detalles del usuario */}
-        </div>
-      )}
-
-      {lastOrder ? (
-        <div>
-          {/* <h2>Última Orden del Usuario:</h2> */}
-          <div key={lastOrder.id}>
-            <h3>Order ID: {lastOrder.id}</h3>
-            <h3>Product(s):</h3>
-            <ul>
-              {lastOrder.OrderProducts.map((orderProduct) => (
-                <li key={orderProduct.id}>
-                  <p>Product: {orderProduct.name}</p>
-                  <p>Quantity: {orderProduct.quantity}</p>
-                  <p>Size: {orderProduct.size}</p>
-                  <img src={orderProduct.picture_url} alt={orderProduct.name} />
-                  {/* Agrega otros detalles del OrderProduct */}
-                </li>
-              ))}
-            </ul>
-            <h3>Total Amount: {lastOrder.total_amount}</h3>
-            <h3>{lastOrder.description}</h3>
+        {user && (
+          <div>
+            <h2>Thank you for your purchase {user.name} !</h2>
+            {/* Muestra otros detalles del usuario */}
           </div>
-        </div>
-      ) : (
-        <p>No se encontró ninguna orden para este usuario.</p>
-      )}
+        )}
 
-      <button onClick={handleGoHome}>Home</button>
-    </div>
+        {lastOrder ? (
+          <div className={style.ordenes}>
+            {/* <h2>Última Orden del Usuario:</h2> */}
+            <div key={lastOrder.id}>
+              <h3>Order ID: {lastOrder.id}</h3>
+              <h3>Product(s):</h3>
+              <ul>
+                {lastOrder.OrderProducts.map((orderProduct) => (
+                  <div key={orderProduct.id} className={style.listas}>
+                    <img
+                      src={orderProduct.main_picture_url[0]}
+                      alt={orderProduct.name}
+                      className={style.imagen}
+                    />
+                    <p>Product: {orderProduct.name}</p>
+                    <p>Quantity: {orderProduct.quantity}</p>
+                    <p>Size: {orderProduct.size}</p>
+                    {/* Agrega otros detalles del OrderProduct */}
+                  </div>
+                ))}
+              </ul>
+              <h3>Total Amount: {lastOrder.total_amount}</h3>
+              <h3>{lastOrder.description}</h3>
+            </div>
+          </div>
+        ) : (
+          <p>No se encontró ninguna orden para este usuario.</p>
+        )}
+
+        <button onClick={handleGoHome} className={style.home}>
+          Home
+        </button>
+      </div>
+    </>
   );
 };
 

@@ -25,9 +25,9 @@ import ProductsContainer from "./components/productsContainer/productsContainer"
 import { Products } from "./views/products/products";
 import "react-multi-carousel/lib/styles.css";
 
-// axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
+axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
-axios.defaults.baseURL = "http://localhost:3001/";
+// axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
 	const clientId = "1027048250245-li9gor30unv7ieg8tkk77fpbh78cahbs.apps.googleusercontent.com";
@@ -79,6 +79,6 @@ function App() {
 			<ToastContainer />
 		</div>
 	);
-};
+}
 
 export default App;
