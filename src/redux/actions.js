@@ -333,7 +333,7 @@ export const filter_order = (toFilter) => {
       if (toFilter === 'null') {
         return dispatch({ type: FILTER_ORDER, payload: [] })
       } else {
-        let response = await axios.get(`http://localhost:3001/fill?brand=${toFilter.brand}&category=${toFilter.category}&gender=${toFilter.gender}&order=${toFilter.order}&asc_desc=${toFilter.asc_desc}`)
+        let response = await axios.get(`fill?brand=${toFilter.brand}&category=${toFilter.category}&gender=${toFilter.gender}&order=${toFilter.order}&asc_desc=${toFilter.asc_desc}`)
         return dispatch({ type: FILTER_ORDER, payload: response.data })
       }
     } catch (error) {
