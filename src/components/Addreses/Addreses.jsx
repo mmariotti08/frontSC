@@ -133,7 +133,7 @@ const Addreses = ()=>{
                 </div>
                 <br/>
             
-                <button type="sumbit" className={styles.butt}>sumbbit</button>
+                <button type="sumbit" className={styles.butt}>SEND ADDRESS</button>
             </form>
         </div>
     )
