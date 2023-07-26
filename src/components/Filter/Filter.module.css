@@ -1,9 +1,8 @@
 .container {
-
   float: left;
   overflow: hidden;
   margin-bottom: 15px;
-    }
+}
 
 .form {
   width: 245px;
@@ -14,39 +13,60 @@
   margin-left: 7.5%;
 }
 
-.select{
- margin-left: 2px;
+.select {
+  margin-left: 2px;
   margin-bottom: 15px;
   border-radius: 4px;
   align-items: center;
   padding: 5px 10px 5px 10px;
   color: white;
-  background-color:#ca1111;;
+  background-color: #ca1111;
   font-size: 15px;
   font-family: 'Russo One', sans-serif;
-  }
+}
 
-  .select:hover {
-      border-color: #070707;
-    }
-    
-  .label{
-      font-size: 15px;
-      font-family: 'Russo One', sans-serif;
-      color: white;
-      margin-right: 12px;
-  }
+.select:hover {
+  border-color: #070707;
+}
 
-  .button{      
-      font-size: 15px;
-      font-family: 'Russo One', sans-serif;
-      color: #ca1111;
-      margin-bottom: 15px;
-  }
+.label {
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  color: white;
+  margin-right: 12px;
+}
 
-  .information{
-color: black;
- margin-top: 2%;
- border-radius: 8px;
- font-family: 'Russo One', sans-serif;
-  }
+.button {
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  color: #ca1111;
+  margin-bottom: 15px;
+}
+
+.information {
+  color: black;
+  margin-top: 2%;
+  border-radius: 8px;
+  font-family: 'Russo One', sans-serif;
+}
+
+.selectBox {
+  margin-top: 10px; 
+  border-radius: 4px;
+  padding: 5px 10px 5px 10px;
+  width: 85%;
+  color: white;
+  background-color: #ca1111;
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+}
+
+.selectBox:hover {
+  border-color: #070707;
+}
+
+.containerOrder {
+  margin-bottom: 10px;
+  display: inline-table;
+  margin-top: 2%;
+}
