@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
-import img1 from "../img/oferta.jpg";
-import img2 from "../img/nike.jpg";
-import img3 from "../img/porciento.jpg";
-import img4 from "../img/asic.jpg";
-import img5 from "../img/porciento3.jpg";
 import styles from "./Carousel.module.css";
+import img1 from "./img/yGvjpNtwOzetvVggs23G4ZySMt2CpShLMPH4Fdlu.jpg";
+import img2 from "./img/cp5AMPjg3SLqkuCzT36qBiViiLpanaEpR38KyJlV.jpg";
+import img3 from "./img/S6oFojiNXYQCBvhwqU58fvdhTUWJaju75Awp5HdY.jpg"
+import img4 from "./img/zvRm5yJ3hJUA49iCN3RfrRYwhxfcGC4ierXWnOnY.jpg"
 
 export default function Carousel({ autoPlay = true  }) {
-	const images = [img1, img2, img3,img4,img5];
+	const images = [img1, img2, img3, img4];
+
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [selectedImage, setSelectedImage] = useState(images[0]);
 	const [loaded, setLoaded] = useState(false);

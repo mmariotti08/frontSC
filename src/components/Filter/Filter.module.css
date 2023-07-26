@@ -1,9 +1,14 @@
 .container {
-
-  float: left;
-  overflow: hidden;
-  margin-bottom: 15px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  /* flex-direction: column; */
+  width: 100%;
+  /* float: left; */
+  /* overflow: hidden; */
+  /* margin-bottom: 15px; */
+}
 
 .form {
   width: 245px;
@@ -15,7 +20,7 @@
 }
 
 .select{
- margin-left: 2px;
+  margin-left: 2px;
   margin-bottom: 15px;
   border-radius: 4px;
   align-items: center;
@@ -26,27 +31,27 @@
   font-family: 'Russo One', sans-serif;
   }
 
-  .select:hover {
-      border-color: #070707;
-    }
+.select:hover {
+  border-color: #070707;
+}
     
-  .label{
-      font-size: 15px;
-      font-family: 'Russo One', sans-serif;
-      color: white;
-      margin-right: 12px;
-  }
+.label{
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  color: white;
+  margin-right: 12px;
+}
 
-  .button{      
-      font-size: 15px;
-      font-family: 'Russo One', sans-serif;
-      color: #ca1111;
-      margin-bottom: 15px;
-  }
+.button{      
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  color: #ca1111;
+  margin-bottom: 15px;
+}
 
-  .information{
-color: black;
- margin-top: 2%;
- border-radius: 8px;
- font-family: 'Russo One', sans-serif;
-  }
+.information{
+  color: black;
+  margin-top: 2%;
+  border-radius: 8px;
+  font-family: 'Russo One', sans-serif;
+}

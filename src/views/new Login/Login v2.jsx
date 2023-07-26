@@ -15,7 +15,7 @@ const Login_v2 = ({ setSignIn, setGoogleAccessToken }) => {
     }, []);
 
     const handleBackgroundMouseEnter = () => {
-        document.body.style.cursor = 'pointer';
+        document.body.style.cursor = 'auto';
     };
 
     const handleBackgroundMouseLeave = () => {

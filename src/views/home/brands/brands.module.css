@@ -1,0 +1,12 @@
+#brands {
+    max-width: calc(100vw - 50px);
+}
+
+#brands ul {
+    display: flex;
+    align-items: center;
+}
+
+#brands img {
+    width: 100px !important;
+}
