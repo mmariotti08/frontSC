@@ -24,15 +24,7 @@ const Addreses = ()=>{
         postalCode:"",
     });
 
-    const direction={
-        address:{
-            street: data.street,
-            country: data.country,
-            city: data.city,
-            postalCode: data.postalCode,
-            description: data.description
-        }
-    }
+  
    
     const navigate = useNavigate()
     const dispatch = useDispatch()
