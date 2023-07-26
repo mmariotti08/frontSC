@@ -22,8 +22,9 @@ import {
   GET_ORDER_ID,
   UPDATE_ONE_USER,
   LOGIN,
-  LOGOUT
-
+  LOGOUT,
+  FETCH_ORDER_SUCCESS,
+  FETCH_USER_ORDERS_SUCCESS,
 } from "./actions-type";
 
 const initialState = {
@@ -46,16 +47,19 @@ const initialState = {
   auth_token: JSON.parse(localStorage.getItem("auth")) || {
     isAuthenticated: false,
     token: null
-  }
+  },
+  orderData: [],
+  userOrders: [],
+  
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USERS:
-      return{
+      return {
         ...state,
         users: action.payload,
-      }
+      };
     case GET_PRODUCTS:
       return {
         ...state,
@@ -88,14 +92,14 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case REMOVE_FROM_CART:{
+    case REMOVE_FROM_CART: {
       const updatedCart = state.cart.filter(
         (item) =>
           item.id !== action.payload.productId ||
           item.size !== action.payload.size
       );
 
-      localStorage.setItem("cart", JSON.stringify(updatedCart)); 
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
       return {
         ...state,
         cart: updatedCart,
@@ -142,52 +146,39 @@ const reducer = (state = initialState, action) => {
         ...state,
         product_draft: action.payload,
       };
-    case GET_USERS:
-      return {
-        ...state,
-        allUsers: action.payload
-      };
     case GET_USERS_DRAFT:
       return {
         ...state,
-        users_draft: action.payload
-      };
-    case GET_USERS:
-      return {
-        ...state,
-        allUsers: action.payload
-      };
-    case GET_USERS_DRAFT:
-      return {
-        ...state,
-        users_draft: action.payload
+        users_draft: action.payload,
       };
     case GET_ALL_ORDERS:
       return {
         ...state,
-        all_Orders: action.payload
+        all_Orders: action.payload,
       };
     case GET_USER_ID:
       return {
         ...state,
-        get_user_id: action.payload
+        get_user_id: action.payload,
+        users: action.payload,  
       };
     case GET_ORDER_ID:
       return {
         ...state,
-        get_order_id: action.payload
+        get_order_id: action.payload,
+        users: action.payload,
       };
     case LOGIN:
       localStorage.setItem("auth", JSON.stringify(action.payload));
       return {
         ...state,
-        auth_token: action.payload
+        auth_token: action.payload,
       };
     case LOGOUT:
       localStorage.removeItem('auth');
       return {
         ...state,
-        auth_token: { isAuthenticated: false, token: null }
+        auth_token: { isAuthenticated: false, token: null },
       };
 
     case ORDER_BY_NAME: {
@@ -235,12 +226,23 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case UPDATE_ONE_USER:{
-      return{
+    case UPDATE_ONE_USER: {
+      return {
         ...state,
-        users: action.payload
-      }
+        users: action.payload,
+      };
     }
+    
+    case FETCH_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderData: action.payload,
+      };
+    case FETCH_USER_ORDERS_SUCCESS:
+      return {
+        ...state,
+        userOrders: action.payload,
+      };
 
     default:
       return state;

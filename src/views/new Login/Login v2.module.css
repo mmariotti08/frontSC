@@ -16,8 +16,8 @@
     background-color: #ffffff;
     border-radius: 20px;
     border-color: #CA1111 !important;
-    max-width: 400px;
-    min-width: 350px;
+    width: 400px;
+    height: 400px;
     padding: 25px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 24px 48px;
     gap: 10px;
@@ -68,5 +68,12 @@
 
 #button_close:hover {
     cursor: pointer;
+    color: #CA1111;
+}
+.title strong {
+    cursor: pointer;
+}
+
+.title strong:hover {
     color: #CA1111;
 }

@@ -26,3 +26,5 @@ export const GET_ORDER_ID = "GET_ORDER_ID";
 export const UPDATE_ONE_USER = "UPDATE_ONE_USER";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const FETCH_ORDER_SUCCESS = "FETCH_ORDER_SUCCESS";
+export const FETCH_USER_ORDERS_SUCCESS = 'FETCH_USER_ORDERS_SUCCESS';

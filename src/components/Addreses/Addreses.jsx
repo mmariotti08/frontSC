@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { getUsers, updateUser } from "../../redux/actions"
 import { useEffect, useState } from "react"
 import styles from "./Address.module.css"
-import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import validation from "./validation";
 
-
 const Addreses = ()=>{
+    const { user } = useSelector(state => state.auth_token);
+
     const [data, setData]= useState({
         street:"",
         country:"",
@@ -24,7 +24,6 @@ const Addreses = ()=>{
         postalCode:"",
     });
 
-
     const direction={
         address:{
             street: data.street,
@@ -35,24 +34,13 @@ const Addreses = ()=>{
         }
     }
    
-
     const navigate = useNavigate()
-    const user = useUser()
-    const users = useSelector((state)=> state.users)
     const dispatch = useDispatch()
     
-    useEffect(()=>{
-        dispatch(getUsers())
-        window.scrollTo(0, 0);
-    },[dispatch])
-    
-    const idUser = users.find(item => item.mail === user.user?.primaryEmailAddress.emailAddress)
-    
-
     const handleSumbit =(e)=>{
        if(!error.street && !error.country && !error.city && !error.postalCode){
         e.preventDefault();
-        dispatch(updateUser(idUser.id, direction))
+        dispatch(updateUser(user.id, direction))
         navigate(`/cart`)
        }else{
         alert('Incomplet Form.')
@@ -93,6 +81,7 @@ const Addreses = ()=>{
             description: e.target.value
         })
     }
+
     return (
         <div className={styles.cAddress}>
             <form onSubmit={handleSumbit}>
@@ -124,7 +113,6 @@ const Addreses = ()=>{
                 </div>
                 <br/>
                 
-               
                 </div>
                 <div className={styles.desc}>
                     <label>Description</label>

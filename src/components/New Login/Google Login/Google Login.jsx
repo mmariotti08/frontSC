@@ -3,7 +3,7 @@ import styles from "./Google Login.module.css";
 import { GoogleLogin } from "react-google-login";
 import { auth_google_Login } from "../../../redux/actions";
 
-const Google_Login = ({ setGoogleAccessToken }) => {
+const Google_Login = ({ setGoogleAccessToken, modeSingUp }) => {
     const dispatch = useDispatch();
 
     const clientId = "1027048250245-li9gor30unv7ieg8tkk77fpbh78cahbs.apps.googleusercontent.com";
@@ -21,7 +21,7 @@ const Google_Login = ({ setGoogleAccessToken }) => {
         <div id={styles.signInButton}>
             <GoogleLogin
                 clientId={clientId}
-                buttonText="Sign In with Google"
+                buttonText={modeSingUp ? "Sign Up with Google" : "Sign In with Google"}
                 onSuccess={onSuccess}
                 onFailure={onFailure}
                 cookiePolicy={'single_host_origin'}

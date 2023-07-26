@@ -1,101 +1,25 @@
 .todo{
    display: flex;
    flex-direction: column;
-   flex-shrink: 0;
-   width: 100%;
    background-color:#ca1111;
    border-top: ridge 1px rgb(160, 160, 160);
-   
-}
-
-.container {
+   align-items: center;
    position: relative;
-   bottom:0;
-   left: 0;
-   width: 100%;
-   height: 150px;
-   display: flex;
-   /* background-color:#007BFF; */
-   justify-content: space-around;
-   border-top: ridge 1px rgb(160, 160, 160);
-   color: rgb(255, 255, 255);
-   margin-top: 30px;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   text-shadow: black 0.1em 0.1em 0.2em
-}
-.container h1{
-   font-size: 16px;
-}
-
-.container h3{
-   font-size: 14px;
-}
-
-
-.integrantes{
-   font-size: 10px;
-   display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   grid-template-rows: repeat(2, 1fr);
-   gap: 5px;
-   grid-row-gap: 5px;
-   height: 50%;
-
-}
-
-.integrantes > :nth-child(4n + 1) {
-   margin-bottom: 5px;
-}
-
-
-.nombre{
-   display: flex;
-   flex-direction: column;
-   gap: 5px;
-   padding: 10px;
-}
-
-.nombre h3, a{
-   margin-bottom: 0;
-   margin-top: 0;
-}
-
-.nombre h3{
-   color: rgb(255, 255, 255);
-}
-
-.containerName{
-   display: flex;
-   flex-direction: column;
-}
-
-.help{
-   display: flex;
-   flex-direction: column;
-}
-.help{
-   color: rgb(255, 255, 255);
-}
-.help h3{
-   color: rgb(255, 255, 255);
-}
-
-.About{
-   display: flex;
-   flex-direction: column;
-}
-
-.About h1{
-   color: black;
 }
 
 .derechos{
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
    align-items: center;
-   font-size: 11px;
-   border: solid 1px gray;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-size: 13px;
+   border-top: solid 1px gray;
+   background-color: black;
+   font-family: 'Russo One', sans-serif;
+   width: 100%;
+}
+
+.derechos svg {
+   color: #ca1111
 }
 
 #container_elements {
@@ -128,11 +52,15 @@
    display: flex;
    flex-direction: column;
    margin-left: 20px;
+   margin-right: 20px;
+   height: 100%;
 }
 
 .text h3 {
    margin-left: 0px;
    text-align: left;
+   font-weight: bold;
+   font-family: 'Russo One', sans-serif;
 }
 
 .div_elements span {
@@ -141,25 +69,161 @@
    text-align: left;
 }
 
-@media (max-width: 900px) {
+#useful_links {
+   display: flex;
+   padding-top: 50px;
+   padding-bottom: 50px;
+   gap: 50px;
+   justify-content: flex-end;
+   background-color: black;
+   width: 100%;
+}
+
+#useful_links h3 {
+   margin-left: 0px;
+   text-align: left;
+   font-weight: bold;
+   font-family: 'Russo One', sans-serif;
+}
+
+#useful_links h4 {
+   text-align: left;
+   padding-right: 50px;
+}
+
+#useful_links a {
+   display: flex;
+   text-align: left;
+   color: rgba(255, 255, 255, 0.87);
+   flex-direction: row;
+   align-items: center;
+   flex-wrap: nowrap;
+   gap: 10px;
+}
+
+.useful_links_div {
+   display: flex;
+   flex-direction: column;
+   width: 40%;
+}
+
+.container_links {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.container_links svg {
+   width: 16px;
+}
+
+.container_members{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 250px;
+   background-color: #ca1111;
+   border-radius: 15px;
+   border: 1px solid white;
+   padding: 10px;
+   position: absolute;
+   bottom: 40px;
+   right: 40px;
+}
+
+.container_members button {
+   all: initial;
+   font-size: 25px;
+   color: white;
+   position: absolute;
+   top: 5px;
+   right: 5px;
+}
+
+.container_members button:hover {
+   color: black;
+   cursor: pointer;
+}
+
+.container_members h3 {
+   margin-left: 0px;
+   font-weight: bold;
+   font-family: 'Russo One', sans-serif;
+   border-bottom: 1px solid white;
+   width: 120px;
+}
+
+.container_members a {
+   display: flex;
+   text-align: left;
+   color: rgba(255, 255, 255, 0.87);
+   flex-direction: row;
+   align-items: center;
+   flex-wrap: nowrap;
+   gap: 10px;
+}
+
+.container_members a:hover {
+   color: white;
+   font-weight: bold;
+}
+
+.members {
+   display: flex;
+   flex-direction: column;
+}
+
+#made_whith:hover {
+   cursor: pointer;
+}
+
+#scroll_buttom {
+   position: fixed;
+   bottom: 30px;
+   right: 20px;
+}
+
+@media (max-width: 950px) {
    #container_elements {
-      /* display: flex; */
       flex-wrap: wrap;
-      margin-left: 20px;
-      margin-right: 20px;
-      margin-top: 90px;
-      margin-bottom: 90px;
-      gap: 20px;
+      justify-content: center;
+      align-items: center;
+   }
+
+   .div_elements {
+      width: 40%;
    }
 }
 
 @media (max-width: 767px) {
    #container_elements {
-      flex-direction: column;
       flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
    }
-   
-   #container_elements > div {
-      margin-bottom: 20px;
+
+   .div_elements {
+      width: 200px;
+   }
+
+   .text span {
+      display: none;
+   }
+
+   #useful_links h4 {
+      padding-right: 0px;
+   }
+
+   .useful_links_div {
+      width: 45%;
+   }
+
+   #useful_links {
+      gap: 10px;
+   }
+
+   .container_members{
+      bottom: 100px;
+      right: initial;
    }
 }
