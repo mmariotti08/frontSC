@@ -16,7 +16,7 @@ const Successfull = () => {
   const userId = params.get("external_reference");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useSelector((state) => state.auth_token);
+  const { user } = useSelector((state) => state.auth_token);
   const idReview = user.id;
 
   console.log(idReview);
@@ -46,7 +46,8 @@ const Successfull = () => {
     rating: '',
     opinion: "",
     UserId: idReview,
-    ProductId: '10',
+    ProductId: lastOrder[0].OrderProducts[0].id
+    ,
   });
 
 
