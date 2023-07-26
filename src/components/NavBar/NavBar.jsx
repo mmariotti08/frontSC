@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
@@ -117,9 +117,11 @@ const NavBar = ({ toggleCarousel }) => {
 					</div>
 
 					<div className={style.container_icon}>
-
 						<div id={style.container_menu_login}>
-							<a onClick={handleClick} className={style.navLink}>
+							<a
+								onClick={handleClick}
+								className={style.navLink}
+								>
 								{user?.picture
 									? <img src={user.picture} alt="" />
 									: <BsPerson />

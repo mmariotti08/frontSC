@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import styles from "./detail.module.css";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
-import Addreses from "../../components/Addreses/Addreses";
-import { Route,  Routes } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Opinions from './Opinions'

@@ -21,9 +21,9 @@ import {
   LOGIN,
   LOGOUT,
   FETCH_ORDER_SUCCESS,
-  FETCH_USER_ORDERS_SUCCESS,
+  FILTER_ORDER,
   ADD_ADDRESS,
-  FILTER_ORDER
+
 } from "./actions-type";
 
 const initialState = {
@@ -46,7 +46,7 @@ const initialState = {
   lastOrder: [],
   auth_token: JSON.parse(localStorage.getItem("auth")) || {
     isAuthenticated: false,
-    token: null
+    token: null,
   },
   orderData: [],
   userOrders: [],
@@ -169,15 +169,16 @@ const reducer = (state = initialState, action) => {
       localStorage.setItem("auth", JSON.stringify(action.payload));
       return {
         ...state,
-        auth_token: action.payload
+        auth_token: action.payload,
       };
     case LOGOUT:
-      localStorage.removeItem('auth');
+      localStorage.removeItem("auth");
       return {
         ...state,
-        auth_token: { isAuthenticated: false, token: null }
+        auth_token: { isAuthenticated: false, token: null },
       };
-    case ADD_ADDRESS:
+    case ADD_ADDRESS:{
+
       const updatedUser = {
         ...state.auth_token.user,
         ...action.payload,
@@ -189,6 +190,7 @@ const reducer = (state = initialState, action) => {
           user: updatedUser,
         },
       };
+    }
 
     case PAGINATION:
       return {
@@ -212,7 +214,9 @@ const reducer = (state = initialState, action) => {
     case FETCH_ORDER_SUCCESS: {
       // Filtrar las órdenes que coinciden con el userId
       const userId = "YOUR_USER_ID"; // Reemplaza "YOUR_USER_ID" con tu identificador de usuario
-      const filteredOrders = action.payload.filter((order) => order.userId === userId);
+      const filteredOrders = action.payload.filter(
+        (order) => order.userId === userId
+      );
 
       return {
         ...state,

@@ -9,7 +9,7 @@ import { All_Users } from "../../components/Admin/Users/All Users/All Users";
 import { User_Draft } from "../../components/Admin/Users/User Draft/User Draft";
 import { All_Orders } from "../../components/Admin/Orders/All Orders/All Orders";
 import styles from "./Menu.module.css"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { paginate } from "../../redux/actions";
 import { Redirection } from "../../components/Admin/Others/Redirection/Redirection";
 import { Order_Details } from "../../components/Admin/Orders/Order Details/Order Details";

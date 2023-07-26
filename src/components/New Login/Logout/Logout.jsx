@@ -27,7 +27,7 @@ const Logout = ({ setSignIn, googleAccessToken, setGoogleAccessToken }) => {
                     buttonText="Logout"
                     onLogoutSuccess={onLogoutSuccess}
                 />
-                : <button onClick={onLogoutSuccess}>Logout-2</button>
+                : <button className={styles.logout_google} onClick={onLogoutSuccess}>Logout</button>
             }
         </>
     );

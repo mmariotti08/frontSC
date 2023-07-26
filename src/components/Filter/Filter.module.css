@@ -1,7 +1,15 @@
 .container {
-  float: left;
-  overflow: hidden;
-  margin-bottom: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  /* flex-direction: column; */
+  width: 100%;
+  /* float: left; */
+  /* overflow: hidden; */
+  /* margin-bottom: 15px; */
+
 }
 
 .form {
@@ -13,7 +21,8 @@
   margin-left: 7.5%;
 }
 
-.select {
+.select{
+
   margin-left: 2px;
   margin-bottom: 15px;
   border-radius: 4px;
@@ -39,34 +48,31 @@
 .button {
   font-size: 15px;
   font-family: 'Russo One', sans-serif;
+
+  }
+
+.select:hover {
+  border-color: #070707;
+}
+    
+.label{
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
+  color: white;
+  margin-right: 12px;
+}
+
+.button{      
+  font-size: 15px;
+  font-family: 'Russo One', sans-serif;
   color: #ca1111;
   margin-bottom: 15px;
 }
 
-.information {
+.information{
   color: black;
   margin-top: 2%;
   border-radius: 8px;
   font-family: 'Russo One', sans-serif;
-}
 
-.selectBox {
-  margin-top: 10px; 
-  border-radius: 4px;
-  padding: 5px 10px 5px 10px;
-  width: 85%;
-  color: white;
-  background-color: #ca1111;
-  font-size: 15px;
-  font-family: 'Russo One', sans-serif;
-}
-
-.selectBox:hover {
-  border-color: #070707;
-}
-
-.containerOrder {
-  margin-bottom: 10px;
-  display: inline-table;
-  margin-top: 2%;
 }

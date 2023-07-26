@@ -1,7 +1,5 @@
 import React, { Suspense, useState } from 'react';
-// import { Canvas } from 'react-three-fiber';
 import { House } from '../../components/House/House';
-// import { OrbitControls } from '@react-three/drei';
 import style from './Landing.module.css';
 import { Link } from 'react-router-dom';
 
