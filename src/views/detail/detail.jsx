@@ -26,6 +26,8 @@ const Detail = () => {
     window.scrollTo(0, 0);
   }, [dispatch, id]);
 
+  const {isAuthenticated, user} = useSelector(state => state.auth_token);
+
   useEffect(() => {
     // Update available quantity when a size is selected
     if (selectedSize) {
@@ -72,7 +74,7 @@ const Detail = () => {
       });
     } else {
       setSelectedQuantity((prevQuantity) => prevQuantity - selectedQuantity);
-      dispatch(addToCart(selectedProduct));
+      dispatch(addToCart(selectedProduct, user));
       toast.success("Shoe Added Successfully👟", {
         position: "bottom-right",
         autoClose: 2000,

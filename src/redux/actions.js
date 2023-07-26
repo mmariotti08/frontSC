@@ -75,19 +75,40 @@ export const getDetail = (id) => {
 };
 
 // Acción para agregar un elemento al carrito
-export const addToCart = (item) => {
-  return {
-    type: ADD_TO_CART,
-    payload: item,
+
+export const addToCart = (item, user) => {
+  console.log('userAction',user)
+  return async function (dispatch) { 
+    try {
+      const response = await axios.post('/car', {item, user}); 
+      console.log(response.data);
+
+      dispatch({
+        type: 'ADD_TO_CART', 
+        payload: response.data, 
+      });
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
   };
 };
-
 // Acción para remover un elemento del carrito
-export const removeFromCart = (productId, size) => {
-  return {
-    type: REMOVE_FROM_CART,
-    payload: { productId, size },
+export const removeFromCart = (id) => {
+  console.log('idfront',id)
+  return async function (dispatch) { 
+    try {
+      const response = await axios.delete(`/car/${id}`); 
+      console.log(response.data);
+
+      dispatch({
+        type: 'REMOVE_FROM_CART', 
+        payload: response.data, 
+      });
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
   };
+
 };
 
 // Acción para agregar un elemento al carrito

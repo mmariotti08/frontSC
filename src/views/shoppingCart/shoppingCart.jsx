@@ -24,12 +24,13 @@ const ShoppingCart = ({ cart }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleRemove = (productId, size) => {
+  const handleRemove = (id) => {  //productId, size estaba asi luis
     const isProductInCart = cart.filter(
-      (item) => item.id !== productId || item.size !== size
+      (item) => item.id !== id 
     );
+    console.log(cart)
     setCart(isProductInCart);
-    dispatch(removeFromCart(productId, size));
+    dispatch(removeFromCart(id));
   };
 
   return (
@@ -65,7 +66,6 @@ const ShoppingCart = ({ cart }) => {
       <h2 className={style.total}>Total Amount: {formatPrice(totalPrice)}</h2>
 
       </div>
-
       <BuyButton/>
 
     </div>
