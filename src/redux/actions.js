@@ -281,6 +281,7 @@ export const auth_google_Login = (token) => {
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
+      toast.success(error.response.data.message);
 		};
 	};
 };
@@ -292,6 +293,7 @@ export const auth_mail_Login = (user) => {
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
+      toast.success(error.response.data.message);
 		};
 	};
 };
