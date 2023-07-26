@@ -10,7 +10,7 @@ const BuyButton = ()=>{
     const { isAuthenticated, user } = useSelector(state => state.auth_token);
 
     const cardPey = useSelector((state)=> state.cart)
-    console.log(user);
+    console.log('a', user);
     const selectRoute = async()=>{
         if(!isAuthenticated){
             toast.success("Log In before continuing");

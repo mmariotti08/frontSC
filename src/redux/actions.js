@@ -261,6 +261,20 @@ export const getUserId = (userId) => {
   };
 };
 
+export const createReview = (data) => {
+  return async function (dispatch) {
+    console.log(data);
+    try {
+      let response = await axios.post(`review`, data );
+      return response.data;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+
+
+
 export const getOrderId = (orderId) => {
   return async function (dispatch) {
     try {

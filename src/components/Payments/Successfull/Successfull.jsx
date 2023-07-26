@@ -1,27 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import style from "./successfull.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, getUserId } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import { createReview } from "../../../redux/actions";
+
+
 
 const Successfull = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   // const externalReference = params.get("external_reference");
-  const userId = params.get("external_reference"); 
+  const userId = params.get("external_reference");
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { isAuthenticated, user } = useSelector((state) => state.auth_token);
+  const idReview = user.id;
 
+  console.log(idReview);
   useEffect(() => {
-
     dispatch(getAllOrders());
     dispatch(getUserId(userId));
   }, [dispatch, userId]);
 
   // Obtiene la lista de órdenes y usuarios del estado utilizando useSelector
-  const allOrders = useSelector((state) => state.all_Orders); 
-  const user = useSelector((state) => state.get_user_id);
+  const allOrders = useSelector((state) => state.all_Orders);
+  // const user = useSelector((state) => state.get_user_id);
 
   // Filtra las órdenes que pertenecen al usuario con el userId dado
   const userOrders = allOrders.filter((order) => order.userId === userId);
@@ -35,6 +41,28 @@ const Successfull = () => {
     navigate("/");
   };
 
+  console.log(userOrders);
+  const [form, setForm] = useState({
+    rating: '',
+    opinion: "",
+    UserId: idReview,
+    ProductId: '10',
+  });
+
+
+  const handleRatingClick = (value) => {
+    setForm({ ...form, rating: value });
+  };
+
+  const handleOpinionChange = (e) => {
+    setForm({ ...form, opinion: e.target.value });
+  };
+ 
+  const handleSubmitReview = () => {
+      dispatch(createReview (form))
+    console.log('aa',form);
+  };
+  
 
 
   return (
@@ -62,7 +90,10 @@ const Successfull = () => {
                   <p>Product: {orderProduct.name}</p>
                   <p>Quantity: {orderProduct.quantity}</p>
                   <p>Size: {orderProduct.size}</p>
-                  <img src={orderProduct.main_picture_url[0]} alt={orderProduct.name} />
+                  <img
+                    src={orderProduct.main_picture_url[0]}
+                    alt={orderProduct.name}
+                  />
                   {/* Agrega otros detalles del OrderProduct */}
                 </li>
               ))}
@@ -70,9 +101,49 @@ const Successfull = () => {
             <h3>Total Amount: {lastOrder.total_amount}</h3>
             <h3>{lastOrder.description}</h3>
           </div>
+          <p>
+            We would love to hear your opinion! How did you like our
+            product/service? Leave us a review so we can keep improving.
+          </p>
+          <label htmlFor=""></label>
+          <input type="number" value={form.rating} />
         </div>
       ) : (
+
+      <div>
         <p>No se encontró ninguna orden para este usuario.</p>
+
+
+
+
+        <p className={style.p}>
+        We would love to hear your opinion! How did you like our
+        product/service? Leave us a review so we can keep improving.
+      </p>
+      <div className={style.stars}>
+        {[...Array(5)].map((_, index) => (
+          <FaStar
+          key={index}
+          size={40}
+          onClick={() => handleRatingClick(index + 1)}
+          color={index < form.rating ? "gold" : "gray"}
+          />
+          ))}
+      </div>
+      <textarea
+        placeholder="Write your review here..."
+        value={form.opinion}
+        onChange={handleOpinionChange}
+        className={style.input}
+        />
+        <div>
+      <button onClick={handleSubmitReview} className={style.buttonSubmit}>Send</button>
+
+        </div>
+
+
+
+      </div>
       )}
 
       <button onClick={handleGoHome}>Home</button>
