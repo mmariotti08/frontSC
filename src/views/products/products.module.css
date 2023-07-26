@@ -1,0 +1,12 @@
+#products {
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+    min-height: 100vh;
+}
+
+@media (max-width) {
+    #products {
+        margin-top: 50px;
+    }
+}

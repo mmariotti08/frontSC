@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./redux/actions";
-import Login from "./components/login/Login";
 import Detail from "./views/detail/detail";
 import Home from "./views/home/home";
 import AboutUs from "./components/Footer/AboutUS/AboutUs";
@@ -23,6 +22,8 @@ import Failed from "./components/Payments/Failed/Failed";
 import Profile from "./views/profile/profile";
 import { ToastContainer } from "react-toastify";
 import ProductsContainer from "./components/productsContainer/productsContainer";
+import { Products } from "./views/products/products";
+import "react-multi-carousel/lib/styles.css";
 
 // axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
@@ -60,7 +61,6 @@ function App() {
 		<div id="container_app">
 			{!pathname.startsWith("/admin") && <NavBar toggleCarousel={toggleCarousel} />}
 			<Routes>
-				<Route path="/login" element={<Login/>}/>
 				<Route  path="/"  element={<Home toggle={toggle} />}/>
 				<Route path="/fQuestions" element={<FrecuentQuestions/>}/>
 				<Route path="/measureSize" element={<MeasurSize/>}/>
@@ -73,7 +73,7 @@ function App() {
 				<Route path="/failed" element={<Failed/>} />
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/profile" element={<Profile />} />
-				<Route path="/products" element={<ProductsContainer />} />
+				<Route path="/products" element={<Products />} />
 			</Routes>
 				{/* <UserBanned /> */}
 			{!pathname.startsWith("/admin") && <Footer />}

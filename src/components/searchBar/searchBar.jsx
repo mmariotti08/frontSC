@@ -4,76 +4,65 @@ import { getProductName, paginate } from "../../redux/actions";
 import style from "./searchBar.module.css";
 import { FaSearch } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const [name, setName] = useState("");
-  const dispatch = useDispatch();
+	const [name, setName] = useState("");
 
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      handleSubmit(event);
-      dispatch(paginate(1));
-    }
-  };
+	const handleChange = (event) => {
+		setName(event.target.value);
+	};
 
-  const handleSubmit = async () => {
-    if (name.trim() === "") {
-      // Si el nombre está vacío, muestra un error
-      toast.error("The search cannot be empty.");
-      return;
-    }
+	const handleKeyPress = (event) => {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			handleSubmit(event);
+			dispatch(paginate(1));
+		}
+	};
 
-    // Realizar la búsqueda
-    const searchResultsPromise = dispatch(getProductName(name));
-    const searchResults = await searchResultsPromise;
+	const handleSubmit = async () => {
+		if (name.trim() === "") {
+			toast.error("The search cannot be empty.");
+			return;
+		}
 
-    console.log(searchResults);
+		const searchResultsPromise = dispatch(getProductName(name));
+		const searchResults = await searchResultsPromise;
 
-    if (searchResults.length < 1) {
-      // No se encontraron resultados válidos
-      toast.error(
-        `No results found for the product name: ${name}.`
-      );
-      return;
-    }
-   
-  };
+		if (searchResults.length < 1) {
+			toast.error(
+				`No results found for the product name: ${name}.`
+			);
+			return;
+		} else {
+			navigate("/products");
+		}
+	};
 
-  useEffect(() => {
-    if (name === "") {
-      // Si el valor del input se borra, actualizar la búsqueda de todos los zapatos
-      dispatch(getProductName(""));
-      dispatch(paginate(1));
-    }
-  }, [name, dispatch]);
+	useEffect(() => {
+		if (name === "") {
+			dispatch(getProductName(""));
+			dispatch(paginate(1));
+		}
+	}, [name, dispatch]);
 
-  return (
-    <div className={style.searchContainer}>
-      <input
-        onKeyPress={handleKeyPress}
-        onChange={handleChange}
-        value={name}
-        placeholder="Search..."
-      />
-      <button onClick={handleSubmit}>
-        <FaSearch />
-      </button>
-    </div>
-  );
+	return (
+		<div className={style.searchContainer}>
+			<input
+				onKeyPress={handleKeyPress}
+				onChange={handleChange}
+				value={name}
+				placeholder="Search..."
+			/>
+			<button onClick={handleSubmit}>
+				<FaSearch />
+			</button>
+		</div>
+	);
 };
 
-
 export default SearchBar;
-
-
-// //const SearchBar = ({ onSearch, toggleCarousel }) => {
-
-//     if (name.length > 0){
-//       toggleCarousel(false)
-//     }
-//   };
