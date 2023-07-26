@@ -101,22 +101,8 @@ const Successfull = () => {
             <h3>Total Amount: {lastOrder.total_amount}</h3>
             <h3>{lastOrder.description}</h3>
           </div>
-          <p>
-            We would love to hear your opinion! How did you like our
-            product/service? Leave us a review so we can keep improving.
-          </p>
-          <label htmlFor=""></label>
-          <input type="number" value={form.rating} />
-        </div>
-      ) : (
-
-      <div>
-        <p>No se encontró ninguna orden para este usuario.</p>
-
-
-
-
-        <p className={style.p}>
+          
+          <p className={style.p}>
         We would love to hear your opinion! How did you like our
         product/service? Leave us a review so we can keep improving.
       </p>
@@ -140,6 +126,17 @@ const Successfull = () => {
       <button onClick={handleSubmitReview} className={style.buttonSubmit}>Send</button>
 
         </div>
+
+
+
+          <label htmlFor=""></label>
+          <input type="number" value={form.rating} />
+        </div>
+      ) : (
+
+      <div>
+        <p>No se encontró ninguna orden para este usuario.</p>
+
 
 
 
