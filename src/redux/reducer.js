@@ -24,6 +24,8 @@ import {
   LOGIN,
   LOGOUT,
   FETCH_ORDER_SUCCESS,
+  FETCH_USER_ORDERS_SUCCESS,
+  ADD_ADDRESS
 } from "./actions-type";
 
 const initialState = {
@@ -175,6 +177,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         auth_token: { isAuthenticated: false, token: null }
+      };
+    case ADD_ADDRESS:
+      const updatedUser = {
+        ...state.auth_token.user,
+        ...action.payload,
+      };
+      return {
+        ...state,
+        auth_token: {
+          ...state.auth_token,
+          user: updatedUser,
+        },
       };
 
     case ORDER_BY_NAME: {

@@ -4,17 +4,20 @@
     align-items: center;
     background-color: #FFFFFF;
     width: 100%;
+    padding-bottom: 50px;
 }
 
 #see_more {
-    width: 150px;
-    margin-bottom: 50PX;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* margin-bottom: 50PX; */
     margin-top: 50PX;
     font-weight: bold;
 }
 
 #see_more button {
-    width: 100%;
+    width: 150px;
 }
 
 #see_more button:hover {
@@ -27,15 +30,27 @@
 }
 
 .title {
-    margin-left: 90px;
-    text-align: left;
+    margin-left: 0px !important;
+    text-align: center;
     color: #CA1111;
     font-weight: bold;
     font-family: 'Russo One', sans-serif;
 }
 
+#container_brand {
+    margin-top: 90px;
+}
+
 @media (max-width: 768px) {
     .title {
         margin-left: 40px;
+    }
+
+    .container_prodcuts {
+        margin-top: 50px;
+    }
+
+    .container_brand {
+        margin-top: 50px;
     }
 }
