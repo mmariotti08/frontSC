@@ -83,15 +83,3 @@ const Filter = () => {
 	)
 }
 export default Filter;
-
-
-        <button className={style.button} onClick={(event) => handleClick(event)}>Reset Products</button>
-      </form>
-
-      <div className={style.information}>
-        {products.length === 0 ? <h2>Information not found</h2> : <div></div>}
-      </div>
-    </div>
-  )
-}
-export default Filter;
