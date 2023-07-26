@@ -25,6 +25,7 @@ import {
   LOGOUT,
   FETCH_ORDER_SUCCESS,
   FETCH_USER_ORDERS_SUCCESS,
+  ADD_ADDRESS
 } from "./actions-type";
 
 const initialState = {
@@ -44,6 +45,7 @@ const initialState = {
   all_Orders: [],
   get_user_id: [],
   get_order_id: [],
+  lastOrder: [],
   auth_token: JSON.parse(localStorage.getItem("auth")) || {
     isAuthenticated: false,
     token: null
@@ -180,6 +182,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         auth_token: { isAuthenticated: false, token: null },
       };
+    case ADD_ADDRESS:
+      const updatedUser = {
+        ...state.auth_token.user,
+        ...action.payload,
+      };
+      return {
+        ...state,
+        auth_token: {
+          ...state.auth_token,
+          user: updatedUser,
+        },
+      };
 
     case ORDER_BY_NAME: {
       const sortedShoes = [...state.products];
@@ -232,17 +246,13 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     }
-    
     case FETCH_ORDER_SUCCESS:
       return {
         ...state,
-        orderData: action.payload,
+        userOrders: filteredOrders, // Actualizar las órdenes del usuario
+        lastOrder: action.payload[action.payload.length - 1], // Actualizar la última compra del usuario
       };
-    case FETCH_USER_ORDERS_SUCCESS:
-      return {
-        ...state,
-        userOrders: action.payload,
-      };
+    }
 
     default:
       return state;

@@ -37,15 +37,28 @@ const Addreses = ()=>{
     const navigate = useNavigate()
     const dispatch = useDispatch()
     
-    const handleSumbit =(e)=>{
-       if(!error.street && !error.country && !error.city && !error.postalCode){
+    const handleSumbit = (e) => {
         e.preventDefault();
-        dispatch(updateUser(user.id, direction))
-        navigate(`/cart`)
-       }else{
-        alert('Incomplet Form.')
-       }
-    };
+      
+        if (!error.street && !error.country && !error.city && !error.postalCode) {
+          // No hay errores, proceder con el envío del formulario
+          const direction = {
+            address: {
+              street: data.street,
+              country: data.country,
+              city: data.city,
+              postalCode: data.postalCode,
+              description: data.description
+            }
+          };
+          
+          dispatch(updateUser(user.id, direction));
+          navigate(`/cart`);
+        } else {
+          // Hay errores, mostrar una alerta
+          alert('Formulario incompleto.');
+        }
+      };
     const handleStreet = (e) => {
         setData({
             ...data,

@@ -1,45 +1,83 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import { fetchOrderData } from '../../../redux/actions'; // Importa la acción definida anteriormente
-import style from './successfull.module.css'
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import style from "./successfull.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOrders, getUserId } from "../../../redux/actions";
+import { useNavigate } from "react-router-dom";
 
-const Successfull = ({ orderData, fetchOrderData }) => {
-  const { external_reference } = useParams();       
+const Successfull = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  // const externalReference = params.get("external_reference");
+  const userId = params.get("external_reference"); 
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // Llama a la acción para obtener los datos del endpoint
-    fetchOrderData(external_reference);
-  }, [fetchOrderData, external_reference]);
 
-  // Filtra la orden más reciente (la última creada)
-  const latestOrder = orderData.length > 0 ? orderData[orderData.length - 1] : null;
+    dispatch(getAllOrders());
+    dispatch(getUserId(userId));
+  }, [dispatch, userId]);
+
+  // Obtiene la lista de órdenes y usuarios del estado utilizando useSelector
+  const allOrders = useSelector((state) => state.all_Orders); 
+  const user = useSelector((state) => state.get_user_id);
+
+  // Filtra las órdenes que pertenecen al usuario con el userId dado
+  const userOrders = allOrders.filter((order) => order.userId === userId);
+
+  // Obtén solo la última orden del usuario ordenando por createdAt en orden descendente
+  const lastOrder = userOrders.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  )[0];
+
+  const handleGoHome = () => {
+    navigate("/");
+  };
+
+
 
   return (
     <div className={style.boton}>
-      {latestOrder ? (
+      <h1>Successful purchase🎉!</h1>
+      {/* <p>External Reference: {externalReference}</p>
+      <p>User ID: {userId}</p> */}
+
+      {user && (
         <div>
-          <h2>Detalles de la última compra</h2>
-          <p>Referencia externa: {external_reference}</p>
-          <p>Orden ID: {latestOrder.id}</p>
-          <p>Total Amount: {latestOrder.total_amount}</p>
-          <p>Talla: {latestOrder.OrderProducts[0].size}</p>
-          <p>Cantidad: {latestOrder.OrderProducts[0].quantity}</p>
-          {/* Agrega aquí más detalles de la compra que desees mostrar */}
+          <h2>Thank you for your purchase {user.name} !</h2>
+          {/* Muestra otros detalles del usuario */}
+        </div>
+      )}
+
+      {lastOrder ? (
+        <div>
+          {/* <h2>Última Orden del Usuario:</h2> */}
+          <div key={lastOrder.id}>
+            <h3>Order ID: {lastOrder.id}</h3>
+            <h3>Product(s):</h3>
+            <ul>
+              {lastOrder.OrderProducts.map((orderProduct) => (
+                <li key={orderProduct.id}>
+                  <p>Product: {orderProduct.name}</p>
+                  <p>Quantity: {orderProduct.quantity}</p>
+                  <p>Size: {orderProduct.size}</p>
+                  <img src={orderProduct.picture_url} alt={orderProduct.name} />
+                  {/* Agrega otros detalles del OrderProduct */}
+                </li>
+              ))}
+            </ul>
+            <h3>Total Amount: {lastOrder.total_amount}</h3>
+            <h3>{lastOrder.description}</h3>
+          </div>
         </div>
       ) : (
-        <p>No se encontró ninguna orden para la referencia externa: {external_reference}</p>
+        <p>No se encontró ninguna orden para este usuario.</p>
       )}
+
+      <button onClick={handleGoHome}>Home</button>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  orderData: state.orderData,
-});
-
-const mapDispatchToProps = {
-  fetchOrderData,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Successfull);
+export default Successfull;

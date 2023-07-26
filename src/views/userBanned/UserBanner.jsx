@@ -1,7 +1,7 @@
 import style from "./userBanner.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useUser } from "@clerk/clerk-react";
+// import { useUser } from "@clerk/clerk-react";
 import { getUsers } from "../../redux/actions";
 
 const UserBanned = ({ setNavBarEnabled }) => {
