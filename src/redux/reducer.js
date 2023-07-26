@@ -246,7 +246,7 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     }
-    case FETCH_ORDER_SUCCESS:
+    case FETCH_ORDER_SUCCESS:{
       return {
         ...state,
         userOrders: filteredOrders, // Actualizar las órdenes del usuario
@@ -254,6 +254,7 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    
     default:
       return state;
   }

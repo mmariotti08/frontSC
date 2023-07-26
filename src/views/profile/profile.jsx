@@ -4,6 +4,7 @@ import Suggestions from './Suggestions/Suggestions';
 import { Upload_Image } from '../../components/Admin/Others/Upload Image/Upload Image';
 import { updateOneUser, getUserId } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+//import Orders from './UserOrders/UserOrders';
 
 
 const Account = ({userId}) => {
@@ -100,7 +101,12 @@ const Account = ({userId}) => {
           <p>Phone: {user.phone}</p>
           <button className={style.button} onClick={handleEditClick}>Editar</button>
         </div>
-      )}   
+      )} 
+<a href="/my-account/orders">
+  <button className={style.button}>My Orders</button>
+</a>
+
+      
 
       <Suggestions />
     </div>
@@ -109,3 +115,4 @@ const Account = ({userId}) => {
 
 
 export default Account
+

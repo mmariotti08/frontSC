@@ -28,6 +28,7 @@ import {
   LOGOUT,
   FETCH_ORDER_SUCCESS,
   FETCH_USER_ORDERS_SUCCESS,
+  ADD_ADDRESS,
 } from "./actions-type";
 
 export const getProducts = () => {

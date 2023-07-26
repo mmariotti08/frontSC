@@ -24,6 +24,7 @@ import { ToastContainer } from "react-toastify";
 import ProductsContainer from "./components/productsContainer/productsContainer";
 import { Products } from "./views/products/products";
 import "react-multi-carousel/lib/styles.css";
+import Orders from "./views/profile/UserOrders/UserOrders";
 
 // axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
@@ -71,7 +72,8 @@ function App() {
 				<Route path="/successfull" element={<Successfull/>} />
 				<Route path="/failed" element={<Failed/>} />
 				<Route path="/admin" element={<Admin />} />
-				<Route path="/profile" element={<Profile />} />
+				<Route path="/my-account/orders" element={<Orders />} />
+				<Route path="/my-account" element={<Account />} />
 			</Routes>
 				{/* <UserBanned /> */}
 			{!pathname.startsWith("/admin") && <Footer />}
