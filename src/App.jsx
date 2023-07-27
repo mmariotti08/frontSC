@@ -73,8 +73,7 @@ function App() {
 				<Route path="/successfull" element={<Successfull/>} />
 				<Route path="/failed" element={<Failed/>} />
 				<Route path="/admin" element={<Admin />} />
-        <Route path="/my-account" element={<Account />} />
-        <Route path="/profile" element={<Profile />} />
+        		<Route path="/my-account" element={<Account />} />
 				<Route path="/products" element={<Products />} />
 				<Route path="/my-account/orders" element={<OrdersUser />} />
 
