@@ -6,26 +6,22 @@ import style from "./UserOrders.module.css"
 
 const Orders = () => {
     const dispatch = useDispatch();
+    const allOrders = useSelector((state) => state.all_Orders);
+    const user = useSelector((state) => state.get_user_id);
     const userId = user.id
+
     useEffect(() => {
-      
         dispatch(getAllOrders());
         dispatch(getUserId(userId));
       }, [dispatch, userId]);
       
-    const allOrders = useSelector((state) => state.all_Orders); 
-    const user = useSelector((state) => state.get_user_id);
-
     const userOrders = allOrders.filter((order) => order.userId === userId);
 
     return (
       <div>
-        {user && (
           <div>
-            <h2 className={style.h2}>Your Orders {user.name}</h2>
+            <h2 className={style.h2}>My Orders</h2>
           </div>
-        )}
-
         {userOrders.length > 0 ? (
           <div>
             {userOrders.map((order) => (
@@ -46,7 +42,7 @@ const Orders = () => {
             ))}
           </div>
         ) : (
-          <h2>No order found for this user</h2>
+          <h3 className={style.h2}>No order found for this user</h3>
         )}
       </div>
     );
