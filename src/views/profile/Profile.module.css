@@ -1,13 +1,5 @@
 .container{
     margin-top: 2%;
-    display: grip;
-    grid-template-columns: 100%;
-grid-template-rows: 100px
-  50px
-  1fr
-  100px
-  200px;
- 
   
     margin-left: 1%;
     width: 95%;
@@ -19,13 +11,19 @@ grid-template-rows: 100px
 .h2{
     font-family: 'Russo One', sans-serif;
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
+    color:#b91414;
+    padding: 2%;
 }
 .p{
     font-family: 'Russo One', sans-serif;
-   
     font-size: 18px;
-
+}
+.image{
+    width: 110px;
+    height: 120px;
+    border-radius: 8px 8px 8px 8px; 
+    align-items: center;
 }
 
 .label{
@@ -40,18 +38,24 @@ grid-template-rows: 100px
     padding: 8px;
     border: 1px solid #b91414;
     border-radius: 4px;
-    background-color: rgba(166, 165, 165, 0.466);
+    background-color: rgba(166, 165, 165, 0.37);
+}
+
+.contain{
+    display: grid;
+    grid-template-columns: 15% 40% 40%;
+    grid-template-rows: 70%;
 }
 
 .button{
     font-family: 'Russo One', sans-serif;
     font-size: 15px;
     padding: 8px;
-    border: 1px solid #b91414;
+    border: 1px solid #f8f4f4;
     border-radius: 4px;
-    color:rgb(29, 28, 28);
+    color:white;
     margin: 10px;
-    background-color:rgba(235, 232, 232, 0.836);
+    background-color:#b91414;
 }
 
 .buttonO{
@@ -60,11 +64,11 @@ grid-template-rows: 100px
     font-family: 'Russo One', sans-serif;
     font-size: 15px;
     padding: 8px;
-    border: 1px solid #b91414;
+    border: 1px solid #f8f4f4;
     border-radius: 4px;
-    color:rgb(29, 28, 28);
+    color:white;
     margin: 10px;
-    background-color:rgba(235, 232, 232, 0.836);
+    background-color:#b91414;
 }
 
 .image{
