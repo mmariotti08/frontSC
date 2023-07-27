@@ -11,11 +11,11 @@ const Logout = ({ setSignIn, googleAccessToken, setGoogleAccessToken }) => {
     const navigate = useNavigate()
     
     const onLogoutSuccess = () => {
-        console.log("Success");
         setGoogleAccessToken(null)
         setSignIn(false);
         dispatch(logout());
         navigate("/")
+        localStorage.clear()
     };
     
     return (

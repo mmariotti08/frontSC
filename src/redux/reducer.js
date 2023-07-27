@@ -6,11 +6,8 @@ import {
   REMOVE_FROM_FAV,
   ADD_TO_FAV,
   GET_PRODUCT_NAME,
-  ORDER_BY_PRICE,
-  ORDER_BY_NAME,
   PAGINATION,
   GET_APPROVAL_ADMIN,
-  FILTER_BY_ALL,
   GET_STOCK,
   GET_STOCK_BY_ID,
   GET_PRODUCT_DRAFT,
@@ -24,8 +21,10 @@ import {
   LOGIN,
   LOGOUT,
   FETCH_ORDER_SUCCESS,
-  FETCH_USER_ORDERS_SUCCESS,
-  ADD_ADDRESS
+  FILTER_ORDER,
+  ADD_ADDRESS,
+  CLEAR_CART,
+
 } from "./actions-type";
 
 const initialState = {
@@ -45,9 +44,10 @@ const initialState = {
   all_Orders: [],
   get_user_id: [],
   get_order_id: [],
+  lastOrder: [],
   auth_token: JSON.parse(localStorage.getItem("auth")) || {
     isAuthenticated: false,
-    token: null
+    token: null,
   },
   orderData: [],
   userOrders: [],
@@ -93,12 +93,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case REMOVE_FROM_CART: {
-      const updatedCart = state.cart.filter(
-        (item) =>
-          item.id !== action.payload.productId ||
-          item.size !== action.payload.size
-      );
-
+      const updatedCart = state.cart.filter(item => item.id !== action.payload);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return {
         ...state,
@@ -170,15 +165,16 @@ const reducer = (state = initialState, action) => {
       localStorage.setItem("auth", JSON.stringify(action.payload));
       return {
         ...state,
-        auth_token: action.payload
+        auth_token: action.payload,
       };
     case LOGOUT:
-      localStorage.removeItem('auth');
+      localStorage.removeItem("auth");
       return {
         ...state,
-        auth_token: { isAuthenticated: false, token: null }
+        auth_token: { isAuthenticated: false, token: null },
       };
-    case ADD_ADDRESS:
+    case ADD_ADDRESS:{
+
       const updatedUser = {
         ...state.auth_token.user,
         ...action.payload,
@@ -190,37 +186,6 @@ const reducer = (state = initialState, action) => {
           user: updatedUser,
         },
       };
-
-    case ORDER_BY_NAME: {
-      const sortedShoes = [...state.products];
-      const sortOrder = action.payload === "a-z" ? 1 : -1;
-
-      sortedShoes.sort((shoeA, shoeB) => {
-        if (shoeA.name > shoeB.name) {
-          return 1 * sortOrder;
-        }
-
-        if (shoeB.name > shoeA.name) {
-          return -1 * sortOrder;
-        }
-        return 0;
-      });
-      return { ...state, products: sortedShoes };
-    }
-
-    case ORDER_BY_PRICE: {
-      const sortedPrice = [...state.products];
-      const sortOrd = action.payload === "asc" ? 1 : -1;
-      sortedPrice.sort((priceA, priceB) => {
-        if (priceA.retail_price_cents > priceB.retail_price_cents) {
-          return 1 * sortOrd;
-        }
-        if (priceB.retail_price_cents > priceA.retail_price_cents) {
-          return -1 * sortOrd;
-        }
-        return 0;
-      });
-      return { ...state, products: sortedPrice };
     }
 
     case PAGINATION:
@@ -229,7 +194,7 @@ const reducer = (state = initialState, action) => {
         page: action.payload,
       };
 
-    case FILTER_BY_ALL: {
+    case FILTER_ORDER: {
       return {
         ...state,
         products: action.payload,
@@ -242,15 +207,26 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     }
-    case FETCH_ORDER_SUCCESS:
+    case FETCH_ORDER_SUCCESS: {
+      // Filtrar las órdenes que coinciden con el userId
+      const userId = "YOUR_USER_ID"; // Reemplaza "YOUR_USER_ID" con tu identificador de usuario
+      const filteredOrders = action.payload.filter(
+        (order) => order.userId === userId
+      );
+
       return {
         ...state,
-        orderData: action.payload,
+        userOrders: filteredOrders, // Actualizar las órdenes del usuario
+        lastOrder: action.payload[action.payload.length - 1], // Actualizar la última compra del usuario
       };
-    case FETCH_USER_ORDERS_SUCCESS:
+      
+    }
+
+    case CLEAR_CART:
+      localStorage.removeItem("cart");
       return {
         ...state,
-        userOrders: action.payload,
+        cart: []
       };
 
     default:

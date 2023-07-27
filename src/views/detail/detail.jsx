@@ -7,6 +7,7 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/Ai';
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 import { toast } from "react-toastify";
 import { CgMathPlus, CgMathMinus } from 'react-icons/cg';
+import Opinions from './Opinions';
 
 const Detail = () => {
 	const dispatch = useDispatch();
@@ -18,6 +19,8 @@ const Detail = () => {
 	const [showSizeError, setShowSizeError] = useState(false);
 	const [selectedQuantity, setSelectedQuantity] = useState(1); // Initialize selectedQuantity with 1
 	const [availableQuantity, setAvailableQuantity] = useState(0); // New state for available quantity
+
+	const { user, isAuthenticated } = useSelector(state => state.auth_token);
 
 	useEffect(() => {
 		dispatch(getDetail(id));
@@ -40,7 +43,6 @@ const Detail = () => {
 	const handleCart = () => {
 		if (!selectedSize || selectedQuantity < 1 || selectedQuantity > availableQuantity) {
 			setShowSizeError(true);
-		 
 			return;
 		}
 		setShowSizeError(false);
@@ -68,9 +70,11 @@ const Detail = () => {
 				progress: undefined,
 				theme: "light",
 			});
+		} if(!isAuthenticated) {
+			toast.error("Log In before");
 		} else {
 			setSelectedQuantity((prevQuantity) => prevQuantity - selectedQuantity);
-			dispatch(addToCart(selectedProduct));
+			dispatch(addToCart(selectedProduct, user));
 			toast.success("Shoe Added Successfully👟", {
 				position: "bottom-right",
 				autoClose: 2000,
@@ -143,6 +147,14 @@ const Detail = () => {
 			setSelectedQuantity((prevQuantity) => prevQuantity - 1);
 		}
 	};
+
+	
+
+	// useEffect(() => {
+	// 	dispatch()
+	// }, []);
+
+  	// const opinionsArray =   users.map(user => ({ name: user.name, opinion: user.Reviews.opinion }));
 
 	return (
 		<div id={styles.contDetail}>
@@ -241,6 +253,7 @@ const Detail = () => {
 					</div>
 				</div>
 			</div>
+      {/* <Opinions opinions={opinionsArray} /> */}
 		</div>
 	);
 };

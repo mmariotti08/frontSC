@@ -1,45 +1,162 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import { fetchOrderData } from '../../../redux/actions'; // Importa la acción definida anteriormente
-import style from './successfull.module.css'
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import style from "./successfull.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOrders, getUserId, clearCart } from "../../../redux/actions";
+import { useNavigate } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import { createReview } from "../../../redux/actions";
 
-const Successfull = ({ orderData, fetchOrderData }) => {
-  const { external_reference } = useParams();       
+
+
+const Successfull = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  // const externalReference = params.get("external_reference");
+  const userId = params.get("external_reference");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth_token);
+  const idReview = user.id;
 
   useEffect(() => {
-    // Llama a la acción para obtener los datos del endpoint
-    fetchOrderData(external_reference);
-  }, [fetchOrderData, external_reference]);
+    dispatch(clearCart());
+  }, []);
 
-  // Filtra la orden más reciente (la última creada)
-  const latestOrder = orderData.length > 0 ? orderData[orderData.length - 1] : null;
+  
+
+  console.log(idReview);
+  useEffect(() => {
+    dispatch(getAllOrders());
+    dispatch(getUserId(userId));
+  }, [dispatch, userId]);
+
+  // Obtiene la lista de órdenes y usuarios del estado utilizando useSelector
+  const allOrders = useSelector((state) => state.all_Orders);
+  // const user = useSelector((state) => state.get_user_id);
+
+  // Filtra las órdenes que pertenecen al usuario con el userId dado
+  const userOrders = allOrders.filter((order) => order.userId === userId);
+
+  // Obtén solo la última orden del usuario ordenando por createdAt en orden descendente
+  const lastOrder = userOrders.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  )[0];
+
+  const handleGoHome = () => {
+    navigate("/");
+  };
+
+  console.log(userOrders);
+  const productId =
+  userOrders.length > 0 && userOrders[0].OrderProducts.length > 0
+    ? userOrders[0].OrderProducts[0].id
+    : '10';
+  const [form, setForm] = useState({
+    rating: '',
+    opinion: "",
+    UserId: idReview,
+    ProductId:productId
+    ,
+  });
+
+
+  const handleRatingClick = (value) => {
+    setForm({ ...form, rating: value });
+  };
+
+  const handleOpinionChange = (e) => {
+    setForm({ ...form, opinion: e.target.value });
+  };
+ 
+  const handleSubmitReview = () => {
+      dispatch(createReview (form))
+    console.log('aa',form);
+  };
+  
+
 
   return (
     <div className={style.boton}>
-      {latestOrder ? (
+      <h1>Successful purchase🎉!</h1>
+      {/* <p>External Reference: {externalReference}</p>
+      <p>User ID: {userId}</p> */}
+
+      {user && (
         <div>
-          <h2>Detalles de la última compra</h2>
-          <p>Referencia externa: {external_reference}</p>
-          <p>Orden ID: {latestOrder.id}</p>
-          <p>Total Amount: {latestOrder.total_amount}</p>
-          <p>Talla: {latestOrder.OrderProducts[0].size}</p>
-          <p>Cantidad: {latestOrder.OrderProducts[0].quantity}</p>
-          {/* Agrega aquí más detalles de la compra que desees mostrar */}
+          <h2>Thank you for your purchase {user.name} !</h2>
+          {/* Muestra otros detalles del usuario */}
+        </div>
+      )}
+
+      {lastOrder ? (
+        <div>
+          {/* <h2>Última Orden del Usuario:</h2> */}
+          <div key={lastOrder.id}>
+            <h3>Order ID: {lastOrder.id}</h3>
+            <h3>Product(s):</h3>
+            <ul>
+              {lastOrder.OrderProducts.map((orderProduct) => (
+                <li key={orderProduct.id}>
+                  <p>Product: {orderProduct.name}</p>
+                  <p>Quantity: {orderProduct.quantity}</p>
+                  <p>Size: {orderProduct.size}</p>
+                  <img
+                    src={orderProduct.main_picture_url[0]}
+                    alt={orderProduct.name}
+                  />
+                  {/* Agrega otros detalles del OrderProduct */}
+                </li>
+              ))}
+            </ul>
+            <h3>Total Amount: {lastOrder.total_amount}</h3>
+            <h3>{lastOrder.description}</h3>
+          </div>
+          
+          <p className={style.p}>
+        We would love to hear your opinion! How did you like our
+        product/service? Leave us a review so we can keep improving.
+      </p>
+      <div className={style.stars}>
+        {[...Array(5)].map((_, index) => (
+          <FaStar
+          key={index}
+          size={40}
+          onClick={() => handleRatingClick(index + 1)}
+          color={index < form.rating ? "gold" : "gray"}
+          />
+          ))}
+      </div>
+      <textarea
+        placeholder="Write your review here..."
+        value={form.opinion}
+        onChange={handleOpinionChange}
+        className={style.input}
+        />
+        <div>
+      <button onClick={handleSubmitReview} className={style.buttonSubmit}>Send</button>
+
+        </div>
+
+
+
+          <label htmlFor=""></label>
+          <input type="number" value={form.rating} />
         </div>
       ) : (
-        <p>No se encontró ninguna orden para la referencia externa: {external_reference}</p>
+
+      <div>
+        <p>No se encontró ninguna orden para este usuario.</p>
+
+
+
+
+      </div>
       )}
+
+      <button onClick={handleGoHome}>Home</button>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  orderData: state.orderData,
-});
-
-const mapDispatchToProps = {
-  fetchOrderData,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Successfull);
+export default Successfull;
