@@ -40,16 +40,16 @@ const Successfull = () => {
   const handleGoHome = () => {
     navigate("/");
   };
-
-
+  const productId = lastOrder.OrderProducts[0].productId;
+  console.log('productid**************'.productId);
   const [form, setForm] = useState({
     rating: '',
     opinion: "",
     UserId: idReview,
-    ProductId:'10'
+    ProductId:`${productId}`
     ,
   });
-  console.log(lastOrder);
+  console.log('lastUser****************',lastOrder);
 
 
   const handleRatingClick = (value) => {
