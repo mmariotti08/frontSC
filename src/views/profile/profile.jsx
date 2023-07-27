@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import style from './Profile.module.css';
-import Suggestions from './Suggestions/Suggestions';
 import { Upload_Image } from '../../components/Admin/Others/Upload Image/Upload Image';
 import { updateOneUser, getUserId } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-//import Orders from './UserOrders/UserOrders';
 
 
-const Account = ({userId}) => {
+const Account = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState([]);
   const [editing, setEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({});
-  //const user = useSelector((state) => state.users);
   
   const { isAuthenticated, user } = useSelector((state) => state.auth_token);
-
   useEffect(() => {
     if (isAuthenticated && user && user.id) {
-    const userId = user.id;
-    dispatch(getUserId(userId));
+    dispatch(getUserId(user.id));
     }
   }, [isAuthenticated, user, dispatch]);
   
@@ -36,9 +31,9 @@ const Account = ({userId}) => {
 
   const handleSaveClick = async () => {
     try {
-      const userId = user.id; // Obtener el ID del usuario autenticado
-      await dispatch(updateOneUser(userId, editedUser)); // Actualizar la información del usuario
-      setEditing(false); // Salir del modo de edición
+      const userId = user.id; 
+      await dispatch(updateOneUser(userId, editedUser)); 
+      setEditing(false); 
     } catch (error) {
       console.error("Error al guardar los cambios:", error);
     }
@@ -56,9 +51,7 @@ const Account = ({userId}) => {
       <div>
       <Upload_Image image={image} setImage={setImage} />
       </div>
-      <div>
-         <button className={style.button} type="submit">Save Picture</button>
-      </div>
+      
      {editing ? (
         <div>
       <div>
@@ -105,10 +98,6 @@ const Account = ({userId}) => {
 <a href="/my-account/orders">
   <button className={style.button}>My Orders</button>
 </a>
-
-      
-
-      <Suggestions />
     </div>
   );
 };

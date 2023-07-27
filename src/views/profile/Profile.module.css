@@ -1,6 +1,9 @@
 .container{
-    margin-top: 12%;
+    margin-top: 2%;
     display: grip;
+    grid-template-columns: 5fr 5fr ;
+    gap: 1em;
+    grid-template-rows: minmax(20px, 5px);
   
     margin-left: 1%;
     width: 95%;
