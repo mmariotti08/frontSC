@@ -41,15 +41,15 @@ const Successfull = () => {
     navigate("/");
   };
 
- const idProduct = lastOrder && lastOrder.OrderProducts[0] && lastOrder.OrderProducts[0].productId
+
   const [form, setForm] = useState({
     rating: '',
     opinion: "",
     UserId: idReview,
-    ProductId:idProduct
+    ProductId:'10'
     ,
   });
-  console.log(idProduct);
+  console.log(lastOrder);
 
 
   const handleRatingClick = (value) => {
