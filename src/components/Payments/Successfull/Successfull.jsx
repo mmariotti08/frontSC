@@ -40,7 +40,9 @@ const Successfull = () => {
   const handleGoHome = () => {
     navigate("/");
   };
-  const productId = lastOrder.length > 0 ? lastOrder.OrderProducts[0] && lastOrder.OrderProducts[0].productId : 1;
+  const productId = lastOrder && lastOrder.OrderProducts.length > 0
+  ? lastOrder.OrderProducts[0].productId
+  : 1;
   console.log('productid**************'.productId);
   const [form, setForm] = useState({
     rating: '',
