@@ -1,6 +1,6 @@
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/Ai';
 import { connect, useSelector } from 'react-redux';
 import { addToFav, removeFromFav } from '../../redux/actions';
 import { toast } from "react-toastify";

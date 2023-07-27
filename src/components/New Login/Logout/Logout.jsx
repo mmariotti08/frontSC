@@ -16,6 +16,7 @@ const Logout = ({ setSignIn, googleAccessToken, setGoogleAccessToken }) => {
         setSignIn(false);
         dispatch(logout());
         navigate("/")
+        localStorage.clear()
     };
     
     return (

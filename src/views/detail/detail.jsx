@@ -18,14 +18,13 @@ const Detail = () => {
 	const [showSizeError, setShowSizeError] = useState(false);
 	const [selectedQuantity, setSelectedQuantity] = useState(1); // Initialize selectedQuantity with 1
 	const [availableQuantity, setAvailableQuantity] = useState(0); // New state for available quantity
+	const {user} = useSelector(state => state.auth_token); //isAuthenticated,
+
 
 	useEffect(() => {
 		dispatch(getDetail(id));
 		window.scrollTo(0, 0);
 	}, [dispatch, id]);
-
-<<<<<<< HEAD
-  const {isAuthenticated, user} = useSelector(state => state.auth_token);
 
   useEffect(() => {
     // Update available quantity when a size is selected
@@ -34,15 +33,6 @@ const Detail = () => {
       setAvailableQuantity(selectedStock ? selectedStock.quantity : 0);
     }
   }, [selectedSize, sneaker.Stocks]);
-=======
-	useEffect(() => {
-		// Update available quantity when a size is selected
-		if (selectedSize) {
-			const selectedStock = sneaker.Stocks.find((s) => s.size === selectedSize);
-			setAvailableQuantity(selectedStock ? selectedStock.quantity : 0);
-		}
-	}, [selectedSize, sneaker.Stocks]);
->>>>>>> a41dbfa0a78d763bed03ce1ff18f41a1e8ffded1
 
 	const formatPrice = (price) => {
 		const formattedPrice = (price / 100).toFixed(2);
@@ -52,8 +42,6 @@ const Detail = () => {
 	const handleCart = () => {
 		if (!selectedSize || selectedQuantity < 1 || selectedQuantity > availableQuantity) {
 			setShowSizeError(true);
-		 
-			return;
 		}
 		setShowSizeError(false);
 
@@ -82,7 +70,8 @@ const Detail = () => {
 			});
 		} else {
 			setSelectedQuantity((prevQuantity) => prevQuantity - selectedQuantity);
-			dispatch(addToCart(selectedProduct));
+			dispatch(addToCart(selectedProduct,user));
+			console.log('74detailluis', user)
 			toast.success("Shoe Added Successfully👟", {
 				position: "bottom-right",
 				autoClose: 2000,

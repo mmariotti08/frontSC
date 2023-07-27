@@ -13,7 +13,7 @@ import {
   BsFillSuitHeartFill,
   BsGithub,
 } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/Ai";
 import { useState } from "react";
 
 const Footer = () => {

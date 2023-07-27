@@ -76,13 +76,13 @@ export const getDetail = (id) => {
 
 // Acción para agregar un elemento al carrito
 export const addToCart = (item, user) => {
-  console.log('userAction***',user, item)
+  console.log('userAction**********',user, item)
   return async function (dispatch) { 
     try {
       const response = await axios.post('car',{item, user}); 
       console.log(response.data);
       dispatch({
-        type: 'ADD_TO_CART', 
+        type: ADD_TO_CART, 
         payload: response.data, 
       });
     } catch (error) {
@@ -99,14 +99,13 @@ export const removeFromCart = (id) => {
       console.log(response.data);
 
       dispatch({
-        type: 'REMOVE_FROM_CART', 
+        type: REMOVE_FROM_CART, 
         payload: response.data, 
       });
     } catch (error) {
       console.error('Error al agregar al carrito:', error);
     }
   };
-
 };
 
 // Acción para agregar un elemento al carrito
@@ -299,7 +298,7 @@ export const auth_google_Login = (token) => {
 		} catch (error) {
 			console.log(error.response.data);
       toast.success(error.response.data.message);
-		};
+		}
 	};
 };
 
