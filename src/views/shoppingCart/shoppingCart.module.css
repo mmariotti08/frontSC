@@ -1,7 +1,8 @@
 .titule{
-    font-size: 30px;
-    margin-top: 12%;
+    margin-top: 100px;
+    color:#ca1111;
     font-family: 'Russo One', sans-serif;
+    text-shadow: 4px -2px 2px rgba(0,0,0,0.19);
 }
 
 .container{
@@ -11,6 +12,7 @@
     box-sizing: border-box;
     padding: 10px;
     border-radius: 8px;
+    color:#ca1111;
 }
 .product{
     box-sizing: border-box;
@@ -23,10 +25,12 @@
     display: grid;
     grid-template-rows: 80px 80px;
     grid-template-columns: 1fr 1fr 1fr 0.8fr 0.8fr 0.8fr 0.8fr;
+    color:#ca1111;
  
 }
 .mensaje{
     font-size: 30px;
+    color:#ca1111;
   
     font-family: 'Russo One', sans-serif;
 }
@@ -90,7 +94,7 @@
 
 .total{
     font-family: 'Russo One', sans-serif;
-    
+    color:#ca1111;
     margin-right: 2%;
 }
 
