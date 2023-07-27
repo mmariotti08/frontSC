@@ -154,6 +154,7 @@ const Detail = () => {
 	// 	dispatch()
 	// }, []);
 
+    const users = useSelector(state => state.allUsers)
   	const opinionsArray =   users.map(user => ({ name: user.name, opinion: user.Reviews.opinion }));
 
 	return (
@@ -252,8 +253,8 @@ const Detail = () => {
 							)}
 					</div>
 				</div>
-			</div>
       <Opinions opinions={opinionsArray} />
+			</div>
 		</div>
 	);
 };
