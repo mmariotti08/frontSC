@@ -23,11 +23,12 @@ import Profile from "./views/profile/profile";
 import { ToastContainer } from "react-toastify";
 import ProductsContainer from "./components/productsContainer/productsContainer";
 import { Products } from "./views/products/products";
+import OrdersUser from "./views/ordersUser/ordersUser";
 import "react-multi-carousel/lib/styles.css";
 
-axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
+// axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
-// axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
 	const clientId = "1027048250245-li9gor30unv7ieg8tkk77fpbh78cahbs.apps.googleusercontent.com";
@@ -73,6 +74,7 @@ function App() {
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/products" element={<Products />} />
+				<Route path="/my-account/orders" element={<OrdersUser />} />
 			</Routes>
 				{/* <UserBanned /> */}
 			{!pathname.startsWith("/admin") && <Footer />}
