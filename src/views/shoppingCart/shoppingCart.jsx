@@ -23,6 +23,7 @@ const ShoppingCart = ({ cart }) => {
   const totalPrice = cart.reduce((total, item) => total + calculateSubtotal(item.quantity, item.retail_price_cents), 0);
 
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -50,7 +51,7 @@ const ShoppingCart = ({ cart }) => {
                   <h3 className={style.name}>{item.name}</h3>
                   <h3 className={style.sizeI}>Size: {item.size}</h3>
                   <h3 className={style.price}>Unit price: {formatPrice(item.retail_price_cents)}</h3>
-                  <h3 className={style.size}>cantidad: {item.quantity}</h3>
+                  <h3 className={style.size}>Quantity: {item.quantity}</h3>
                   <h3 className={style.size}>Sub-Total: {formatPrice(subtotal)}</h3>
                   <button
                     onClick={() => handleRemove(item.id)}

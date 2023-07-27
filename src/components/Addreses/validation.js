@@ -20,7 +20,7 @@ const validation = (data, error, setError)=>{
 /// city
     if(!data.city){
         errors.city = 'The city field is required.';
-      } else if(!/^[a-zA-Z]+$/.test(data.city)){
+      } else if(!/^[a-zA-Z\s]+$/.test(data.city)){
         errors.city = 'Numbers and special characters are not allowed'
       }else {
         errors.city = '';
