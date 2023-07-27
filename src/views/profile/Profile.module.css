@@ -1,6 +1,12 @@
 .container{
     margin-top: 2%;
-    display: flex;
+    display: grip;
+    grid-template-columns: 100%;
+grid-template-rows: 100px
+  50px
+  1fr
+  100px
+  200px;
  
   
     margin-left: 1%;

@@ -47,8 +47,11 @@ const Account = () => {
 
   return (
     <div className={style.container}>
+      <a href="/my-account/orders">
+      <button className={style.buttonO}>My Orders</button>
+      </a>
       <h2 className={style.h2}>My Account</h2>
-      <div>
+      <div className={style}>
       <Upload_Image image={image} setImage={setImage} />
       </div>
       
@@ -95,9 +98,6 @@ const Account = () => {
           <button className={style.button} onClick={handleEditClick}>Editar</button>
         </div>
       )} 
-<a href="/my-account/orders">
-  <button className={style.buttonO}>My Orders</button>
-</a>
     </div>
   );
 };
