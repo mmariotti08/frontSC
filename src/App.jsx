@@ -19,12 +19,13 @@ import Addreses from "./components/Addreses/Addreses";
 import { gapi } from "gapi-script";
 import Successfull from "./components/Payments/Successfull/Successfull";
 import Failed from "./components/Payments/Failed/Failed";
-import Profile from "./views/profile/profile";
+import Account from "./views/profile/profile";
 import { ToastContainer } from "react-toastify";
 import ProductsContainer from "./components/productsContainer/productsContainer";
 import { Products } from "./views/products/products";
 import OrdersUser from "./views/ordersUser/ordersUser";
 import "react-multi-carousel/lib/styles.css";
+// import Orders from "./views/profile/UserOrders/UserOrders";
 
 axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/'
 
@@ -72,9 +73,11 @@ function App() {
 				<Route path="/successfull" element={<Successfull/>} />
 				<Route path="/failed" element={<Failed/>} />
 				<Route path="/admin" element={<Admin />} />
-				<Route path="/profile" element={<Profile />} />
+        <Route path="/my-account" element={<Account />} />
+        <Route path="/profile" element={<Profile />} />
 				<Route path="/products" element={<Products />} />
 				<Route path="/my-account/orders" element={<OrdersUser />} />
+
 			</Routes>
 				{/* <UserBanned /> */}
 			{!pathname.startsWith("/admin") && <Footer />}

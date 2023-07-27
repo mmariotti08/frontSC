@@ -23,6 +23,7 @@ import {
   FETCH_ORDER_SUCCESS,
   FILTER_ORDER,
   ADD_ADDRESS,
+  CLEAR_CART,
 
 } from "./actions-type";
 
@@ -50,6 +51,7 @@ const initialState = {
   },
   orderData: [],
   userOrders: [],
+  
 };
 
 const reducer = (state = initialState, action) => {
@@ -92,12 +94,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case REMOVE_FROM_CART: {
-      const updatedCart = state.cart.filter(
-        (item) =>
-          item.id !== action.payload.productId ||
-          item.size !== action.payload.size
-      );
-
+      const updatedCart = state.cart.filter(item => item.id !== action.payload);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return {
         ...state,
@@ -155,15 +152,31 @@ const reducer = (state = initialState, action) => {
         ...state,
         all_Orders: action.payload,
       };
-    case GET_USER_ID:
+    case GET_USER_ID:{
+      // const getUser = {
+      //   ...state.users,
+      //   ...action.payload,}
+        const updatedUser = {
+          ...state.auth_token.user,
+          ...action.payload,
+        };
       return {
         ...state,
         get_user_id: action.payload,
-      };
+        // auth_token: {
+        //   user: getUser
+        // }
+        auth_token: {
+          ...state.auth_token,
+          user: updatedUser,
+        },
+      }
+    }
     case GET_ORDER_ID:
       return {
         ...state,
         get_order_id: action.payload,
+        users: action.payload,
       };
     case LOGIN:
       localStorage.setItem("auth", JSON.stringify(action.payload));
@@ -206,11 +219,19 @@ const reducer = (state = initialState, action) => {
     }
 
     case UPDATE_ONE_USER: {
-      return {
-        ...state,
-        users: action.payload,
-      };
-    }
+          const updatedUser = {
+            ...state.auth_token.user,
+            ...action.payload,
+          };
+        return {
+          ...state,
+          auth_token: {
+            ...state.auth_token,
+            user: updatedUser,
+          },
+        }
+      }
+  
     case FETCH_ORDER_SUCCESS: {
       // Filtrar las órdenes que coinciden con el userId
       const userId = "YOUR_USER_ID"; // Reemplaza "YOUR_USER_ID" con tu identificador de usuario
@@ -223,7 +244,15 @@ const reducer = (state = initialState, action) => {
         userOrders: filteredOrders, // Actualizar las órdenes del usuario
         lastOrder: action.payload[action.payload.length - 1], // Actualizar la última compra del usuario
       };
+      
     }
+
+    case CLEAR_CART:
+      localStorage.removeItem("cart");
+      return {
+        ...state,
+        cart: []
+      };
 
     default:
       return state;

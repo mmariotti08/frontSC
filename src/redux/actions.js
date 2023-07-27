@@ -24,7 +24,8 @@ import {
   LOGOUT,
   FETCH_ORDER_SUCCESS,
   ADD_ADDRESS,
-  FILTER_ORDER
+  FILTER_ORDER,
+  CLEAR_CART
 } from "./actions-type";
 
 export const getProducts = () => {
@@ -73,18 +74,48 @@ export const getDetail = (id) => {
 };
 
 // Acción para agregar un elemento al carrito
-export const addToCart = (item) => {
-  return {
-    type: ADD_TO_CART,
-    payload: item,
+export const addToCart = (item, user) => {
+  console.log(user, item)
+  return async function (dispatch) { 
+    try {
+      const response = await axios.post('car', { item, user }); 
+      // console.log(response.data);
+      dispatch({
+        type: ADD_TO_CART, 
+        payload: response.data, 
+      });
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
   };
 };
 
+export const clearCart = () => {
+  return async function (dispatch) { 
+    try {
+      // const response = await axios.delete()
+      dispatch({ type: CLEAR_CART });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
+
 // Acción para remover un elemento del carrito
-export const removeFromCart = (productId, size) => {
-  return {
-    type: REMOVE_FROM_CART,
-    payload: { productId, size },
+export const removeFromCart = (id) => {
+  return async function (dispatch) { 
+    try {
+      const response = await axios.delete(`car/${id}`);
+      console.log(response.data);
+      dispatch({
+        type: REMOVE_FROM_CART, 
+        payload: id,
+      });
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
   };
 };
 
@@ -285,14 +316,14 @@ export const getOrderId = (orderId) => {
 };
 
 export const auth_google_Login = (token) => {
-
 	return async function(dispatch) {
 		try {
 			const response = await axios.post(`auth/google-login`, token);
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		}
+      toast.success(error.response.data.message);
+		};
 	};
 };
 
@@ -303,7 +334,8 @@ export const auth_mail_Login = (user) => {
 			return dispatch({ type: LOGIN, payload: response.data });
 		} catch (error) {
 			console.log(error.response.data);
-		}
+      toast.success(error.response.data.message);
+		};
 	};
 };
 
@@ -342,17 +374,20 @@ export const filter_order = (toFilter) => {
   }
 }
 
+// FUNCION DEL PERFIL DE USUARIO
 export const updateOneUser = (id, dataUser) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
+
       const response = await axios.put(`user/${id}`, dataUser);
-      console.log("15", response.data);
-      return dispatch({ type: UPDATE_ONE_USER, payload: response.data });
+      console.log(response.data);
+      return dispatch({type: UPDATE_ONE_USER, payload: response.data})
     } catch (error) {
       console.log(error.response.data);
-    }
+    };
   };
 };
+
 
 export const fetchOrderData = (userId) => async (dispatch) => {
   try {
@@ -363,3 +398,4 @@ export const fetchOrderData = (userId) => async (dispatch) => {
     // Aquí también podrías manejar un tipo de acción para el caso de error
   }
 };
+

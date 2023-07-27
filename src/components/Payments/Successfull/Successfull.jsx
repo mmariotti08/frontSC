@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import style from "./successfull.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOrders, getUserId } from "../../../redux/actions";
+import { getAllOrders, getUserId, clearCart } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { createReview } from "../../../redux/actions";
@@ -18,6 +18,12 @@ const Successfull = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth_token);
   const idReview = user.id;
+
+  useEffect(() => {
+    dispatch(clearCart());
+  }, []);
+
+  
 
   console.log(idReview);
   useEffect(() => {

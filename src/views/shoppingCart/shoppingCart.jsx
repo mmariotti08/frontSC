@@ -1,5 +1,5 @@
 import style from './shoppingCart.module.css';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { removeFromCart } from '../../redux/actions';
 import BuyButton from "../../components/BuyButton/BuyButton";
@@ -8,6 +8,8 @@ import BuyButton from "../../components/BuyButton/BuyButton";
 const ShoppingCart = ({ cart }) => {
   const dispatch = useDispatch();
   const [, setCart] = useState([]);
+
+  console.log(cart);
 
   const formatPrice = price => {
     const formattedPrice = (price / 100).toFixed(2);
@@ -24,12 +26,12 @@ const ShoppingCart = ({ cart }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleRemove = (productId, size) => {
+  const handleRemove = (carId) => {
     const isProductInCart = cart.filter(
-      (item) => item.id !== productId || item.size !== size
+      (item) => item.id !== carId 
     );
     setCart(isProductInCart);
-    dispatch(removeFromCart(productId, size));
+    dispatch(removeFromCart(carId));
   };
 
   return (
@@ -51,7 +53,7 @@ const ShoppingCart = ({ cart }) => {
                   <h3 className={style.size}>cantidad: {item.quantity}</h3>
                   <h3 className={style.size}>Sub-Total: {formatPrice(subtotal)}</h3>
                   <button
-                    onClick={() => handleRemove(item.id, item.size)}
+                    onClick={() => handleRemove(item.id)}
                     className={style.removeC}
                   >REMOVE CART</button>
                 </div>

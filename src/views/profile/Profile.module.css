@@ -1,6 +1,13 @@
 .container{
-    margin-top: 12%;
+    margin-top: 2%;
     display: grip;
+    grid-template-columns: 100%;
+grid-template-rows: 100px
+  50px
+  1fr
+  100px
+  200px;
+ 
   
     margin-left: 1%;
     width: 95%;
@@ -13,6 +20,12 @@
     font-family: 'Russo One', sans-serif;
     text-align: center;
     font-size: 30px;
+}
+.p{
+    font-family: 'Russo One', sans-serif;
+   
+    font-size: 18px;
+
 }
 
 .label{
@@ -31,6 +44,19 @@
 }
 
 .button{
+    font-family: 'Russo One', sans-serif;
+    font-size: 15px;
+    padding: 8px;
+    border: 1px solid #b91414;
+    border-radius: 4px;
+    color:rgb(29, 28, 28);
+    margin: 10px;
+    background-color:rgba(235, 232, 232, 0.836);
+}
+
+.buttonO{
+    display: flex;
+    justify-content: flex-end;
     font-family: 'Russo One', sans-serif;
     font-size: 15px;
     padding: 8px;
