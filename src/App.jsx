@@ -23,6 +23,7 @@ import Failed from "./components/Payments/Failed/Failed";
 import Profile from "./views/profile/profile";
 import { ToastContainer } from "react-toastify";
 import ProductsContainer from "./components/productsContainer/productsContainer";
+import  OrdersUser  from './views/ordersUser/ordersUser'
 
 // axios.defaults.baseURL='https://shopconnect-bj22.onrender.com/';
 
@@ -73,6 +74,7 @@ function App() {
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/products" element={<ProductsContainer />} />
+				<Route path="/my-account/orders" element={<OrdersUser/>}/>
 			</Routes>
 				{/* <UserBanned /> */}
 			{!pathname.startsWith("/admin") && <Footer />}
