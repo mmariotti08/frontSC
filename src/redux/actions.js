@@ -374,17 +374,20 @@ export const filter_order = (toFilter) => {
   }
 }
 
+// FUNCION DEL PERFIL DE USUARIO
 export const updateOneUser = (id, dataUser) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
+
       const response = await axios.put(`user/${id}`, dataUser);
-      console.log("15", response.data);
-      return dispatch({ type: UPDATE_ONE_USER, payload: response.data });
+      console.log(response.data);
+      return dispatch({type: UPDATE_ONE_USER, payload: response.data})
     } catch (error) {
       console.log(error.response.data);
-    }
+    };
   };
 };
+
 
 export const fetchOrderData = (userId) => async (dispatch) => {
   try {

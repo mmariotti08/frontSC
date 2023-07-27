@@ -51,6 +51,7 @@ const initialState = {
   },
   orderData: [],
   userOrders: [],
+  
 };
 
 const reducer = (state = initialState, action) => {
@@ -151,15 +152,31 @@ const reducer = (state = initialState, action) => {
         ...state,
         all_Orders: action.payload,
       };
-    case GET_USER_ID:
+    case GET_USER_ID:{
+      // const getUser = {
+      //   ...state.users,
+      //   ...action.payload,}
+        const updatedUser = {
+          ...state.auth_token.user,
+          ...action.payload,
+        };
       return {
         ...state,
         get_user_id: action.payload,
-      };
+        // auth_token: {
+        //   user: getUser
+        // }
+        auth_token: {
+          ...state.auth_token,
+          user: updatedUser,
+        },
+      }
+    }
     case GET_ORDER_ID:
       return {
         ...state,
         get_order_id: action.payload,
+        users: action.payload,
       };
     case LOGIN:
       localStorage.setItem("auth", JSON.stringify(action.payload));
@@ -202,11 +219,19 @@ const reducer = (state = initialState, action) => {
     }
 
     case UPDATE_ONE_USER: {
-      return {
-        ...state,
-        users: action.payload,
-      };
-    }
+          const updatedUser = {
+            ...state.auth_token.user,
+            ...action.payload,
+          };
+        return {
+          ...state,
+          auth_token: {
+            ...state.auth_token,
+            user: updatedUser,
+          },
+        }
+      }
+  
     case FETCH_ORDER_SUCCESS: {
       // Filtrar las órdenes que coinciden con el userId
       const userId = "YOUR_USER_ID"; // Reemplaza "YOUR_USER_ID" con tu identificador de usuario
