@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Mail Login.module.css";
 import { useDispatch } from "react-redux";
 import { auth_mail_Login, addUser } from "../../../redux/actions";
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/Ai';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Mail_Login = ({ modeSingUp }) => {
     const dispatch = useDispatch();

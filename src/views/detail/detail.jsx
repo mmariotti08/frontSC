@@ -3,7 +3,7 @@ import { getDetail } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import styles from "./detail.module.css";
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/Ai';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { addToCart, removeFromCart, addToFav, removeFromFav } from '../../redux/actions';
 import { toast } from "react-toastify";
 import { CgMathPlus, CgMathMinus } from 'react-icons/cg';
