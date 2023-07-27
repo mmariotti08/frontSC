@@ -154,7 +154,7 @@ const Detail = () => {
 	// 	dispatch()
 	// }, []);
 
-  	// const opinionsArray =   users.map(user => ({ name: user.name, opinion: user.Reviews.opinion }));
+  	const opinionsArray =   users.map(user => ({ name: user.name, opinion: user.Reviews.opinion }));
 
 	return (
 		<div id={styles.contDetail}>
@@ -253,7 +253,7 @@ const Detail = () => {
 					</div>
 				</div>
 			</div>
-      {/* <Opinions opinions={opinionsArray} /> */}
+      <Opinions opinions={opinionsArray} />
 		</div>
 	);
 };

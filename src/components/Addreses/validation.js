@@ -11,7 +11,7 @@ const validation = (data, error, setError)=>{
 /// country
     if(!data.country){
         errors.country = 'The country field is required.';
-      }else if(!/^[a-zA-Z]+$/.test(data.country)){
+      }else if(!/^[a-zA-Z\s]+$/.test(data.country)){
         errors.country= 'Numbers and special characters are not allowed'
       } else {
         errors.country = '';
