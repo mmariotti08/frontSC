@@ -42,7 +42,7 @@ const Account = () => {
 
   
   if (!user) {
-    return <div>Loading...</div>;
+    return <div className={style.h2}>Loading...</div>;
   }
 
   return (
@@ -87,16 +87,16 @@ const Account = () => {
       ) : (
         <div>
 
-          <p>First Name: {user.name}</p>
-          <p>Last Name: {user.last_name}</p>
-          <p>Password: ******** </p>
-          <p>Mail: {user.mail}</p>
-          <p>Phone: {user.phone}</p>
+          <p className={style.p}>First Name: {user.name}</p>
+          <p className={style.p}>Last Name: {user.last_name}</p>
+          <p className={style.p}>Password: ******** </p>
+          <p className={style.p}>Mail: {user.mail}</p>
+          <p className={style.p}>Phone: {user.phone}</p>
           <button className={style.button} onClick={handleEditClick}>Editar</button>
         </div>
       )} 
 <a href="/my-account/orders">
-  <button className={style.button}>My Orders</button>
+  <button className={style.buttonO}>My Orders</button>
 </a>
     </div>
   );
