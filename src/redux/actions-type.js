@@ -5,6 +5,7 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const ADD_TO_FAV = 'ADD_TO_FAV';
 export const REMOVE_FROM_FAV = 'REMOVE_FROM_FAV';
+export const GET_CAR = 'GET_CAR';
 export const GET_PRODUCT_NAME = 'GET_PRODUCT_NAME';
 export const PAGINATION = 'PAGINATION';
 export const GET_APPROVAL_ADMIN = "GET_APPROVAL_ADMIN";

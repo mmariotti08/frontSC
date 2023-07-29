@@ -1,16 +1,17 @@
 import style from './shoppingCart.module.css';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { removeFromCart } from '../../redux/actions';
+import { removeFromCart, clearCart, getCartUser } from '../../redux/actions';
 import BuyButton from "../../components/BuyButton/BuyButton";
 
 
 const ShoppingCart = ({ cart }) => {
   const dispatch = useDispatch();
   const [, setCart] = useState([]);
+  const { user, isAuthenticated } = useSelector(state => state.auth_token);
 
   console.log(cart);
-
+  console.log('user :>> ', user);
   const formatPrice = price => {
     const formattedPrice = (price / 100).toFixed(2);
     return `$${formattedPrice}`;
@@ -23,7 +24,11 @@ const ShoppingCart = ({ cart }) => {
   const totalPrice = cart.reduce((total, item) => total + calculateSubtotal(item.quantity, item.retail_price_cents), 0);
 
   useEffect(() => {
-    
+    if (isAuthenticated) {
+      dispatch(getCartUser(user.id));
+    } else {
+      dispatch(clearCart());
+    }
     window.scrollTo(0, 0);
   }, []);
 
@@ -39,11 +44,12 @@ const ShoppingCart = ({ cart }) => {
     <div className={style.containerGeneral}>
       <h1 className={style.titule}>Shopping Cart</h1>
       <div className={style.container}>
-        {cart.length === 0 ? (
+        {cart && cart.length === 0 ? (
           <p className={style.mensaje}>Add products to your cart</p>
         ) : (
           <>
-            {cart.map(item => {
+            {cart && cart.map(item => {
+              console.log('item :>> ', item);
               const subtotal = calculateSubtotal(item.quantity, item.retail_price_cents);
               return (
                 <div key={item.id} className={style.product}>

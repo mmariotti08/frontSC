@@ -3,6 +3,7 @@ import {
   GET_PRODUCTS,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  GET_CAR,
   REMOVE_FROM_FAV,
   ADD_TO_FAV,
   GET_PRODUCT_NAME,
@@ -119,6 +120,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fav: updatedFavRemove,
+      };
+    }
+
+    case GET_CAR: {
+      const updatedCartAdd =action.payload;
+      localStorage.setItem("cart", JSON.stringify(updatedCartAdd));
+      return {
+        ...state,
+        cart: updatedCartAdd,
       };
     }
 

@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import style from "./NavBar.module.css";
 import SearchBar from "../../../src/components/searchBar/searchBar";
-import { getProductName, getProducts, getUsers } from "../../redux/actions";
+import { getProductName, getProducts, clearCart, getUsers, getCartUser } from "../../redux/actions";
 import { Login_v2 } from "../../views/new Login/Login v2";
 import { Menu_Login } from "../New Login/Menu Login/Menu Login";
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
@@ -12,13 +12,14 @@ import { BsPerson } from 'react-icons/bs';
 
 const NavBar = ({ toggleCarousel }) => {
 	const dispatch = useDispatch();
+	
 
 	useEffect(() => {
 		dispatch(getUsers());
 	}, [dispatch]);
 
 	const cart = useSelector((state) => state.cart);
-	const cartItemCount = cart.length;
+
 
 	const handleSearch = (name) => {
 		if (name.length === 0) {
@@ -88,6 +89,17 @@ const NavBar = ({ toggleCarousel }) => {
 		setMenuOn(!menuOn);
 	};
 
+	let cartItemCount = cart.length;
+	useEffect(() => {
+
+		if (isAuthenticated) {
+			cartItemCount = dispatch(getCartUser(user.id));
+		} else {
+			cartItemCount = dispatch(clearCart());
+		}
+		window.scrollTo(0, 0);
+	}, [dispatch]);
+
 	return (
 		<>
 			{singIn && !isAuthenticated
@@ -143,9 +155,9 @@ const NavBar = ({ toggleCarousel }) => {
 
 						<Link to="/cart" className={style.navLink}>
 							<AiOutlineShoppingCart />
-							{cartItemCount > 0 && (
+							{
 								<span className={style.cartItemCount}>{cartItemCount}</span>
-							)}
+							}
 						</Link>
 					</div>
 				</div>

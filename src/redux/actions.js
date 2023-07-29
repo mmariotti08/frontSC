@@ -8,6 +8,7 @@ import {
   ADD_TO_CART,
   ADD_TO_FAV,
   REMOVE_FROM_FAV,
+  GET_CAR,
   GET_PRODUCT_NAME,
   PAGINATION,
   GET_APPROVAL_ADMIN,
@@ -75,7 +76,6 @@ export const getDetail = (id) => {
 
 // Acción para agregar un elemento al carrito
 export const addToCart = (item, user) => {
-  console.log(user, item)
   return async function (dispatch) { 
     try {
       const response = await axios.post('car', { item, user }); 
@@ -114,25 +114,61 @@ export const removeFromCart = (id) => {
         payload: id,
       });
     } catch (error) {
-      console.error('Error al agregar al carrito:', error);
+      console.error('Error al eliminar del carrito:', error);
+    }
+  };
+};
+
+//Al loguearse trae los elementos que hay en el carrito
+export const getCartUser = (userId) => {
+  console.log('userId :>> ', userId);
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`car`, userId);
+      console.log('responseAction :>> ', response);
+      return dispatch({ type: GET_CAR, payload: response.data });
+    } catch (error) {
+      console.error(error.response.data);
     }
   };
 };
 
 // Acción para agregar un elemento al carrito
-export const addToFav = (item) => {
-  return {
-    type: ADD_TO_FAV,
-    payload: item,
+export const addToFav = (item, user) => {
+  console.log('item, user :>> ', item, user);
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('favorites', { item, user });
+      console.log('response :>> ', response);
+      dispatch({
+        type: ADD_TO_FAV,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error('Error al agregar a favoritos', error);
+    }
   };
 };
 
 // Acción para remover un elemento del carrito
-export const removeFromFav = (itemId) => {
-  return {
+export const removeFromFav = (id) => {
+  console.log('id :>> ', id);
+  return async function (dispatch) {
+    try {
+      const response = await axios.delete(`favorites/${id}`);
+      console.log(response.data);
+      dispatch({
+        type: REMOVE_FROM_FAV,
+        payload: id,
+      });
+    } catch (error) {
+      console.error('Error al eliminar de Favoritos:', error);
+    }
+  };
+/*   return {
     type: REMOVE_FROM_FAV,
     payload: itemId,
-  };
+  }; */
 };
 
 // ACCIONES ADMIN (NO TOCAR)
