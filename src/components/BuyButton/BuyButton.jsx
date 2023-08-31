@@ -4,6 +4,7 @@ import styles from './BuyButton.module.css'
 import axios from 'axios'
 import { toast } from "react-toastify";
 
+
 const BuyButton = ()=>{
     const navigate = useNavigate()
 
